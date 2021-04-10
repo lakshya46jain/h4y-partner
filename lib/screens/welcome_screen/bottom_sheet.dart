@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 // Dependency Imports
 // File Imports
+import 'package:h4y_partner/screens/phone_auth_screen/phone_authentication.dart';
 
 class WelcomeBottomSheet extends StatelessWidget {
   @override
@@ -10,7 +11,12 @@ class WelcomeBottomSheet extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         HapticFeedback.lightImpact();
-        // TODO: Give Get Started Button Functionality
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => PhoneAuthentication(),
+          ),
+        );
       },
       child: Container(
         height: 100.0,
