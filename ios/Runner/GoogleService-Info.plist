@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>231681079480-vqu8ilth7i9i2doccri5bahv5kl0q2if.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.231681079480-vqu8ilth7i9i2doccri5bahv5kl0q2if</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCdJfCramUYNArGxpB5uW2MSWQ-Apjk94Y</string>
+	<key>GCM_SENDER_ID</key>
+	<string>231681079480</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.lakshya.h4y-partner</string>
+	<key>PROJECT_ID</key>
+	<string>help4you-24c07</string>
+	<key>STORAGE_BUCKET</key>
+	<string>help4you-24c07.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:231681079480:ios:94a3d6f820550e7282dc4d</string>
+	<key>DATABASE_URL</key>
+	<string>https://help4you-24c07.firebaseio.com</string>
+</dict>
+</plist>

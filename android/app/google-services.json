@@ -1,0 +1,84 @@
+{
+  "project_info": {
+    "project_number": "231681079480",
+    "firebase_url": "https://help4you-24c07.firebaseio.com",
+    "project_id": "help4you-24c07",
+    "storage_bucket": "help4you-24c07.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:231681079480:android:a15fdaa3bd8a346982dc4d",
+        "android_client_info": {
+          "package_name": "com.lakshya.h4y_partner"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "231681079480-aeu7hoq78nror3fafv6mllp84bgu2tpb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9KJOboGpFWYz_LW613SNmJu6DQwaSVrM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "231681079480-aeu7hoq78nror3fafv6mllp84bgu2tpb.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "231681079480-0ku50h2ojke4hac3tgdbj5gshcca0a4o.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.lakshya.h4yProvider"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:231681079480:android:575426eaa73c66e182dc4d",
+        "android_client_info": {
+          "package_name": "com.lakshya.help4you"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "231681079480-aeu7hoq78nror3fafv6mllp84bgu2tpb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9KJOboGpFWYz_LW613SNmJu6DQwaSVrM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "231681079480-aeu7hoq78nror3fafv6mllp84bgu2tpb.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "231681079480-0ku50h2ojke4hac3tgdbj5gshcca0a4o.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.lakshya.h4yProvider"
+              }
+            }
+          ]
+        }
+      },
+      "admob_app_id": "ca-app-pub-7034458903159384~1259727695"
+    }
+  ],
+  "configuration_version": "1"
+}
