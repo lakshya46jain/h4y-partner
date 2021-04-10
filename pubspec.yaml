@@ -28,6 +28,12 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
 
+  # Aesthetics
+  fluentui_system_icons: ^1.1.116
+
+  # Features
+  flutter_svg: ^0.21.0-nullsafety.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -56,6 +62,10 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    # Graphics
+    - assets/graphics/Help4You_Illustration_1.svg
+    - assets/graphics/Help4You_Illustration_3.svg
+    - assets/graphics/Help4You_Illustration_4.svg
     # Images
     - assets/images/launcher_icons/H4Y_Partner_AppIcon.png
     - assets/images/launcher_icons/Help4You_Background_AppIcon.png
