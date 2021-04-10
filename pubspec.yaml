@@ -32,6 +32,7 @@ dependencies:
   fluentui_system_icons: ^1.1.116
 
   # Widgets
+  pinput: ^1.2.0
   international_phone_input: ^1.0.4
 
   # Features
