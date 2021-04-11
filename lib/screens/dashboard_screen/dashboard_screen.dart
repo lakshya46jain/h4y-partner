@@ -5,12 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:h4y_partner/screens/dashboard_screen/body.dart';
 import 'package:h4y_partner/screens/dashboard_screen/app_bar.dart';
 
-class HomeScreen extends StatefulWidget {
+class DashboardScreen extends StatefulWidget {
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  _DashboardScreenState createState() => _DashboardScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _DashboardScreenState extends State<DashboardScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
