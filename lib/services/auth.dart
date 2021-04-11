@@ -4,8 +4,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter/foundation.dart';
 // Dependency Imports
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 // File Imports
 import 'package:h4y_partner/screens/wrapper.dart';
+import 'package:h4y_partner/services/database.dart';
 import 'package:h4y_partner/models/user_model.dart';
 import 'package:h4y_partner/constants/verification_container.dart';
 
@@ -25,6 +27,8 @@ class AuthService {
 
   // Phone Authentication
   Future phoneAuthentication(
+    String fullName,
+    String occupation,
     String phoneIsoCode,
     String nonInternationalNumber,
     String phoneNumber,
@@ -38,14 +42,39 @@ class AuthService {
         timeout: Duration(seconds: 60),
         verificationCompleted: (PhoneAuthCredential phoneAuthCredential) async {
           _auth.signInWithCredential(phoneAuthCredential).then(
-            (UserCredential result) {
-              Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => Wrapper(),
-                ),
-                (route) => false,
-              );
+            (UserCredential result) async {
+              User user = result.user;
+              DocumentSnapshot ds = await FirebaseFirestore.instance
+                  .collection("H4Y Users Database")
+                  .doc(user.uid)
+                  .get();
+              if (ds.exists) {
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Wrapper(),
+                  ),
+                  (route) => false,
+                );
+              } else {
+                await DatabaseService(uid: user.uid).updateUserData(
+                  fullName,
+                  occupation,
+                  phoneNumber,
+                  phoneIsoCode,
+                  nonInternationalNumber,
+                );
+                await DatabaseService(uid: user.uid).updateProfilePicture(
+                  "https://firebasestorage.googleapis.com/v0/b/help4you-24c07.appspot.com/o/Default%20Profile%20Picture.png?alt=media&token=fd813e4d-80f9-4c2f-aa7a-b07602efaf09",
+                );
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Wrapper(),
+                  ),
+                  (route) => false,
+                );
+              }
             },
           );
         },
@@ -67,14 +96,39 @@ class AuthService {
                   smsCode: pin,
                 );
                 _auth.signInWithCredential(credential).then(
-                  (UserCredential result) {
-                    Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Wrapper(),
-                      ),
-                      (route) => false,
-                    );
+                  (UserCredential result) async {
+                    User user = result.user;
+                    DocumentSnapshot ds = await FirebaseFirestore.instance
+                        .collection("H4Y Users Database")
+                        .doc(user.uid)
+                        .get();
+                    if (ds.exists) {
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Wrapper(),
+                        ),
+                        (route) => false,
+                      );
+                    } else {
+                      await DatabaseService(uid: user.uid).updateUserData(
+                        fullName,
+                        occupation,
+                        phoneNumber,
+                        phoneIsoCode,
+                        nonInternationalNumber,
+                      );
+                      await DatabaseService(uid: user.uid).updateProfilePicture(
+                        "https://firebasestorage.googleapis.com/v0/b/help4you-24c07.appspot.com/o/Default%20Profile%20Picture.png?alt=media&token=fd813e4d-80f9-4c2f-aa7a-b07602efaf09",
+                      );
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Wrapper(),
+                        ),
+                        (route) => false,
+                      );
+                    }
                   },
                 );
               },
