@@ -33,6 +33,7 @@ dependencies:
 
   # Widgets
   pinput: ^1.2.0
+  google_nav_bar: ^5.0.3
   international_phone_input: ^1.0.4
 
   # Features
