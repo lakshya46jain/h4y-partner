@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 // File Imports
 import 'package:h4y_partner/services/auth.dart';
+import 'package:h4y_partner/constants/policy_dialog.dart';
 import 'package:h4y_partner/constants/custom_snackbar.dart';
 import 'package:h4y_partner/constants/signature_button.dart';
 import 'package:h4y_partner/constants/phone_number_field.dart';
@@ -100,7 +101,15 @@ class _BodyState extends State<Body> {
             ),
             GestureDetector(
               onTap: () {
-                // TODO: Give Terms & Conditions Button Functionality
+                HapticFeedback.lightImpact();
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return PolicyDialog(
+                      mdFileName: 'terms_and_conditions.md',
+                    );
+                  },
+                );
               },
               child: Text(
                 "By continuing you confirm that you agree \nwith our Terms and Conditions",
