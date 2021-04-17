@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 // Dependency Imports
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 // File Imports
+import 'package:h4y_partner/constants/policy_dialog.dart';
 import 'package:h4y_partner/constants/expanded_button.dart';
 
 class Body extends StatelessWidget {
@@ -35,7 +36,16 @@ class Body extends StatelessWidget {
           ExpandedButton(
             text: "Terms and Conditions",
             icon: FluentIcons.person_accounts_24_regular,
-            onPressed: () {},
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return PolicyDialog(
+                    mdFileName: 'terms_and_conditions.md',
+                  );
+                },
+              );
+            },
           ),
           ExpandedButton(
             text: "Privacy Policy",
