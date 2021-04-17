@@ -52,7 +52,7 @@ class SignatureButton extends StatelessWidget {
                 child: Icon(
                   icon,
                   color: Colors.white,
-                  size: 20.0,
+                  size: 24.0,
                 ),
               ),
             ],
