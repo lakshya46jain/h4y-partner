@@ -47,6 +47,24 @@ class DatabaseService {
     );
   }
 
+  // Update Professional Services
+  Future updateProfessionalServices(
+    String serviceTitle,
+    String serviceDescription,
+    String servicePrice,
+    bool serviceVisibility,
+  ) async {
+    return await customerCollection.doc(uid).collection("Services").doc().set(
+      {
+        'User UID': uid,
+        'Service Title': serviceTitle,
+        'Service Description': serviceDescription,
+        'Service Price': servicePrice,
+        'Visibility': serviceVisibility
+      },
+    );
+  }
+
   // User Data from Snapshot
   UserDataProfessional _userDataFromSnapshot(DocumentSnapshot snapshot) {
     return UserDataProfessional(

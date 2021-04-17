@@ -1,7 +1,10 @@
 // Flutter Imports
 import 'package:flutter/material.dart';
 // Dependency Imports
+import 'package:provider/provider.dart';
 // File Imports
+import 'package:h4y_partner/models/user_model.dart';
+import 'package:h4y_partner/services/database.dart';
 import 'package:h4y_partner/screens/add_service_screen/body.dart';
 import 'package:h4y_partner/screens/add_service_screen/app_bar.dart';
 
@@ -14,7 +17,7 @@ class _AddServiceScreenState extends State<AddServiceScreen> {
   // Text Field Variable
   String serviceTitle;
   String serviceDescription;
-  int servicePrice;
+  String servicePrice;
 
   // Visibility Bool
   bool visibility = true;
@@ -24,6 +27,9 @@ class _AddServiceScreenState extends State<AddServiceScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // Get User
+    final user = Provider.of<Help4YouUser>(context);
+
     return Scaffold(
       appBar: PreferredSize(
         child: AddServiceAppBar(),
@@ -57,6 +63,12 @@ class _AddServiceScreenState extends State<AddServiceScreen> {
         onPressed: () async {
           FocusScope.of(context).unfocus();
           if (_formKey.currentState.validate()) {
+            await DatabaseService(uid: user.uid).updateProfessionalServices(
+              serviceTitle,
+              serviceDescription,
+              servicePrice,
+              visibility,
+            );
             Navigator.pop(context);
           }
         },
