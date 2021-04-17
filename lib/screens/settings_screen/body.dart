@@ -7,6 +7,7 @@ import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:h4y_partner/services/auth.dart';
 import 'package:h4y_partner/models/user_model.dart';
 import 'package:h4y_partner/constants/expanded_button.dart';
+import 'package:h4y_partner/screens/about_us_screen/about_us.dart';
 import 'package:h4y_partner/screens/settings_screen/stream_builder.dart';
 
 class Body extends StatelessWidget {
@@ -23,7 +24,14 @@ class Body extends StatelessWidget {
             ExpandedButton(
               icon: FluentIcons.info_24_regular,
               text: "About Us",
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => AboutUs(),
+                  ),
+                );
+              },
             ),
             ExpandedButton(
               icon: FluentIcons.person_feedback_24_regular,

@@ -86,6 +86,7 @@ flutter:
     - assets/graphics/Help4You_Illustration_3.svg
     - assets/graphics/Help4You_Illustration_4.svg
     # Images
+    - assets/images/banners/Help4You_Banner.png
     - assets/images/launcher_icons/H4Y_Partner_AppIcon.png
     - assets/images/launcher_icons/Help4You_Background_AppIcon.png
     - assets/images/launcher_icons/H4Y_Partner_Foreground_AppIcon.png
