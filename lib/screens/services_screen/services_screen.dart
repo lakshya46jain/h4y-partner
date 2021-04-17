@@ -5,6 +5,7 @@ import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 // File Imports
 import 'package:h4y_partner/screens/services_screen/body.dart';
 import 'package:h4y_partner/screens/services_screen/app_bar.dart';
+import 'package:h4y_partner/screens/add_service_screen/add_service.dart';
 
 class ServicesScreen extends StatefulWidget {
   @override
@@ -30,7 +31,12 @@ class _ServicesScreenState extends State<ServicesScreen> {
         ),
         backgroundColor: Colors.deepOrangeAccent,
         onPressed: () {
-          // TODO: Give Functionality To Add Service Button
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => AddServiceScreen(),
+            ),
+          );
         },
       ),
     );
