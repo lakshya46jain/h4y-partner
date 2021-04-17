@@ -1,6 +1,7 @@
 // Flutter Imports
 import 'package:flutter/material.dart';
 // Dependency Imports
+import 'package:share/share.dart';
 import 'package:provider/provider.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 // File Imports
@@ -46,7 +47,12 @@ class Body extends StatelessWidget {
             ExpandedButton(
               icon: FluentIcons.share_24_regular,
               text: "Share Help4You",
-              onPressed: () {},
+              onPressed: () {
+                Share.share(
+                  "Have you tried the Help4You app? It's simple to book services like appliance repair, electricians, gardeners & more...\nTo download our app please visit https://www.help4you.webflow.io/download",
+                  subject: "Try Help4You",
+                );
+              },
             ),
             ExpandedButton(
               icon: FluentIcons.sign_out_24_regular,

@@ -39,6 +39,7 @@ dependencies:
   cached_network_image: ^3.0.0-nullsafety
 
   # Features
+  share: ^2.0.1
   image_picker: ^0.7.3
   image_cropper: ^1.4.0
   flutter_markdown: ^0.6.1
