@@ -6,12 +6,14 @@ import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 // File Imports
 
 class ServiceTile extends StatelessWidget {
+  final String documentId;
   final String serviceTitle;
   final String serviceDescription;
-  final int servicePrice;
+  final String servicePrice;
   final bool visibility;
 
   ServiceTile({
+    this.documentId,
     this.serviceTitle,
     this.serviceDescription,
     this.servicePrice,
