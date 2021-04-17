@@ -1,6 +1,7 @@
 // Flutter Imports
 import 'package:flutter/material.dart';
 // Dependency Imports
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 // File Imports
 import 'package:h4y_partner/screens/services_screen/body.dart';
 import 'package:h4y_partner/screens/services_screen/app_bar.dart';
@@ -21,6 +22,17 @@ class _ServicesScreenState extends State<ServicesScreen> {
         child: ServicesAppBar(),
       ),
       body: Body(),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(
+          FluentIcons.add_28_filled,
+          color: Colors.white,
+          size: 28.0,
+        ),
+        backgroundColor: Colors.deepOrangeAccent,
+        onPressed: () {
+          // TODO: Give Functionality To Add Service Button
+        },
+      ),
     );
   }
 }
