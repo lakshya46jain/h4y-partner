@@ -4,7 +4,6 @@ import 'package:flutter/services.dart';
 // Dependency Imports
 import 'package:flutter_markdown/flutter_markdown.dart';
 // File Imports
-import 'package:h4y_partner/constants/signature_button.dart';
 
 class PolicyDialog extends StatelessWidget {
   PolicyDialog({
@@ -49,11 +48,36 @@ class PolicyDialog extends StatelessWidget {
               },
             ),
           ),
-          SignatureButton(
-            onTap: () {
-              Navigator.of(context).pop();
+          MaterialButton(
+            padding: EdgeInsets.all(0),
+            onPressed: () {
+              Navigator.pop(context);
             },
-            text: "CLOSE",
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10.0),
+                color: Colors.deepOrangeAccent,
+              ),
+              width: double.infinity,
+              height: MediaQuery.of(context).size.height / (1792 / 120),
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  vertical: 10.0,
+                  horizontal: 20.0,
+                ),
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    "CLOSE",
+                    style: TextStyle(
+                      fontSize: 20.0,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+            ),
           ),
         ],
       ),
