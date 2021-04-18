@@ -2,8 +2,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 // Dependency Imports
+import 'package:provider/provider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 // File Imports
+import 'package:h4y_partner/models/user_model.dart';
 
 class ServiceTile extends StatelessWidget {
   final String documentId;
@@ -21,6 +24,9 @@ class ServiceTile extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
+    // Get User
+    final user = Provider.of<Help4YouUser>(context);
+
     return Padding(
       padding: EdgeInsets.symmetric(
         horizontal: 20.0,
@@ -74,8 +80,13 @@ class ServiceTile extends StatelessWidget {
                           color: Colors.red,
                           size: 26.0,
                         ),
-                        onPressed: () {
-                          // TODO: Give Functionality To Delete Service Button
+                        onPressed: () async {
+                          await FirebaseFirestore.instance
+                              .collection("H4Y Users Database")
+                              .doc(user.uid)
+                              .collection("Services")
+                              .doc(documentId)
+                              .delete();
                         },
                       ),
                     ],
