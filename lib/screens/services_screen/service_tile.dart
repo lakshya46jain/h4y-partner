@@ -68,14 +68,55 @@ class ServiceTile extends StatelessWidget {
                       Text(
                         "Price : $servicePrice",
                       ),
-                      CupertinoSwitch(
-                        value: visibility,
-                        onChanged: (bool newValue) {
-                          // TODO: Set the new value to firebase
+                      IconButton(
+                        icon: Icon(
+                          FluentIcons.delete_24_regular,
+                          color: Colors.red,
+                          size: 26.0,
+                        ),
+                        onPressed: () {
+                          // TODO: Give Functionality To Delete Service Button
                         },
-                        activeColor: Colors.deepOrangeAccent,
                       ),
                     ],
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Container(
+                    padding: EdgeInsets.all(10.0),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Color(0xFFF5F6F9),
+                    ),
+                    child: Row(
+                      children: [
+                        Icon(
+                          FluentIcons.eye_show_24_regular,
+                          size: 30.0,
+                          color: Colors.deepOrange,
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Expanded(
+                          child: Text(
+                            "Service Visibility",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                        CupertinoSwitch(
+                          value: visibility,
+                          onChanged: (bool newValue) {
+                            // TODO: Set the new value to firebase
+                          },
+                          activeColor: Colors.deepOrangeAccent,
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
