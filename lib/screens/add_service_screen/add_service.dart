@@ -30,48 +30,53 @@ class _AddServiceScreenState extends State<AddServiceScreen> {
     // Get User
     final user = Provider.of<Help4YouUser>(context);
 
-    return Scaffold(
-      appBar: PreferredSize(
-        child: AddServiceAppBar(),
-        preferredSize: Size.fromHeight(
-          MediaQuery.of(context).size.height / (1792 / 100),
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus();
+      },
+      child: Scaffold(
+        appBar: PreferredSize(
+          child: AddServiceAppBar(),
+          preferredSize: Size.fromHeight(
+            MediaQuery.of(context).size.height / (1792 / 100),
+          ),
         ),
-      ),
-      body: Body(
-        onChanged1: (value) {
-          setState(
-            () {
-              serviceTitle = value;
-            },
-          );
-        },
-        onChanged2: (value) {
-          setState(
-            () {
-              serviceDescription = value;
-            },
-          );
-        },
-        onChanged3: (value) {
-          setState(
-            () {
-              servicePrice = value;
-            },
-          );
-        },
-        formKey: _formKey,
-        onPressed: () async {
-          FocusScope.of(context).unfocus();
-          if (_formKey.currentState.validate()) {
-            await DatabaseService(uid: user.uid).updateProfessionalServices(
-              serviceTitle,
-              serviceDescription,
-              servicePrice,
-              visibility,
+        body: Body(
+          onChanged1: (value) {
+            setState(
+              () {
+                serviceTitle = value;
+              },
             );
-            Navigator.pop(context);
-          }
-        },
+          },
+          onChanged2: (value) {
+            setState(
+              () {
+                serviceDescription = value;
+              },
+            );
+          },
+          onChanged3: (value) {
+            setState(
+              () {
+                servicePrice = value;
+              },
+            );
+          },
+          formKey: _formKey,
+          onPressed: () async {
+            FocusScope.of(context).unfocus();
+            if (_formKey.currentState.validate()) {
+              await DatabaseService(uid: user.uid).updateProfessionalServices(
+                serviceTitle,
+                serviceDescription,
+                servicePrice,
+                visibility,
+              );
+              Navigator.pop(context);
+            }
+          },
+        ),
       ),
     );
   }

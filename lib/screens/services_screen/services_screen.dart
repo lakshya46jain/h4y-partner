@@ -15,29 +15,34 @@ class ServicesScreen extends StatefulWidget {
 class _ServicesScreenState extends State<ServicesScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(
-          MediaQuery.of(context).size.height / (1792 / 100),
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus();
+      },
+      child: Scaffold(
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(
+            MediaQuery.of(context).size.height / (1792 / 100),
+          ),
+          child: ServicesAppBar(),
         ),
-        child: ServicesAppBar(),
-      ),
-      body: Body(),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(
-          FluentIcons.add_28_filled,
-          color: Colors.white,
-          size: 28.0,
+        body: Body(),
+        floatingActionButton: FloatingActionButton(
+          child: Icon(
+            FluentIcons.add_28_filled,
+            color: Colors.white,
+            size: 28.0,
+          ),
+          backgroundColor: Colors.deepOrangeAccent,
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => AddServiceScreen(),
+              ),
+            );
+          },
         ),
-        backgroundColor: Colors.deepOrangeAccent,
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => AddServiceScreen(),
-            ),
-          );
-        },
       ),
     );
   }

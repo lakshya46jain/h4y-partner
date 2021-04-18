@@ -13,14 +13,19 @@ class SettingsScreens extends StatefulWidget {
 class _SettingsScreensState extends State<SettingsScreens> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(
-          MediaQuery.of(context).size.height / (1792 / 100),
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus();
+      },
+      child: Scaffold(
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(
+            MediaQuery.of(context).size.height / (1792 / 100),
+          ),
+          child: SettingsAppBar(),
         ),
-        child: SettingsAppBar(),
+        body: Body(),
       ),
-      body: Body(),
     );
   }
 }

@@ -17,14 +17,19 @@ class _MessageListScreenState extends State<MessageListScreen> {
       onTap: () {
         FocusScope.of(context).unfocus();
       },
-      child: Scaffold(
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(
-            MediaQuery.of(context).size.height / (1792 / 100),
+      child: GestureDetector(
+        onTap: () {
+          FocusScope.of(context).unfocus();
+        },
+        child: Scaffold(
+          appBar: PreferredSize(
+            preferredSize: Size.fromHeight(
+              MediaQuery.of(context).size.height / (1792 / 100),
+            ),
+            child: MessageListAppBar(),
           ),
-          child: MessageListAppBar(),
+          body: Body(),
         ),
-        body: Body(),
       ),
     );
   }
