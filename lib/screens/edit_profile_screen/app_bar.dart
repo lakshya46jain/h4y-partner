@@ -9,6 +9,7 @@ import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 // File Imports
 import 'package:h4y_partner/services/database.dart';
 import 'package:h4y_partner/models/user_model.dart';
+import 'package:h4y_partner/constants/back_button.dart';
 import 'package:h4y_partner/constants/custom_snackbar.dart';
 
 class EditProfileBar extends StatelessWidget {
@@ -38,6 +39,7 @@ class EditProfileBar extends StatelessWidget {
     return AppBar(
       elevation: 0.0,
       backgroundColor: Colors.transparent,
+      leading: CustomBackButton(),
       title: Text(
         "My Profile",
         style: TextStyle(

@@ -9,7 +9,7 @@ import 'package:h4y_partner/services/auth.dart';
 import 'package:h4y_partner/models/user_model.dart';
 import 'package:h4y_partner/constants/expanded_button.dart';
 import 'package:h4y_partner/screens/about_us_screen/about_us.dart';
-import 'package:h4y_partner/screens/settings_screen/stream_builder.dart';
+import 'package:h4y_partner/screens/settings_screen/edit_profile_toggle.dart';
 
 class Body extends StatelessWidget {
   @override
@@ -21,7 +21,7 @@ class Body extends StatelessWidget {
       child: Column(
         children: [
           if (user != null) ...[
-            ProfileCardStreamBuilder(),
+            EditProfileToggle(),
             ExpandedButton(
               icon: FluentIcons.info_24_regular,
               text: "About Us",
