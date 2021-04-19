@@ -182,7 +182,7 @@ class ProfileStreamBuilder extends StatelessWidget {
                   ),
                   child: StreamBuilder<QuerySnapshot>(
                     stream: FirebaseFirestore.instance
-                        .collection("Occupation")
+                        .collection("H4Y Occupation Database")
                         .snapshots(),
                     builder: (context, snapshot) {
                       if (!snapshot.hasData)
@@ -200,10 +200,10 @@ class ProfileStreamBuilder extends StatelessWidget {
                           occupationItems.add(
                             DropdownMenuItem(
                               child: Text(
-                                snap.id,
+                                snap.data()['Occupation'],
                                 style: TextStyle(color: Colors.black),
                               ),
-                              value: "${snap.id}",
+                              value: snap.data()['Occupation'],
                             ),
                           );
                         }
