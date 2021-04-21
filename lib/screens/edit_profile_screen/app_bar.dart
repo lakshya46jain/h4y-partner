@@ -48,7 +48,7 @@ class EditProfileBar extends StatelessWidget {
         ),
       ),
       actions: [
-        StreamBuilder<UserDataProfessional>(
+        StreamBuilder(
           stream: DatabaseService(uid: user.uid).userData,
           builder: (context, snapshot) {
             UserDataProfessional userData = snapshot.data;

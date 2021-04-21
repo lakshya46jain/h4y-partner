@@ -5,7 +5,6 @@ import 'package:provider/provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 // File Imports
 import 'package:h4y_partner/models/user_model.dart';
-import 'package:h4y_partner/constants/loading.dart';
 import 'package:h4y_partner/screens/services_screen/service_tile.dart';
 
 class Body extends StatelessWidget {
@@ -21,23 +20,19 @@ class Body extends StatelessWidget {
           .collection("Services")
           .snapshots(),
       builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          return ListView.builder(
-            itemCount: snapshot.data.docs.length,
-            itemBuilder: (context, index) {
-              DocumentSnapshot documentSnapshot = snapshot.data.docs[index];
-              return ServiceTile(
-                documentId: documentSnapshot.id,
-                serviceTitle: documentSnapshot["Service Title"],
-                serviceDescription: documentSnapshot["Service Description"],
-                servicePrice: documentSnapshot["Service Price"],
-                visibility: documentSnapshot["Visibility"],
-              );
-            },
-          );
-        } else {
-          return PouringHourGlassPageLoad();
-        }
+        return ListView.builder(
+          itemCount: snapshot.data.docs.length,
+          itemBuilder: (context, index) {
+            DocumentSnapshot documentSnapshot = snapshot.data.docs[index];
+            return ServiceTile(
+              documentId: documentSnapshot.id,
+              serviceTitle: documentSnapshot["Service Title"],
+              serviceDescription: documentSnapshot["Service Description"],
+              servicePrice: documentSnapshot["Service Price"],
+              visibility: documentSnapshot["Visibility"],
+            );
+          },
+        );
       },
     );
   }

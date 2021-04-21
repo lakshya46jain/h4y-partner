@@ -13,7 +13,7 @@ class ProfileCardStreamBuilder extends StatelessWidget {
     // Get User
     final user = Provider.of<Help4YouUser>(context);
 
-    return StreamBuilder<Object>(
+    return StreamBuilder(
       stream: DatabaseService(uid: user.uid).userData,
       builder: (context, snapshot) {
         UserDataProfessional userData = snapshot.data;
