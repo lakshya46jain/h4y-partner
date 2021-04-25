@@ -17,7 +17,7 @@ class _AddServiceScreenState extends State<AddServiceScreen> {
   // Text Field Variable
   String serviceTitle;
   String serviceDescription;
-  String servicePrice;
+  int servicePrice;
 
   // Visibility Bool
   bool visibility = true;

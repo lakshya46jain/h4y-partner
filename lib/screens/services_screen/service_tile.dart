@@ -12,7 +12,7 @@ class ServiceTile extends StatelessWidget {
   final String documentId;
   final String serviceTitle;
   final String serviceDescription;
-  final String servicePrice;
+  final int servicePrice;
   final bool visibility;
 
   ServiceTile({

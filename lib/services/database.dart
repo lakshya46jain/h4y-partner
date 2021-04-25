@@ -51,7 +51,7 @@ class DatabaseService {
   Future updateProfessionalServices(
     String serviceTitle,
     String serviceDescription,
-    String servicePrice,
+    int servicePrice,
     bool serviceVisibility,
   ) async {
     return await customerCollection.doc(uid).collection("Services").doc().set(
