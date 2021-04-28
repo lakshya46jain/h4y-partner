@@ -8,7 +8,7 @@ class CustomTextField extends StatelessWidget {
   final int maxLines;
   final Function validator;
   final Function onChanged;
-  final String initialValue;
+  final dynamic initialValue;
   final String labelText;
   final String hintText;
 
