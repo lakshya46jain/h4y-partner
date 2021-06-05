@@ -2,9 +2,10 @@
 import 'package:flutter/material.dart';
 // Dependency Imports
 import 'package:provider/provider.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 // File Imports
 import 'package:h4y_partner/models/user_model.dart';
+import 'package:h4y_partner/services/database.dart';
+import 'package:h4y_partner/models/service_model.dart';
 import 'package:h4y_partner/screens/services_screen/service_tile.dart';
 
 class Body extends StatelessWidget {
@@ -14,22 +15,18 @@ class Body extends StatelessWidget {
     final user = Provider.of<Help4YouUser>(context);
 
     return StreamBuilder(
-      stream: FirebaseFirestore.instance
-          .collection("H4Y Users Database")
-          .doc(user.uid)
-          .collection("Services")
-          .snapshots(),
+      stream: DatabaseService(uid: user.uid).serviceData,
       builder: (context, snapshot) {
+        List<Help4YouServices> services = snapshot.data;
         return ListView.builder(
-          itemCount: snapshot.data.docs.length,
+          itemCount: services.length,
           itemBuilder: (context, index) {
-            DocumentSnapshot documentSnapshot = snapshot.data.docs[index];
             return ServiceTile(
-              documentId: documentSnapshot.id,
-              serviceTitle: documentSnapshot["Service Title"],
-              serviceDescription: documentSnapshot["Service Description"],
-              servicePrice: documentSnapshot["Service Price"],
-              visibility: documentSnapshot["Visibility"],
+              documentId: services[index].serviceId,
+              serviceTitle: services[index].serviceTitle,
+              serviceDescription: services[index].serviceDescription,
+              servicePrice: services[index].servicePrice,
+              visibility: services[index].visibility,
             );
           },
         );

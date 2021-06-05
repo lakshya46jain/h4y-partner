@@ -3,6 +3,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 // File Imports
 import 'package:h4y_partner/models/user_model.dart';
+import 'package:h4y_partner/models/service_model.dart';
 
 class DatabaseService {
   final String uid;
@@ -56,7 +57,7 @@ class DatabaseService {
   ) async {
     return await customerCollection.doc(uid).collection("Services").doc().set(
       {
-        'User UID': uid,
+        'Professional UID': uid,
         'Service Title': serviceTitle,
         'Service Description': serviceDescription,
         'Service Price': servicePrice,
@@ -78,8 +79,34 @@ class DatabaseService {
     );
   }
 
+  // Service Data from Snapshot
+  List<Help4YouServices> _help4youServicesFromSnapshot(QuerySnapshot snapshot) {
+    return snapshot.docs.map(
+      (document) {
+        Help4YouServices help4youServices = Help4YouServices(
+          serviceId: document.id,
+          professionalId: document.data()["Professional UID"],
+          serviceTitle: document.data()["Service Title"],
+          serviceDescription: document.data()["Service Description"],
+          servicePrice: document.data()["Service Price"],
+          visibility: document.data()["Visibility"],
+        );
+        return help4youServices;
+      },
+    ).toList();
+  }
+
   // Get User Document
   Stream<UserDataProfessional> get userData {
     return customerCollection.doc(uid).snapshots().map(_userDataFromSnapshot);
+  }
+
+  // Get Service Document
+  Stream<List<Help4YouServices>> get serviceData {
+    return customerCollection
+        .doc(uid)
+        .collection("Services")
+        .snapshots()
+        .map(_help4youServicesFromSnapshot);
   }
 }
