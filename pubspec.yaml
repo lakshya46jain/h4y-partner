@@ -41,19 +41,19 @@ dependencies:
 
   # Features
   share: ^2.0.1
-  image_picker: ^0.7.3
+  flutter_svg: ^0.22.0
   rate_my_app: ^1.1.0+1
   image_cropper: ^1.4.0
+  image_picker: ^0.8.0+1
   flutter_markdown: ^0.6.1
-  flutter_svg: ^0.21.0-nullsafety.0
 
   # Database Utilities
   provider: ^5.0.0
   firebase_core: ^1.0.3
   firebase_auth: ^1.0.3
-  cloud_firestore: ^1.0.4
+  cloud_firestore: ^2.2.1
   firebase_storage: ^8.0.3
-  firebase_in_app_messaging: ^0.4.0
+  firebase_in_app_messaging: ^0.5.0+5
 
 dev_dependencies:
   flutter_test:
