@@ -1,41 +1,40 @@
 {
   "project_info": {
-    "project_number": "231681079480",
-    "firebase_url": "https://help4you-24c07.firebaseio.com",
-    "project_id": "help4you-24c07",
-    "storage_bucket": "help4you-24c07.appspot.com"
+    "project_number": "541516325231",
+    "project_id": "help4you-f4e08",
+    "storage_bucket": "help4you-f4e08.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:231681079480:android:a15fdaa3bd8a346982dc4d",
+        "mobilesdk_app_id": "1:541516325231:android:4c2c99dd45236cd192089a",
         "android_client_info": {
           "package_name": "com.lakshya.h4y_partner"
         }
       },
       "oauth_client": [
         {
-          "client_id": "231681079480-aeu7hoq78nror3fafv6mllp84bgu2tpb.apps.googleusercontent.com",
+          "client_id": "541516325231-9r5g2q5q0nsuedprsnf4ct9uchrhhavf.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyC9KJOboGpFWYz_LW613SNmJu6DQwaSVrM"
+          "current_key": "AIzaSyBB_YI6h_-fslUMxqtXnvEOha6ti1vIQno"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "231681079480-aeu7hoq78nror3fafv6mllp84bgu2tpb.apps.googleusercontent.com",
+              "client_id": "541516325231-9r5g2q5q0nsuedprsnf4ct9uchrhhavf.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "231681079480-0ku50h2ojke4hac3tgdbj5gshcca0a4o.apps.googleusercontent.com",
+              "client_id": "541516325231-3o34fnb0sb2pdd8niprk3g9o3ni496fs.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.lakshya.h4yProvider"
+                "bundle_id": "com.lakshya.help4you"
               }
             }
           ]
@@ -44,40 +43,39 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:231681079480:android:575426eaa73c66e182dc4d",
+        "mobilesdk_app_id": "1:541516325231:android:8c0a4ccc0c58001792089a",
         "android_client_info": {
           "package_name": "com.lakshya.help4you"
         }
       },
       "oauth_client": [
         {
-          "client_id": "231681079480-aeu7hoq78nror3fafv6mllp84bgu2tpb.apps.googleusercontent.com",
+          "client_id": "541516325231-9r5g2q5q0nsuedprsnf4ct9uchrhhavf.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyC9KJOboGpFWYz_LW613SNmJu6DQwaSVrM"
+          "current_key": "AIzaSyBB_YI6h_-fslUMxqtXnvEOha6ti1vIQno"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "231681079480-aeu7hoq78nror3fafv6mllp84bgu2tpb.apps.googleusercontent.com",
+              "client_id": "541516325231-9r5g2q5q0nsuedprsnf4ct9uchrhhavf.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "231681079480-0ku50h2ojke4hac3tgdbj5gshcca0a4o.apps.googleusercontent.com",
+              "client_id": "541516325231-3o34fnb0sb2pdd8niprk3g9o3ni496fs.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.lakshya.h4yProvider"
+                "bundle_id": "com.lakshya.help4you"
               }
             }
           ]
         }
-      },
-      "admob_app_id": "ca-app-pub-7034458903159384~1259727695"
+      }
     }
   ],
   "configuration_version": "1"
