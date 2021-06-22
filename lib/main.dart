@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 // Dependency Imports
 import 'package:provider/provider.dart';
 import 'package:rate_my_app/rate_my_app.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:firebase_core/firebase_core.dart';
 // File Imports
 import 'package:h4y_partner/services/auth.dart';
@@ -84,9 +85,12 @@ class _MyAppState extends State<MyApp> {
       builder: (context, snapshot) {
         // Check for errors
         if (snapshot.hasError) {
-          return Container(
+          return SizedBox(
+            width: MediaQuery.of(context).size.width,
             child: Center(
-              child: Text("Error"),
+              child: SvgPicture.asset(
+                "assets/graphics/Help4You_Illustration_5.svg",
+              ),
             ),
           );
         }
@@ -106,7 +110,9 @@ class _MyAppState extends State<MyApp> {
         // Initialization
         return Container(
           child: Center(
-            child: Text("Initializing"),
+            child: CircularProgressIndicator(
+              color: Colors.deepOrangeAccent,
+            ),
           ),
         );
       },
