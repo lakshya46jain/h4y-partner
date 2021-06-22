@@ -31,7 +31,16 @@ class Body extends StatelessWidget {
           ExpandedButton(
             text: "About Help4You",
             icon: FluentIcons.question_circle_24_regular,
-            onPressed: () {},
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return PolicyDialog(
+                    mdFileName: 'about_help4you.md',
+                  );
+                },
+              );
+            },
           ),
           ExpandedButton(
             text: "Terms and Conditions",
