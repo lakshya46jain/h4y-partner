@@ -18,104 +18,60 @@ class ProfileCardStreamBuilder extends StatelessWidget {
       builder: (context, snapshot) {
         UserDataProfessional userData = snapshot.data;
         return Padding(
-          padding: EdgeInsets.all(20.0),
-          child: Stack(
+          padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0),
+          child: Row(
             children: [
-              Padding(
-                padding: EdgeInsets.only(left: 35.0),
-                child: Container(
-                  height: 140.0,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20.0),
-                    color: Colors.white,
-                    boxShadow: [
-                      BoxShadow(
-                        offset: Offset(0, 15),
-                        blurRadius: 20.0,
-                        color: Color(0xFFDADADA),
-                      ),
-                    ],
-                  ),
-                  child: Padding(
-                    padding: EdgeInsets.only(
-                      left: 95.0,
-                      top: 15.0,
-                      bottom: 15.0,
-                      right: 10.0,
+              Container(
+                height: 75.0,
+                width: 75.0,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10.0),
+                  color: Colors.transparent,
+                  boxShadow: [
+                    BoxShadow(
+                      offset: Offset(0, 15),
+                      blurRadius: 20.0,
+                      color: Color(0xFFDADADA),
                     ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          userData.fullName,
-                          style: TextStyle(
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.w700,
-                            color: Colors.black,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 3,
-                        ),
-                        Text(
-                          userData.occupation,
-                          style: TextStyle(
-                            fontSize: 15.0,
-                            color: Colors.grey,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 15.0,
-                        ),
-                        Text(
-                          "Member Since",
-                          style: TextStyle(
-                            fontSize: 15.0,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 2.5,
-                        ),
-                        Text(
-                          "12 July 2020",
-                          style: TextStyle(
-                            fontSize: 12.0,
-                          ),
-                        ),
-                      ],
-                    ),
+                  ],
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(10.0),
+                  child: CachedNetworkImage(
+                    height: 75.0,
+                    width: 75.0,
+                    imageUrl: userData.profilePicture,
                   ),
                 ),
               ),
-              Positioned(
-                top: 15,
-                child: SizedBox(
-                  height: 110,
-                  width: 110,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20.0),
-                      color: Color(0xFFF5F6F9),
-                      boxShadow: [
-                        BoxShadow(
-                          offset: Offset(0, 15),
-                          blurRadius: 20.0,
-                          color: Color(0xFFDADADA),
-                        ),
-                      ],
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(20.0),
-                      child: CachedNetworkImage(
-                        imageUrl: userData.profilePicture,
-                        fit: BoxFit.fill,
-                      ),
+              SizedBox(
+                width: 15.0,
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    userData.fullName,
+                    style: TextStyle(
+                      height: 1.5,
+                      fontSize: 25.0,
+                      color: Colors.black,
+                      fontFamily: "BalooPaaji",
+                      fontWeight: FontWeight.w900,
                     ),
                   ),
-                ),
+                  Text(
+                    userData.occupation,
+                    style: TextStyle(
+                      height: 1.0,
+                      fontSize: 18.0,
+                      color: Colors.grey,
+                      fontFamily: "BalooPaaji",
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
