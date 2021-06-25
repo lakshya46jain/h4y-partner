@@ -2,8 +2,7 @@
 import 'package:flutter/material.dart';
 // Dependency Imports
 // File Imports
-import 'package:h4y_partner/screens/dashboard_screen/body.dart';
-import 'package:h4y_partner/screens/dashboard_screen/app_bar.dart';
+import 'package:h4y_partner/screens/dashboard_screen/header.dart';
 
 class DashboardScreen extends StatefulWidget {
   @override
@@ -18,13 +17,19 @@ class _DashboardScreenState extends State<DashboardScreen> {
         FocusScope.of(context).unfocus();
       },
       child: Scaffold(
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(
-            MediaQuery.of(context).size.height / (1792 / 100),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              SizedBox(
+                height: 50.0,
+              ),
+              HomeHeader(),
+              SizedBox(
+                height: 5.0,
+              )
+            ],
           ),
-          child: DashboardAppBar(),
         ),
-        body: Body(),
       ),
     );
   }
