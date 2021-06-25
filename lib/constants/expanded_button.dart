@@ -16,48 +16,54 @@ class ExpandedButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(
-        vertical: 7.5,
-        horizontal: 10.0,
-      ),
-      child: MaterialButton(
-        padding: EdgeInsets.all(0.0),
-        onPressed: onPressed,
-        child: Container(
-          padding: EdgeInsets.symmetric(
-            horizontal: 20.0,
-            vertical: 10.0,
-          ),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: Color(0xFFF5F6F9),
-          ),
-          child: Row(
-            children: [
-              Icon(
-                icon,
-                size: 30.0,
-                color: Colors.deepOrange,
+    return GestureDetector(
+      onTap: onPressed,
+      child: Container(
+        padding: EdgeInsets.symmetric(
+          horizontal: 20.0,
+          vertical: 10.0,
+        ),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: Colors.transparent,
+        ),
+        child: Row(
+          children: [
+            Container(
+              height: 46,
+              width: 46,
+              decoration: BoxDecoration(
+                color: Color(0xFFF2F3F7),
+                borderRadius: BorderRadius.circular(15.0),
               ),
-              SizedBox(
-                width: MediaQuery.of(context).size.width / (828 / 40),
-              ),
-              Expanded(
-                child: Text(
-                  text,
-                  style: TextStyle(
-                    color: Colors.black,
-                  ),
+              child: Center(
+                child: Icon(
+                  icon,
+                  size: 30.0,
+                  color: Color(0xFFEA4800),
                 ),
               ),
-              Icon(
-                FluentIcons.arrow_right_24_regular,
-                color: Colors.black,
-                size: 25.0,
+            ),
+            SizedBox(
+              width: MediaQuery.of(context).size.width / (828 / 40),
+            ),
+            Expanded(
+              child: Text(
+                text,
+                style: TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.w600,
+                  fontFamily: "BalooPaaji",
+                  color: Color(0xFFEA4800),
+                ),
               ),
-            ],
-          ),
+            ),
+            Icon(
+              FluentIcons.arrow_right_24_filled,
+              color: Colors.black,
+              size: 25.0,
+            ),
+          ],
         ),
       ),
     );
