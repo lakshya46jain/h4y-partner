@@ -13,7 +13,7 @@ class DatabaseService {
   });
 
   // Collection Reference (User Database)
-  final CollectionReference customerCollection =
+  final CollectionReference userCollection =
       FirebaseFirestore.instance.collection('H4Y Users Database');
 
   // Update User Data
@@ -24,7 +24,7 @@ class DatabaseService {
     String phoneIsoCode,
     String nonInternationalNumber,
   ) async {
-    return await customerCollection.doc(uid).set(
+    return await userCollection.doc(uid).set(
       {
         'Account Type': "Professional",
         'User UID': uid,
@@ -41,7 +41,7 @@ class DatabaseService {
   Future updateProfilePicture(
     String profilePicture,
   ) async {
-    return await customerCollection.doc(uid).update(
+    return await userCollection.doc(uid).update(
       {
         'Profile Picture': profilePicture,
       },
@@ -55,7 +55,7 @@ class DatabaseService {
     int servicePrice,
     bool serviceVisibility,
   ) async {
-    return await customerCollection.doc(uid).collection("Services").doc().set(
+    return await userCollection.doc(uid).collection("Services").doc().set(
       {
         'Professional UID': uid,
         'Service Title': serviceTitle,
@@ -98,12 +98,12 @@ class DatabaseService {
 
   // Get User Document
   Stream<UserDataProfessional> get userData {
-    return customerCollection.doc(uid).snapshots().map(_userDataFromSnapshot);
+    return userCollection.doc(uid).snapshots().map(_userDataFromSnapshot);
   }
 
   // Get Service Document
   Stream<List<Help4YouServices>> get serviceData {
-    return customerCollection
+    return userCollection
         .doc(uid)
         .collection("Services")
         .snapshots()
