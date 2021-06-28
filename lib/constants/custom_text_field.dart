@@ -33,21 +33,25 @@ class CustomTextField extends StatelessWidget {
       decoration: InputDecoration(
         labelText: labelText,
         labelStyle: TextStyle(
-          color: Colors.grey,
+          color: Color(0xFF1C3857),
         ),
         hintText: hintText,
         hintStyle: TextStyle(
-          color: Colors.grey,
+          color: Color(0xFF95989A),
         ),
         floatingLabelBehavior: FloatingLabelBehavior.always,
         contentPadding: EdgeInsets.all(20.0),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(30.0),
-          borderSide: BorderSide(color: Colors.grey),
+          borderSide: BorderSide(
+            color: Color(0xFF1C3857),
+          ),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(30.0),
-          borderSide: BorderSide(color: Colors.grey),
+          borderSide: BorderSide(
+            color: Color(0xFF1C3857),
+          ),
         ),
         focusedErrorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(30.0),

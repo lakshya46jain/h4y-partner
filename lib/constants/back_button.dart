@@ -9,9 +9,9 @@ class CustomBackButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return IconButton(
       icon: Icon(
-        FluentIcons.arrow_left_24_regular,
+        FluentIcons.arrow_left_24_filled,
         size: 25.0,
-        color: Colors.black,
+        color: Color(0xFFFEA700),
       ),
       onPressed: () {
         Navigator.pop(context);

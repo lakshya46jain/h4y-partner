@@ -37,7 +37,7 @@ class CustomDropdown extends StatelessWidget {
       decoration: InputDecoration(
         labelText: labelText,
         labelStyle: TextStyle(
-          color: Colors.grey,
+          color: Color(0xFF1C3857),
         ),
         hintText: hintText,
         hintStyle: TextStyle(
@@ -50,11 +50,15 @@ class CustomDropdown extends StatelessWidget {
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(60.0),
-          borderSide: BorderSide(color: Colors.grey),
+          borderSide: BorderSide(
+            color: Color(0xFF1C3857),
+          ),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(60.0),
-          borderSide: BorderSide(color: Colors.grey),
+          borderSide: BorderSide(
+            color: Color(0xFF1C3857),
+          ),
         ),
         focusedErrorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(60.0),
