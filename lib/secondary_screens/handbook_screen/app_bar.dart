@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 // File Imports
 import 'package:h4y_partner/constants/back_button.dart';
 
-class AboutUsBar extends StatelessWidget {
+class HandbookAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -12,10 +12,12 @@ class AboutUsBar extends StatelessWidget {
       backgroundColor: Colors.transparent,
       leading: CustomBackButton(),
       title: Text(
-        "About Us",
+        "Our Handbook",
         style: TextStyle(
-          color: Colors.black,
-          fontSize: 20.0,
+          fontSize: 25.0,
+          color: Color(0xFF1C3857),
+          fontFamily: "BalooPaaji",
+          fontWeight: FontWeight.w600,
         ),
       ),
     );

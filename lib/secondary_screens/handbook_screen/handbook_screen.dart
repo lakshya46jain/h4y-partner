@@ -2,15 +2,15 @@
 import 'package:flutter/material.dart';
 // Dependency Imports
 // File Imports
-import 'package:h4y_partner/secondary_screens/about_us_screen/body.dart';
-import 'package:h4y_partner/secondary_screens/about_us_screen/app_bar.dart';
+import 'package:h4y_partner/secondary_screens/handbook_screen/body.dart';
+import 'package:h4y_partner/secondary_screens/handbook_screen/app_bar.dart';
 
-class AboutUs extends StatefulWidget {
+class HandbookScreen extends StatefulWidget {
   @override
-  _AboutUsState createState() => _AboutUsState();
+  _HandbookScreenState createState() => _HandbookScreenState();
 }
 
-class _AboutUsState extends State<AboutUs> {
+class _HandbookScreenState extends State<HandbookScreen> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -23,7 +23,7 @@ class _AboutUsState extends State<AboutUs> {
           preferredSize: Size.fromHeight(
             MediaQuery.of(context).size.height / (1792 / 100),
           ),
-          child: AboutUsBar(),
+          child: HandbookAppBar(),
         ),
         body: Body(),
       ),
