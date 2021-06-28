@@ -56,7 +56,7 @@ class PolicyDialog extends StatelessWidget {
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10.0),
-                color: Colors.deepOrangeAccent,
+                color: Color(0xFF1C3857),
               ),
               width: double.infinity,
               height: MediaQuery.of(context).size.height / (1792 / 120),
