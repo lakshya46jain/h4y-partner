@@ -34,14 +34,6 @@ class _BottomNavBarState extends State<BottomNavBar> {
     );
   }
 
-  // Google Nav Bar Variables
-  double gap = 10.0;
-  double iconSize = 24.0;
-  Color inactiveColor = Colors.black;
-  Color mainColor = Colors.deepOrangeAccent;
-  Color backgroundColor = Colors.deepOrangeAccent.withOpacity(0.15);
-  var padding = EdgeInsets.symmetric(horizontal: 18, vertical: 12);
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
