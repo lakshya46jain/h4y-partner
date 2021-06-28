@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 // File Imports
 import 'package:h4y_partner/constants/expanded_button.dart';
-import 'package:h4y_partner/secondary_screens/edit_profile_screen/stream_builder.dart';
+import 'package:h4y_partner/secondary_screens/personal_data_screen/stream_builder.dart';
 import 'package:h4y_partner/secondary_screens/delete_account_screen/delete_account.dart';
 
 class Body extends StatelessWidget {

@@ -6,15 +6,15 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:image_cropper/image_cropper.dart';
 // File Imports
-import 'package:h4y_partner/secondary_screens/edit_profile_screen/body.dart';
-import 'package:h4y_partner/secondary_screens/edit_profile_screen/app_bar.dart';
+import 'package:h4y_partner/secondary_screens/personal_data_screen/body.dart';
+import 'package:h4y_partner/secondary_screens/personal_data_screen/app_bar.dart';
 
-class EditProfileScreen extends StatefulWidget {
+class PersonalDataScreen extends StatefulWidget {
   @override
-  _EditProfileScreenState createState() => _EditProfileScreenState();
+  _PersonalDataScreenState createState() => _PersonalDataScreenState();
 }
 
-class _EditProfileScreenState extends State<EditProfileScreen> {
+class _PersonalDataScreenState extends State<PersonalDataScreen> {
   // Text Field Variables
   String fullName;
   String occupation;
@@ -68,7 +68,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           preferredSize: Size.fromHeight(
             MediaQuery.of(context).size.height / (1792 / 100),
           ),
-          child: EditProfileBar(
+          child: PersonalDataAppBar(
             formKey: _formKey,
             fullName: fullName,
             occupation: occupation,
