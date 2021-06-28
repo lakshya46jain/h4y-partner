@@ -12,8 +12,10 @@ class ServicesAppBar extends StatelessWidget {
       title: Text(
         "Services",
         style: TextStyle(
-          color: Colors.black,
-          fontSize: 20.0,
+          fontSize: 25.0,
+          color: Color(0xFF1C3857),
+          fontFamily: "BalooPaaji",
+          fontWeight: FontWeight.w600,
         ),
       ),
     );

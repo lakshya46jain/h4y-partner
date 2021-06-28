@@ -20,6 +20,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
         FocusScope.of(context).unfocus();
       },
       child: Scaffold(
+        backgroundColor: Colors.white,
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(
             MediaQuery.of(context).size.height / (1792 / 100),
@@ -33,7 +34,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
             color: Colors.white,
             size: 28.0,
           ),
-          backgroundColor: Colors.deepOrangeAccent,
+          backgroundColor: Color(0xFF1C3857),
           onPressed: () {
             Navigator.push(
               context,

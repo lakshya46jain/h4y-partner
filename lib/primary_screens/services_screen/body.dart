@@ -20,26 +20,30 @@ class Body extends StatelessWidget {
       builder: (context, snapshot) {
         List<Help4YouServices> services = snapshot.data;
         if (services.length == 0) {
-          return Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SizedBox(
-                height: MediaQuery.of(context).size.height / (1792 / 600),
-                child: SvgPicture.asset(
-                  "assets/graphics/Help4You_Illustration_6.svg",
+          return Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: MediaQuery.of(context).size.height / (1792 / 600),
+                  child: SvgPicture.asset(
+                    "assets/graphics/Help4You_Illustration_6.svg",
+                  ),
                 ),
-              ),
-              Text(
-                "Oops! Looks like you are not providing any services yet.",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.bold,
+                Text(
+                  "Oops! Looks like you are not providing any services",
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    fontFamily: "BalooPaaji",
+                    color: Color(0xFF1C3857),
+                    fontWeight: FontWeight.bold,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
-                textAlign: TextAlign.center,
-              ),
-            ],
+              ],
+            ),
           );
         } else {
           return ListView.builder(
