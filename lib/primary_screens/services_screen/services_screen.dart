@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 // File Imports
 import 'package:h4y_partner/primary_screens/services_screen/body.dart';
-import 'package:h4y_partner/primary_screens/services_screen/app_bar.dart';
 import 'package:h4y_partner/secondary_screens/add_service_screen/add_service.dart';
 
 class ServicesScreen extends StatefulWidget {
@@ -21,12 +20,6 @@ class _ServicesScreenState extends State<ServicesScreen> {
       },
       child: Scaffold(
         backgroundColor: Colors.white,
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(
-            MediaQuery.of(context).size.height / (1792 / 100),
-          ),
-          child: ServicesAppBar(),
-        ),
         body: Body(),
         floatingActionButton: FloatingActionButton(
           child: Icon(
