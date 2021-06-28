@@ -30,7 +30,7 @@ class CustomDropdown extends StatelessWidget {
       validator: validator,
       icon: Icon(
         icon,
-        color: Colors.grey,
+        color: Color(0xFF1C3857),
         size: 20.0,
       ),
       value: value,
