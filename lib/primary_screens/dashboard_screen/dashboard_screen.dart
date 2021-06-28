@@ -25,7 +25,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               ),
               HomeHeader(),
               SizedBox(
-                height: 5.0,
+                height: 15.0,
               )
             ],
           ),

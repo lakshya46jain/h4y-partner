@@ -11,7 +11,7 @@ import 'package:h4y_partner/services/database.dart';
 class HomeHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // Get User UID
+    // Get User
     final user = Provider.of<Help4YouUser>(context);
 
     // Key Variables
@@ -64,7 +64,7 @@ class HomeHeader extends StatelessWidget {
                         message,
                         style: TextStyle(
                           fontSize: 18.0,
-                          color: Colors.grey,
+                          color: Color(0xFF95989A),
                           fontFamily: "BalooPaaji",
                           fontWeight: FontWeight.w600,
                         ),
@@ -74,7 +74,7 @@ class HomeHeader extends StatelessWidget {
                         style: TextStyle(
                           height: 1.0,
                           fontSize: 23.0,
-                          color: Colors.black,
+                          color: Color(0xFF1C3857),
                           fontFamily: "BalooPaaji",
                           fontWeight: FontWeight.w900,
                         ),
