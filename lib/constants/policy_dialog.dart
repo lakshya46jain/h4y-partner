@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 // Dependency Imports
 import 'package:flutter_markdown/flutter_markdown.dart';
 // File Imports
+import 'package:h4y_partner/constants/loading.dart';
 
 class PolicyDialog extends StatelessWidget {
   PolicyDialog({
@@ -43,7 +44,7 @@ class PolicyDialog extends StatelessWidget {
                   );
                 }
                 return Center(
-                  child: CircularProgressIndicator(),
+                  child: DoubleBounceLoading(),
                 );
               },
             ),

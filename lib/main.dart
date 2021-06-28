@@ -8,8 +8,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:firebase_core/firebase_core.dart';
 // File Imports
 import 'package:h4y_partner/services/auth.dart';
-import 'package:h4y_partner/primary_screens/wrapper.dart';
 import 'package:h4y_partner/models/user_model.dart';
+import 'package:h4y_partner/constants/loading.dart';
+import 'package:h4y_partner/primary_screens/wrapper.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -110,9 +111,7 @@ class _MyAppState extends State<MyApp> {
         // Initialization
         return Container(
           child: Center(
-            child: CircularProgressIndicator(
-              color: Colors.deepOrangeAccent,
-            ),
+            child: DoubleBounceLoading(),
           ),
         );
       },

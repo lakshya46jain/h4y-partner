@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 // File Imports
 
-class PouringHourGlassPageLoad extends StatelessWidget {
+class DoubleBounceLoading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -12,8 +12,8 @@ class PouringHourGlassPageLoad extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       color: Colors.transparent,
       child: Center(
-        child: SpinKitPouringHourglass(
-          color: Colors.deepOrangeAccent,
+        child: SpinKitDoubleBounce(
+          color: Color(0xFF1C3857),
           size: 50.0,
         ),
       ),
