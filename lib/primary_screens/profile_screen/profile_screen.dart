@@ -8,16 +8,16 @@ import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:h4y_partner/services/auth.dart';
 import 'package:h4y_partner/models/user_model.dart';
 import 'package:h4y_partner/constants/expanded_button.dart';
-import 'package:h4y_partner/secondary_screens/about_us_screen/about_us.dart';
-import 'package:h4y_partner/primary_screens/settings_screen/stream_builder.dart';
-import 'package:h4y_partner/secondary_screens/edit_profile_screen/edit_profile_screen.dart';
+import 'package:h4y_partner/primary_screens/profile_screen/profile_stream.dart';
+import 'package:h4y_partner/secondary_screens/handbook_screen/handbook_screen.dart';
+import 'package:h4y_partner/secondary_screens/personal_data_screen/personal_data_screen.dart';
 
-class SettingsScreens extends StatefulWidget {
+class ProfileScreen extends StatefulWidget {
   @override
-  _SettingsScreensState createState() => _SettingsScreensState();
+  _ProfileScreenState createState() => _ProfileScreenState();
 }
 
-class _SettingsScreensState extends State<SettingsScreens> {
+class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     // Get User
@@ -35,13 +35,13 @@ class _SettingsScreensState extends State<SettingsScreens> {
                 SizedBox(
                   height: 70.0,
                 ),
-                ProfileCardStreamBuilder(),
+                ProfileStreamBuilder(),
                 Padding(
                   padding: EdgeInsets.only(
                       right: 20.0, bottom: 5.0, top: 15.0, left: 20.0),
                   child: Divider(
                     thickness: 1.0,
-                    color: Colors.grey[300],
+                    color: Color(0xFF95989A),
                   ),
                 ),
                 ExpandedButton(
@@ -51,7 +51,7 @@ class _SettingsScreensState extends State<SettingsScreens> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => AboutUs(),
+                        builder: (context) => HandbookScreen(),
                       ),
                     );
                   },
@@ -61,7 +61,7 @@ class _SettingsScreensState extends State<SettingsScreens> {
                       EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0),
                   child: Divider(
                     thickness: 1.0,
-                    color: Colors.grey[300],
+                    color: Color(0xFF95989A),
                   ),
                 ),
                 ExpandedButton(
@@ -71,7 +71,7 @@ class _SettingsScreensState extends State<SettingsScreens> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => EditProfileScreen(),
+                        builder: (context) => PersonalDataScreen(),
                       ),
                     );
                   },
@@ -88,7 +88,7 @@ class _SettingsScreensState extends State<SettingsScreens> {
                       EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0),
                   child: Divider(
                     thickness: 1.0,
-                    color: Colors.grey[300],
+                    color: Color(0xFF95989A),
                   ),
                 ),
                 ExpandedButton(

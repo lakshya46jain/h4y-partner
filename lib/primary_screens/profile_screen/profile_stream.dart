@@ -7,7 +7,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:h4y_partner/models/user_model.dart';
 import 'package:h4y_partner/services/database.dart';
 
-class ProfileCardStreamBuilder extends StatelessWidget {
+class ProfileStreamBuilder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Get User
@@ -56,17 +56,17 @@ class ProfileCardStreamBuilder extends StatelessWidget {
                     style: TextStyle(
                       height: 1.5,
                       fontSize: 25.0,
-                      color: Colors.black,
+                      color: Color(0xFF1C3857),
                       fontFamily: "BalooPaaji",
                       fontWeight: FontWeight.w900,
                     ),
                   ),
                   Text(
-                    userData.occupation,
+                    userData.phoneNumber,
                     style: TextStyle(
                       height: 1.0,
                       fontSize: 18.0,
-                      color: Colors.grey,
+                      color: Color(0xFF95989A),
                       fontFamily: "BalooPaaji",
                       fontWeight: FontWeight.w600,
                     ),
