@@ -78,20 +78,18 @@ class _BodyState extends State<Body> {
                 if (nonInternationalNumber == "") {
                   showCustomSnackBar(
                     context,
-                    FluentIcons.error_circle_24_regular,
-                    Colors.white,
+                    FluentIcons.warning_24_regular,
+                    Colors.orange,
+                    "Warning!",
                     "Please enter your phone number.",
-                    Colors.white,
-                    Colors.red,
                   );
                 } else if (result == "Error") {
                   showCustomSnackBar(
                     context,
                     FluentIcons.error_circle_24_regular,
-                    Colors.white,
-                    "There was an error while verifying your account. Please try again later.",
-                    Colors.white,
                     Colors.red,
+                    "Error!",
+                    "Please enter a valid phone number.",
                   );
                 }
               },

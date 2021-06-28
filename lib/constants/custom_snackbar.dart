@@ -6,10 +6,9 @@ import 'package:flutter/material.dart';
 showCustomSnackBar(
   BuildContext context,
   IconData icon,
-  Color iconColor,
+  Color color,
+  String title,
   String message,
-  Color textColor,
-  Color backgroundColor,
 ) {
   final snackBar = SnackBar(
     content: Row(
@@ -17,25 +16,40 @@ showCustomSnackBar(
       children: [
         Icon(
           icon,
-          size: 24,
-          color: iconColor,
+          size: 27,
+          color: color,
         ),
         SizedBox(
-          width: MediaQuery.of(context).size.width / (828 / 30),
+          width: 10.0,
         ),
         Expanded(
-          child: Text(
-            message,
-            style: TextStyle(
-              fontSize: 15,
-              color: textColor,
+          child: Text.rich(
+            TextSpan(
+              text: "$title ",
+              style: TextStyle(
+                fontSize: 17.0,
+                color: color,
+                fontWeight: FontWeight.bold,
+              ),
+              children: [
+                TextSpan(
+                  text: message,
+                  style: TextStyle(
+                    fontSize: 17.0,
+                    color: Colors.black,
+                    fontWeight: FontWeight.normal,
+                  ),
+                ),
+              ],
             ),
           ),
         ),
       ],
     ),
-    elevation: 0.0,
-    backgroundColor: backgroundColor,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(13.0),
+    ),
+    backgroundColor: Colors.white,
     duration: Duration(seconds: 3),
     behavior: SnackBarBehavior.floating,
   );
