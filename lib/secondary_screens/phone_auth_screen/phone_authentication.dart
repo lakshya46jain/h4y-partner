@@ -2,8 +2,8 @@
 import 'package:flutter/material.dart';
 // Dependency Imports
 // File Imports
-import 'package:h4y_partner/screens/phone_auth_screen/body.dart';
-import 'package:h4y_partner/screens/phone_auth_screen/app_bar.dart';
+import 'package:h4y_partner/secondary_screens/phone_auth_screen/body.dart';
+import 'package:h4y_partner/secondary_screens/phone_auth_screen/app_bar.dart';
 
 class PhoneAuthentication extends StatefulWidget {
   @override

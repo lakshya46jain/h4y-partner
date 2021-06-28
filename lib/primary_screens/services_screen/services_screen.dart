@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 // Dependency Imports
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 // File Imports
-import 'package:h4y_partner/screens/services_screen/body.dart';
-import 'package:h4y_partner/screens/services_screen/app_bar.dart';
-import 'package:h4y_partner/screens/add_service_screen/add_service.dart';
+import 'package:h4y_partner/primary_screens/services_screen/body.dart';
+import 'package:h4y_partner/primary_screens/services_screen/app_bar.dart';
+import 'package:h4y_partner/secondary_screens/add_service_screen/add_service.dart';
 
 class ServicesScreen extends StatefulWidget {
   @override

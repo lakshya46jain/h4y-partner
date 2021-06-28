@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 // Dependency Imports
 // File Imports
-import 'package:h4y_partner/screens/welcome_screen/pages.dart';
+import 'package:h4y_partner/primary_screens/welcome_screen/pages.dart';
 
 class PageViewContainer extends StatelessWidget {
   final PageController pageController;

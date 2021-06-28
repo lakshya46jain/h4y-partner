@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 // Dependency Imports
 // File Imports
-import 'package:h4y_partner/screens/dashboard_screen/header.dart';
+import 'package:h4y_partner/primary_screens/dashboard_screen/header.dart';
 
 class DashboardScreen extends StatefulWidget {
   @override

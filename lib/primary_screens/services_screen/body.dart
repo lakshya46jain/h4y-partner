@@ -7,7 +7,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:h4y_partner/models/user_model.dart';
 import 'package:h4y_partner/services/database.dart';
 import 'package:h4y_partner/models/service_model.dart';
-import 'package:h4y_partner/screens/services_screen/service_tile.dart';
+import 'package:h4y_partner/primary_screens/services_screen/service_tile.dart';
 
 class Body extends StatelessWidget {
   @override

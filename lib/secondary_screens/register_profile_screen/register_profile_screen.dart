@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:image_cropper/image_cropper.dart';
 // File Imports
-import 'package:h4y_partner/screens/register_profile_screen/app_bar.dart';
-import 'package:h4y_partner/screens/register_profile_screen/body.dart';
+import 'package:h4y_partner/secondary_screens/register_profile_screen/app_bar.dart';
+import 'package:h4y_partner/secondary_screens/register_profile_screen/body.dart';
 
 class RegisterProfile extends StatefulWidget {
   @override

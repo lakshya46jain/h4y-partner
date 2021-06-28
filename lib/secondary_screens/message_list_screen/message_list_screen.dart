@@ -2,8 +2,8 @@
 import 'package:flutter/material.dart';
 // Dependency Imports
 // File Imports
-import 'package:h4y_partner/screens/message_list_screen/body.dart';
-import 'package:h4y_partner/screens/message_list_screen/app_bar.dart';
+import 'package:h4y_partner/secondary_screens/message_list_screen/body.dart';
+import 'package:h4y_partner/secondary_screens/message_list_screen/app_bar.dart';
 
 class MessageListScreen extends StatefulWidget {
   @override

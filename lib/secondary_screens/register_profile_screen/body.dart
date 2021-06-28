@@ -7,12 +7,12 @@ import 'package:provider/provider.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 // File Imports
-import 'package:h4y_partner/screens/wrapper.dart';
+import 'package:h4y_partner/primary_screens/wrapper.dart';
 import 'package:h4y_partner/models/user_model.dart';
 import 'package:h4y_partner/services/database.dart';
 import 'package:h4y_partner/constants/custom_snackbar.dart';
 import 'package:h4y_partner/constants/signature_button.dart';
-import 'package:h4y_partner/screens/register_profile_screen/stream_builder.dart';
+import 'package:h4y_partner/secondary_screens/register_profile_screen/stream_builder.dart';
 
 class Body extends StatelessWidget {
   final GlobalKey<FormState> formKey;

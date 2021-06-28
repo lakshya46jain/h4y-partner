@@ -2,8 +2,8 @@
 import 'package:flutter/material.dart';
 // Dependency Imports
 // File Imports
-import 'package:h4y_partner/screens/about_us_screen/body.dart';
-import 'package:h4y_partner/screens/about_us_screen/app_bar.dart';
+import 'package:h4y_partner/secondary_screens/about_us_screen/body.dart';
+import 'package:h4y_partner/secondary_screens/about_us_screen/app_bar.dart';
 
 class AboutUs extends StatefulWidget {
   @override

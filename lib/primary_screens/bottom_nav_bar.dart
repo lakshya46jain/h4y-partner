@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 // File Imports
-import 'package:h4y_partner/screens/services_screen/services_screen.dart';
-import 'package:h4y_partner/screens/settings_screen/settings_screen.dart';
-import 'package:h4y_partner/screens/dashboard_screen/dashboard_screen.dart';
-import 'package:h4y_partner/screens/message_list_screen/message_list_screen.dart';
+import 'package:h4y_partner/primary_screens/services_screen/services_screen.dart';
+import 'package:h4y_partner/primary_screens/settings_screen/settings_screen.dart';
+import 'package:h4y_partner/secondary_screens/message_list_screen/message_list_screen.dart';
+import 'package:h4y_partner/primary_screens/dashboard_screen/dashboard_screen.dart';
 
 class BottomNavBar extends StatefulWidget {
   @override

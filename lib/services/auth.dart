@@ -6,11 +6,11 @@ import 'package:flutter/foundation.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 // File Imports
-import 'package:h4y_partner/screens/wrapper.dart';
+import 'package:h4y_partner/primary_screens/wrapper.dart';
 import 'package:h4y_partner/services/database.dart';
 import 'package:h4y_partner/models/user_model.dart';
 import 'package:h4y_partner/constants/verification_container.dart';
-import 'package:h4y_partner/screens/register_profile_screen/register_profile_screen.dart';
+import 'package:h4y_partner/secondary_screens/register_profile_screen/register_profile_screen.dart';
 
 class AuthService {
   // Firebase Auth Instance

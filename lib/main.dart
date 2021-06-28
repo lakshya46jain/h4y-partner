@@ -8,7 +8,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:firebase_core/firebase_core.dart';
 // File Imports
 import 'package:h4y_partner/services/auth.dart';
-import 'package:h4y_partner/screens/wrapper.dart';
+import 'package:h4y_partner/primary_screens/wrapper.dart';
 import 'package:h4y_partner/models/user_model.dart';
 
 void main() async {
