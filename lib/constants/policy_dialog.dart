@@ -4,7 +4,6 @@ import 'package:flutter/services.dart';
 // Dependency Imports
 import 'package:flutter_markdown/flutter_markdown.dart';
 // File Imports
-import 'package:h4y_partner/constants/loading.dart';
 
 class PolicyDialog extends StatelessWidget {
   PolicyDialog({
@@ -38,13 +37,8 @@ class PolicyDialog extends StatelessWidget {
                 },
               ),
               builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  return Markdown(
-                    data: snapshot.data,
-                  );
-                }
-                return Center(
-                  child: DoubleBounceLoading(),
+                return Markdown(
+                  data: snapshot.data,
                 );
               },
             ),
