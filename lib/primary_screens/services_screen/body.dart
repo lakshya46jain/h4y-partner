@@ -11,6 +11,12 @@ import 'package:h4y_partner/constants/custom_tab_bar.dart';
 import 'package:h4y_partner/primary_screens/services_screen/service_tile.dart';
 
 class Body extends StatelessWidget {
+  final ScrollController controller;
+
+  Body({
+    this.controller,
+  });
+
   @override
   Widget build(BuildContext context) {
     // Get User
@@ -53,7 +59,9 @@ class Body extends StatelessWidget {
               );
             } else {
               return ListView.builder(
+                controller: controller,
                 itemCount: services.length,
+                padding: EdgeInsets.all(0.0),
                 itemBuilder: (context, index) {
                   return ServiceTile(
                     documentId: services[index].serviceId,
