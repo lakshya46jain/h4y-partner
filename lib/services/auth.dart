@@ -66,7 +66,7 @@ class AuthService {
                   nonInternationalNumber,
                 );
                 await DatabaseService(uid: user.uid).updateProfilePicture(
-                  "https://firebasestorage.googleapis.com/v0/b/help4you-f4e08.appspot.com/o/Default%20Profile%20Picture.jpg?alt=media&token=ade0b903-7ea6-4b3e-bf2a-a0b723835d9e",
+                  "https://drive.google.com/uc?export=view&id=1Fis4yJe7_d_RROY7JdSihM2--GH5aqbe",
                 );
                 Navigator.pushAndRemoveUntil(
                   context,
@@ -120,7 +120,7 @@ class AuthService {
                         nonInternationalNumber,
                       );
                       await DatabaseService(uid: user.uid).updateProfilePicture(
-                        "https://firebasestorage.googleapis.com/v0/b/help4you-f4e08.appspot.com/o/Default%20Profile%20Picture.jpg?alt=media&token=ade0b903-7ea6-4b3e-bf2a-a0b723835d9e",
+                        "https://drive.google.com/uc?export=view&id=1Fis4yJe7_d_RROY7JdSihM2--GH5aqbe",
                       );
                       Navigator.pushAndRemoveUntil(
                         context,
