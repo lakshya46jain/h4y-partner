@@ -93,16 +93,12 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
               },
             );
           },
-          onPhoneNumberChange: (
-            String number,
-            String internationalizedPhoneNumber,
-            String isoCode,
-          ) {
+          onChanged3: (phone) {
             setState(
               () {
-                phoneNumber = internationalizedPhoneNumber;
-                phoneIsoCode = isoCode;
-                nonInternationalNumber = number;
+                phoneNumber = phone.completeNumber;
+                phoneIsoCode = phone.countryISOCode;
+                nonInternationalNumber = phone.number;
               },
             );
           },

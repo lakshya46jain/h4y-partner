@@ -44,18 +44,14 @@ class _BodyState extends State<Body> {
               height: MediaQuery.of(context).size.height / (1792 / 100),
             ),
             PhoneNumberTextField(
-              phoneIsoCode: "",
-              nonInternationalNumber: "",
-              onPhoneNumberChange: (
-                String number,
-                String internationalizedPhoneNumber,
-                String isoCode,
-              ) {
+              phoneIsoCode: phoneIsoCode,
+              nonInternationalNumber: nonInternationalNumber,
+              onChanged: (phone) {
                 setState(
                   () {
-                    phoneNumber = internationalizedPhoneNumber;
-                    phoneIsoCode = isoCode;
-                    nonInternationalNumber = number;
+                    phoneNumber = phone.completeNumber;
+                    phoneIsoCode = phone.countryISOCode;
+                    nonInternationalNumber = phone.number;
                   },
                 );
               },

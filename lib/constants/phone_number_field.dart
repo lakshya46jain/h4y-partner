@@ -1,23 +1,25 @@
 // Flutter Imports
 import 'package:flutter/material.dart';
 // Dependency Imports
-import 'package:international_phone_input/international_phone_input.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
 // File Imports
 
-// TODO: Use a international phone input with search country code
 class PhoneNumberTextField extends StatelessWidget {
   final String phoneIsoCode;
   final String nonInternationalNumber;
-  final Function onPhoneNumberChange;
+  final Function onChanged;
+
   PhoneNumberTextField({
     this.phoneIsoCode,
     this.nonInternationalNumber,
-    this.onPhoneNumberChange,
+    this.onChanged,
   });
 
   @override
   Widget build(BuildContext context) {
-    return InternationalPhoneInput(
+    return IntlPhoneField(
+      countryCodeTextColor: Color(0xFF1C3857),
+      dropDownArrowColor: Color(0xFF1C3857),
       decoration: InputDecoration(
         labelText: 'Phone Number',
         labelStyle: TextStyle(
@@ -41,16 +43,22 @@ class PhoneNumberTextField extends StatelessWidget {
             color: Color(0xFF1C3857),
           ),
         ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(60.0),
+          borderSide: BorderSide(
+            color: Colors.red,
+          ),
+        ),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(60.0),
-          borderSide: BorderSide(color: Colors.red),
+          borderSide: BorderSide(
+            color: Colors.red,
+          ),
         ),
       ),
-      onPhoneNumberChange: onPhoneNumberChange,
-      initialPhoneNumber: nonInternationalNumber,
-      initialSelection: phoneIsoCode,
-      showCountryCodes: true,
-      showCountryFlags: true,
+      onChanged: onChanged,
+      initialCountryCode: phoneIsoCode,
+      initialValue: nonInternationalNumber,
     );
   }
 }

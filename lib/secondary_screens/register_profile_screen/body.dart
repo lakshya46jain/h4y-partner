@@ -24,7 +24,7 @@ class Body extends StatelessWidget {
   final String phoneNumber;
   final Function onChanged1;
   final Function onChanged2;
-  final Function onPhoneNumberChange;
+  final Function onChanged3;
   final Function onPressed1;
   final Function onPressed2;
 
@@ -38,7 +38,7 @@ class Body extends StatelessWidget {
     this.phoneNumber,
     this.onChanged1,
     this.onChanged2,
-    this.onPhoneNumberChange,
+    this.onChanged3,
     this.onPressed1,
     this.onPressed2,
   });
@@ -81,7 +81,7 @@ class Body extends StatelessWidget {
               occupation: occupation,
               onChanged1: onChanged1,
               onChanged2: onChanged2,
-              onPhoneNumberChange: onPhoneNumberChange,
+              onChanged3: onChanged3,
               onPressed1: onPressed1,
               onPressed2: onPressed2,
             ),

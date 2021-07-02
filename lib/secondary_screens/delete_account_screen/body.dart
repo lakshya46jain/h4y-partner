@@ -10,13 +10,13 @@ class Body extends StatelessWidget {
   final String phoneNumber;
   final String phoneIsoCode;
   final String nonInternationalNumber;
-  final Function onPhoneNumberChange;
+  final Function onChanged;
 
   Body({
     this.phoneNumber,
     this.phoneIsoCode,
     this.nonInternationalNumber,
-    this.onPhoneNumberChange,
+    this.onChanged,
   });
 
   @override
@@ -54,7 +54,7 @@ class Body extends StatelessWidget {
             PhoneNumberTextField(
               phoneIsoCode: phoneIsoCode,
               nonInternationalNumber: nonInternationalNumber,
-              onPhoneNumberChange: onPhoneNumberChange,
+              onChanged: onChanged,
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height / (1792 / 50),
