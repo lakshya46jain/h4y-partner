@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 // Dependency Imports
+import 'package:wiredash/wiredash.dart';
 import 'package:provider/provider.dart';
 import 'package:rate_my_app/rate_my_app.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -32,6 +33,9 @@ class _MyAppState extends State<MyApp> {
     googlePlayIdentifier: '',
     appStoreIdentifier: '',
   );
+
+  // Navigator Key
+  final navigatorKey = GlobalKey<NavigatorState>();
 
   @override
   void initState() {
@@ -101,9 +105,19 @@ class _MyAppState extends State<MyApp> {
           return StreamProvider<Help4YouUser>.value(
             initialData: Help4YouUser(),
             value: AuthService().user,
-            child: MaterialApp(
-              debugShowCheckedModeBanner: false,
-              home: Wrapper(),
+            child: Wiredash(
+              navigatorKey: navigatorKey,
+              projectId: "help4you-2h5a3g9",
+              secret: "ugth1p87x8u2i1u5l36e8e4gfotzi2zpmve3ctn6holmaplo",
+              theme: WiredashThemeData(
+                primaryColor: Color(0xFF1C3857),
+                secondaryColor: Color(0xFF5A8BCA),
+              ),
+              child: MaterialApp(
+                navigatorKey: navigatorKey,
+                debugShowCheckedModeBanner: false,
+                home: Wrapper(),
+              ),
             ),
           );
         }

@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 // Dependency Imports
 import 'package:share/share.dart';
+import 'package:wiredash/wiredash.dart';
 import 'package:provider/provider.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 // File Imports
@@ -99,7 +100,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ExpandedButton(
                   icon: FluentIcons.person_feedback_24_regular,
                   text: "Feedback",
-                  onPressed: () {},
+                  onPressed: () {
+                    Wiredash.of(context).setUserProperties(
+                      userId: user.uid,
+                    );
+                    Wiredash.of(context).setBuildProperties(
+                      buildVersion: "",
+                    );
+                    Wiredash.of(context).show();
+                  },
                 ),
                 ExpandedButton(
                   icon: FluentIcons.share_24_regular,
