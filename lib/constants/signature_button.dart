@@ -7,10 +7,13 @@ class SignatureButton extends StatelessWidget {
   final Function onTap;
   final String text;
   final IconData icon;
+  final bool withIcon;
+
   SignatureButton({
-    this.onTap,
-    this.text,
+    @required this.onTap,
+    @required this.text,
     this.icon,
+    @required this.withIcon,
   });
 
   @override
@@ -30,33 +33,45 @@ class SignatureButton extends StatelessWidget {
             vertical: 10.0,
             horizontal: 20.0,
           ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Align(
-                alignment: Alignment.center,
-                child: Text(
-                  text,
-                  style: TextStyle(
-                    fontSize: 20.0,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
+          child: (withIcon == true)
+              ? Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        text,
+                        style: TextStyle(
+                          fontSize: 20.0,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width / (828 / 20),
+                    ),
+                    Align(
+                      alignment: Alignment.center,
+                      child: Icon(
+                        icon,
+                        color: Colors.white,
+                        size: 24.0,
+                      ),
+                    ),
+                  ],
+                )
+              : Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    text,
+                    style: TextStyle(
+                      fontSize: 22.0,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(
-                width: MediaQuery.of(context).size.width / (828 / 20),
-              ),
-              Align(
-                alignment: Alignment.center,
-                child: Icon(
-                  icon,
-                  color: Colors.white,
-                  size: 24.0,
-                ),
-              ),
-            ],
-          ),
         ),
       ),
     );

@@ -89,6 +89,7 @@ class _BodyState extends State<Body> {
                   );
                 }
               },
+              withIcon: true,
               text: "Continue",
               icon: FluentIcons.arrow_right_24_regular,
             ),
