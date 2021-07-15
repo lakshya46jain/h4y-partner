@@ -43,46 +43,90 @@ class HomeHeader extends StatelessWidget {
             stream: DatabaseService(uid: user.uid).userData,
             builder: (context, snapshot) {
               UserDataProfessional userData = snapshot.data;
-              return Row(
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(10.0),
-                    child: CachedNetworkImage(
-                      height: 60,
-                      width: 60,
-                      imageUrl: userData.profilePicture,
+              if (snapshot.hasData) {
+                return Row(
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(10.0),
+                      child: CachedNetworkImage(
+                        height: 60,
+                        width: 60,
+                        imageUrl: userData.profilePicture,
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    width: 15.0,
-                  ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        message,
-                        style: TextStyle(
-                          fontSize: 18.0,
-                          color: Color(0xFF95989A),
-                          fontFamily: "BalooPaaji",
-                          fontWeight: FontWeight.w600,
+                    SizedBox(
+                      width: 15.0,
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          message,
+                          style: TextStyle(
+                            fontSize: 18.0,
+                            color: Color(0xFF95989A),
+                            fontFamily: "BalooPaaji",
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
-                      ),
-                      Text(
-                        userData.fullName,
-                        style: TextStyle(
-                          height: 1.0,
-                          fontSize: 23.0,
-                          color: Color(0xFF1C3857),
-                          fontFamily: "BalooPaaji",
-                          fontWeight: FontWeight.w900,
+                        Text(
+                          userData.fullName,
+                          style: TextStyle(
+                            height: 1.0,
+                            fontSize: 23.0,
+                            color: Color(0xFF1C3857),
+                            fontFamily: "BalooPaaji",
+                            fontWeight: FontWeight.w900,
+                          ),
                         ),
+                      ],
+                    ),
+                  ],
+                );
+              } else {
+                return Row(
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(10.0),
+                      child: CachedNetworkImage(
+                        height: 60,
+                        width: 60,
+                        imageUrl:
+                            "https://drive.google.com/uc?export=view&id=1Fis4yJe7_d_RROY7JdSihM2--GH5aqbe",
                       ),
-                    ],
-                  ),
-                ],
-              );
+                    ),
+                    SizedBox(
+                      width: 15.0,
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          message,
+                          style: TextStyle(
+                            fontSize: 18.0,
+                            color: Color(0xFF95989A),
+                            fontFamily: "BalooPaaji",
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        Text(
+                          "Professional Name",
+                          style: TextStyle(
+                            height: 1.0,
+                            fontSize: 23.0,
+                            color: Color(0xFF1C3857),
+                            fontFamily: "BalooPaaji",
+                            fontWeight: FontWeight.w900,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                );
+              }
             },
           ),
         ],
