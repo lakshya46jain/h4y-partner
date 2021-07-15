@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 // File Imports
 import 'package:h4y_partner/primary_screens/services_screen/body.dart';
-import 'package:h4y_partner/secondary_screens/add_service_screen/add_service.dart';
+import 'package:h4y_partner/secondary_screens/create_service_screen/create_service.dart';
 
 class ServicesScreen extends StatefulWidget {
   @override
@@ -67,7 +67,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => AddServiceScreen(),
+                  builder: (context) => CreateServiceScreen(),
                 ),
               );
             },
