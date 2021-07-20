@@ -70,12 +70,12 @@ class DatabaseService {
   UserDataProfessional _userDataFromSnapshot(DocumentSnapshot snapshot) {
     return UserDataProfessional(
       uid: uid,
-      fullName: snapshot.data()['Full Name'],
-      occupation: snapshot.data()['Occupation'],
-      phoneNumber: snapshot.data()['Phone Number'],
-      phoneIsoCode: snapshot.data()['Phone ISO Code'],
-      nonInternationalNumber: snapshot.data()['Non International Number'],
-      profilePicture: snapshot.data()['Profile Picture'],
+      fullName: snapshot['Full Name'],
+      occupation: snapshot['Occupation'],
+      phoneNumber: snapshot['Phone Number'],
+      phoneIsoCode: snapshot['Phone ISO Code'],
+      nonInternationalNumber: snapshot['Non International Number'],
+      profilePicture: snapshot['Profile Picture'],
     );
   }
 
@@ -85,11 +85,11 @@ class DatabaseService {
       (document) {
         Help4YouServices help4youServices = Help4YouServices(
           serviceId: document.id,
-          professionalId: document.data()["Professional UID"],
-          serviceTitle: document.data()["Service Title"],
-          serviceDescription: document.data()["Service Description"],
-          servicePrice: document.data()["Service Price"],
-          visibility: document.data()["Visibility"],
+          professionalId: document["Professional UID"],
+          serviceTitle: document["Service Title"],
+          serviceDescription: document["Service Description"],
+          servicePrice: document["Service Price"],
+          visibility: document["Visibility"],
         );
         return help4youServices;
       },

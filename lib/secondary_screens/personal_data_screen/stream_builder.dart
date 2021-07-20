@@ -188,10 +188,10 @@ class EditProfileStreamBuilder extends StatelessWidget {
                           occupationItems.add(
                             DropdownMenuItem(
                               child: Text(
-                                snap.data()['Occupation'],
+                                snap['Occupation'],
                                 style: TextStyle(color: Colors.black),
                               ),
-                              value: snap.data()['Occupation'],
+                              value: snap['Occupation'],
                             ),
                           );
                         }

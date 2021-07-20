@@ -33,7 +33,7 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
   @override
   Widget build(BuildContext context) {
     // Crop Selected Image
-    Future _cropImage(PickedFile selectedFile) async {
+    Future _cropImage(XFile selectedFile) async {
       File cropped = await ImageCropper.cropImage(
         sourcePath: selectedFile.path,
         aspectRatio: CropAspectRatio(
@@ -53,7 +53,7 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
 
     // Select Image Via Image Picker
     Future getImage(ImageSource source) async {
-      final selected = await ImagePicker().getImage(source: source);
+      final selected = await ImagePicker().pickImage(source: source);
       if (selected != null) {
         _cropImage(selected);
       }
