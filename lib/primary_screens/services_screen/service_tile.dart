@@ -121,9 +121,7 @@ class ServiceTile extends StatelessWidget {
                         ),
                         CupertinoSwitch(
                           value: visibility,
-                          onChanged: (bool newValue) {
-                            // TODO: Set the new value to firebase
-                          },
+                          onChanged: (bool newValue) {},
                           activeColor: Colors.deepOrangeAccent,
                         ),
                       ],
@@ -140,9 +138,7 @@ class ServiceTile extends StatelessWidget {
               height: MediaQuery.of(context).size.height / (1792 / 92),
               width: MediaQuery.of(context).size.width / (828 / 92),
               child: GestureDetector(
-                onTap: () {
-                  // TODO: Give functionality to Edit Button.
-                },
+                onTap: () {},
                 child: Container(
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,

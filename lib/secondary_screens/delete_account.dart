@@ -76,7 +76,7 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
                 height: 20.0,
               ),
               SignatureButton(
-                onTap: () {},
+                onPressed: () {},
                 withIcon: true,
                 text: "CONTINUE",
                 icon: FluentIcons.arrow_right_24_filled,

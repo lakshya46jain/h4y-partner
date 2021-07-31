@@ -83,7 +83,7 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
                     height: 20.0,
                   ),
                   SignatureButton(
-                    onTap: () async {
+                    onPressed: () async {
                       print("$countryCode$nonInternationalNumber");
                       HapticFeedback.heavyImpact();
                       FocusScope.of(context).unfocus();

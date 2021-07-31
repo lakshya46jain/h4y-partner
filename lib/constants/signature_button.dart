@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 // File Imports
 
 class SignatureButton extends StatelessWidget {
-  final Function onTap;
+  final Function onPressed;
   final String text;
   final IconData icon;
   final bool withIcon;
 
   SignatureButton({
-    @required this.onTap,
+    @required this.onPressed,
     @required this.text,
     this.icon,
     @required this.withIcon,
@@ -20,7 +20,7 @@ class SignatureButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialButton(
       padding: EdgeInsets.all(0),
-      onPressed: onTap,
+      onPressed: onPressed,
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10.0),

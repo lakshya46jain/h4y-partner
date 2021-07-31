@@ -2,8 +2,6 @@
 import 'package:flutter/material.dart';
 // Dependency Imports
 // File Imports
-import 'package:h4y_partner/primary_screens/message_list_screen/body.dart';
-import 'package:h4y_partner/primary_screens/message_list_screen/app_bar.dart';
 
 class MessageListScreen extends StatefulWidget {
   @override
@@ -18,13 +16,20 @@ class _MessageListScreenState extends State<MessageListScreen> {
         FocusScope.of(context).unfocus();
       },
       child: Scaffold(
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(
-            MediaQuery.of(context).size.height / (1792 / 100),
+        appBar: AppBar(
+          elevation: 0.0,
+          backgroundColor: Colors.transparent,
+          title: Text(
+            "Messages",
+            style: TextStyle(
+              fontSize: 25.0,
+              color: Color(0xFF1C3857),
+              fontFamily: "BalooPaaji",
+              fontWeight: FontWeight.w600,
+            ),
           ),
-          child: MessageListAppBar(),
         ),
-        body: Body(),
+        body: Container(),
       ),
     );
   }

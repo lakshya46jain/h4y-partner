@@ -10,7 +10,7 @@ import 'package:h4y_partner/services/auth.dart';
 import 'package:h4y_partner/models/user_model.dart';
 import 'package:h4y_partner/constants/expanded_button.dart';
 import 'package:h4y_partner/primary_screens/profile_screen/profile_stream.dart';
-import 'package:h4y_partner/secondary_screens/handbook_screen/handbook_screen.dart';
+import 'package:h4y_partner/secondary_screens/handbook_screen.dart';
 import 'package:h4y_partner/secondary_screens/personal_data_screen/personal_data_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
