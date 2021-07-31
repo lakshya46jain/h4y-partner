@@ -165,7 +165,7 @@ class _CreateServiceScreenState extends State<CreateServiceScreen> {
                   ),
                   SignatureButton(
                     text: "Create Service",
-                    onPressed: () async {
+                    onTap: () async {
                       FocusScope.of(context).unfocus();
                       if (formKey.currentState.validate()) {
                         await DatabaseService(uid: user.uid)

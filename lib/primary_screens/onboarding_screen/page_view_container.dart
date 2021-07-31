@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 // Dependency Imports
 // File Imports
-import 'package:h4y_partner/primary_screens/welcome_screen/pages.dart';
+import 'package:h4y_partner/primary_screens/onboarding_screen/pages.dart';
 
 class PageViewContainer extends StatelessWidget {
   final PageController pageController;
@@ -15,8 +15,7 @@ class PageViewContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: MediaQuery.of(context).size.height / (1792 / 1400),
+    return Expanded(
       child: PageView(
         physics: ClampingScrollPhysics(),
         controller: pageController,
@@ -25,23 +24,23 @@ class PageViewContainer extends StatelessWidget {
           // Page 1
           Pages(
             graphicImage: "assets/graphics/Help4You_Illustration_1.svg",
-            title: "Connect with people in your local area",
+            title: "Connect With People",
             description:
-                "H4Y Partner allows you to accept bookings made by the customers using the Help4You App. This allows you to get jobs and earn.",
+                "Connect with people in your locality by accpeting bookings and earn.",
           ),
           // Page 2
           Pages(
             graphicImage: "assets/graphics/Help4You_Illustration_3.svg",
-            title: "Get a new experience of getting tasks done",
+            title: "New Experiences",
             description:
-                "H4Y Partner allows you to set your own prices and get it known by various people in your area.",
+                "Set your own prices and get those know to people around you.",
           ),
           // Page 3
           Pages(
             graphicImage: "assets/graphics/Help4You_Illustration_4.svg",
-            title: "Note",
+            title: "Important Note",
             description:
-                "By creating an account in H4Y Partner does not associate you with Help4You. Help4You is a platform which will allow you to get notified about the work & you can reach to your customers.",
+                "By registering, you will not be associated with Help4You.",
           ),
         ],
       ),

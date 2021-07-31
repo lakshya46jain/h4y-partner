@@ -5,12 +5,16 @@ import 'package:intl_phone_field/intl_phone_field.dart';
 // File Imports
 
 class PhoneNumberTextField extends StatelessWidget {
+  final bool autoFocus;
+  final FocusNode focusNode;
   final String phoneIsoCode;
   final String nonInternationalNumber;
   final Function onChanged;
   final Function onCountryChanged;
 
   PhoneNumberTextField({
+    this.autoFocus,
+    this.focusNode,
     @required this.phoneIsoCode,
     @required this.nonInternationalNumber,
     @required this.onChanged,
@@ -20,6 +24,9 @@ class PhoneNumberTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IntlPhoneField(
+      autofocus: autoFocus ?? false,
+      focusNode: focusNode ?? FocusNode(),
+      searchText: "Search Country Name",
       countryCodeTextColor: Color(0xFF1C3857),
       dropDownArrowColor: Color(0xFF1C3857),
       decoration: InputDecoration(

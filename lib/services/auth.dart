@@ -1,20 +1,21 @@
 // Flutter Imports
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/foundation.dart';
 // Dependency Imports
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 // File Imports
 import 'package:h4y_partner/services/database.dart';
 import 'package:h4y_partner/models/user_model.dart';
 import 'package:h4y_partner/primary_screens/wrapper.dart';
-import 'package:h4y_partner/constants/verification_container.dart';
+import 'package:h4y_partner/constants/custom_snackbar.dart';
+import 'package:h4y_partner/primary_screens/onboarding_screen/verification_screen.dart';
 import 'package:h4y_partner/secondary_screens/register_profile_screen/register_profile_screen.dart';
 
 class AuthService {
   // Firebase Auth Instance
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseAuth auth = FirebaseAuth.instance;
 
   // Create User Object Based on Firebase User
   Help4YouUser _userFromFirebase(User user) {
@@ -23,10 +24,10 @@ class AuthService {
 
   // Authenticate User
   Stream<Help4YouUser> get user {
-    return _auth.authStateChanges().map(_userFromFirebase);
+    return auth.authStateChanges().map(_userFromFirebase);
   }
 
-  // Phone Authentication
+// Phone Authentication
   Future phoneAuthentication(
     String fullName,
     String occupation,
@@ -35,68 +36,79 @@ class AuthService {
     String phoneNumber,
     BuildContext context,
   ) async {
-    if (kIsWeb) {
-      // TODO: Add Firebase Phone Authentication for Web
-    } else {
-      _auth.verifyPhoneNumber(
-        phoneNumber: phoneNumber,
-        timeout: Duration(seconds: 60),
-        verificationCompleted: (PhoneAuthCredential phoneAuthCredential) async {
-          _auth.signInWithCredential(phoneAuthCredential).then(
-            (UserCredential result) async {
-              User user = result.user;
-              DocumentSnapshot ds = await FirebaseFirestore.instance
-                  .collection("H4Y Users Database")
-                  .doc(user.uid)
-                  .get();
-              if (ds.exists) {
-                Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => Wrapper(),
-                  ),
-                  (route) => false,
-                );
-              } else {
-                await DatabaseService(uid: user.uid).updateUserData(
-                  fullName,
-                  occupation,
-                  phoneNumber,
-                  phoneIsoCode,
-                  nonInternationalNumber,
-                );
-                await DatabaseService(uid: user.uid).updateProfilePicture(
-                  "https://drive.google.com/uc?export=view&id=1Fis4yJe7_d_RROY7JdSihM2--GH5aqbe",
-                );
-                Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => RegisterProfileScreen(),
-                  ),
-                  (route) => false,
-                );
-              }
-            },
+    auth.verifyPhoneNumber(
+      phoneNumber: phoneNumber,
+      timeout: Duration(seconds: 180),
+      verificationCompleted: (PhoneAuthCredential credential) async {
+        await auth.signInWithCredential(credential).then(
+          (UserCredential result) async {
+            User user = result.user;
+            DocumentSnapshot ds = await FirebaseFirestore.instance
+                .collection("H4Y Users Database")
+                .doc(user.uid)
+                .get();
+            if (ds.exists) {
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Wrapper(),
+                ),
+                (route) => false,
+              );
+            } else {
+              await DatabaseService(uid: user.uid).updateUserData(
+                fullName,
+                occupation,
+                phoneNumber,
+                phoneIsoCode,
+                nonInternationalNumber,
+              );
+              await DatabaseService(uid: user.uid).updateProfilePicture(
+                "https://drive.google.com/uc?export=view&id=1Fis4yJe7_d_RROY7JdSihM2--GH5aqbe",
+              );
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Wrapper(),
+                ),
+                (route) => false,
+              );
+            }
+          },
+        );
+      },
+      verificationFailed: (FirebaseAuthException exception) async {
+        if (exception.code == 'invalid-phone-number') {
+          showCustomSnackBar(
+            context,
+            FluentIcons.error_circle_24_regular,
+            Colors.red,
+            "Error!",
+            "Please enter a valid phone number.",
           );
-        },
-        verificationFailed: (FirebaseAuthException exception) {
-          return "Error";
-        },
-        codeSent: (String verificationId, [int forceResendingToken]) {
-          showDialog(
-            context: context,
-            barrierDismissible: false,
-            builder: (context) => VerificationContainer(
-              text1: "",
-              text2: "We have sent your code to $phoneNumber.",
-              onSubmit: (pin) async {
+        } else if (exception.code == 'too-many-requests') {
+          showCustomSnackBar(
+            context,
+            FluentIcons.warning_24_regular,
+            Colors.orange,
+            "Warning!",
+            "We have recieved too many requests from this number. Please try again later.",
+          );
+        }
+      },
+      codeSent: (String verificationId, int resendToken) async {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => VerificationScreen(
+              phoneNumber: phoneNumber,
+              submitOTP: (pin) {
                 HapticFeedback.heavyImpact();
-                FocusScope.of(context).unfocus();
                 var credential = PhoneAuthProvider.credential(
                   verificationId: verificationId,
                   smsCode: pin,
                 );
-                _auth.signInWithCredential(credential).then(
+                auth.signInWithCredential(credential).then(
                   (UserCredential result) async {
                     User user = result.user;
                     DocumentSnapshot ds = await FirebaseFirestore.instance
@@ -131,22 +143,34 @@ class AuthService {
                       );
                     }
                   },
+                ).catchError(
+                  (error) {
+                    if (error.code == 'invalid-verification-code') {
+                      showCustomSnackBar(
+                        context,
+                        FluentIcons.error_circle_24_regular,
+                        Colors.red,
+                        "Error!",
+                        "Invalid verification code entered. Please try again later.",
+                      );
+                    }
+                  },
                 );
               },
             ),
-          );
-        },
-        codeAutoRetrievalTimeout: (String verificationId) {
-          verificationId = verificationId;
-        },
-      );
-    }
+          ),
+        );
+      },
+      codeAutoRetrievalTimeout: (String verificationId) async {
+        verificationId = verificationId;
+      },
+    );
   }
 
   // Sign Out
   Future signOut() async {
     try {
-      return await _auth.signOut();
+      return await auth.signOut();
     } catch (e) {
       return null;
     }

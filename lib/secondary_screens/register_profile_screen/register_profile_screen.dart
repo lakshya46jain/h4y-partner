@@ -148,7 +148,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                         withIcon: true,
                         text: "CONTINUE",
                         icon: FluentIcons.arrow_right_24_filled,
-                        onPressed: () async {
+                        onTap: () async {
                           // Upload Picture to Firebase
                           Future setProfilePicture() async {
                             if (imageFile != null) {

@@ -2,10 +2,11 @@
 import 'package:flutter/material.dart';
 // Dependency Imports
 import 'package:provider/provider.dart';
+import 'package:animations/animations.dart';
 // File Imports
 import 'package:h4y_partner/models/user_model.dart';
 import 'package:h4y_partner/primary_screens/bottom_nav_bar.dart';
-import 'package:h4y_partner/primary_screens/welcome_screen/welcome_screen.dart';
+import 'package:h4y_partner/primary_screens/onboarding_screen/onboarding_screen.dart';
 
 class Wrapper extends StatelessWidget {
   @override
@@ -13,25 +14,15 @@ class Wrapper extends StatelessWidget {
     // Get User
     final user = Provider.of<Help4YouUser>(context);
 
-    return Container(
-      color: Colors.white,
-      child: AnimatedSwitcher(
-        duration: Duration(milliseconds: 500),
-        transitionBuilder: (
-          widget,
-          animation,
-        ) =>
-            SlideTransition(
-          position: Tween<Offset>(
-            begin: Offset(-1.0, 0.0),
-            end: Offset(0.0, 0.0),
-          ).animate(
-            animation,
-          ),
-          child: widget,
-        ),
-        child: (user == null) ? WelcomeScreen() : BottomNavBar(),
-      ),
+    return PageTransitionSwitcher(
+      transitionBuilder: (child, primaryAnimation, secondaryAnimation) {
+        return FadeThroughTransition(
+          animation: primaryAnimation,
+          secondaryAnimation: secondaryAnimation,
+          child: child,
+        );
+      },
+      child: user != null ? BottomNavBar() : OnboardingScreen(),
     );
   }
 }
