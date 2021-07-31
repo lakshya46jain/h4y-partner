@@ -1,31 +1,39 @@
 // Flutter Imports
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 // Dependency Imports
+import 'package:provider/provider.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:image_cropper/image_cropper.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 // File Imports
-import 'package:h4y_partner/secondary_screens/register_profile_screen/app_bar.dart';
-import 'package:h4y_partner/secondary_screens/register_profile_screen/body.dart';
+import 'package:h4y_partner/models/user_model.dart';
+import 'package:h4y_partner/services/database.dart';
+import 'package:h4y_partner/primary_screens/wrapper.dart';
+import 'package:h4y_partner/constants/custom_snackbar.dart';
+import 'package:h4y_partner/constants/signature_button.dart';
+import 'package:h4y_partner/secondary_screens/register_profile_screen/stream_builder.dart';
 
-class RegisterProfile extends StatefulWidget {
+class RegisterProfileScreen extends StatefulWidget {
   @override
-  _RegisterProfileState createState() => _RegisterProfileState();
+  _RegisterProfileScreenState createState() => _RegisterProfileScreenState();
 }
 
-class _RegisterProfileState extends State<RegisterProfile> {
+class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
   // Text Field Variables
   String fullName;
   String occupation;
-  String phoneNumber;
+  String countryCode;
   String phoneIsoCode;
   String nonInternationalNumber;
 
   // Global Key
-  final _formKey = GlobalKey<FormState>();
+  final formKey = GlobalKey<FormState>();
 
   // Active Image File
-  File _imageFile;
+  File imageFile;
 
   // Crop Selected Image
   Future cropImage(XFile selectedFile) async {
@@ -40,7 +48,7 @@ class _RegisterProfileState extends State<RegisterProfile> {
     if (cropped != null) {
       setState(
         () {
-          _imageFile = cropped;
+          imageFile = cropped;
         },
       );
     }
@@ -56,47 +64,151 @@ class _RegisterProfileState extends State<RegisterProfile> {
 
   @override
   Widget build(BuildContext context) {
+    // Get User
+    final user = Provider.of<Help4YouUser>(context);
+
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
       },
       child: Scaffold(
         backgroundColor: Colors.white,
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(
-            MediaQuery.of(context).size.height / (1792 / 100),
-          ),
-          child: RegisterAppBar(),
+        appBar: AppBar(
+          elevation: 0.0,
+          backgroundColor: Colors.transparent,
         ),
-        body: Body(
-          fullName: fullName,
-          occupation: occupation,
-          imageFile: _imageFile,
-          formKey: _formKey,
-          onChanged1: (val) {
-            setState(() => fullName = val);
-          },
-          onChanged2: (occupationValue) {
-            setState(
-              () {
-                occupation = occupationValue;
-              },
-            );
-          },
-          onChanged3: (phone) {
-            setState(
-              () {
-                phoneNumber = phone.completeNumber;
-                phoneIsoCode = phone.countryISOCode;
-                nonInternationalNumber = phone.number;
-              },
-            );
-          },
-          onPressed1: () => getImage(
-            ImageSource.camera,
-          ),
-          onPressed2: () => getImage(
-            ImageSource.gallery,
+        body: SingleChildScrollView(
+          child: Form(
+            key: formKey,
+            child: Column(
+              children: [
+                Text(
+                  "Register",
+                  style: TextStyle(
+                    fontSize: 28.0,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height / (1792 / 20),
+                ),
+                Text(
+                  "Complete your details to continue",
+                  style: TextStyle(
+                    fontSize: 15.0,
+                    color: Color(0xFF95989A),
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height / (1792 / 50),
+                ),
+                ProfileStreamBuilder(
+                  imageFile: imageFile,
+                  occupation: occupation,
+                  fullName: fullName,
+                  onChanged1: (val) {
+                    setState(() {
+                      fullName = val;
+                    });
+                  },
+                  onChanged2: (occupationValue) {
+                    setState(() {
+                      occupation = occupationValue;
+                    });
+                  },
+                  onChanged3: (phone) {
+                    setState(() {
+                      nonInternationalNumber = phone.number;
+                    });
+                  },
+                  onCountryChanged: (phone) {
+                    setState(() {
+                      countryCode = phone.countryCode;
+                      phoneIsoCode = phone.countryISOCode;
+                    });
+                  },
+                  onPressed1: () => getImage(
+                    ImageSource.camera,
+                  ),
+                  onPressed2: () => getImage(
+                    ImageSource.gallery,
+                  ),
+                ),
+                StreamBuilder(
+                  stream: DatabaseService(uid: user.uid).userData,
+                  builder: (context, snapshot) {
+                    UserDataProfessional userData = snapshot.data;
+                    return Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 14.5,
+                      ),
+                      child: SignatureButton(
+                        withIcon: true,
+                        text: "CONTINUE",
+                        icon: FluentIcons.arrow_right_24_filled,
+                        onTap: () async {
+                          // Upload Picture to Firebase
+                          Future setProfilePicture() async {
+                            if (imageFile != null) {
+                              Reference firebaseStorageRef = FirebaseStorage
+                                  .instance
+                                  .ref()
+                                  .child(("H4Y Profile Pictures/" + user.uid));
+                              UploadTask uploadTask =
+                                  firebaseStorageRef.putFile(imageFile);
+                              await uploadTask;
+                              String downloadAddress =
+                                  await firebaseStorageRef.getDownloadURL();
+                              await DatabaseService(uid: user.uid)
+                                  .updateProfilePicture(downloadAddress);
+                            } else {
+                              await DatabaseService(uid: user.uid)
+                                  .updateProfilePicture(
+                                userData.profilePicture,
+                              );
+                            }
+                          }
+
+                          HapticFeedback.heavyImpact();
+                          FocusScope.of(context).unfocus();
+                          try {
+                            if (formKey.currentState.validate()) {
+                              await DatabaseService(uid: user.uid)
+                                  .updateUserData(
+                                fullName ?? userData.fullName,
+                                occupation ?? userData.occupation,
+                                "$countryCode$nonInternationalNumber" ??
+                                    userData.phoneNumber,
+                                phoneIsoCode ?? userData.phoneIsoCode,
+                                nonInternationalNumber ??
+                                    userData.nonInternationalNumber,
+                              );
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => Wrapper(),
+                                ),
+                              );
+                            }
+                            setProfilePicture();
+                          } catch (error) {
+                            showCustomSnackBar(
+                              context,
+                              FluentIcons.error_circle_24_regular,
+                              Colors.red,
+                              "Error!",
+                              "Please try updating your profile later.",
+                            );
+                          }
+                        },
+                      ),
+                    );
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),

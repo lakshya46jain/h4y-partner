@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 // Dependency Imports
 // File Imports
-import 'package:h4y_partner/secondary_screens/phone_auth_screen/phone_authentication.dart';
+import 'package:h4y_partner/secondary_screens/phone_auth_screen.dart';
 
 class WelcomeBottomSheet extends StatelessWidget {
   @override
@@ -14,7 +14,7 @@ class WelcomeBottomSheet extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => PhoneAuthentication(),
+            builder: (context) => PhoneAuthScreen(),
           ),
         );
       },

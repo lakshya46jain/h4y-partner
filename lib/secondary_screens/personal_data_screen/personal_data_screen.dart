@@ -18,17 +18,16 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
   // Text Field Variables
   String fullName;
   String occupation;
-  String phoneNumber;
+  String countryCode;
   String nonInternationalNumber;
   String phoneIsoCode;
   String profilePicture;
-  String errorMessage;
 
   // Global Key
-  final _formKey = GlobalKey<FormState>();
+  final formKey = GlobalKey<FormState>();
 
   // Active Image File
-  File _imageFile;
+  File imageFile;
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +44,7 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
       if (cropped != null) {
         setState(
           () {
-            _imageFile = cropped;
+            imageFile = cropped;
           },
         );
       }
@@ -69,38 +68,34 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
             MediaQuery.of(context).size.height / (1792 / 100),
           ),
           child: PersonalDataAppBar(
-            formKey: _formKey,
+            formKey: formKey,
             fullName: fullName,
             occupation: occupation,
-            phoneNumber: phoneNumber,
+            phoneNumber: "$countryCode$nonInternationalNumber",
             phoneIsoCode: phoneIsoCode,
             nonInternationalNumber: nonInternationalNumber,
-            imageFile: _imageFile,
+            imageFile: imageFile,
           ),
         ),
         body: Body(
           fullName: fullName,
           occupation: occupation,
-          imageFile: _imageFile,
-          formKey: _formKey,
+          imageFile: imageFile,
+          formKey: formKey,
           onChanged1: (val) {
-            setState(() => fullName = val);
+            setState(() {
+              fullName = val;
+            });
           },
           onChanged2: (occupationValue) {
-            setState(
-              () {
-                occupation = occupationValue;
-              },
-            );
+            setState(() {
+              occupation = occupationValue;
+            });
           },
           onChanged3: (phone) {
-            setState(
-              () {
-                phoneNumber = phone.completeNumber;
-                phoneIsoCode = phone.countryISOCode;
-                nonInternationalNumber = phone.number;
-              },
-            );
+            setState(() {
+              nonInternationalNumber = phone.number;
+            });
           },
           onPressed1: () => getImage(
             ImageSource.camera,
@@ -108,6 +103,12 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
           onPressed2: () => getImage(
             ImageSource.gallery,
           ),
+          onCountryChanged: (phone) {
+            setState(() {
+              countryCode = phone.countryCode;
+              phoneIsoCode = phone.countryISOCode;
+            });
+          },
         ),
       ),
     );

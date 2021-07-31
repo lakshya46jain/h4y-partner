@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 // File Imports
 import 'package:h4y_partner/constants/expanded_button.dart';
+import 'package:h4y_partner/secondary_screens/delete_account.dart';
 import 'package:h4y_partner/secondary_screens/personal_data_screen/stream_builder.dart';
-import 'package:h4y_partner/secondary_screens/delete_account_screen/delete_account.dart';
 
 class Body extends StatelessWidget {
   final GlobalKey<FormState> formKey;
@@ -18,17 +18,19 @@ class Body extends StatelessWidget {
   final Function onChanged3;
   final Function onPressed1;
   final Function onPressed2;
+  final Function onCountryChanged;
 
   Body({
-    this.formKey,
-    this.imageFile,
-    this.fullName,
-    this.occupation,
-    this.onChanged1,
-    this.onChanged2,
-    this.onChanged3,
-    this.onPressed1,
-    this.onPressed2,
+    @required this.formKey,
+    @required this.imageFile,
+    @required this.fullName,
+    @required this.occupation,
+    @required this.onChanged1,
+    @required this.onChanged2,
+    @required this.onChanged3,
+    @required this.onPressed1,
+    @required this.onPressed2,
+    @required this.onCountryChanged,
   });
 
   @override
@@ -50,6 +52,7 @@ class Body extends StatelessWidget {
               onChanged3: onChanged3,
               onPressed1: onPressed1,
               onPressed2: onPressed2,
+              onCountryChanged: onCountryChanged,
             ),
             ExpandedButton(
               icon: FluentIcons.delete_24_regular,
@@ -58,7 +61,7 @@ class Body extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => DeleteAccount(),
+                    builder: (context) => DeleteAccountScreen(),
                   ),
                 );
               },

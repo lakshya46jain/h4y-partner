@@ -24,16 +24,18 @@ class EditProfileStreamBuilder extends StatelessWidget {
   final Function onChanged3;
   final Function onPressed1;
   final Function onPressed2;
+  final Function onCountryChanged;
 
   EditProfileStreamBuilder({
-    this.imageFile,
-    this.fullName,
-    this.occupation,
-    this.onChanged1,
-    this.onChanged2,
-    this.onChanged3,
-    this.onPressed1,
-    this.onPressed2,
+    @required this.imageFile,
+    @required this.fullName,
+    @required this.occupation,
+    @required this.onChanged1,
+    @required this.onChanged2,
+    @required this.onChanged3,
+    @required this.onPressed1,
+    @required this.onPressed2,
+    @required this.onCountryChanged,
   });
 
   @override
@@ -253,6 +255,7 @@ class EditProfileStreamBuilder extends StatelessWidget {
                     phoneIsoCode: userData.phoneIsoCode,
                     nonInternationalNumber: userData.nonInternationalNumber,
                     onChanged: onChanged3,
+                    onCountryChanged: onCountryChanged,
                   ),
                 ),
                 SizedBox(

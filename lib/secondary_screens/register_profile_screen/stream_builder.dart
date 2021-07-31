@@ -24,20 +24,23 @@ class ProfileStreamBuilder extends StatelessWidget {
   final Function onChanged3;
   final Function onPressed1;
   final Function onPressed2;
+  final Function onCountryChanged;
 
   ProfileStreamBuilder({
-    this.imageFile,
-    this.fullName,
-    this.occupation,
-    this.onChanged1,
-    this.onChanged2,
-    this.onChanged3,
-    this.onPressed1,
-    this.onPressed2,
+    @required this.imageFile,
+    @required this.fullName,
+    @required this.occupation,
+    @required this.onChanged1,
+    @required this.onChanged2,
+    @required this.onChanged3,
+    @required this.onPressed1,
+    @required this.onPressed2,
+    @required this.onCountryChanged,
   });
 
   @override
   Widget build(BuildContext context) {
+    // Get User
     final user = Provider.of<Help4YouUser>(context);
 
     return Padding(
@@ -226,6 +229,7 @@ class ProfileStreamBuilder extends StatelessWidget {
                   child: PhoneNumberTextField(
                     phoneIsoCode: userData.phoneIsoCode,
                     nonInternationalNumber: userData.nonInternationalNumber,
+                    onCountryChanged: onCountryChanged,
                     onChanged: onChanged3,
                   ),
                 ),

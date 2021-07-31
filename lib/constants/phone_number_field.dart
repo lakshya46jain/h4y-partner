@@ -8,11 +8,13 @@ class PhoneNumberTextField extends StatelessWidget {
   final String phoneIsoCode;
   final String nonInternationalNumber;
   final Function onChanged;
+  final Function onCountryChanged;
 
   PhoneNumberTextField({
-    this.phoneIsoCode,
-    this.nonInternationalNumber,
-    this.onChanged,
+    @required this.phoneIsoCode,
+    @required this.nonInternationalNumber,
+    @required this.onChanged,
+    @required this.onCountryChanged,
   });
 
   @override
@@ -57,6 +59,7 @@ class PhoneNumberTextField extends StatelessWidget {
         ),
       ),
       onChanged: onChanged,
+      onCountryChanged: onCountryChanged,
       initialCountryCode: phoneIsoCode,
       initialValue: nonInternationalNumber,
     );
