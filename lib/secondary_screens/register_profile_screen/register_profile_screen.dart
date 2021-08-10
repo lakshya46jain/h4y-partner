@@ -78,6 +78,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
           backgroundColor: Colors.transparent,
         ),
         body: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
           child: Form(
             key: formKey,
             child: Column(

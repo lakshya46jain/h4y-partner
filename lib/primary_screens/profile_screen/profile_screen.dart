@@ -30,6 +30,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       },
       child: Scaffold(
         body: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
           child: Column(
             children: [
               if (user != null) ...[

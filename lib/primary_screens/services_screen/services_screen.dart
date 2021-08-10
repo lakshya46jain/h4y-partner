@@ -99,6 +99,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
                       controller: controller,
                       itemCount: services.length,
                       padding: EdgeInsets.all(0.0),
+                      physics: BouncingScrollPhysics(),
                       itemBuilder: (context, index) {
                         return ServiceTile(
                           documentId: services[index].serviceId,

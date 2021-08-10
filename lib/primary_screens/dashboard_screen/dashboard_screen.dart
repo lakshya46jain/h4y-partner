@@ -18,6 +18,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       },
       child: Scaffold(
         body: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
           child: Column(
             children: [
               SizedBox(

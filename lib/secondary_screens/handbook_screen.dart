@@ -36,6 +36,7 @@ class _HandbookScreenState extends State<HandbookScreen> {
           ),
         ),
         body: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
           child: Column(
             children: [
               Container(

@@ -55,6 +55,7 @@ class _CreateServiceScreenState extends State<CreateServiceScreen> {
         body: Padding(
           padding: EdgeInsets.all(20.0),
           child: SingleChildScrollView(
+            physics: BouncingScrollPhysics(),
             child: Form(
               key: formKey,
               child: Column(
