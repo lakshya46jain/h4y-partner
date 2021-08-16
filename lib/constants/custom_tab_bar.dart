@@ -122,7 +122,9 @@ class CustomTabBarButton extends StatelessWidget {
         duration: Duration(milliseconds: 1000),
         curve: Curves.fastLinearToSlowEaseIn,
         decoration: BoxDecoration(
-          color: selectedPage == pageNumber ? Color(0xFFFEA700) : Colors.white,
+          color: selectedPage == pageNumber
+              ? Color(0xFFFEA700)
+              : Colors.transparent,
           borderRadius: BorderRadius.circular(5.0),
         ),
         padding: EdgeInsets.symmetric(

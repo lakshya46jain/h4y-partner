@@ -69,28 +69,11 @@ class _ServicesScreenState extends State<ServicesScreen> {
                   if (services.length == 0) {
                     return Padding(
                       padding: EdgeInsets.symmetric(horizontal: 20.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height /
-                                (1792 / 600),
-                            child: SvgPicture.asset(
-                              "assets/graphics/Help4You_Illustration_6.svg",
-                            ),
-                          ),
-                          Text(
-                            "Oops! Looks like you are not providing any services",
-                            style: TextStyle(
-                              fontSize: 20.0,
-                              fontFamily: "BalooPaaji",
-                              color: Color(0xFF1C3857),
-                              fontWeight: FontWeight.bold,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                        ],
+                      child: SizedBox(
+                        width: double.infinity,
+                        child: SvgPicture.asset(
+                          "assets/graphics/Help4You_Illustration_6.svg",
+                        ),
                       ),
                     );
                   } else {
