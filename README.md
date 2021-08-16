@@ -1,13 +1,16 @@
 # H4Y Partner
 
-**Connect with people in your local area**
+A new Flutter project.
 
-H4Y Partner allows you to accept bookings made by the customers using the Help4You App. This allows you to get jobs and earn.
+## Getting Started
 
-**Live your life smarter with us!**
+This project is a starting point for a Flutter application.
 
-H4Y Partner allows you to set your own prices and get it known by various people in your area.
+A few resources to get you started if this is your first Flutter project:
 
-**Note**
+- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
+- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 
-By creating an account in H4Y Partner does not associate you with Help4You. Help4You is a platform which will allow you to get notified about the work & you can reach to your customers.
+For help getting started with Flutter, view our
+[online documentation](https://flutter.dev/docs), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.
