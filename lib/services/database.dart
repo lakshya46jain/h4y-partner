@@ -10,10 +10,12 @@ import 'package:h4y_partner/models/service_model.dart';
 class DatabaseService {
   final String uid;
   final String chatRoomId;
+  final String documentId;
 
   DatabaseService({
     this.uid,
     this.chatRoomId,
+    this.documentId,
   });
 
   // Collection Reference (User Database)
@@ -61,13 +63,31 @@ class DatabaseService {
   }
 
   // Update Professional Services
-  Future updateProfessionalServices(
+  Future createProfessionalServices(
     String serviceTitle,
     String serviceDescription,
     double servicePrice,
     bool serviceVisibility,
   ) async {
     return await servicesCollection.doc().set(
+      {
+        'Professional UID': uid,
+        'Service Title': serviceTitle,
+        'Service Description': serviceDescription,
+        'Service Price': servicePrice,
+        'Visibility': serviceVisibility
+      },
+    );
+  }
+
+  // Update Professional Services
+  Future updateProfessionalServices(
+    String serviceTitle,
+    String serviceDescription,
+    double servicePrice,
+    bool serviceVisibility,
+  ) async {
+    return await servicesCollection.doc(documentId).update(
       {
         'Professional UID': uid,
         'Service Title': serviceTitle,
@@ -124,8 +144,9 @@ class DatabaseService {
     );
   }
 
-  // Service Data from Snapshot
-  List<Help4YouServices> _help4youServicesFromSnapshot(QuerySnapshot snapshot) {
+  // Service List Data from Snapshot
+  List<Help4YouServices> _help4youServicesListFromSnapshot(
+      QuerySnapshot snapshot) {
     return snapshot.docs.map(
       (document) {
         Help4YouServices help4youServices = Help4YouServices(
@@ -139,6 +160,18 @@ class DatabaseService {
         return help4youServices;
       },
     ).toList();
+  }
+
+  // Service Data from Snapshot
+  Help4YouServices _help4youServicesFromSnapshot(DocumentSnapshot snapshot) {
+    return Help4YouServices(
+      serviceId: snapshot.id,
+      professionalId: snapshot["Professional UID"],
+      serviceTitle: snapshot["Service Title"],
+      serviceDescription: snapshot["Service Description"],
+      servicePrice: snapshot["Service Price"],
+      visibility: snapshot["Visibility"],
+    );
   }
 
   // Chat Rooms from Snapshot
@@ -173,9 +206,20 @@ class DatabaseService {
     return userCollection.doc(uid).snapshots().map(_userDataFromSnapshot);
   }
 
+  // Get Service List Document
+  Stream<List<Help4YouServices>> get serviceListData {
+    return servicesCollection
+        .where("Professional UID", isEqualTo: uid)
+        .snapshots()
+        .map(_help4youServicesListFromSnapshot);
+  }
+
   // Get Service Document
-  Stream<List<Help4YouServices>> get serviceData {
-    return servicesCollection.snapshots().map(_help4youServicesFromSnapshot);
+  Stream<Help4YouServices> get serviceData {
+    return servicesCollection
+        .doc(documentId)
+        .snapshots()
+        .map(_help4youServicesFromSnapshot);
   }
 
   // Get Chat Rooms Documents

@@ -62,7 +62,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
             text1: "Services",
             text2: "Rate Card",
             widget1: StreamBuilder(
-              stream: DatabaseService(uid: user.uid).serviceData,
+              stream: DatabaseService(uid: user.uid).serviceListData,
               builder: (context, snapshot) {
                 List<Help4YouServices> services = snapshot.data;
                 if (snapshot.hasData) {

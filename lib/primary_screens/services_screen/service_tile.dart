@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 // File Imports
+import 'package:h4y_partner/secondary_screens/edit_service.dart';
 
 class ServiceTile extends StatelessWidget {
   final String documentId;
@@ -91,7 +92,16 @@ class ServiceTile extends StatelessWidget {
               )
             ],
           ),
-          onTap: () {},
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => EditServiceScreen(
+                  documentId: documentId,
+                ),
+              ),
+            );
+          },
         ),
         IconSlideAction(
           color: Colors.red,

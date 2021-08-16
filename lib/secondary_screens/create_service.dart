@@ -8,8 +8,8 @@ import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:h4y_partner/models/user_model.dart';
 import 'package:h4y_partner/services/database.dart';
 import 'package:h4y_partner/constants/back_button.dart';
-import 'package:h4y_partner/constants/custom_text_field.dart';
 import 'package:h4y_partner/constants/signature_button.dart';
+import 'package:h4y_partner/constants/custom_text_field.dart';
 
 class CreateServiceScreen extends StatefulWidget {
   @override
@@ -81,7 +81,7 @@ class _CreateServiceScreenState extends State<CreateServiceScreen> {
                     hintText: "Type service title...",
                   ),
                   SizedBox(
-                    height: MediaQuery.of(context).size.height / (1792 / 50),
+                    height: 25.0,
                   ),
                   CustomTextField(
                     onChanged: (value) {
@@ -99,10 +99,10 @@ class _CreateServiceScreenState extends State<CreateServiceScreen> {
                       }
                     },
                     hintText: "Type short description of service...",
-                    maxLines: 3,
+                    maxLines: null,
                   ),
                   SizedBox(
-                    height: MediaQuery.of(context).size.height / (1792 / 50),
+                    height: 25.0,
                   ),
                   CustomTextField(
                     onChanged: (value) {
@@ -123,7 +123,7 @@ class _CreateServiceScreenState extends State<CreateServiceScreen> {
                     hintText: "Type service price...",
                   ),
                   SizedBox(
-                    height: MediaQuery.of(context).size.height / (1792 / 50),
+                    height: 25.0,
                   ),
                   MergeSemantics(
                     child: Container(
@@ -162,7 +162,7 @@ class _CreateServiceScreenState extends State<CreateServiceScreen> {
                     ),
                   ),
                   SizedBox(
-                    height: MediaQuery.of(context).size.height / (1792 / 50),
+                    height: 25.0,
                   ),
                   SignatureButton(
                     text: "Create Service",
@@ -170,7 +170,7 @@ class _CreateServiceScreenState extends State<CreateServiceScreen> {
                       FocusScope.of(context).unfocus();
                       if (formKey.currentState.validate()) {
                         await DatabaseService(uid: user.uid)
-                            .updateProfessionalServices(
+                            .createProfessionalServices(
                           serviceTitle,
                           serviceDescription,
                           servicePrice,
