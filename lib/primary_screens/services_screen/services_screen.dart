@@ -56,7 +56,6 @@ class _ServicesScreenState extends State<ServicesScreen> {
         FocusScope.of(context).unfocus();
       },
       child: Scaffold(
-        backgroundColor: Colors.white,
         body: Padding(
           padding: EdgeInsets.only(top: 50.0),
           child: CustomTabBar(

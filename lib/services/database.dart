@@ -20,6 +20,10 @@ class DatabaseService {
   final CollectionReference userCollection =
       FirebaseFirestore.instance.collection('H4Y Users Database');
 
+  // Collection Reference (User Database)
+  final CollectionReference servicesCollection =
+      FirebaseFirestore.instance.collection('H4Y Services Database');
+
   // Collection Reference (Chat Room Database)
   final CollectionReference chatRoomCollection =
       FirebaseFirestore.instance.collection("H4Y Chat Rooms Database");
@@ -63,7 +67,7 @@ class DatabaseService {
     double servicePrice,
     bool serviceVisibility,
   ) async {
-    return await userCollection.doc(uid).collection("Services").doc().set(
+    return await servicesCollection.doc().set(
       {
         'Professional UID': uid,
         'Service Title': serviceTitle,
@@ -171,11 +175,7 @@ class DatabaseService {
 
   // Get Service Document
   Stream<List<Help4YouServices>> get serviceData {
-    return userCollection
-        .doc(uid)
-        .collection("Services")
-        .snapshots()
-        .map(_help4youServicesFromSnapshot);
+    return servicesCollection.snapshots().map(_help4youServicesFromSnapshot);
   }
 
   // Get Chat Rooms Documents
