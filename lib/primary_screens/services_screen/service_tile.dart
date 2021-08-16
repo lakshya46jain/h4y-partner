@@ -1,8 +1,8 @@
 // Flutter Imports
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 // Dependency Imports
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 // File Imports
 
@@ -20,136 +20,109 @@ class ServiceTile extends StatelessWidget {
     this.servicePrice,
     this.visibility,
   });
+
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal: 20.0,
-        vertical: 10.0,
-      ),
-      child: Stack(
-        clipBehavior: Clip.none,
-        children: [
-          Container(
-            width: double.infinity,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(30.0),
-              color: Colors.white,
-              border: Border.all(
-                color: Colors.grey,
-              ),
-            ),
-            child: Padding(
-              padding: EdgeInsets.all(20.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    serviceTitle,
-                    style: TextStyle(
-                      fontSize: 16.0,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    serviceDescription,
-                    style: TextStyle(
-                      color: Colors.grey[600],
-                    ),
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Price : $servicePrice",
-                      ),
-                      IconButton(
-                        icon: Icon(
-                          FluentIcons.delete_24_regular,
-                          color: Colors.red,
-                          size: 26.0,
-                        ),
-                        onPressed: () async {
-                          await FirebaseFirestore.instance
-                              .collection("H4Y Services Database")
-                              .doc(documentId)
-                              .delete();
-                        },
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  Container(
-                    padding: EdgeInsets.all(10.0),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Color(0xFFF5F6F9),
-                    ),
-                    child: Row(
-                      children: [
-                        Icon(
-                          FluentIcons.eye_show_24_regular,
-                          size: 30.0,
-                          color: Colors.deepOrange,
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Expanded(
-                          child: Text(
-                            "Service Visibility",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                        CupertinoSwitch(
-                          value: visibility,
-                          onChanged: (bool newValue) {},
-                          activeColor: Colors.deepOrangeAccent,
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Positioned(
-            right: -15,
-            top: -10,
-            child: SizedBox(
-              height: MediaQuery.of(context).size.height / (1792 / 92),
-              width: MediaQuery.of(context).size.width / (828 / 92),
-              child: GestureDetector(
-                onTap: () {},
-                child: Container(
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Color(0xFFF5F6F9),
-                    border: Border.all(
-                      color: Colors.grey[600],
-                    ),
-                  ),
-                  child: Icon(
-                    FluentIcons.edit_24_regular,
-                    color: Colors.deepOrangeAccent,
-                  ),
+    return Slidable(
+      actionPane: SlidableDrawerActionPane(),
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+          vertical: 15.0,
+          horizontal: 20.0,
+        ),
+        child: Container(
+          width: double.infinity,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                serviceTitle,
+                style: TextStyle(
+                  fontSize: 21.0,
+                  color: Color(0xFF1C3857),
+                  fontWeight: FontWeight.bold,
                 ),
               ),
-            ),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                "$servicePrice",
+                style: TextStyle(
+                  color: Color(0xFF1C3857),
+                  fontSize: 14.0,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                serviceDescription,
+                style: TextStyle(
+                  fontSize: 14.0,
+                  color: Color(0xFF95989A),
+                ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
+      secondaryActions: [
+        IconSlideAction(
+          color: Color(0xFF1C3857),
+          iconWidget: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                FluentIcons.edit_24_regular,
+                color: Colors.white,
+                size: 30.0,
+              ),
+              SizedBox(
+                height: 5.0,
+              ),
+              Text(
+                "Update",
+                style: TextStyle(
+                  fontSize: 18.0,
+                  color: Colors.white,
+                ),
+              )
+            ],
+          ),
+          onTap: () {},
+        ),
+        IconSlideAction(
+          color: Colors.red,
+          iconWidget: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                FluentIcons.delete_24_regular,
+                color: Colors.white,
+                size: 30.0,
+              ),
+              SizedBox(
+                height: 5.0,
+              ),
+              Text(
+                "Delete",
+                style: TextStyle(
+                  fontSize: 18.0,
+                  color: Colors.white,
+                ),
+              )
+            ],
+          ),
+          onTap: () async {
+            await FirebaseFirestore.instance
+                .collection("H4Y Services Database")
+                .doc(documentId)
+                .delete();
+          },
+        ),
+      ],
     );
   }
 }
