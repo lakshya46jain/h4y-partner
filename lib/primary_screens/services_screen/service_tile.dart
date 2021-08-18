@@ -65,6 +65,13 @@ class ServiceTile extends StatelessWidget {
                   color: Color(0xFF95989A),
                 ),
               ),
+              SizedBox(
+                height: 10,
+              ),
+              Divider(
+                thickness: 3.0,
+                color: Color(0xFF95989A).withOpacity(0.2),
+              ),
             ],
           ),
         ),
