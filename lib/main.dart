@@ -16,13 +16,11 @@ import 'package:h4y_partner/primary_screens/wrapper.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  await FirebaseCrashlytics.instance.sendUnsentReports();
-  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
-  if (
-      // kDebugMode || kProfileMode ||
-      kIsWeb) {
+  if (kDebugMode || kProfileMode || kIsWeb) {
     await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(false);
   } else {
+    await FirebaseCrashlytics.instance.sendUnsentReports();
+    FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
     await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
   }
   runApp(MyApp());
