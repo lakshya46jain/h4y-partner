@@ -8,9 +8,9 @@ import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 // File Imports
 import 'package:h4y_partner/services/auth.dart';
 import 'package:h4y_partner/models/user_model.dart';
-import 'package:h4y_partner/constants/expanded_button.dart';
-import 'package:h4y_partner/primary_screens/profile_screen/profile_stream.dart';
+import 'package:h4y_partner/constants/signature_button.dart';
 import 'package:h4y_partner/secondary_screens/handbook_screen.dart';
+import 'package:h4y_partner/primary_screens/profile_screen/profile_stream.dart';
 import 'package:h4y_partner/secondary_screens/personal_data_screen/personal_data_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -46,10 +46,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     color: Color(0xFF95989A),
                   ),
                 ),
-                ExpandedButton(
+                SignatureButton(
+                  type: "Expanded",
                   icon: FluentIcons.info_24_regular,
                   text: "Our Handbook",
-                  onPressed: () {
+                  onTap: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -66,10 +67,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     color: Color(0xFF95989A),
                   ),
                 ),
-                ExpandedButton(
+                SignatureButton(
+                  type: "Expanded",
                   icon: FluentIcons.person_24_regular,
                   text: "Personal Data",
-                  onPressed: () {
+                  onTap: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -78,10 +80,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     );
                   },
                 ),
-                ExpandedButton(
+                SignatureButton(
+                  type: "Expanded",
                   icon: FluentIcons.sign_out_24_regular,
                   text: "Sign Out",
-                  onPressed: () {
+                  onTap: () {
                     return AuthService().signOut();
                   },
                 ),
@@ -93,15 +96,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     color: Color(0xFF95989A),
                   ),
                 ),
-                ExpandedButton(
+                SignatureButton(
+                  type: "Expanded",
                   icon: FluentIcons.star_24_regular,
                   text: "Rate Us",
-                  onPressed: () {},
+                  onTap: () {},
                 ),
-                ExpandedButton(
+                SignatureButton(
+                  type: "Expanded",
                   icon: FluentIcons.person_feedback_24_regular,
                   text: "Feedback",
-                  onPressed: () {
+                  onTap: () {
                     Wiredash.of(context).setUserProperties(
                       userId: user.uid,
                     );
@@ -112,10 +117,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     Wiredash.of(context).show();
                   },
                 ),
-                ExpandedButton(
+                SignatureButton(
+                  type: "Expanded",
                   icon: FluentIcons.share_24_regular,
                   text: "Share Help4You",
-                  onPressed: () {
+                  onTap: () {
                     Share.share(
                       "Have you tried the Help4You app? It's simple to book services like appliance repair, electricians, gardeners & more...\nTo download our app please visit https://www.help4you.webflow.io/download",
                       subject: "Try Help4You",

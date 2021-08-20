@@ -9,7 +9,6 @@ class CustomDropdown extends StatelessWidget {
   final Function validator;
   final IconData icon;
   final dynamic value;
-  final String labelText;
   final String hintText;
 
   CustomDropdown({
@@ -18,7 +17,6 @@ class CustomDropdown extends StatelessWidget {
     this.validator,
     this.icon,
     this.value,
-    this.labelText,
     this.hintText,
   });
 
@@ -35,10 +33,6 @@ class CustomDropdown extends StatelessWidget {
       ),
       value: value,
       decoration: InputDecoration(
-        labelText: labelText,
-        labelStyle: TextStyle(
-          color: Color(0xFF1C3857),
-        ),
         hintText: hintText,
         hintStyle: TextStyle(
           color: Colors.grey,

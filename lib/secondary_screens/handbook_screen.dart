@@ -5,7 +5,7 @@ import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 // File Imports
 import 'package:h4y_partner/constants/back_button.dart';
 import 'package:h4y_partner/constants/policy_dialog.dart';
-import 'package:h4y_partner/constants/expanded_button.dart';
+import 'package:h4y_partner/constants/signature_button.dart';
 
 class HandbookScreen extends StatefulWidget {
   @override
@@ -55,10 +55,11 @@ class _HandbookScreenState extends State<HandbookScreen> {
               SizedBox(
                 height: 7.5,
               ),
-              ExpandedButton(
+              SignatureButton(
+                type: "Expanded",
                 text: "About Help4You",
                 icon: FluentIcons.question_circle_24_regular,
-                onPressed: () {
+                onTap: () {
                   showDialog(
                     context: context,
                     builder: (context) {
@@ -69,10 +70,11 @@ class _HandbookScreenState extends State<HandbookScreen> {
                   );
                 },
               ),
-              ExpandedButton(
+              SignatureButton(
+                type: "Expanded",
                 text: "Terms and Conditions",
                 icon: FluentIcons.person_accounts_24_regular,
-                onPressed: () {
+                onTap: () {
                   showDialog(
                     context: context,
                     builder: (context) {
@@ -83,10 +85,11 @@ class _HandbookScreenState extends State<HandbookScreen> {
                   );
                 },
               ),
-              ExpandedButton(
+              SignatureButton(
+                type: "Expanded",
                 text: "Privacy Policy",
                 icon: FluentIcons.lock_shield_24_regular,
-                onPressed: () {
+                onTap: () {
                   showDialog(
                     context: context,
                     builder: (context) {

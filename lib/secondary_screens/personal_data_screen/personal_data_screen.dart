@@ -13,8 +13,8 @@ import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:h4y_partner/models/user_model.dart';
 import 'package:h4y_partner/services/database.dart';
 import 'package:h4y_partner/constants/loading.dart';
-import 'package:h4y_partner/constants/expanded_button.dart';
 import 'package:h4y_partner/constants/custom_dropdown.dart';
+import 'package:h4y_partner/constants/signature_button.dart';
 import 'package:h4y_partner/constants/custom_text_field.dart';
 import 'package:h4y_partner/constants/phone_number_field.dart';
 import 'package:h4y_partner/secondary_screens/delete_account.dart';
@@ -219,8 +219,7 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
                             ),
                             child: CustomTextField(
                               keyboardType: TextInputType.name,
-                              labelText: "Full Name",
-                              hintText: "Full Name",
+                              hintText: "Enter Full Name...",
                               initialValue: userData.fullName,
                               validator: (String value) {
                                 if (value.isEmpty) {
@@ -270,8 +269,7 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
                                     );
                                   }
                                   return CustomDropdown(
-                                    labelText: 'Occupation',
-                                    hintText: 'Choose occupation',
+                                    hintText: 'Select Occupation...',
                                     value: userData.occupation,
                                     validator: (occupationValue) {
                                       if (occupationValue.isEmpty) {
@@ -291,8 +289,7 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
                                   );
                                 } else {
                                   return CustomDropdown(
-                                    labelText: 'Occupation',
-                                    hintText: 'Choose occupation',
+                                    hintText: 'Select Occupation...',
                                     validator: (occupationValue) {
                                       if (occupationValue.isEmpty) {
                                         return "Please select an occupation";
@@ -364,10 +361,11 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
                   },
                 ),
               ),
-              ExpandedButton(
+              SignatureButton(
+                type: "Expanded",
                 icon: FluentIcons.delete_24_regular,
                 text: "Delete Account",
-                onPressed: () async {
+                onTap: () async {
                   Navigator.push(
                     context,
                     MaterialPageRoute(

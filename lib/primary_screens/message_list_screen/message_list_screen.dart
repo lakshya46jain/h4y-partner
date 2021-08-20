@@ -7,7 +7,7 @@ import 'package:h4y_partner/models/user_model.dart';
 import 'package:h4y_partner/services/database.dart';
 import 'package:h4y_partner/constants/loading.dart';
 import 'package:h4y_partner/models/chat_room_model.dart';
-import 'package:h4y_partner/constants/custom_search_bar.dart';
+import 'package:h4y_partner/constants/search_bar.dart';
 import 'package:h4y_partner/primary_screens/message_list_screen/message_tile.dart';
 
 class MessageListScreen extends StatefulWidget {

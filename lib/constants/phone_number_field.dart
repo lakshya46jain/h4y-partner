@@ -30,11 +30,7 @@ class PhoneNumberTextField extends StatelessWidget {
       countryCodeTextColor: Color(0xFF1C3857),
       dropDownArrowColor: Color(0xFF1C3857),
       decoration: InputDecoration(
-        labelText: 'Phone Number',
-        labelStyle: TextStyle(
-          color: Color(0xFF1C3857),
-        ),
-        hintText: 'Phone Number',
+        hintText: 'Enter Phone Number...',
         floatingLabelBehavior: FloatingLabelBehavior.always,
         contentPadding: EdgeInsets.symmetric(
           horizontal: 20.0,
@@ -43,7 +39,7 @@ class PhoneNumberTextField extends StatelessWidget {
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(60.0),
           borderSide: BorderSide(
-            color: Color(0xFF1C3857),
+            color: Color(0xFF1C3857).withOpacity(0.5),
           ),
         ),
         focusedBorder: OutlineInputBorder(

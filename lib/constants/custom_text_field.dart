@@ -9,7 +9,6 @@ class CustomTextField extends StatelessWidget {
   final Function validator;
   final Function onChanged;
   final dynamic initialValue;
-  final String labelText;
   final String hintText;
 
   CustomTextField({
@@ -18,7 +17,6 @@ class CustomTextField extends StatelessWidget {
     this.validator,
     this.onChanged,
     this.initialValue,
-    this.labelText,
     this.hintText,
   });
 
@@ -31,10 +29,6 @@ class CustomTextField extends StatelessWidget {
       initialValue: initialValue,
       onChanged: onChanged,
       decoration: InputDecoration(
-        labelText: labelText,
-        labelStyle: TextStyle(
-          color: Color(0xFF1C3857),
-        ),
         hintText: hintText,
         hintStyle: TextStyle(
           color: Color(0xFF95989A),
@@ -44,7 +38,7 @@ class CustomTextField extends StatelessWidget {
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(30.0),
           borderSide: BorderSide(
-            color: Color(0xFF1C3857),
+            color: Color(0xFF1C3857).withOpacity(0.5),
           ),
         ),
         focusedBorder: OutlineInputBorder(

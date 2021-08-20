@@ -92,8 +92,7 @@ class _EditServiceScreenState extends State<EditServiceScreen> {
                               return null;
                             }
                           },
-                          labelText: "Service Title",
-                          hintText: "Type service title...",
+                          hintText: "Type Service Title...",
                         ),
                         SizedBox(
                           height:
@@ -107,7 +106,6 @@ class _EditServiceScreenState extends State<EditServiceScreen> {
                             });
                           },
                           keyboardType: TextInputType.multiline,
-                          labelText: "Service Description",
                           validator: (value) {
                             if (value.isEmpty) {
                               return "Description field cannot be empty";
@@ -115,7 +113,7 @@ class _EditServiceScreenState extends State<EditServiceScreen> {
                               return null;
                             }
                           },
-                          hintText: "Type short description of service...",
+                          hintText: "Type Description Of Service...",
                           maxLines: null,
                         ),
                         SizedBox(
@@ -138,8 +136,7 @@ class _EditServiceScreenState extends State<EditServiceScreen> {
                           },
                           keyboardType:
                               TextInputType.numberWithOptions(decimal: true),
-                          labelText: "Service Price",
-                          hintText: "Type service price...",
+                          hintText: "Type Service Price...",
                         ),
                         SizedBox(
                           height:

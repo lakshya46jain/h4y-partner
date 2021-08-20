@@ -4,20 +4,16 @@ import 'package:flutter/services.dart';
 // Dependency Imports
 import 'package:flutter_markdown/flutter_markdown.dart';
 // File Imports
+import 'package:h4y_partner/constants/signature_button.dart';
 
 class PolicyDialog extends StatelessWidget {
-  PolicyDialog({
-    Key key,
-    this.radius = 10,
-    @required this.mdFileName,
-  })  : assert(
-          mdFileName.contains('.md'),
-          'The file must contain the .md extension',
-        ),
-        super(key: key);
-
   final double radius;
   final String mdFileName;
+
+  PolicyDialog({
+    this.radius = 10,
+    @required this.mdFileName,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -43,36 +39,12 @@ class PolicyDialog extends StatelessWidget {
               },
             ),
           ),
-          MaterialButton(
-            padding: EdgeInsets.all(0),
-            onPressed: () {
+          SignatureButton(
+            onTap: () {
               Navigator.pop(context);
             },
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.0),
-                color: Color(0xFF1C3857),
-              ),
-              width: double.infinity,
-              height: MediaQuery.of(context).size.height / (1792 / 120),
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                  vertical: 10.0,
-                  horizontal: 20.0,
-                ),
-                child: Align(
-                  alignment: Alignment.center,
-                  child: Text(
-                    "CLOSE",
-                    style: TextStyle(
-                      fontSize: 20.0,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ),
-            ),
+            text: "CLOSE",
+            withIcon: false,
           ),
         ],
       ),
