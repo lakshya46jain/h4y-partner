@@ -16,6 +16,7 @@ class UserDataProfessional {
   final String phoneIsoCode;
   final String nonInternationalNumber;
   final String phoneNumber;
+  final String status;
 
   UserDataProfessional({
     this.uid,
@@ -25,5 +26,6 @@ class UserDataProfessional {
     this.phoneIsoCode,
     this.nonInternationalNumber,
     this.phoneNumber,
+    this.status,
   });
 }

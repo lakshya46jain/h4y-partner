@@ -1,8 +1,10 @@
 // Flutter Imports
 import 'package:flutter/material.dart';
 // Dependency Imports
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 // File Imports
+import 'package:h4y_partner/services/database.dart';
 import 'package:h4y_partner/primary_screens/profile_screen/profile_screen.dart';
 import 'package:h4y_partner/primary_screens/services_screen/services_screen.dart';
 import 'package:h4y_partner/primary_screens/dashboard_screen/dashboard_screen.dart';
@@ -13,7 +15,8 @@ class BottomNavBar extends StatefulWidget {
   _BottomNavBarState createState() => _BottomNavBarState();
 }
 
-class _BottomNavBarState extends State<BottomNavBar> {
+class _BottomNavBarState extends State<BottomNavBar>
+    with WidgetsBindingObserver {
   // Selected Index
   int selectedIndex = 0;
 
@@ -32,6 +35,26 @@ class _BottomNavBarState extends State<BottomNavBar> {
         selectedIndex = index;
       },
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  void setStatus(String status) {
+    DatabaseService(uid: FirebaseAuth.instance.currentUser.uid)
+        .updateUserStatus(status);
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      setStatus("Online");
+    } else {
+      setStatus("Offline");
+    }
   }
 
   @override

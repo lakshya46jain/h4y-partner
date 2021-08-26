@@ -62,6 +62,17 @@ class DatabaseService {
     );
   }
 
+  // Update User Online Status
+  Future updateUserStatus(
+    String status,
+  ) async {
+    await userCollection.doc(uid).update(
+      {
+        'Status': status,
+      },
+    );
+  }
+
   // Update Professional Services
   Future createProfessionalServices(
     String serviceTitle,
@@ -141,6 +152,7 @@ class DatabaseService {
       phoneIsoCode: snapshot['Phone ISO Code'],
       nonInternationalNumber: snapshot['Non International Number'],
       profilePicture: snapshot['Profile Picture'],
+      status: snapshot["Status"],
     );
   }
 
