@@ -39,22 +39,6 @@ class _HandbookScreenState extends State<HandbookScreen> {
           physics: BouncingScrollPhysics(),
           child: Column(
             children: [
-              Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: Colors.transparent,
-                  image: DecorationImage(
-                    image: AssetImage(
-                      "assets/images/banners/Help4You_Banner.png",
-                    ),
-                    fit: BoxFit.fill,
-                  ),
-                ),
-                height: 200.0,
-              ),
-              SizedBox(
-                height: 7.5,
-              ),
               SignatureButton(
                 type: "Expanded",
                 text: "About Help4You",
