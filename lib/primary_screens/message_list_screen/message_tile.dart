@@ -41,7 +41,6 @@ class MessageTile extends StatelessWidget {
                     profilePicture: profilePicture,
                     fullName: fullName,
                     phoneNumber: phoneNumber,
-                    chatRoomId: chatRoomId,
                   ),
                 ),
               );

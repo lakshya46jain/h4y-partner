@@ -9,12 +9,12 @@ import 'package:h4y_partner/models/service_model.dart';
 
 class DatabaseService {
   final String uid;
-  final String chatRoomId;
+  final String customerUID;
   final String documentId;
 
   DatabaseService({
     this.uid,
-    this.chatRoomId,
+    this.customerUID,
     this.documentId,
   });
 
@@ -110,18 +110,16 @@ class DatabaseService {
   }
 
   // Create Chat Room
-  Future createChatRoom(
-    String customerUID,
-    String professionalUID,
-  ) async {
-    DocumentSnapshot ds = await chatRoomCollection.doc(chatRoomId).get();
+  Future createChatRoom() async {
+    DocumentSnapshot ds =
+        await chatRoomCollection.doc("$customerUID\_$uid").get();
     if (!ds.exists) {
-      await chatRoomCollection.doc(chatRoomId).set(
+      await chatRoomCollection.doc("$customerUID\_$uid").set(
         {
           "Connection Date": DateTime.now(),
-          "Chat Room ID": chatRoomId,
+          "Chat Room ID": "$customerUID\_$uid",
           "Customer UID": customerUID,
-          "Professional UID": professionalUID,
+          "Professional UID": uid,
         },
       );
     }
@@ -129,14 +127,16 @@ class DatabaseService {
 
   // Add Chat Room Messageszzz
   Future addMessageToChatRoom(
-    String chatRoomId,
     String message,
-    String sender,
   ) async {
-    await chatRoomCollection.doc(chatRoomId).collection("Messages").doc().set(
+    await chatRoomCollection
+        .doc("$customerUID\_$uid")
+        .collection("Messages")
+        .doc()
+        .set(
       {
         "Message": message,
-        "Sender": sender,
+        "Sender": uid,
         "Time Stamp": DateTime.now(),
       },
     );
@@ -245,7 +245,7 @@ class DatabaseService {
   // Get Messages Documents
   Stream<List<Messages>> get messagesData {
     return chatRoomCollection
-        .doc(chatRoomId)
+        .doc("$customerUID\_$uid")
         .collection("Messages")
         .orderBy("Time Stamp", descending: true)
         .snapshots()

@@ -16,14 +16,12 @@ class MessageScreen extends StatefulWidget {
   final String profilePicture;
   final String fullName;
   final String phoneNumber;
-  final String chatRoomId;
 
   MessageScreen({
     @required this.uid,
     @required this.profilePicture,
     @required this.fullName,
     @required this.phoneNumber,
-    @required this.chatRoomId,
   });
 
   @override
@@ -62,8 +60,8 @@ class _MessageScreenState extends State<MessageScreen> {
           children: [
             Expanded(
               child: StreamBuilder(
-                stream:
-                    DatabaseService(chatRoomId: widget.chatRoomId).messagesData,
+                stream: DatabaseService(uid: user.uid, customerUID: widget.uid)
+                    .messagesData,
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
                     List<Messages> messages = snapshot.data;
@@ -104,13 +102,19 @@ class _MessageScreenState extends State<MessageScreen> {
                   });
                 }
               },
-              onPressed: () {
-                DatabaseService().addMessageToChatRoom(
-                  widget.chatRoomId,
+              onPressed: () async {
+                // Create Chat Room In Database
+                await DatabaseService(uid: user.uid, customerUID: widget.uid)
+                    .createChatRoom();
+                // Add Message
+                await DatabaseService(uid: user.uid, customerUID: widget.uid)
+                    .addMessageToChatRoom(
                   messageController.text.trim(),
-                  user.uid,
                 );
                 messageController.clear();
+                setState(() {
+                  isMessageEmpty = true;
+                });
               },
               messageController: messageController,
             ),
