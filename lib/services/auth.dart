@@ -6,12 +6,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 // File Imports
+import 'package:h4y_partner/screens/wrapper.dart';
 import 'package:h4y_partner/services/database.dart';
 import 'package:h4y_partner/models/user_model.dart';
-import 'package:h4y_partner/primary_screens/wrapper.dart';
 import 'package:h4y_partner/constants/custom_snackbar.dart';
-import 'package:h4y_partner/primary_screens/onboarding_screen/verification_screen.dart';
-import 'package:h4y_partner/secondary_screens/register_profile_screen/register_profile_screen.dart';
+import 'package:h4y_partner/screens/registration_screen/registration_screen.dart';
+import 'package:h4y_partner/screens/onboarding_screen/components/verification_screen.dart';
 
 class AuthService {
   // Firebase Auth Instance
@@ -137,7 +137,7 @@ class AuthService {
                       Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => RegisterProfileScreen(),
+                          builder: (context) => RegistrationScreen(),
                         ),
                         (route) => false,
                       );

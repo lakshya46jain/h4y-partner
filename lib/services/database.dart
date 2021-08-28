@@ -3,9 +3,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 // File Imports
 import 'package:h4y_partner/models/user_model.dart';
+import 'package:h4y_partner/models/service_model.dart';
 import 'package:h4y_partner/models/messages_model.dart';
 import 'package:h4y_partner/models/chat_room_model.dart';
-import 'package:h4y_partner/models/service_model.dart';
 
 class DatabaseService {
   final String uid;

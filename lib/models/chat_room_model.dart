@@ -1,6 +1,6 @@
-// Chat Room Model
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+// Chat Room Model
 class ChatRoom {
   final String chatRoomId;
   final Timestamp connectionDate;

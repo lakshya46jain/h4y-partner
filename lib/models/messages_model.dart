@@ -1,6 +1,6 @@
-// Messages Model
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+// Messages Model
 class Messages {
   final String messageId;
   final String sender;

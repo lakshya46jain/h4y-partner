@@ -10,8 +10,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 // File Imports
 import 'package:h4y_partner/services/auth.dart';
+import 'package:h4y_partner/screens/wrapper.dart';
 import 'package:h4y_partner/models/user_model.dart';
-import 'package:h4y_partner/primary_screens/wrapper.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
