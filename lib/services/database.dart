@@ -40,11 +40,10 @@ class DatabaseService {
   ) async {
     return await userCollection.doc(uid).set(
       {
-        'Account Type': "Professional",
-        'User UID': uid,
         'Full Name': fullName,
         'Occupation': occupation,
         'Phone Number': phoneNumber,
+        'Account Type': "Professional",
         'Phone ISO Code': phoneIsoCode,
         'Non International Number': nonInternationalNumber,
       },
@@ -135,8 +134,8 @@ class DatabaseService {
         .doc()
         .set(
       {
-        "Message": message,
         "Sender": uid,
+        "Message": message,
         "Time Stamp": DateTime.now(),
       },
     );
@@ -145,7 +144,7 @@ class DatabaseService {
   // User Data from Snapshot
   UserDataProfessional _userDataFromSnapshot(DocumentSnapshot snapshot) {
     return UserDataProfessional(
-      uid: uid,
+      uid: snapshot.id,
       fullName: snapshot['Full Name'],
       occupation: snapshot['Occupation'],
       phoneNumber: snapshot['Phone Number'],
@@ -190,7 +189,7 @@ class DatabaseService {
   List<ChatRoom> _help4YouChatRoomFromSnapshot(QuerySnapshot snapshot) {
     return snapshot.docs.toList().map((document) {
       ChatRoom help4YouChatRoom = ChatRoom(
-          chatRoomId: document["Chat Room ID"],
+          chatRoomId: document.id,
           connectionDate: document["Connection Date"],
           customerUID: document["Customer UID"],
           professionalUID: document["Professional UID"]);
