@@ -28,7 +28,10 @@ class PhoneNumberTextField extends StatelessWidget {
       focusNode: focusNode ?? FocusNode(),
       searchText: "Search Country Name",
       countryCodeTextColor: Color(0xFF1C3857),
-      dropDownArrowColor: Color(0xFF1C3857),
+      dropDownIcon: Icon(
+        Icons.arrow_drop_down,
+        color: Color(0xFF1C3857),
+      ),
       decoration: InputDecoration(
         hintText: 'Enter Phone Number...',
         floatingLabelBehavior: FloatingLabelBehavior.always,
