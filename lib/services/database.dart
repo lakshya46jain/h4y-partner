@@ -45,38 +45,32 @@ class DatabaseService {
     String phoneIsoCode,
     String nonInternationalNumber,
   ) async {
-    return await userCollection.doc(uid).set(
-      {
-        'Full Name': fullName,
-        'Occupation': occupation,
-        'Phone Number': phoneNumber,
-        'Account Type': "Professional",
-        'Phone ISO Code': phoneIsoCode,
-        'Non International Number': nonInternationalNumber,
-      },
-    );
+    return await userCollection.doc(uid).set({
+      'Full Name': fullName,
+      'Occupation': occupation,
+      'Phone Number': phoneNumber,
+      'Account Type': "Professional",
+      'Phone ISO Code': phoneIsoCode,
+      'Non International Number': nonInternationalNumber,
+    });
   }
 
   // Update User Profile Picture
   Future updateProfilePicture(
     String profilePicture,
   ) async {
-    return await userCollection.doc(uid).update(
-      {
-        'Profile Picture': profilePicture,
-      },
-    );
+    return await userCollection.doc(uid).update({
+      'Profile Picture': profilePicture,
+    });
   }
 
   // Update User Online Status
   Future updateUserStatus(
     String status,
   ) async {
-    await userCollection.doc(uid).update(
-      {
-        'Status': status,
-      },
-    );
+    await userCollection.doc(uid).update({
+      'Status': status,
+    });
   }
 
   // Update Professional Services
@@ -86,15 +80,13 @@ class DatabaseService {
     double servicePrice,
     bool serviceVisibility,
   ) async {
-    return await servicesCollection.doc().set(
-      {
-        'Professional UID': uid,
-        'Service Title': serviceTitle,
-        'Service Description': serviceDescription,
-        'Service Price': servicePrice,
-        'Visibility': serviceVisibility
-      },
-    );
+    return await servicesCollection.doc().set({
+      'Professional UID': uid,
+      'Service Title': serviceTitle,
+      'Service Description': serviceDescription,
+      'Service Price': servicePrice,
+      'Visibility': serviceVisibility
+    });
   }
 
   // Update Professional Services
@@ -104,15 +96,13 @@ class DatabaseService {
     double servicePrice,
     bool serviceVisibility,
   ) async {
-    return await servicesCollection.doc(documentId).update(
-      {
-        'Professional UID': uid,
-        'Service Title': serviceTitle,
-        'Service Description': serviceDescription,
-        'Service Price': servicePrice,
-        'Visibility': serviceVisibility
-      },
-    );
+    return await servicesCollection.doc(documentId).update({
+      'Professional UID': uid,
+      'Service Title': serviceTitle,
+      'Service Description': serviceDescription,
+      'Service Price': servicePrice,
+      'Visibility': serviceVisibility
+    });
   }
 
   // Create Chat Room
@@ -120,14 +110,12 @@ class DatabaseService {
     DocumentSnapshot ds =
         await chatRoomCollection.doc("$customerUID\_$uid").get();
     if (!ds.exists) {
-      await chatRoomCollection.doc("$customerUID\_$uid").set(
-        {
-          "Connection Date": DateTime.now(),
-          "Chat Room ID": "$customerUID\_$uid",
-          "Customer UID": customerUID,
-          "Professional UID": uid,
-        },
-      );
+      await chatRoomCollection.doc("$customerUID\_$uid").set({
+        "Connection Date": DateTime.now(),
+        "Chat Room ID": "$customerUID\_$uid",
+        "Customer UID": customerUID,
+        "Professional UID": uid,
+      });
     }
   }
 
@@ -139,13 +127,11 @@ class DatabaseService {
         .doc("$customerUID\_$uid")
         .collection("Messages")
         .doc()
-        .set(
-      {
-        "Sender": uid,
-        "Message": message,
-        "Time Stamp": DateTime.now(),
-      },
-    );
+        .set({
+      "Sender": uid,
+      "Message": message,
+      "Time Stamp": DateTime.now(),
+    });
   }
 
   // User Data from Snapshot
