@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 // Dependency Imports
 import 'package:share/share.dart';
-import 'package:wiredash/wiredash.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 // File Imports
 import 'package:h4y_partner/services/auth.dart';
@@ -12,7 +12,7 @@ import 'package:h4y_partner/constants/signature_button.dart';
 import 'package:h4y_partner/screens/personal_data_screen.dart';
 import 'package:h4y_partner/screens/profile_screen/components/profile_stream.dart';
 
-class ProfileScreenBody extends StatelessWidget {
+class ProfileScreenBody extends StatefulWidget {
   final Help4YouUser user;
 
   const ProfileScreenBody({
@@ -20,10 +20,28 @@ class ProfileScreenBody extends StatelessWidget {
   });
 
   @override
+  State<ProfileScreenBody> createState() => _ProfileScreenBodyState();
+}
+
+class _ProfileScreenBodyState extends State<ProfileScreenBody> {
+  Future<void> launchInApp(String url) async {
+    if (await canLaunch(url)) {
+      await launch(
+        url,
+        forceSafariVC: true,
+        forceWebView: false,
+        headers: <String, String>{'header_key': 'header_value'},
+      );
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        if (user != null) ...[
+        if (widget.user != null) ...[
           SizedBox(
             height: 70.0,
           ),
@@ -95,14 +113,9 @@ class ProfileScreenBody extends StatelessWidget {
             icon: FluentIcons.person_feedback_24_regular,
             text: "Feedback",
             onTap: () {
-              Wiredash.of(context).setUserProperties(
-                userId: user.uid,
+              launchInApp(
+                "https://forms.monday.com/forms/ba695d95450030253d57b12f027b44dc?r=use1",
               );
-              Wiredash.of(context).setBuildProperties(
-                buildNumber: "Help4You Partner",
-                buildVersion: "",
-              );
-              Wiredash.of(context).show();
             },
           ),
           SignatureButton(

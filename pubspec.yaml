@@ -43,7 +43,7 @@ dependencies:
   # Features
   intl: ^0.17.0
   share: ^2.0.1
-  wiredash: ^0.7.0+1
+  url_launcher: ^6.0.3
   image_cropper: ^1.4.0
   image_picker: ^0.8.0+1
   flutter_slidable: ^0.6.0
