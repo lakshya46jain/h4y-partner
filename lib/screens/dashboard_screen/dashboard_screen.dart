@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 // Dependency Imports
 // File Imports
+import 'package:h4y_partner/screens/dashboard_screen/components/body.dart';
 import 'package:h4y_partner/screens/dashboard_screen/components/header.dart';
 
 class DashboardScreen extends StatefulWidget {
@@ -17,19 +18,17 @@ class _DashboardScreenState extends State<DashboardScreen> {
         FocusScope.of(context).unfocus();
       },
       child: Scaffold(
-        body: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
-          child: Column(
-            children: [
-              SizedBox(
-                height: 50.0,
-              ),
-              Header(),
-              SizedBox(
-                height: 15.0,
-              )
-            ],
-          ),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            SizedBox(
+              height: 50.0,
+            ),
+            Header(),
+            Expanded(
+              child: DashboardScreenBody(),
+            ),
+          ],
         ),
       ),
     );

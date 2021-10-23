@@ -3,6 +3,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 // File Imports
 import 'package:h4y_partner/models/user_model.dart';
+import 'package:h4y_partner/models/booking_model.dart';
 import 'package:h4y_partner/models/service_model.dart';
 import 'package:h4y_partner/models/messages_model.dart';
 import 'package:h4y_partner/models/chat_room_model.dart';
@@ -11,11 +12,13 @@ class DatabaseService {
   final String uid;
   final String customerUID;
   final String documentId;
+  final String bookingId;
 
   DatabaseService({
     this.uid,
     this.customerUID,
     this.documentId,
+    this.bookingId,
   });
 
   // Collection Reference (User Database)
@@ -29,6 +32,10 @@ class DatabaseService {
   // Collection Reference (Chat Room Database)
   final CollectionReference chatRoomCollection =
       FirebaseFirestore.instance.collection("H4Y Chat Rooms Database");
+
+  // Collection Reference (Bookings Database)
+  final CollectionReference bookingsCollection =
+      FirebaseFirestore.instance.collection("H4Y Bookings Database");
 
   // Update User Data
   Future updateUserData(
@@ -212,6 +219,26 @@ class DatabaseService {
     ).toList();
   }
 
+  // Bookings List from Snapshot
+  List<Booking> _help4YouBookingsListFromSnapshot(QuerySnapshot snapshot) {
+    return snapshot.docs.toList().map(
+      (document) {
+        Booking help4YouBookings = Booking(
+          bookingId: document.id,
+          customerUID: document["Customer UID"],
+          professionalUID: document["Professional UID"],
+          bookingTime: document["Booking Time"],
+          address: document["Address"],
+          addressGeoPoint: document["Address GeoPoint"],
+          preferredTimings: document["Preferred Timings"],
+          bookingStatus: document["Booking Status"],
+          totalPrice: document["Total Price"],
+        );
+        return help4YouBookings;
+      },
+    ).toList();
+  }
+
   // Get User Document
   Stream<UserDataProfessional> get userData {
     return userCollection.doc(uid).snapshots().map(_userDataFromSnapshot);
@@ -249,5 +276,13 @@ class DatabaseService {
         .orderBy("Time Stamp", descending: true)
         .snapshots()
         .map(_help4YouMessageFromSnapshot);
+  }
+
+  // Get Bookings List
+  Stream<List<Booking>> get bookingsListData {
+    return bookingsCollection
+        .where("Professional UID", isEqualTo: uid)
+        .snapshots()
+        .map(_help4YouBookingsListFromSnapshot);
   }
 }
