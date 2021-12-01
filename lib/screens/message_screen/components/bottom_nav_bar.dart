@@ -1,5 +1,6 @@
 // Flutter Imports
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 // Dependency Imports
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 // File Imports
@@ -73,7 +74,59 @@ class BottomNavBar extends StatelessWidget {
                   ? Padding(
                       padding: EdgeInsets.only(right: 5.0),
                       child: GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          final pickerOptions = CupertinoActionSheet(
+                            actions: [
+                              CupertinoActionSheetAction(
+                                onPressed: () {},
+                                child: Row(
+                                  children: [
+                                    Icon(
+                                      FluentIcons.camera_20_regular,
+                                      color: Colors.blue,
+                                    ),
+                                    SizedBox(width: 15.0),
+                                    Text(
+                                      "Camera",
+                                      style: TextStyle(color: Colors.black),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              CupertinoActionSheetAction(
+                                onPressed: () {},
+                                child: Row(
+                                  children: [
+                                    Icon(
+                                      FluentIcons.image_20_regular,
+                                      color: Colors.blue,
+                                    ),
+                                    SizedBox(width: 15.0),
+                                    Text(
+                                      "Photo & Video Library",
+                                      style: TextStyle(color: Colors.black),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                            cancelButton: CupertinoActionSheetAction(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: Text(
+                                "Cancel",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          );
+                          showCupertinoModalPopup(
+                            context: context,
+                            builder: (BuildContext context) => pickerOptions,
+                          );
+                        },
                         child: Container(
                           decoration: BoxDecoration(
                             color: Color(0xFF1C3857),
