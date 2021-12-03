@@ -33,6 +33,7 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
   @override
   void initState() {
     setState(() {
+      phoneIsoCode = widget.phoneIsoCode;
       countryCode = widget.countryCode;
     });
     super.initState();

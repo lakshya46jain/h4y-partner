@@ -127,10 +127,9 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
                       await DatabaseService(uid: user.uid).updateUserData(
                         fullName ?? userData.fullName,
                         occupation ?? userData.occupation,
-                        "$countryCode$nonInternationalNumber" ??
-                            userData.phoneNumber,
-                        phoneIsoCode ?? userData.phoneIsoCode,
-                        nonInternationalNumber ??
+                        userData.phoneNumber ?? userData.phoneNumber,
+                        userData.phoneIsoCode ?? userData.phoneIsoCode,
+                        userData.nonInternationalNumber ??
                             userData.nonInternationalNumber,
                       );
                       Navigator.pop(context);
