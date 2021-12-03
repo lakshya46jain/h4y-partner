@@ -1,9 +1,13 @@
 // Flutter Imports
+import 'dart:io';
 import 'package:flutter/material.dart';
 // Dependency Imports
 import 'package:provider/provider.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
+import 'package:random_string_generator/random_string_generator.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 // File Imports
 import 'package:h4y_partner/models/user_model.dart';
@@ -33,10 +37,49 @@ class MessageScreen extends StatefulWidget {
 
 class _MessageScreenState extends State<MessageScreen> {
   // Message Variables
-  bool isMessageEmpty;
+  bool isMessageEmpty = true;
 
   // Message Controller
   final TextEditingController messageController = TextEditingController();
+
+  // Active Image File
+  File imageFile;
+
+  // Select Image Via Image Picker
+  Future getMedia(ImageSource source, user) async {
+    await ImagePicker().pickImage(source: source).then((xFile) {
+      if (xFile != null) {
+        imageFile = File(xFile.path);
+        uploadMedia(user);
+      }
+    });
+  }
+
+  Future uploadMedia(user) async {
+    Navigator.pop(context);
+    var fileNameGenerator = RandomStringGenerator(
+      fixedLength: 20,
+      hasAlpha: true,
+      hasDigits: true,
+      hasSymbols: false,
+    ).generate();
+    String fileName = fileNameGenerator.toString();
+    Reference firebaseStorageRef = FirebaseStorage.instance
+        .ref()
+        .child(("H4Y Chat Rooms Media/" + fileName));
+    UploadTask uploadTask = firebaseStorageRef.putFile(imageFile);
+    await uploadTask;
+    String downloadAddress = await firebaseStorageRef.getDownloadURL();
+    // Create Chat Room In Database
+    await DatabaseService(uid: user.uid, customerUID: widget.uid)
+        .createChatRoom();
+    // Add Message
+    await DatabaseService(uid: user.uid, customerUID: widget.uid)
+        .addMessageToChatRoom(
+      "Media",
+      downloadAddress,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -114,6 +157,7 @@ class _MessageScreenState extends State<MessageScreen> {
                       itemCount: messages.length,
                       itemBuilder: (context, index) {
                         return MessageBubble(
+                          type: messages[index].type,
                           profilePicture: widget.profilePicture,
                           message: messages[index].message,
                           isSentByMe: (messages[index].sender == user.uid)
@@ -128,7 +172,7 @@ class _MessageScreenState extends State<MessageScreen> {
                 },
               ),
             ),
-            BottomNavBar(
+            MessageNavBar(
               isMessageEmpty: isMessageEmpty,
               onChanged: (value) {
                 if (messageController.text.trim().isEmpty) {
@@ -148,13 +192,20 @@ class _MessageScreenState extends State<MessageScreen> {
                 // Add Message
                 await DatabaseService(uid: user.uid, customerUID: widget.uid)
                     .addMessageToChatRoom(
+                  "Text",
                   messageController.text.trim(),
+                )
+                    .then(
+                  (value) {
+                    messageController.clear();
+                    setState(() {
+                      isMessageEmpty = true;
+                    });
+                  },
                 );
-                messageController.clear();
-                setState(() {
-                  isMessageEmpty = true;
-                });
               },
+              cameraOnPressed: () => getMedia(ImageSource.camera, user),
+              galleryOnPressed: () => getMedia(ImageSource.gallery, user),
               messageController: messageController,
             ),
           ],
