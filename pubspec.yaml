@@ -43,11 +43,13 @@ dependencies:
   # Features
   intl: ^0.17.0
   share: ^2.0.1
+  clipboard: ^0.1.3
   url_launcher: ^6.0.3
   image_cropper: ^1.4.0
   image_picker: ^0.8.0+1
   flutter_slidable: ^0.6.0
   flutter_markdown: ^0.6.1
+  image_downloader: ^0.31.0
   random_string_generator: ^2.0.0
   flutter_phone_direct_caller: ^2.0.0
   cached_network_image: ^3.0.0-nullsafety

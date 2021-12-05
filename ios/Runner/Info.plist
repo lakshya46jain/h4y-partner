@@ -39,6 +39,8 @@
 	<string>This lets you record videos with sound.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>This lets you share from your camera roll and enables other features for photos and videos.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>This lets you save images from your chats.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

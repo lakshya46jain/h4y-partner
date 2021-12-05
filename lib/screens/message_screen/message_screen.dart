@@ -157,6 +157,8 @@ class _MessageScreenState extends State<MessageScreen> {
                       itemCount: messages.length,
                       itemBuilder: (context, index) {
                         return MessageBubble(
+                          chatRoomId: "${user.uid}\_${widget.uid}",
+                          messageId: messages[index].messageId,
                           type: messages[index].type,
                           profilePicture: widget.profilePicture,
                           message: messages[index].message,
