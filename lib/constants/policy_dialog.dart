@@ -7,11 +7,9 @@ import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:h4y_partner/constants/signature_button.dart';
 
 class PolicyDialog extends StatelessWidget {
-  final double radius;
   final String mdFileName;
 
   PolicyDialog({
-    this.radius = 10,
     @required this.mdFileName,
   });
 
@@ -19,23 +17,19 @@ class PolicyDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return Dialog(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(radius),
+        borderRadius: BorderRadius.circular(10.0),
       ),
       child: Column(
         children: [
           Expanded(
             child: FutureBuilder(
-              future: Future.delayed(Duration(milliseconds: 150)).then(
-                (value) {
-                  return rootBundle.loadString(
-                    'assets/files/$mdFileName',
-                  );
-                },
-              ),
+              future: rootBundle.loadString('assets/files/$mdFileName'),
               builder: (context, snapshot) {
-                return Markdown(
-                  data: snapshot.data,
-                );
+                if (snapshot.hasData) {
+                  return Markdown(data: snapshot.data);
+                } else {
+                  return CircularProgressIndicator();
+                }
               },
             ),
           ),
