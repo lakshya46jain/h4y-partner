@@ -25,7 +25,6 @@ class ServiceTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Slidable(
-      actionPane: SlidableDrawerActionPane(),
       child: Padding(
         padding: EdgeInsets.symmetric(
           vertical: 15.0,
@@ -76,70 +75,37 @@ class ServiceTile extends StatelessWidget {
           ),
         ),
       ),
-      secondaryActions: [
-        IconSlideAction(
-          color: Color(0xFF1C3857),
-          iconWidget: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                FluentIcons.edit_24_regular,
-                color: Colors.white,
-                size: 30.0,
-              ),
-              SizedBox(
-                height: 5.0,
-              ),
-              Text(
-                "Update",
-                style: TextStyle(
-                  fontSize: 18.0,
-                  color: Colors.white,
+      endActionPane: ActionPane(
+        motion: const DrawerMotion(),
+        children: [
+          SlidableAction(
+            backgroundColor: Color(0xFF1C3857),
+            icon: FluentIcons.edit_24_regular,
+            label: "Update",
+            onPressed: (context) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => EditServiceScreen(
+                    documentId: documentId,
+                  ),
                 ),
-              )
-            ],
+              );
+            },
           ),
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => EditServiceScreen(
-                  documentId: documentId,
-                ),
-              ),
-            );
-          },
-        ),
-        IconSlideAction(
-          color: Colors.red,
-          iconWidget: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                FluentIcons.delete_24_regular,
-                color: Colors.white,
-                size: 30.0,
-              ),
-              SizedBox(
-                height: 5.0,
-              ),
-              Text(
-                "Delete",
-                style: TextStyle(
-                  fontSize: 18.0,
-                  color: Colors.white,
-                ),
-              )
-            ],
+          SlidableAction(
+            backgroundColor: Colors.red,
+            icon: FluentIcons.delete_24_regular,
+            label: "Delete",
+            onPressed: (context) async {
+              await FirebaseFirestore.instance
+                  .collection("H4Y Services Database")
+                  .doc(documentId)
+                  .delete();
+            },
           ),
-          onTap: () async {
-            await FirebaseFirestore.instance
-                .collection("H4Y Services Database")
-                .doc(documentId)
-                .delete();
-          },
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
