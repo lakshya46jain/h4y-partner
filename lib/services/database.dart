@@ -13,12 +13,14 @@ class DatabaseService {
   final String customerUID;
   final String documentId;
   final String bookingId;
+  final String bookingStatus;
 
   DatabaseService({
     this.uid,
     this.customerUID,
     this.documentId,
     this.bookingId,
+    this.bookingStatus,
   });
 
   // Collection Reference (User Database)
@@ -271,6 +273,7 @@ class DatabaseService {
   Stream<List<Booking>> get bookingsListData {
     return bookingsCollection
         .where("Professional UID", isEqualTo: uid)
+        .where("Booking Status", isEqualTo: bookingStatus)
         .snapshots()
         .map(_help4YouBookingsListFromSnapshot);
   }

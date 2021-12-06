@@ -8,19 +8,21 @@ import 'package:h4y_partner/services/database.dart';
 import 'package:h4y_partner/models/booking_model.dart';
 import 'package:h4y_partner/screens/dashboard_screen/components/booking_tile.dart';
 
-class DashboardScreenBody extends StatefulWidget {
-  @override
-  State<DashboardScreenBody> createState() => _DashboardScreenBodyState();
-}
+class DashboardScreenBody extends StatelessWidget {
+  final String bookingStatus;
 
-class _DashboardScreenBodyState extends State<DashboardScreenBody> {
+  DashboardScreenBody({
+    @required this.bookingStatus,
+  });
+
   @override
   Widget build(BuildContext context) {
     // Get User
     final user = Provider.of<Help4YouUser>(context);
 
     return StreamBuilder(
-      stream: DatabaseService(uid: user.uid).bookingsListData,
+      stream: DatabaseService(uid: user.uid, bookingStatus: bookingStatus)
+          .bookingsListData,
       builder: (context, snapshot) {
         List<Booking> bookingsList = snapshot.data;
         if (snapshot.hasData) {
