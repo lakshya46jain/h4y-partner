@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 // Dependency Imports
-import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 // File Imports
 
 class MessageNavBar extends StatelessWidget {
@@ -86,7 +85,7 @@ class MessageNavBar extends StatelessWidget {
                                 child: Row(
                                   children: [
                                     Icon(
-                                      FluentIcons.camera_20_regular,
+                                      CupertinoIcons.camera,
                                       color: Colors.blue,
                                     ),
                                     SizedBox(width: 15.0),
@@ -102,7 +101,7 @@ class MessageNavBar extends StatelessWidget {
                                 child: Row(
                                   children: [
                                     Icon(
-                                      FluentIcons.image_20_regular,
+                                      CupertinoIcons.photo,
                                       color: Colors.blue,
                                     ),
                                     SizedBox(width: 15.0),
@@ -140,7 +139,7 @@ class MessageNavBar extends StatelessWidget {
                           width: 40.0,
                           child: Center(
                             child: Icon(
-                              FluentIcons.add_12_filled,
+                              CupertinoIcons.add,
                               color: Colors.white,
                             ),
                           ),

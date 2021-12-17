@@ -1,9 +1,9 @@
 // Flutter Imports
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 // Dependency Imports
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 // File Imports
 import 'package:h4y_partner/screens/edit_service_screen.dart';
 
@@ -80,7 +80,7 @@ class ServiceTile extends StatelessWidget {
         children: [
           SlidableAction(
             backgroundColor: Color(0xFF1C3857),
-            icon: FluentIcons.edit_24_regular,
+            icon: CupertinoIcons.pencil,
             label: "Update",
             onPressed: (context) {
               Navigator.push(
@@ -95,7 +95,7 @@ class ServiceTile extends StatelessWidget {
           ),
           SlidableAction(
             backgroundColor: Colors.red,
-            icon: FluentIcons.delete_24_regular,
+            icon: CupertinoIcons.delete,
             label: "Delete",
             onPressed: (context) async {
               await FirebaseFirestore.instance

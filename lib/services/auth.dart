@@ -5,7 +5,6 @@ import 'package:flutter/cupertino.dart';
 // Dependency Imports
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 // File Imports
 import 'package:h4y_partner/screens/wrapper.dart';
 import 'package:h4y_partner/services/database.dart';
@@ -126,7 +125,7 @@ class AuthService {
                       if (error.code == 'invalid-verification-code') {
                         showCustomSnackBar(
                           context,
-                          FluentIcons.error_circle_24_regular,
+                          CupertinoIcons.exclamationmark_circle,
                           Colors.red,
                           "Error!",
                           "Invalid verification code entered. Please try again later.",

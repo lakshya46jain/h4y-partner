@@ -1,7 +1,7 @@
 // Flutter Imports
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 // Dependency Imports
-import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 // File Imports
 
 class SignatureButton extends StatelessWidget {
@@ -65,7 +65,7 @@ class SignatureButton extends StatelessWidget {
                     ),
                   ),
                   Icon(
-                    FluentIcons.arrow_right_24_filled,
+                    CupertinoIcons.right_chevron,
                     color: Color(0xFFFEA700),
                     size: 25.0,
                   ),

@@ -1,7 +1,7 @@
 // Flutter Imports
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 // Dependency Imports
-import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 // File Imports
 import 'package:h4y_partner/constants/back_button.dart';
 import 'package:h4y_partner/constants/policy_dialog.dart';
@@ -42,7 +42,7 @@ class _HandbookScreenState extends State<HandbookScreen> {
               SignatureButton(
                 type: "Expanded",
                 text: "About Help4You",
-                icon: FluentIcons.question_circle_24_regular,
+                icon: CupertinoIcons.question_circle,
                 onTap: () {
                   showDialog(
                     context: context,
@@ -57,7 +57,7 @@ class _HandbookScreenState extends State<HandbookScreen> {
               SignatureButton(
                 type: "Expanded",
                 text: "Terms and Conditions",
-                icon: FluentIcons.person_accounts_24_regular,
+                icon: CupertinoIcons.folder_badge_person_crop,
                 onTap: () {
                   showDialog(
                     context: context,
@@ -72,7 +72,7 @@ class _HandbookScreenState extends State<HandbookScreen> {
               SignatureButton(
                 type: "Expanded",
                 text: "Privacy Policy",
-                icon: FluentIcons.lock_shield_24_regular,
+                icon: CupertinoIcons.lock_shield,
                 onTap: () {
                   showDialog(
                     context: context,

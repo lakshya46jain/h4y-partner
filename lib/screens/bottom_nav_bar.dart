@@ -1,5 +1,6 @@
 // Flutter Imports
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 // Dependency Imports
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
@@ -87,13 +88,13 @@ class _BottomNavBarState extends State<BottomNavBar>
                     label: "",
                   ),
                   BottomNavigationBarItem(
-                    icon: Icon(FluentIcons.toolbox_24_regular),
-                    activeIcon: Icon(FluentIcons.toolbox_24_filled),
+                    icon: Icon(CupertinoIcons.briefcase),
+                    activeIcon: Icon(CupertinoIcons.briefcase_fill),
                     label: "",
                   ),
                   BottomNavigationBarItem(
-                    icon: Icon(FluentIcons.chat_24_regular),
-                    activeIcon: Icon(FluentIcons.chat_24_filled),
+                    icon: Icon(CupertinoIcons.chat_bubble),
+                    activeIcon: Icon(CupertinoIcons.chat_bubble_fill),
                     label: "",
                   ),
                   BottomNavigationBarItem(

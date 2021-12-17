@@ -222,7 +222,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                                             ),
                                           ),
                                           child: Icon(
-                                            FluentIcons.camera_24_regular,
+                                            CupertinoIcons.camera,
                                             color: Colors.black,
                                           ),
                                         ),
@@ -297,8 +297,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                                         return null;
                                       }
                                     },
-                                    icon: FluentIcons
-                                        .arrow_circle_down_right_24_regular,
+                                    icon:
+                                        CupertinoIcons.arrow_down_right_circle,
                                     items: occupationItems,
                                     onChanged: (occupationValue) {
                                       setState(() {
@@ -357,7 +357,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       child: SignatureButton(
                         withIcon: true,
                         text: "CONTINUE",
-                        icon: FluentIcons.arrow_right_24_filled,
+                        icon: CupertinoIcons.chevron_right,
                         onTap: () async {
                           // Upload Picture to Firebase
                           Future setProfilePicture() async {
@@ -405,7 +405,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           } catch (error) {
                             showCustomSnackBar(
                               context,
-                              FluentIcons.error_circle_24_regular,
+                              CupertinoIcons.exclamationmark_circle,
                               Colors.red,
                               "Error!",
                               "Please try updating your profile later.",

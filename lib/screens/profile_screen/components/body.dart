@@ -1,9 +1,9 @@
 // Flutter Imports
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 // Dependency Imports
 import 'package:share/share.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 // File Imports
 import 'package:h4y_partner/services/auth.dart';
 import 'package:h4y_partner/models/user_model.dart';
@@ -56,7 +56,7 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> {
           ),
           SignatureButton(
             type: "Expanded",
-            icon: FluentIcons.info_24_regular,
+            icon: CupertinoIcons.info_circle,
             text: "Our Handbook",
             onTap: () {
               Navigator.push(
@@ -76,7 +76,7 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> {
           ),
           SignatureButton(
             type: "Expanded",
-            icon: FluentIcons.person_24_regular,
+            icon: CupertinoIcons.person,
             text: "Personal Data",
             onTap: () {
               Navigator.push(
@@ -89,7 +89,7 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> {
           ),
           SignatureButton(
             type: "Expanded",
-            icon: FluentIcons.sign_out_24_regular,
+            icon: CupertinoIcons.square_arrow_right,
             text: "Sign Out",
             onTap: () {
               return AuthService().signOut();
@@ -104,13 +104,13 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> {
           ),
           SignatureButton(
             type: "Expanded",
-            icon: FluentIcons.star_24_regular,
+            icon: CupertinoIcons.star,
             text: "Rate Us",
             onTap: () {},
           ),
           SignatureButton(
             type: "Expanded",
-            icon: FluentIcons.person_feedback_24_regular,
+            icon: CupertinoIcons.chat_bubble_2,
             text: "Feedback",
             onTap: () {
               launchInApp(
@@ -120,7 +120,7 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> {
           ),
           SignatureButton(
             type: "Expanded",
-            icon: FluentIcons.share_24_regular,
+            icon: CupertinoIcons.share,
             text: "Share Help4You",
             onTap: () {
               Share.share(

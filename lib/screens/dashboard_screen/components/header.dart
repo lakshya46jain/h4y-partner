@@ -1,10 +1,10 @@
 // Flutter Imports
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 // Dependency Imports
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 // File Imports
 import 'package:h4y_partner/models/user_model.dart';
 import 'package:h4y_partner/services/database.dart';
@@ -154,7 +154,7 @@ class Header extends StatelessWidget {
               child: IconButton(
                 onPressed: onPressed,
                 icon: Icon(
-                  FluentIcons.filter_16_filled,
+                  CupertinoIcons.line_horizontal_3_decrease,
                   color: Colors.white,
                 ),
               ),

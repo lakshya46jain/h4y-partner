@@ -1,8 +1,8 @@
 // Flutter Imports
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/cupertino.dart';
 // Dependency Imports
-import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 // File Imports
 import 'package:h4y_partner/services/auth.dart';
 import 'package:h4y_partner/constants/policy_dialog.dart';
@@ -29,7 +29,7 @@ class _DeleteAccPhoneAuthScreenState extends State<DeleteAccPhoneAuthScreen> {
         elevation: 0.0,
         leading: IconButton(
           icon: Icon(
-            FluentIcons.arrow_left_24_filled,
+            CupertinoIcons.chevron_left,
             size: 25.0,
             color: Color(0xFFFEA700),
           ),
@@ -131,7 +131,7 @@ class _DeleteAccPhoneAuthScreenState extends State<DeleteAccPhoneAuthScreen> {
                 },
                 withIcon: true,
                 text: "CONTINUE",
-                icon: FluentIcons.arrow_right_24_filled,
+                icon: CupertinoIcons.chevron_right,
               ),
             ),
           ],

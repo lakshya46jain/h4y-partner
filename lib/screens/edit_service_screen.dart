@@ -153,7 +153,7 @@ class _EditServiceScreenState extends State<EditServiceScreen> {
                             ),
                             child: ListTile(
                               leading: Icon(
-                                FluentIcons.eye_show_24_regular,
+                                CupertinoIcons.eye,
                                 size: 30.0,
                                 color: Color(0xFF1C3857),
                               ),

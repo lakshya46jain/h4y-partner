@@ -1,12 +1,12 @@
 // Flutter Imports
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 // Dependency Imports
 import 'package:provider/provider.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:random_string_generator/random_string_generator.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 // File Imports
@@ -128,7 +128,7 @@ class _MessageScreenState extends State<MessageScreen> {
           actions: [
             IconButton(
               icon: Icon(
-                FluentIcons.call_24_regular,
+                CupertinoIcons.phone,
                 size: 27.0,
                 color: Color(0xFFFEA700),
               ),

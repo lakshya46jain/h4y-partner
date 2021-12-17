@@ -1,8 +1,8 @@
 // Flutter Imports
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 // Dependency Imports
 import 'package:provider/provider.dart';
-import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 // File Imports
 import 'package:h4y_partner/models/user_model.dart';
 import 'package:h4y_partner/constants/custom_tab_bar.dart';
@@ -69,7 +69,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
           visible: isVisible,
           child: FloatingActionButton(
             child: Icon(
-              FluentIcons.add_28_filled,
+              CupertinoIcons.add,
               color: Colors.white,
               size: 28.0,
             ),

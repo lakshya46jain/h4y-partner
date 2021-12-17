@@ -1,7 +1,7 @@
 // Flutter Imports
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 // Dependency Imports
-import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 // File Imports
 
 class SearchBar extends StatelessWidget {
@@ -40,7 +40,7 @@ class SearchBar extends StatelessWidget {
               focusedBorder: InputBorder.none,
               hintText: hintText,
               prefixIcon: Icon(
-                FluentIcons.search_24_filled,
+                CupertinoIcons.search,
                 color: Color(0xFFFEA700),
                 size: 25.0,
               ),
