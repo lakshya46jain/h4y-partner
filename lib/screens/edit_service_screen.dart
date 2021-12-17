@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 // Dependency Imports
 import 'package:provider/provider.dart';
-import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 // File Imports
 import 'package:h4y_partner/models/user_model.dart';
 import 'package:h4y_partner/services/database.dart';

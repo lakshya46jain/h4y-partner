@@ -10,7 +10,6 @@ import 'package:image_cropper/image_cropper.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 // File Imports
 import 'package:h4y_partner/screens/wrapper.dart';
 import 'package:h4y_partner/models/user_model.dart';
