@@ -388,6 +388,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                                 fullName ?? userData.fullName,
                                 occupation ?? userData.occupation,
                                 userData.phoneNumber ?? userData.phoneNumber,
+                                userData.countryCode ?? userData.countryCode,
                                 userData.phoneIsoCode ?? userData.phoneIsoCode,
                                 userData.nonInternationalNumber ??
                                     userData.nonInternationalNumber,

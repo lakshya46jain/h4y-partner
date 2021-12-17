@@ -13,6 +13,7 @@ class UserDataProfessional {
   final String fullName;
   final String occupation;
   final String profilePicture;
+  final String countryCode;
   final String phoneIsoCode;
   final String nonInternationalNumber;
   final String phoneNumber;
@@ -23,6 +24,7 @@ class UserDataProfessional {
     this.fullName,
     this.occupation,
     this.profilePicture,
+    this.countryCode,
     this.phoneIsoCode,
     this.nonInternationalNumber,
     this.phoneNumber,

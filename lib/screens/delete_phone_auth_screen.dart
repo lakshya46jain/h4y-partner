@@ -122,6 +122,7 @@ class _DeleteAccPhoneAuthScreenState extends State<DeleteAccPhoneAuthScreen> {
                   await AuthService().phoneAuthentication(
                     "",
                     "",
+                    countryCode,
                     phoneIsoCode,
                     nonInternationalNumber,
                     "$countryCode$nonInternationalNumber",

@@ -44,6 +44,7 @@ class DatabaseService {
     String fullName,
     String occupation,
     String phoneNumber,
+    String countryCode,
     String phoneIsoCode,
     String nonInternationalNumber,
   ) async {
@@ -52,6 +53,7 @@ class DatabaseService {
       'Occupation': occupation,
       'Phone Number': phoneNumber,
       'Account Type': "Professional",
+      'Country Code': countryCode,
       'Phone ISO Code': phoneIsoCode,
       'Non International Number': nonInternationalNumber,
       'Status': "Offline",
@@ -146,6 +148,7 @@ class DatabaseService {
       fullName: snapshot['Full Name'],
       occupation: snapshot['Occupation'],
       phoneNumber: snapshot['Phone Number'],
+      countryCode: snapshot['Country Code'],
       phoneIsoCode: snapshot['Phone ISO Code'],
       nonInternationalNumber: snapshot['Non International Number'],
       profilePicture: snapshot['Profile Picture'],

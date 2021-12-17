@@ -9,8 +9,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:h4y_partner/screens/wrapper.dart';
 import 'package:h4y_partner/services/database.dart';
 import 'package:h4y_partner/models/user_model.dart';
+import 'package:h4y_partner/screens/bottom_nav_bar.dart';
 import 'package:h4y_partner/constants/custom_snackbar.dart';
 import 'package:h4y_partner/screens/registration_screen.dart';
+import 'package:h4y_partner/screens/update_num_verification.dart';
 import 'package:h4y_partner/screens/delete_verification_screen.dart';
 import 'package:h4y_partner/screens/onboarding_screen/components/verification_screen.dart';
 
@@ -56,6 +58,7 @@ class AuthService {
   Future phoneAuthentication(
     String fullName,
     String occupation,
+    String countryCode,
     String phoneIsoCode,
     String nonInternationalNumber,
     String phoneNumber,
@@ -104,6 +107,7 @@ class AuthService {
                           fullName,
                           occupation,
                           phoneNumber,
+                          countryCode,
                           phoneIsoCode,
                           nonInternationalNumber,
                         );
@@ -157,6 +161,45 @@ class AuthService {
                     context,
                     MaterialPageRoute(
                       builder: (context) => Wrapper(),
+                    ),
+                    (route) => false,
+                  );
+                },
+              ),
+            ),
+          );
+        } else if (motive == "Update Phone Number") {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => UpdateNumVerificationScreen(
+                phoneNumber: phoneNumber,
+                phoneIsoCode: phoneIsoCode,
+                nonInternationalNumber: nonInternationalNumber,
+                submitOTP: (pin) async {
+                  var phoneCredential = PhoneAuthProvider.credential(
+                    verificationId: verificationId,
+                    smsCode: pin,
+                  );
+                  await auth.currentUser
+                      .updatePhoneNumber(phoneCredential)
+                      .catchError(
+                    (error) {
+                      if (error.code == 'invalid-verification-code') {
+                        showCustomSnackBar(
+                          context,
+                          CupertinoIcons.exclamationmark_circle,
+                          Colors.red,
+                          "Error!",
+                          "Invalid verification code entered. Please try again later.",
+                        );
+                      }
+                    },
+                  );
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => BottomNavBar(),
                     ),
                     (route) => false,
                   );

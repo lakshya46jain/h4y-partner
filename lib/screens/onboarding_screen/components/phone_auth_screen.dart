@@ -139,6 +139,7 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
                   await AuthService().phoneAuthentication(
                     "",
                     "",
+                    countryCode,
                     phoneIsoCode,
                     nonInternationalNumber,
                     "$countryCode$nonInternationalNumber",
