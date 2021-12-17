@@ -21,7 +21,7 @@ import 'package:h4y_partner/constants/custom_dropdown.dart';
 import 'package:h4y_partner/constants/signature_button.dart';
 import 'package:h4y_partner/constants/custom_text_field.dart';
 import 'package:h4y_partner/constants/phone_number_field.dart';
-import 'package:h4y_partner/screens/delete_account_screen.dart';
+import 'package:h4y_partner/screens/delete_phone_auth_screen.dart';
 
 class PersonalDataScreen extends StatefulWidget {
   @override
@@ -66,6 +66,8 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
         );
       }
     }
+
+    print(user.uid);
 
     // Select Image Via Image Picker
     Future getImage(ImageSource source) async {
@@ -432,7 +434,7 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => DeleteAccountScreen(),
+                      builder: (context) => DeleteAccPhoneAuthScreen(),
                     ),
                   );
                 },

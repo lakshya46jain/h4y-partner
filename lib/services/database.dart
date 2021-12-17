@@ -54,6 +54,7 @@ class DatabaseService {
       'Account Type': "Professional",
       'Phone ISO Code': phoneIsoCode,
       'Non International Number': nonInternationalNumber,
+      'Status': "Offline",
     });
   }
 
