@@ -72,10 +72,7 @@ class _EditServiceScreenState extends State<EditServiceScreen> {
                     key: formKey,
                     child: Column(
                       children: [
-                        SizedBox(
-                          height:
-                              MediaQuery.of(context).size.height / (1792 / 25),
-                        ),
+                        SizedBox(height: 10.0),
                         CustomTextField(
                           initialValue: services.serviceTitle,
                           onChanged: (value) {
@@ -93,10 +90,7 @@ class _EditServiceScreenState extends State<EditServiceScreen> {
                           },
                           hintText: "Type Service Title...",
                         ),
-                        SizedBox(
-                          height:
-                              MediaQuery.of(context).size.height / (1792 / 50),
-                        ),
+                        SizedBox(height: 25.0),
                         CustomTextField(
                           initialValue: services.serviceDescription,
                           onChanged: (value) {
@@ -115,10 +109,7 @@ class _EditServiceScreenState extends State<EditServiceScreen> {
                           hintText: "Type Description Of Service...",
                           maxLines: null,
                         ),
-                        SizedBox(
-                          height:
-                              MediaQuery.of(context).size.height / (1792 / 50),
-                        ),
+                        SizedBox(height: 25.0),
                         CustomTextField(
                           initialValue: "${services.servicePrice}",
                           onChanged: (value) {
@@ -137,10 +128,7 @@ class _EditServiceScreenState extends State<EditServiceScreen> {
                               TextInputType.numberWithOptions(decimal: true),
                           hintText: "Type Service Price...",
                         ),
-                        SizedBox(
-                          height:
-                              MediaQuery.of(context).size.height / (1792 / 50),
-                        ),
+                        SizedBox(height: 25.0),
                         MergeSemantics(
                           child: Container(
                             padding: EdgeInsets.all(2.5),
@@ -177,10 +165,7 @@ class _EditServiceScreenState extends State<EditServiceScreen> {
                             ),
                           ),
                         ),
-                        SizedBox(
-                          height:
-                              MediaQuery.of(context).size.height / (1792 / 50),
-                        ),
+                        SizedBox(height: 25.0),
                         SignatureButton(
                           text: "Update Service",
                           onTap: () async {

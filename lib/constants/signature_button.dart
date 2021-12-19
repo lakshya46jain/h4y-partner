@@ -50,9 +50,7 @@ class SignatureButton extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width / (828 / 40),
-                  ),
+                  SizedBox(width: 20.0),
                   Expanded(
                     child: Text(
                       text,

@@ -59,9 +59,7 @@ class _CreateServiceScreenState extends State<CreateServiceScreen> {
               key: formKey,
               child: Column(
                 children: [
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height / (1792 / 25),
-                  ),
+                  SizedBox(height: 10.0),
                   CustomTextField(
                     onChanged: (value) {
                       setState(() {
