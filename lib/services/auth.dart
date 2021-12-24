@@ -67,7 +67,7 @@ class AuthService {
   ) async {
     auth.verifyPhoneNumber(
       phoneNumber: phoneNumber,
-      timeout: Duration(seconds: 180),
+      timeout: Duration(seconds: 120),
       verificationCompleted: (PhoneAuthCredential credential) async {},
       verificationFailed: (FirebaseAuthException exception) async {
         verificationFailed(exception, context);
