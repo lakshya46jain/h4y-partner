@@ -4,7 +4,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 // File Imports
 import 'package:h4y_partner/models/user_model.dart';
 import 'package:h4y_partner/services/database.dart';
-import 'package:h4y_partner/constants/loading.dart';
 import 'package:h4y_partner/models/service_model.dart';
 import 'package:h4y_partner/screens/services_screen/components/service_tile.dart';
 
@@ -53,7 +52,7 @@ class Widget1Body extends StatelessWidget {
             );
           }
         } else {
-          return DoubleBounceLoading();
+          return Container(width: 0.0, height: 0.0);
         }
       },
     );

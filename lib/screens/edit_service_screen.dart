@@ -6,7 +6,6 @@ import 'package:provider/provider.dart';
 // File Imports
 import 'package:h4y_partner/models/user_model.dart';
 import 'package:h4y_partner/services/database.dart';
-import 'package:h4y_partner/constants/loading.dart';
 import 'package:h4y_partner/models/service_model.dart';
 import 'package:h4y_partner/constants/back_button.dart';
 import 'package:h4y_partner/constants/signature_button.dart';
@@ -192,7 +191,7 @@ class _EditServiceScreenState extends State<EditServiceScreen> {
                 ),
               );
             } else {
-              return DoubleBounceLoading();
+              return Container(width: 0.0, height: 0.0);
             }
           },
         ),

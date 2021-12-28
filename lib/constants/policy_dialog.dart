@@ -28,7 +28,7 @@ class PolicyDialog extends StatelessWidget {
                 if (snapshot.hasData) {
                   return Markdown(data: snapshot.data);
                 } else {
-                  return CircularProgressIndicator();
+                  return Container(width: 0.0, height: 0.0);
                 }
               },
             ),

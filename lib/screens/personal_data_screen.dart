@@ -14,7 +14,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:h4y_partner/services/auth.dart';
 import 'package:h4y_partner/models/user_model.dart';
 import 'package:h4y_partner/services/database.dart';
-import 'package:h4y_partner/constants/loading.dart';
 import 'package:h4y_partner/constants/back_button.dart';
 import 'package:h4y_partner/constants/custom_snackbar.dart';
 import 'package:h4y_partner/constants/custom_dropdown.dart';
@@ -426,7 +425,7 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
                         ],
                       );
                     } else {
-                      return DoubleBounceLoading();
+                      return Container(width: 0.0, height: 0.0);
                     }
                   },
                 ),
