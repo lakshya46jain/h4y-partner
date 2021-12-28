@@ -65,23 +65,26 @@ class _ServicesScreenState extends State<ServicesScreen> {
             widget2: Widget2Body(),
           ),
         ),
-        floatingActionButton: Visibility(
-          visible: isVisible,
-          child: FloatingActionButton(
-            child: Icon(
-              CupertinoIcons.add,
-              color: Colors.white,
-              size: 28.0,
+        floatingActionButton: Padding(
+          padding: EdgeInsets.only(bottom: 60.0),
+          child: Visibility(
+            visible: isVisible,
+            child: FloatingActionButton(
+              child: Icon(
+                CupertinoIcons.add,
+                color: Colors.white,
+                size: 28.0,
+              ),
+              backgroundColor: Color(0xFF1C3857),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CreateServiceScreen(),
+                  ),
+                );
+              },
             ),
-            backgroundColor: Color(0xFF1C3857),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => CreateServiceScreen(),
-                ),
-              );
-            },
           ),
         ),
       ),

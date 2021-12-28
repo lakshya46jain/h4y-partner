@@ -38,7 +38,7 @@ class Widget1Body extends StatelessWidget {
             return ListView.builder(
               controller: controller,
               itemCount: services.length,
-              padding: EdgeInsets.all(0.0),
+              padding: EdgeInsets.only(bottom: 70.0),
               physics: BouncingScrollPhysics(),
               itemBuilder: (context, index) {
                 return ServiceTile(
