@@ -12,9 +12,6 @@ class MessageListScreen extends StatefulWidget {
 }
 
 class _MessageListScreenState extends State<MessageListScreen> {
-  // Search Controller
-  TextEditingController searchController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     // Get User
@@ -39,7 +36,6 @@ class _MessageListScreenState extends State<MessageListScreen> {
           ),
         ),
         body: MessageListBody(
-          searchController: searchController,
           user: user,
         ),
       ),
