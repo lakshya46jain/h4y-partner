@@ -7,7 +7,6 @@ import 'package:provider/provider.dart';
 import 'package:h4y_partner/models/user_model.dart';
 import 'package:h4y_partner/services/database.dart';
 import 'package:h4y_partner/models/service_model.dart';
-import 'package:h4y_partner/constants/back_button.dart';
 import 'package:h4y_partner/constants/signature_button.dart';
 import 'package:h4y_partner/constants/custom_text_field.dart';
 
@@ -47,7 +46,7 @@ class _EditServiceScreenState extends State<EditServiceScreen> {
         appBar: AppBar(
           elevation: 0.0,
           backgroundColor: Colors.transparent,
-          leading: CustomBackButton(),
+          leading: SignatureButton(type: "Back Button"),
           title: Text(
             "Edit Service",
             style: TextStyle(
@@ -72,7 +71,8 @@ class _EditServiceScreenState extends State<EditServiceScreen> {
                     child: Column(
                       children: [
                         SizedBox(height: 10.0),
-                        CustomTextField(
+                        CustomFields(
+                          type: "Normal",
                           initialValue: services.serviceTitle,
                           onChanged: (value) {
                             setState(() {
@@ -90,7 +90,8 @@ class _EditServiceScreenState extends State<EditServiceScreen> {
                           hintText: "Type Service Title...",
                         ),
                         SizedBox(height: 25.0),
-                        CustomTextField(
+                        CustomFields(
+                          type: "Normal",
                           initialValue: services.serviceDescription,
                           onChanged: (value) {
                             setState(() {
@@ -109,7 +110,8 @@ class _EditServiceScreenState extends State<EditServiceScreen> {
                           maxLines: null,
                         ),
                         SizedBox(height: 25.0),
-                        CustomTextField(
+                        CustomFields(
+                          type: "Normal",
                           initialValue: "${services.servicePrice}",
                           onChanged: (value) {
                             setState(() {

@@ -12,8 +12,8 @@ import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 // File Imports
 import 'package:h4y_partner/models/user_model.dart';
 import 'package:h4y_partner/services/database.dart';
-import 'package:h4y_partner/constants/back_button.dart';
 import 'package:h4y_partner/models/messages_model.dart';
+import 'package:h4y_partner/constants/signature_button.dart';
 import 'package:h4y_partner/screens/message_screen/components/message_bubble.dart';
 import 'package:h4y_partner/screens/message_screen/components/bottom_nav_bar.dart';
 
@@ -94,7 +94,7 @@ class _MessageScreenState extends State<MessageScreen> {
         appBar: AppBar(
           elevation: 0.0,
           backgroundColor: Colors.white.withOpacity(0.5),
-          leading: CustomBackButton(),
+          leading: SignatureButton(type: "Back Button"),
           title: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,

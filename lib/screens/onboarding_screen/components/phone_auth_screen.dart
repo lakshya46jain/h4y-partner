@@ -7,7 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:h4y_partner/services/auth.dart';
 import 'package:h4y_partner/constants/policy_dialog.dart';
 import 'package:h4y_partner/constants/signature_button.dart';
-import 'package:h4y_partner/constants/phone_number_field.dart';
+import 'package:h4y_partner/constants/custom_text_field.dart';
 
 class PhoneAuthScreen extends StatefulWidget {
   final String countryCode;
@@ -79,7 +79,8 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
                 SizedBox(
                   height: 30.0,
                 ),
-                PhoneNumberTextField(
+                CustomFields(
+                  type: "Phone",
                   autoFocus: true,
                   phoneIsoCode: widget.phoneIsoCode,
                   nonInternationalNumber: widget.nonInternationalNumber,

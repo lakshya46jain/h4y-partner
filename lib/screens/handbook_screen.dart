@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 // Dependency Imports
 // File Imports
-import 'package:h4y_partner/constants/back_button.dart';
 import 'package:h4y_partner/constants/policy_dialog.dart';
 import 'package:h4y_partner/constants/signature_button.dart';
 
@@ -24,7 +23,7 @@ class _HandbookScreenState extends State<HandbookScreen> {
         appBar: AppBar(
           elevation: 0.0,
           backgroundColor: Colors.transparent,
-          leading: CustomBackButton(),
+          leading: SignatureButton(type: "Back Button"),
           title: Text(
             "Our Handbook",
             style: TextStyle(

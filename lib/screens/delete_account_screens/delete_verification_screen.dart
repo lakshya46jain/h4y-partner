@@ -5,7 +5,7 @@ import 'package:pinput/pin_put/pin_put.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 // File Imports
 import 'package:h4y_partner/services/auth.dart';
-import 'package:h4y_partner/constants/back_button.dart';
+import 'package:h4y_partner/constants/signature_button.dart';
 
 class DeleteAccVerificationScreen extends StatefulWidget {
   final String phoneIsoCode;
@@ -54,7 +54,7 @@ class _DeleteAccVerificationScreenState
     return Scaffold(
       appBar: AppBar(
         elevation: 0.0,
-        leading: CustomBackButton(),
+        leading: SignatureButton(type: "Back Button"),
         backgroundColor: Colors.transparent,
       ),
       body: Padding(

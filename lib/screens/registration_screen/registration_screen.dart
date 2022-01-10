@@ -1,23 +1,19 @@
 // Flutter Imports
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter/cupertino.dart';
 // Dependency Imports
 import 'package:provider/provider.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 // File Imports
-import 'package:h4y_partner/screens/wrapper.dart';
 import 'package:h4y_partner/models/user_model.dart';
 import 'package:h4y_partner/services/database.dart';
-import 'package:h4y_partner/constants/custom_snackbar.dart';
 import 'package:h4y_partner/constants/custom_dropdown.dart';
-import 'package:h4y_partner/constants/signature_button.dart';
 import 'package:h4y_partner/constants/custom_text_field.dart';
+import 'package:h4y_partner/screens/registration_screen/components/registration_continue_button.dart';
 
 class RegistrationScreen extends StatefulWidget {
   @override
@@ -203,7 +199,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           horizontal: 15.0,
                           vertical: 10.0,
                         ),
-                        child: CustomTextField(
+                        child: CustomFields(
+                          type: "Normal",
                           keyboardType: TextInputType.name,
                           hintText: "Enter Full Name...",
                           initialValue: userData.fullName,
@@ -269,71 +266,13 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           },
                         ),
                       ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 20.0,
-                          vertical: 15.0,
-                        ),
-                        child: SignatureButton(
-                          withIcon: true,
-                          text: "CONTINUE",
-                          icon: CupertinoIcons.chevron_right,
-                          onTap: () async {
-                            // Upload Picture to Firebase
-                            Future setProfilePicture() async {
-                              if (imageFile != null) {
-                                Reference firebaseStorageRef =
-                                    FirebaseStorage.instance.ref().child(
-                                        ("H4Y Profile Pictures/" + user.uid));
-                                UploadTask uploadTask =
-                                    firebaseStorageRef.putFile(imageFile);
-                                await uploadTask;
-                                String downloadAddress =
-                                    await firebaseStorageRef.getDownloadURL();
-                                await DatabaseService(uid: user.uid)
-                                    .updateProfilePicture(downloadAddress);
-                              } else {
-                                await DatabaseService(uid: user.uid)
-                                    .updateProfilePicture(
-                                        userData.profilePicture);
-                              }
-                            }
-
-                            HapticFeedback.heavyImpact();
-                            FocusScope.of(context).unfocus();
-                            try {
-                              if (formKey.currentState.validate()) {
-                                await DatabaseService(uid: user.uid)
-                                    .updateUserData(
-                                  fullName ?? userData.fullName,
-                                  occupation ?? userData.occupation,
-                                  userData.phoneNumber ?? userData.phoneNumber,
-                                  userData.countryCode ?? userData.countryCode,
-                                  userData.phoneIsoCode ??
-                                      userData.phoneIsoCode,
-                                  userData.nonInternationalNumber ??
-                                      userData.nonInternationalNumber,
-                                );
-                                setProfilePicture().then(
-                                  (value) => Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => Wrapper(),
-                                    ),
-                                  ),
-                                );
-                              }
-                            } catch (error) {
-                              showCustomSnackBar(
-                                context,
-                                CupertinoIcons.exclamationmark_circle,
-                                Colors.red,
-                                "Error!",
-                                "Please try updating your profile later.",
-                              );
-                            }
-                          },
-                        ),
+                      RegistrationContinueButton(
+                        imageFile: imageFile,
+                        user: user,
+                        userData: userData,
+                        formKey: formKey,
+                        fullName: fullName,
+                        occupation: occupation,
                       ),
                     ],
                   ),

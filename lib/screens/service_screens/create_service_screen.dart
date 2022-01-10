@@ -6,7 +6,6 @@ import 'package:provider/provider.dart';
 // File Imports
 import 'package:h4y_partner/models/user_model.dart';
 import 'package:h4y_partner/services/database.dart';
-import 'package:h4y_partner/constants/back_button.dart';
 import 'package:h4y_partner/constants/signature_button.dart';
 import 'package:h4y_partner/constants/custom_text_field.dart';
 
@@ -40,7 +39,7 @@ class _CreateServiceScreenState extends State<CreateServiceScreen> {
         appBar: AppBar(
           elevation: 0.0,
           backgroundColor: Colors.transparent,
-          leading: CustomBackButton(),
+          leading: SignatureButton(type: "Back Button"),
           title: Text(
             "Create Service",
             style: TextStyle(
@@ -60,7 +59,8 @@ class _CreateServiceScreenState extends State<CreateServiceScreen> {
               child: Column(
                 children: [
                   SizedBox(height: 10.0),
-                  CustomTextField(
+                  CustomFields(
+                    type: "Normal",
                     onChanged: (value) {
                       setState(() {
                         serviceTitle = value;
@@ -79,7 +79,8 @@ class _CreateServiceScreenState extends State<CreateServiceScreen> {
                   SizedBox(
                     height: 25.0,
                   ),
-                  CustomTextField(
+                  CustomFields(
+                    type: "Normal",
                     onChanged: (value) {
                       setState(() {
                         serviceDescription = value;
@@ -99,7 +100,8 @@ class _CreateServiceScreenState extends State<CreateServiceScreen> {
                   SizedBox(
                     height: 25.0,
                   ),
-                  CustomTextField(
+                  CustomFields(
+                    type: "Normal",
                     onChanged: (value) {
                       setState(() {
                         servicePrice = double.parse(value);

@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 // Dependency Imports
 import 'package:page_transition/page_transition.dart';
 // File Imports
-import 'package:h4y_partner/constants/phone_number_field.dart';
+import 'package:h4y_partner/constants/custom_text_field.dart';
 import 'package:h4y_partner/screens/onboarding_screen/components/phone_auth_screen.dart';
 import 'package:h4y_partner/screens/onboarding_screen/components/onboarding_page_view.dart';
 
@@ -142,7 +142,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 ),
                 Column(
                   children: [
-                    PhoneNumberTextField(
+                    CustomFields(
+                      type: "Phone",
                       focusNode: focusNode,
                       phoneIsoCode: phoneIsoCode,
                       nonInternationalNumber: nonInternationalNumber,

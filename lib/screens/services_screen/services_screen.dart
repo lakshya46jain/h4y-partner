@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 // File Imports
 import 'package:h4y_partner/models/user_model.dart';
 import 'package:h4y_partner/constants/custom_tab_bar.dart';
-import 'package:h4y_partner/screens/create_service_screen.dart';
+import 'package:h4y_partner/screens/service_screens/create_service_screen.dart';
 import 'package:h4y_partner/screens/services_screen/components/widget_1_body.dart';
 import 'package:h4y_partner/screens/services_screen/components/widget_2_body.dart';
 

@@ -11,10 +11,10 @@ import 'package:h4y_partner/services/database.dart';
 import 'package:h4y_partner/models/user_model.dart';
 import 'package:h4y_partner/screens/bottom_nav_bar.dart';
 import 'package:h4y_partner/constants/custom_snackbar.dart';
-import 'package:h4y_partner/screens/registration_screen.dart';
 import 'package:h4y_partner/screens/update_num_verification.dart';
-import 'package:h4y_partner/screens/delete_verification_screen.dart';
+import 'package:h4y_partner/screens/registration_screen/registration_screen.dart';
 import 'package:h4y_partner/screens/onboarding_screen/components/verification_screen.dart';
+import 'package:h4y_partner/screens/delete_account_screens/delete_verification_screen.dart';
 
 class AuthService {
   // Firebase Auth Instance

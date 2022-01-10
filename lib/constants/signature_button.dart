@@ -12,8 +12,8 @@ class SignatureButton extends StatelessWidget {
   final String type;
 
   SignatureButton({
-    @required this.onTap,
-    @required this.text,
+    this.onTap,
+    this.text,
     this.icon,
     this.withIcon,
     this.type,
@@ -71,32 +71,70 @@ class SignatureButton extends StatelessWidget {
               ),
             ),
           )
-        : MaterialButton(
-            padding: EdgeInsets.all(0),
-            onPressed: onTap,
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5.0),
-                color:
-                    (type == "Yellow") ? Color(0xFFFEA700) : Color(0xFF1C3857),
-              ),
-              width: double.infinity,
-              height: 60.0,
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                  vertical: 10.0,
-                  horizontal: 20.0,
+        : (type == "Back Button")
+            ? IconButton(
+                icon: Icon(
+                  CupertinoIcons.left_chevron,
+                  size: 25.0,
+                  color: Color(0xFFFEA700),
                 ),
-                child: (withIcon == true)
-                    ? Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Align(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              )
+            : MaterialButton(
+                padding: EdgeInsets.all(0),
+                onPressed: onTap,
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5.0),
+                    color: (type == "Yellow")
+                        ? Color(0xFFFEA700)
+                        : Color(0xFF1C3857),
+                  ),
+                  width: double.infinity,
+                  height: 60.0,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                      vertical: 10.0,
+                      horizontal: 20.0,
+                    ),
+                    child: (withIcon == true)
+                        ? Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Align(
+                                alignment: Alignment.center,
+                                child: Text(
+                                  text,
+                                  style: TextStyle(
+                                    fontSize: 20.0,
+                                    color: Colors.white,
+                                    fontWeight: (type == "Yellow")
+                                        ? FontWeight.w600
+                                        : FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                width: 5.0,
+                              ),
+                              Align(
+                                alignment: Alignment.center,
+                                child: Icon(
+                                  icon,
+                                  color: Colors.white,
+                                  size: 24.0,
+                                ),
+                              ),
+                            ],
+                          )
+                        : Align(
                             alignment: Alignment.center,
                             child: Text(
                               text,
                               style: TextStyle(
-                                fontSize: 20.0,
+                                fontSize: 22.0,
                                 color: Colors.white,
                                 fontWeight: (type == "Yellow")
                                     ? FontWeight.w600
@@ -104,34 +142,8 @@ class SignatureButton extends StatelessWidget {
                               ),
                             ),
                           ),
-                          SizedBox(
-                            width: 10.0,
-                          ),
-                          Align(
-                            alignment: Alignment.center,
-                            child: Icon(
-                              icon,
-                              color: Colors.white,
-                              size: 24.0,
-                            ),
-                          ),
-                        ],
-                      )
-                    : Align(
-                        alignment: Alignment.center,
-                        child: Text(
-                          text,
-                          style: TextStyle(
-                            fontSize: 22.0,
-                            color: Colors.white,
-                            fontWeight: (type == "Yellow")
-                                ? FontWeight.w600
-                                : FontWeight.bold,
-                          ),
-                        ),
-                      ),
-              ),
-            ),
-          );
+                  ),
+                ),
+              );
   }
 }
