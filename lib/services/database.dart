@@ -7,6 +7,7 @@ import 'package:h4y_partner/models/booking_model.dart';
 import 'package:h4y_partner/models/service_model.dart';
 import 'package:h4y_partner/models/messages_model.dart';
 import 'package:h4y_partner/models/chat_room_model.dart';
+import 'package:h4y_partner/models/booked_services_model.dart';
 
 class DatabaseService {
   final String uid;
@@ -218,6 +219,18 @@ class DatabaseService {
   List<Booking> _help4YouBookingsListFromSnapshot(QuerySnapshot snapshot) {
     return snapshot.docs.toList().map(
       (document) {
+        List<BookedServices> bookedItems = [];
+        List<dynamic> bookedItemsMap = document["Booked Items"];
+        bookedItemsMap.forEach((element) {
+          bookedItems.add(
+            BookedServices(
+              serviceTitle: element["Title"],
+              serviceDescription: element["Description"],
+              servicePrice: element["Price"],
+              quantity: element["Quantity"],
+            ),
+          );
+        });
         Booking help4YouBookings = Booking(
           bookingId: document.id,
           customerUID: document["Customer UID"],
@@ -227,6 +240,7 @@ class DatabaseService {
           addressGeoPoint: document["Address GeoPoint"],
           preferredTimings: document["Preferred Timings"],
           bookingStatus: document["Booking Status"],
+          bookedItems: bookedItems,
           totalPrice: document["Total Price"],
         );
         return help4YouBookings;

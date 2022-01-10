@@ -5,18 +5,26 @@ import 'package:intl/intl.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 // File Imports
+import 'package:h4y_partner/models/booked_services_model.dart';
+import 'package:h4y_partner/screens/project_details_screen/project_details_screen.dart';
 
 class BookingTile extends StatelessWidget {
+  final String address;
   final String bookingId;
+  final double totalPrice;
   final String customerUID;
   final Timestamp preferredTimings;
   final String bookingStatus;
+  final List<BookedServices> bookedItemsList;
 
   BookingTile({
-    this.bookingId,
-    this.customerUID,
-    this.preferredTimings,
-    this.bookingStatus,
+    @required this.address,
+    @required this.bookingId,
+    @required this.totalPrice,
+    @required this.customerUID,
+    @required this.preferredTimings,
+    @required this.bookingStatus,
+    @required this.bookedItemsList,
   });
 
   @override
@@ -163,13 +171,28 @@ class BookingTile extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Center(
-                      child: Text(
-                        "View Project Details",
-                        style: TextStyle(
-                          fontSize: 19.0,
-                          color: Color(0xFF1C3857),
-                          fontWeight: FontWeight.bold,
+                    GestureDetector(
+                      onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ProjectDetailsScreen(
+                            address: address,
+                            bookingId: bookingId,
+                            totalPrice: totalPrice,
+                            bookingStatus: bookingStatus,
+                            preferredTimings: preferredTimings,
+                            bookedItemsList: bookedItemsList,
+                          ),
+                        ),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "View Project Details",
+                          style: TextStyle(
+                            fontSize: 19.0,
+                            color: Color(0xFF1C3857),
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ),

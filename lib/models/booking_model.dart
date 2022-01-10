@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:h4y_partner/models/booked_services_model.dart';
 
 // Booking Model
 class Booking {
@@ -10,7 +11,7 @@ class Booking {
   final GeoPoint addressGeoPoint;
   final Timestamp preferredTimings;
   final String bookingStatus;
-  // Cart Items
+  final List<BookedServices> bookedItems;
   final double totalPrice;
 
   Booking({
@@ -22,7 +23,7 @@ class Booking {
     this.addressGeoPoint,
     this.preferredTimings,
     this.bookingStatus,
-    // Cart Items
+    this.bookedItems,
     this.totalPrice,
   });
 }

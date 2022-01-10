@@ -38,10 +38,13 @@ class DashboardScreenBody extends StatelessWidget {
             itemCount: bookingsList.length,
             itemBuilder: (context, index) {
               return BookingTile(
+                address: bookingsList[index].address,
                 bookingId: bookingsList[index].bookingId,
                 customerUID: bookingsList[index].customerUID,
                 preferredTimings: bookingsList[index].preferredTimings,
+                totalPrice: bookingsList[index].totalPrice,
                 bookingStatus: bookingsList[index].bookingStatus,
+                bookedItemsList: bookingsList[index].bookedItems,
               );
             },
           );
