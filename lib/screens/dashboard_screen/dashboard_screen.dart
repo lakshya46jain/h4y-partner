@@ -23,7 +23,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     "Job Completed",
     "Accepted",
     "Rejected",
-    "Cancelled",
+    "Customer Cancelled",
   ];
 
   @override
@@ -86,7 +86,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         });
                       } else if (index == 5) {
                         setState(() {
-                          bookingStatus = "Cancelled";
+                          bookingStatus = "Customer Cancelled";
                         });
                       }
                     },

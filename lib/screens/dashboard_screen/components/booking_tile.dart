@@ -80,7 +80,7 @@ class BookingTile extends StatelessWidget {
                               ? Colors.green.withOpacity(0.15)
                               : (bookingStatus == "Accepted")
                                   ? Colors.green.withOpacity(0.15)
-                                  : (bookingStatus == "Cancelled")
+                                  : (bookingStatus == "Customer Cancelled")
                                       ? Colors.red.withOpacity(0.15)
                                       : (bookingStatus == "Rejected")
                                           ? Colors.red.withOpacity(0.15)
@@ -94,7 +94,7 @@ class BookingTile extends StatelessWidget {
                                   ? Colors.green
                                   : (bookingStatus == "Accepted")
                                       ? Colors.green
-                                      : (bookingStatus == "Cancelled")
+                                      : (bookingStatus == "Customer Cancelled")
                                           ? Colors.red
                                           : (bookingStatus == "Rejected")
                                               ? Colors.red
