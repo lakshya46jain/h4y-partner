@@ -12,6 +12,7 @@ class Booking {
   final Timestamp preferredTimings;
   final String bookingStatus;
   final List<BookedServices> bookedItems;
+  final int paymentMethod;
   final double totalPrice;
 
   Booking({
@@ -24,6 +25,7 @@ class Booking {
     this.preferredTimings,
     this.bookingStatus,
     this.bookedItems,
+    this.paymentMethod,
     this.totalPrice,
   });
 }

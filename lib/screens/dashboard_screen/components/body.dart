@@ -37,6 +37,7 @@ class DashboardScreenBody extends StatelessWidget {
             ),
             itemCount: bookingsList.length,
             itemBuilder: (context, index) {
+              int paymentMethod = bookingsList[index].paymentMethod;
               return BookingTile(
                 address: bookingsList[index].address,
                 bookingId: bookingsList[index].bookingId,
@@ -45,6 +46,13 @@ class DashboardScreenBody extends StatelessWidget {
                 totalPrice: bookingsList[index].totalPrice,
                 bookingStatus: bookingsList[index].bookingStatus,
                 bookedItemsList: bookingsList[index].bookedItems,
+                paymentMethod: (paymentMethod == 0)
+                    ? "Cash Payment"
+                    : (paymentMethod == 1)
+                        ? "Online Payment"
+                        : (paymentMethod == 2)
+                            ? "Payment Incomplete"
+                            : "",
               );
             },
           );

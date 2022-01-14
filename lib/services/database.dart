@@ -241,6 +241,7 @@ class DatabaseService {
           preferredTimings: document["Preferred Timings"],
           bookingStatus: document["Booking Status"],
           bookedItems: bookedItems,
+          paymentMethod: document["Payment Method"],
           totalPrice: document["Total Price"],
         );
         return help4YouBookings;
