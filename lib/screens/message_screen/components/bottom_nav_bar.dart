@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 // Dependency Imports
+import 'package:awesome_dialog/awesome_dialog.dart';
 // File Imports
 
 class MessageNavBar extends StatelessWidget {
@@ -78,57 +79,57 @@ class MessageNavBar extends StatelessWidget {
                       padding: EdgeInsets.only(right: 5.0),
                       child: GestureDetector(
                         onTap: () {
-                          final pickerOptions = CupertinoActionSheet(
-                            actions: [
-                              CupertinoActionSheetAction(
-                                onPressed: cameraOnPressed,
-                                child: Row(
-                                  children: [
-                                    Icon(
-                                      CupertinoIcons.camera,
-                                      color: Colors.blue,
+                          Widget dialogButton(
+                              String title, Color color, Function onTap) {
+                            return Padding(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 15.0,
+                                vertical: 7.5,
+                              ),
+                              child: GestureDetector(
+                                onTap: onTap,
+                                child: Container(
+                                  padding: EdgeInsets.all(15.0),
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                    color: color,
+                                    borderRadius: BorderRadius.circular(10.0),
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      title,
+                                      style: TextStyle(
+                                        fontSize: 18.0,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
-                                    SizedBox(width: 15.0),
-                                    Text(
-                                      "Camera",
-                                      style: TextStyle(color: Colors.black),
-                                    ),
-                                  ],
+                                  ),
                                 ),
                               ),
-                              CupertinoActionSheetAction(
-                                onPressed: galleryOnPressed,
-                                child: Row(
-                                  children: [
-                                    Icon(
-                                      CupertinoIcons.photo,
-                                      color: Colors.blue,
-                                    ),
-                                    SizedBox(width: 15.0),
-                                    Text(
-                                      "Photo & Video Library",
-                                      style: TextStyle(color: Colors.black),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                            cancelButton: CupertinoActionSheetAction(
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                              child: Text(
-                                "Cancel",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                          );
-                          showCupertinoModalPopup(
+                            );
+                          }
+
+                          AwesomeDialog(
                             context: context,
-                            builder: (BuildContext context) => pickerOptions,
-                          );
+                            headerAnimationLoop: false,
+                            dialogType: DialogType.INFO,
+                            body: Column(
+                              children: [
+                                dialogButton(
+                                  "Camera",
+                                  Color(0xFFFEA700),
+                                  cameraOnPressed,
+                                ),
+                                dialogButton(
+                                  "Photo & Video Library",
+                                  Color(0xFF1C3857),
+                                  galleryOnPressed,
+                                ),
+                                SizedBox(height: 7.5),
+                              ],
+                            ),
+                          ).show();
                         },
                         child: Container(
                           decoration: BoxDecoration(

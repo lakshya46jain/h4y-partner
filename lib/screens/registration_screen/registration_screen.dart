@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:image_cropper/image_cropper.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 // File Imports
@@ -127,43 +128,58 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                                 width: 46.0,
                                 child: GestureDetector(
                                   onTap: () {
-                                    final pickerOptions = CupertinoActionSheet(
-                                      title: Text("Profile Picture"),
-                                      message: Text(
-                                        "Please select how you want to upload the profile picture",
-                                      ),
-                                      actions: [
-                                        CupertinoActionSheetAction(
-                                          onPressed: () => getImage(
-                                            ImageSource.camera,
-                                          ),
-                                          child: Text(
-                                            "Camera",
+                                    Widget dialogButton(String title,
+                                        Color color, Function onTap) {
+                                      return Padding(
+                                        padding: EdgeInsets.symmetric(
+                                          horizontal: 15.0,
+                                          vertical: 7.5,
+                                        ),
+                                        child: GestureDetector(
+                                          onTap: onTap,
+                                          child: Container(
+                                            padding: EdgeInsets.all(15.0),
+                                            width: double.infinity,
+                                            decoration: BoxDecoration(
+                                              color: color,
+                                              borderRadius:
+                                                  BorderRadius.circular(10.0),
+                                            ),
+                                            child: Center(
+                                              child: Text(
+                                                title,
+                                                style: TextStyle(
+                                                  fontSize: 18.0,
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                            ),
                                           ),
                                         ),
-                                        CupertinoActionSheetAction(
-                                          onPressed: () => getImage(
-                                            ImageSource.gallery,
-                                          ),
-                                          child: Text(
-                                            "Gallery",
-                                          ),
-                                        ),
-                                      ],
-                                      cancelButton: CupertinoActionSheetAction(
-                                        onPressed: () {
-                                          Navigator.pop(context);
-                                        },
-                                        child: Text(
-                                          "Cancel",
-                                        ),
-                                      ),
-                                    );
-                                    showCupertinoModalPopup(
+                                      );
+                                    }
+
+                                    AwesomeDialog(
                                       context: context,
-                                      builder: (BuildContext context) =>
-                                          pickerOptions,
-                                    );
+                                      headerAnimationLoop: false,
+                                      dialogType: DialogType.INFO,
+                                      body: Column(
+                                        children: [
+                                          dialogButton(
+                                            "Camera",
+                                            Color(0xFFFEA700),
+                                            () => getImage(ImageSource.camera),
+                                          ),
+                                          dialogButton(
+                                            "Photo Library",
+                                            Color(0xFF1C3857),
+                                            () => getImage(ImageSource.gallery),
+                                          ),
+                                          SizedBox(height: 7.5),
+                                        ],
+                                      ),
+                                    ).show();
                                   },
                                   child: Container(
                                     decoration: BoxDecoration(
