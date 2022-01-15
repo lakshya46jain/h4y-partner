@@ -142,6 +142,15 @@ class DatabaseService {
     });
   }
 
+  // Update Booking Status
+  Future updateBookingStatus(
+    String bookingStatus,
+  ) async {
+    await bookingsCollection.doc(bookingId).update({
+      "Booking Status": bookingStatus,
+    });
+  }
+
   // User Data from Snapshot
   UserDataProfessional _userDataFromSnapshot(DocumentSnapshot snapshot) {
     return UserDataProfessional(
@@ -242,6 +251,7 @@ class DatabaseService {
           bookingStatus: document["Booking Status"],
           bookedItems: bookedItems,
           paymentMethod: document["Payment Method"],
+          otp: document["One Time Password"],
           totalPrice: document["Total Price"],
         );
         return help4YouBookings;

@@ -11,20 +11,24 @@ import 'package:h4y_partner/models/booked_services_model.dart';
 import 'package:h4y_partner/screens/project_details_screen/project_details_screen.dart';
 
 class BookingTile extends StatelessWidget {
+  final String otp;
   final String address;
   final String bookingId;
   final double totalPrice;
   final String customerUID;
+  final String professionalUID;
   final Timestamp preferredTimings;
   final String bookingStatus;
   final List<BookedServices> bookedItemsList;
   final String paymentMethod;
 
   BookingTile({
+    @required this.otp,
     @required this.address,
     @required this.bookingId,
     @required this.totalPrice,
     @required this.customerUID,
+    @required this.professionalUID,
     @required this.preferredTimings,
     @required this.bookingStatus,
     @required this.bookedItemsList,
@@ -212,9 +216,12 @@ class BookingTile extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                           builder: (context) => ProjectDetailsScreen(
+                            otp: otp,
                             address: address,
                             bookingId: bookingId,
                             totalPrice: totalPrice,
+                            customerUID: customerUID,
+                            professionalUID: professionalUID,
                             bookingStatus: bookingStatus,
                             preferredTimings: preferredTimings,
                             bookedItemsList: bookedItemsList,

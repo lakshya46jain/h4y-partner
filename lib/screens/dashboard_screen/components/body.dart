@@ -39,9 +39,11 @@ class DashboardScreenBody extends StatelessWidget {
             itemBuilder: (context, index) {
               int paymentMethod = bookingsList[index].paymentMethod;
               return BookingTile(
+                otp: bookingsList[index].otp,
                 address: bookingsList[index].address,
                 bookingId: bookingsList[index].bookingId,
                 customerUID: bookingsList[index].customerUID,
+                professionalUID: bookingsList[index].professionalUID,
                 preferredTimings: bookingsList[index].preferredTimings,
                 totalPrice: bookingsList[index].totalPrice,
                 bookingStatus: bookingsList[index].bookingStatus,

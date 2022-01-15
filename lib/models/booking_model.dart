@@ -13,6 +13,7 @@ class Booking {
   final String bookingStatus;
   final List<BookedServices> bookedItems;
   final int paymentMethod;
+  final String otp;
   final double totalPrice;
 
   Booking({
@@ -26,6 +27,7 @@ class Booking {
     this.bookingStatus,
     this.bookedItems,
     this.paymentMethod,
+    this.otp,
     this.totalPrice,
   });
 }

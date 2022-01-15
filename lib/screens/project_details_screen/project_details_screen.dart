@@ -7,20 +7,28 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:h4y_partner/constants/signature_button.dart';
 import 'package:h4y_partner/models/booked_services_model.dart';
 import 'package:h4y_partner/screens/project_details_screen/components/booked_items_list.dart';
+import 'package:h4y_partner/screens/project_details_screen/components/finish_job_button.dart';
+import 'package:h4y_partner/screens/project_details_screen/components/accept_reject_button.dart';
 
 class ProjectDetailsScreen extends StatelessWidget {
+  final String otp;
   final String address;
   final String bookingId;
   final double totalPrice;
+  final String customerUID;
+  final String professionalUID;
   final String bookingStatus;
   final Timestamp preferredTimings;
   final List<BookedServices> bookedItemsList;
   final String paymentMethod;
 
   ProjectDetailsScreen({
+    @required this.otp,
     @required this.address,
     @required this.bookingId,
     @required this.totalPrice,
+    @required this.customerUID,
+    @required this.professionalUID,
     @required this.bookingStatus,
     @required this.preferredTimings,
     @required this.bookedItemsList,
@@ -91,76 +99,13 @@ class ProjectDetailsScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: (bookingStatus == "Booking Pending")
-          ? Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                MaterialButton(
-                  padding: EdgeInsets.symmetric(
-                    vertical: 15.0,
-                    horizontal: 30.0,
-                  ),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(25.0),
-                      bottomLeft: Radius.circular(25.0),
-                    ),
-                  ),
-                  onPressed: () {},
-                  color: Colors.green,
-                  child: Text(
-                    "Accept",
-                    style: TextStyle(
-                      fontSize: 17.0,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                MaterialButton(
-                  padding: EdgeInsets.symmetric(
-                    vertical: 15.0,
-                    horizontal: 30.0,
-                  ),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(25.0),
-                      bottomRight: Radius.circular(25.0),
-                    ),
-                  ),
-                  onPressed: () {},
-                  color: Colors.red,
-                  child: Text(
-                    "Reject",
-                    style: TextStyle(
-                      fontSize: 17.0,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ],
+          ? AcceptRejectButton(
+              bookingId: bookingId,
+              customerUID: customerUID,
+              professionalUID: professionalUID,
             )
           : (bookingStatus == "Accepted")
-              ? MaterialButton(
-                  padding: EdgeInsets.symmetric(
-                    vertical: 15.0,
-                    horizontal: 30.0,
-                  ),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(25.0),
-                  ),
-                  onPressed: () {},
-                  color: Colors.green,
-                  child: Text(
-                    "Finish Job",
-                    style: TextStyle(
-                      fontSize: 17.0,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                )
+              ? FinishJobButton(otp: otp, bookingId: bookingId)
               : Container(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
