@@ -1,5 +1,7 @@
 // Flutter Imports
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:h4y_partner/screens/message_screen/message_screen.dart';
 // Dependency Imports
 import 'package:intl/intl.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -121,43 +123,75 @@ class BookingTile extends StatelessWidget {
                       height: 15.0,
                     ),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Container(
-                          height: 75.0,
-                          width: 75.0,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10.0),
-                            image: DecorationImage(
-                              image: CachedNetworkImageProvider(profilePicture),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 10.0,
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                        Row(
                           children: [
-                            Text(
-                              fullName,
-                              style: TextStyle(
-                                fontSize: 20.0,
-                                color: Color(0xFF1C3857),
-                                fontWeight: FontWeight.bold,
+                            Container(
+                              height: 75.0,
+                              width: 75.0,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10.0),
+                                image: DecorationImage(
+                                  image: CachedNetworkImageProvider(
+                                    profilePicture,
+                                  ),
+                                ),
                               ),
                             ),
                             SizedBox(
-                              height: 5.0,
+                              width: 10.0,
                             ),
-                            Text(
-                              phoneNumber,
-                              style: TextStyle(
-                                fontSize: 14.0,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.black.withOpacity(0.64),
-                              ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  fullName,
+                                  style: TextStyle(
+                                    fontSize: 20.0,
+                                    color: Color(0xFF1C3857),
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 5.0,
+                                ),
+                                Text(
+                                  phoneNumber,
+                                  style: TextStyle(
+                                    fontSize: 14.0,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.black.withOpacity(0.64),
+                                  ),
+                                ),
+                              ],
                             ),
                           ],
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Color(0xFF1C3857),
+                          ),
+                          child: Center(
+                            child: IconButton(
+                              color: Colors.white,
+                              icon: Icon(CupertinoIcons.chat_bubble_fill),
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => MessageScreen(
+                                      uid: customerUID,
+                                      profilePicture: profilePicture,
+                                      fullName: fullName,
+                                      phoneNumber: phoneNumber,
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
                         ),
                       ],
                     ),

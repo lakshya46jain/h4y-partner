@@ -13,8 +13,8 @@ class DashboardScreen extends StatefulWidget {
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
-  int index = 1;
-  String bookingStatus = "Booking Pending";
+  int index = 0;
+  String bookingStatus;
   FixedExtentScrollController scrollController;
 
   final items = [
@@ -54,8 +54,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
             Header(
               onPressed: () {
                 scrollController.dispose();
-                scrollController =
-                    FixedExtentScrollController(initialItem: index);
+                scrollController = FixedExtentScrollController(
+                  initialItem: index,
+                );
                 final pickerOptions = Container(
                   height: 225.0,
                   child: CupertinoPicker(
