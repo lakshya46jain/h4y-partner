@@ -58,6 +58,7 @@ class MessageBubble extends StatelessWidget {
                 child: Text("Delete"),
                 trailingIcon: CupertinoIcons.delete,
                 onPressed: () async {
+                  Navigator.pop(context);
                   if (type == "Media") {
                     await FirebaseStorage.instance.refFromURL(message).delete();
                   }
@@ -67,7 +68,6 @@ class MessageBubble extends StatelessWidget {
                       .collection("Messages")
                       .doc(messageId)
                       .delete();
-                  Navigator.pop(context);
                 },
               ),
           ],
