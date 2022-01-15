@@ -50,14 +50,9 @@ class ProjectDetailsScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              BookedItemsList(
-                bookedItemsList: bookedItemsList,
-              ),
+              BookedItemsList(bookedItemsList: bookedItemsList),
               SizedBox(height: 5.0),
-              Divider(
-                thickness: 1.0,
-                color: Color(0xFFFEA700),
-              ),
+              Divider(thickness: 1.0, color: Color(0xFFFEA700)),
               SizedBox(height: 10.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -79,10 +74,7 @@ class ProjectDetailsScreen extends StatelessWidget {
                 ],
               ),
               SizedBox(height: 15.0),
-              Text(
-                "Order: #$bookingId",
-                style: TextStyle(fontSize: 15.0),
-              ),
+              Text("Order: #$bookingId", style: TextStyle(fontSize: 15.0)),
               SizedBox(height: 10.0),
               Text(
                 "Location: $address (${DateFormat("d MMMM yyyy").format(preferredTimings.toDate().toLocal())} ${DateFormat.jm().format(preferredTimings.toDate().toLocal())})",
@@ -98,6 +90,79 @@ class ProjectDetailsScreen extends StatelessWidget {
           ),
         ),
       ),
+      floatingActionButton: (bookingStatus == "Booking Pending")
+          ? Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                MaterialButton(
+                  padding: EdgeInsets.symmetric(
+                    vertical: 15.0,
+                    horizontal: 30.0,
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(25.0),
+                      bottomLeft: Radius.circular(25.0),
+                    ),
+                  ),
+                  onPressed: () {},
+                  color: Colors.green,
+                  child: Text(
+                    "Accept",
+                    style: TextStyle(
+                      fontSize: 17.0,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                MaterialButton(
+                  padding: EdgeInsets.symmetric(
+                    vertical: 15.0,
+                    horizontal: 30.0,
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(25.0),
+                      bottomRight: Radius.circular(25.0),
+                    ),
+                  ),
+                  onPressed: () {},
+                  color: Colors.red,
+                  child: Text(
+                    "Reject",
+                    style: TextStyle(
+                      fontSize: 17.0,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ],
+            )
+          : (bookingStatus == "Accepted")
+              ? MaterialButton(
+                  padding: EdgeInsets.symmetric(
+                    vertical: 15.0,
+                    horizontal: 30.0,
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(25.0),
+                  ),
+                  onPressed: () {},
+                  color: Colors.green,
+                  child: Text(
+                    "Finish Job",
+                    style: TextStyle(
+                      fontSize: 17.0,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                )
+              : Container(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }
