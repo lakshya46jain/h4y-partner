@@ -20,8 +20,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
   final items = [
     "Show All Bookings",
     "Booking Pending",
-    "Job Completed",
     "Accepted",
+    "Completed Projects",
+    "Completed Payments",
     "Rejected",
     "Customer Cancelled",
   ];
@@ -75,17 +76,21 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         });
                       } else if (index == 2) {
                         setState(() {
-                          bookingStatus = "Job Completed";
+                          bookingStatus = "Accepted";
                         });
                       } else if (index == 3) {
                         setState(() {
-                          bookingStatus = "Accepted";
+                          bookingStatus = "Job Completed";
                         });
                       } else if (index == 4) {
                         setState(() {
-                          bookingStatus = "Rejected";
+                          bookingStatus = "Payment Completed";
                         });
                       } else if (index == 5) {
+                        setState(() {
+                          bookingStatus = "Rejected";
+                        });
+                      } else if (index == 6) {
                         setState(() {
                           bookingStatus = "Customer Cancelled";
                         });
