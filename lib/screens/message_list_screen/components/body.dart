@@ -26,8 +26,9 @@ class MessageListBody extends StatelessWidget {
             physics: BouncingScrollPhysics(),
             itemBuilder: (context, index) {
               return MessageTile(
-                uid: chatRooms[index].customerUID,
+                user: user,
                 chatRoomId: chatRooms[index].chatRoomId,
+                customerUID: chatRooms[index].customerUID,
               );
             },
           );

@@ -298,6 +298,17 @@ class DatabaseService {
         .map(_help4YouMessageFromSnapshot);
   }
 
+  // Get Last Message Document
+  Stream<List<Messages>> get lastMessageData {
+    return chatRoomCollection
+        .doc("$customerUID\_$uid")
+        .collection("Messages")
+        .orderBy("Time Stamp", descending: true)
+        .limit(1)
+        .snapshots()
+        .map(_help4YouMessageFromSnapshot);
+  }
+
   // Get Bookings List
   Stream<List<Booking>> get bookingsListData {
     return bookingsCollection
