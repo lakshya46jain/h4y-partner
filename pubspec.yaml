@@ -49,6 +49,7 @@ dependencies:
   image_downloader: ^0.31.0
   cached_network_image: ^3.2.0
   random_string_generator: ^2.0.0
+  full_screen_image_null_safe: ^2.0.0
   flutter_phone_direct_caller: ^2.1.0
   internet_connection_checker: ^0.0.1+3
 
