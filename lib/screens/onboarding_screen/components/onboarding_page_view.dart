@@ -8,19 +8,20 @@ class OnboardingPageView extends StatelessWidget {
   final PageController pageController;
   final Function onPageChanged;
 
-  OnboardingPageView({
+  const OnboardingPageView({
+    Key key,
     @required this.pageController,
     @required this.onPageChanged,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: PageView(
-        physics: ClampingScrollPhysics(),
+        physics: const ClampingScrollPhysics(),
         controller: pageController,
         onPageChanged: onPageChanged,
-        children: [
+        children: const [
           // Page 1
           Pages(
             graphicImage: "assets/graphics/Help4You_Illustration_1.svg",

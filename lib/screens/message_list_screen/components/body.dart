@@ -10,9 +10,10 @@ import 'package:h4y_partner/screens/message_list_screen/components/message_tile.
 class MessageListBody extends StatelessWidget {
   final Help4YouUser user;
 
-  MessageListBody({
+  const MessageListBody({
+    Key key,
     @required this.user,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +24,7 @@ class MessageListBody extends StatelessWidget {
           List<ChatRoom> chatRooms = snapshot.data;
           return ListView.builder(
             itemCount: chatRooms.length,
-            physics: BouncingScrollPhysics(),
+            physics: const BouncingScrollPhysics(),
             itemBuilder: (context, index) {
               return MessageTile(
                 user: user,

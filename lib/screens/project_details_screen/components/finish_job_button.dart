@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 // Dependency Imports
-import 'package:pinput/pin_put/pin_put.dart';
+import 'package:pinput/pinput.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 // File Imports
 import 'package:h4y_partner/services/database.dart';
@@ -12,15 +12,33 @@ class FinishJobButton extends StatelessWidget {
   final String otp;
   final String bookingId;
 
-  FinishJobButton({
+  const FinishJobButton({
+    Key key,
     @required this.otp,
     @required this.bookingId,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    // Pin Put Declarations
+    Color borderColor = const Color.fromRGBO(114, 178, 238, 1);
+
+    final defaultPinTheme = PinTheme(
+      width: 40,
+      height: 50,
+      textStyle: const TextStyle(
+        fontSize: 22,
+        color: Color.fromRGBO(30, 60, 87, 1),
+      ),
+      decoration: BoxDecoration(
+        color: const Color.fromRGBO(222, 231, 240, .57),
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: Colors.transparent),
+      ),
+    );
+
     return MaterialButton(
-      padding: EdgeInsets.symmetric(
+      padding: const EdgeInsets.symmetric(
         vertical: 15.0,
         horizontal: 30.0,
       ),
@@ -33,48 +51,27 @@ class FinishJobButton extends StatelessWidget {
           dialogType: DialogType.SUCCES,
           body: Column(
             children: [
-              SizedBox(height: 5.0),
-              Text(
+              const SizedBox(height: 5.0),
+              const Text(
                 "COMPLETION CODE",
                 style: TextStyle(
                   fontSize: 20.0,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 15.0),
-              PinPut(
+              const SizedBox(height: 15.0),
+              Pinput(
+                length: 6,
                 autofocus: true,
-                fieldsCount: 6,
-                textStyle: TextStyle(
-                  fontSize: 25.0,
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                ),
-                separator: const SizedBox(width: 2.5),
-                eachFieldWidth: 40,
-                eachFieldHeight: 50,
-                focusNode: FocusNode(),
-                controller: TextEditingController(),
-                submittedFieldDecoration: BoxDecoration(
-                  border: Border.all(
-                    color: Color(0xFF95989A),
+                defaultPinTheme: defaultPinTheme,
+                focusedPinTheme: defaultPinTheme.copyWith(
+                  width: 48,
+                  height: 58,
+                  decoration: defaultPinTheme.decoration.copyWith(
+                    border: Border.all(color: borderColor),
                   ),
-                  borderRadius: BorderRadius.circular(15.0),
                 ),
-                followingFieldDecoration: BoxDecoration(
-                  border: Border.all(
-                    color: Color(0xFF95989A),
-                  ),
-                  borderRadius: BorderRadius.circular(15.0),
-                ),
-                selectedFieldDecoration: BoxDecoration(
-                  border: Border.all(
-                    color: Color(0xFF1C3857),
-                  ),
-                  borderRadius: BorderRadius.circular(15.0),
-                ),
-                pinAnimationType: PinAnimationType.fade,
-                onSubmit: (pin) async {
+                onCompleted: (pin) async {
                   if (pin.trim().toString() == otp) {
                     Navigator.pop(context);
                     Navigator.pop(context);
@@ -92,13 +89,13 @@ class FinishJobButton extends StatelessWidget {
                   }
                 },
               ),
-              SizedBox(height: 25.0),
+              const SizedBox(height: 25.0),
             ],
           ),
         ).show();
       },
       color: Colors.green,
-      child: Text(
+      child: const Text(
         "Finish Job",
         style: TextStyle(
           fontSize: 17.0,

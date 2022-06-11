@@ -1,7 +1,7 @@
 // Flutter Imports
 import 'package:flutter/material.dart';
 // Dependency Imports
-import 'package:pinput/pin_put/pin_put.dart';
+import 'package:pinput/pinput.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 // File Imports
 import 'package:h4y_partner/services/auth.dart';
@@ -13,19 +13,20 @@ class DeleteAccVerificationScreen extends StatefulWidget {
   final String phoneNumber;
   final Function submitOTP;
 
-  DeleteAccVerificationScreen({
+  const DeleteAccVerificationScreen({
+    Key key,
     @required this.phoneIsoCode,
     @required this.nonInternationalNumber,
     @required this.phoneNumber,
     @required this.submitOTP,
-  });
+  }) : super(key: key);
 
   @override
-  _DeleteAccVerificationScreenState createState() =>
-      _DeleteAccVerificationScreenState();
+  DeleteAccVerificationScreenState createState() =>
+      DeleteAccVerificationScreenState();
 }
 
-class _DeleteAccVerificationScreenState
+class DeleteAccVerificationScreenState
     extends State<DeleteAccVerificationScreen> {
   // Text Field Variable
   String fullName;
@@ -33,20 +34,21 @@ class _DeleteAccVerificationScreenState
   String phoneIsoCode;
   String nonInternationalNumber;
 
-  // Pin Input Declarations
-  final _pinPutFocusNode = FocusNode();
-  final _pinPutController = TextEditingController();
-  final BoxDecoration pinPutDecoration = BoxDecoration(
-    border: Border.all(
-      color: Color(0xFF95989A),
+  // Pin Put Declarations
+  Color borderColor = const Color.fromRGBO(114, 178, 238, 1);
+
+  final defaultPinTheme = PinTheme(
+    width: 55,
+    height: 60,
+    textStyle: const TextStyle(
+      fontSize: 22,
+      color: Color.fromRGBO(30, 60, 87, 1),
     ),
-    borderRadius: BorderRadius.circular(15.0),
-  );
-  final BoxDecoration pinPutSelectedDecoration = BoxDecoration(
-    border: Border.all(
-      color: Color(0xFF1C3857),
+    decoration: BoxDecoration(
+      color: const Color.fromRGBO(222, 231, 240, .57),
+      borderRadius: BorderRadius.circular(8),
+      border: Border.all(color: Colors.transparent),
     ),
-    borderRadius: BorderRadius.circular(15.0),
   );
 
   @override
@@ -54,11 +56,11 @@ class _DeleteAccVerificationScreenState
     return Scaffold(
       appBar: AppBar(
         elevation: 0.0,
-        leading: SignatureButton(type: "Back Button"),
+        leading: const SignatureButton(type: "Back Button"),
         backgroundColor: Colors.transparent,
       ),
       body: Padding(
-        padding: EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -69,7 +71,7 @@ class _DeleteAccVerificationScreenState
                 Text.rich(
                   TextSpan(
                     text: "Enter the 6-digit OTP sent to",
-                    style: TextStyle(
+                    style: const TextStyle(
                       height: 1.0,
                       fontSize: 24.0,
                       color: Colors.black,
@@ -79,7 +81,7 @@ class _DeleteAccVerificationScreenState
                     children: [
                       TextSpan(
                         text: "\n${widget.phoneNumber}",
-                        style: TextStyle(
+                        style: const TextStyle(
                           height: 1.3,
                           fontSize: 24.0,
                           color: Colors.black,
@@ -90,34 +92,26 @@ class _DeleteAccVerificationScreenState
                     ],
                   ),
                 ),
-                SizedBox(
-                  height: 30.0,
-                ),
-                PinPut(
+                const SizedBox(height: 30.0),
+                Pinput(
+                  length: 6,
                   autofocus: true,
-                  fieldsCount: 6,
-                  textStyle: TextStyle(
-                    fontSize: 25.0,
-                    color: Colors.black,
+                  defaultPinTheme: defaultPinTheme,
+                  focusedPinTheme: defaultPinTheme.copyWith(
+                    width: 63,
+                    height: 68,
+                    decoration: defaultPinTheme.decoration.copyWith(
+                      border: Border.all(color: borderColor),
+                    ),
                   ),
-                  eachFieldWidth: 55,
-                  eachFieldHeight: 60,
-                  focusNode: _pinPutFocusNode,
-                  controller: _pinPutController,
-                  submittedFieldDecoration: pinPutDecoration,
-                  followingFieldDecoration: pinPutDecoration,
-                  selectedFieldDecoration: pinPutSelectedDecoration,
-                  pinAnimationType: PinAnimationType.fade,
-                  onSubmit: widget.submitOTP,
+                  onCompleted: widget.submitOTP,
                 ),
-                SizedBox(
-                  height: 30.0,
-                ),
+                const SizedBox(height: 30.0),
                 GestureDetector(
                   onTap: () async {
                     FirebaseAuth.instance.verifyPhoneNumber(
                       phoneNumber: widget.phoneNumber,
-                      timeout: Duration(seconds: 120),
+                      timeout: const Duration(seconds: 120),
                       verificationCompleted:
                           (PhoneAuthCredential credential) async {},
                       verificationFailed:
@@ -134,7 +128,7 @@ class _DeleteAccVerificationScreenState
                       },
                     );
                   },
-                  child: Text.rich(
+                  child: const Text.rich(
                     TextSpan(
                       text: "Didn't recieve the OTP?",
                       style: TextStyle(

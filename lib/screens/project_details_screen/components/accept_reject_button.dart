@@ -9,11 +9,12 @@ class AcceptRejectButton extends StatelessWidget {
   final String customerUID;
   final String professionalUID;
 
-  AcceptRejectButton({
+  const AcceptRejectButton({
+    Key key,
     @required this.bookingId,
     @required this.customerUID,
     @required this.professionalUID,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,11 +23,11 @@ class AcceptRejectButton extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         MaterialButton(
-          padding: EdgeInsets.symmetric(
+          padding: const EdgeInsets.symmetric(
             vertical: 15.0,
             horizontal: 30.0,
           ),
-          shape: RoundedRectangleBorder(
+          shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(25.0),
               bottomLeft: Radius.circular(25.0),
@@ -38,7 +39,7 @@ class AcceptRejectButton extends StatelessWidget {
                 .updateBookingStatus("Accepted");
           },
           color: Colors.green,
-          child: Text(
+          child: const Text(
             "Accept",
             style: TextStyle(
               fontSize: 17.0,
@@ -48,11 +49,11 @@ class AcceptRejectButton extends StatelessWidget {
           ),
         ),
         MaterialButton(
-          padding: EdgeInsets.symmetric(
+          padding: const EdgeInsets.symmetric(
             vertical: 15.0,
             horizontal: 30.0,
           ),
-          shape: RoundedRectangleBorder(
+          shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
               topRight: Radius.circular(25.0),
               bottomRight: Radius.circular(25.0),
@@ -71,7 +72,7 @@ class AcceptRejectButton extends StatelessWidget {
             );
           },
           color: Colors.red,
-          child: Text(
+          child: const Text(
             "Reject",
             style: TextStyle(
               fontSize: 17.0,

@@ -9,11 +9,13 @@ import 'package:h4y_partner/screens/onboarding_screen/components/phone_auth_scre
 import 'package:h4y_partner/screens/onboarding_screen/components/onboarding_page_view.dart';
 
 class OnboardingScreen extends StatefulWidget {
+  const OnboardingScreen({Key key}) : super(key: key);
+
   @override
-  _OnboardingScreenState createState() => _OnboardingScreenState();
+  OnboardingScreenState createState() => OnboardingScreenState();
 }
 
-class _OnboardingScreenState extends State<OnboardingScreen> {
+class OnboardingScreenState extends State<OnboardingScreen> {
   // Initial Page Value
   int _currentPage = 0;
 
@@ -49,15 +51,15 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   // Indicator Container
   Widget _indicator(bool isActive) {
     return Padding(
-      padding: EdgeInsets.only(top: 5),
+      padding: const EdgeInsets.only(top: 5),
       child: AnimatedContainer(
-        duration: Duration(milliseconds: 150),
-        margin: EdgeInsets.symmetric(horizontal: 8.0),
+        duration: const Duration(milliseconds: 150),
+        margin: const EdgeInsets.symmetric(horizontal: 8.0),
         height: isActive ? 12.0 : 8.0,
         width: isActive ? 12.0 : 8.0,
         decoration: BoxDecoration(
           color: isActive ? Colors.white : Colors.white.withOpacity(0.5),
-          borderRadius: BorderRadius.all(
+          borderRadius: const BorderRadius.all(
             Radius.circular(12.0),
           ),
         ),
@@ -83,18 +85,16 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         FocusScope.of(context).unfocus();
       },
       child: Scaffold(
-        backgroundColor: Color(0xFF1C3857),
+        backgroundColor: const Color(0xFF1C3857),
         body: AnnotatedRegion(
           value: SystemUiOverlayStyle.light,
-          child: Container(
+          child: SizedBox(
             height: MediaQuery.of(context).size.height - 225,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(
-                  height: 100.0,
-                ),
+                const SizedBox(height: 100.0),
                 OnboardingPageView(
                   pageController: _pageController,
                   onPageChanged: (int page) {
@@ -104,7 +104,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   },
                 ),
                 Padding(
-                  padding: EdgeInsets.only(
+                  padding: const EdgeInsets.only(
                     left: 30.0,
                     bottom: 40.0,
                   ),
@@ -120,15 +120,16 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         bottomSheet: Container(
           height: 225.0,
           width: double.infinity,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: Colors.white,
           ),
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 30.0),
+            padding:
+                const EdgeInsets.symmetric(horizontal: 20.0, vertical: 30.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                const Text(
                   "Let's get started! Enter your mobile number.",
                   style: TextStyle(
                     fontSize: 18,
@@ -137,9 +138,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                SizedBox(
-                  height: 20.0,
-                ),
+                const SizedBox(height: 20.0),
                 Column(
                   children: [
                     CustomFields(
@@ -150,8 +149,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       onChanged: (phone) {},
                       onCountryChanged: (phone) {
                         setState(() {
-                          countryCode = phone.countryCode;
-                          phoneIsoCode = phone.countryISOCode;
+                          countryCode = phone.dialCode;
+                          phoneIsoCode = phone.code;
                         });
                       },
                     ),

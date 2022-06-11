@@ -24,9 +24,9 @@ class Widget1Body extends StatelessWidget {
       builder: (context, snapshot) {
         List<Help4YouServices> services = snapshot.data;
         if (snapshot.hasData) {
-          if (services.length == 0) {
+          if (services.isEmpty) {
             return Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.0),
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: SizedBox(
                 width: double.infinity,
                 child: SvgPicture.asset(
@@ -38,8 +38,8 @@ class Widget1Body extends StatelessWidget {
             return ListView.builder(
               controller: controller,
               itemCount: services.length,
-              padding: EdgeInsets.only(bottom: 70.0),
-              physics: BouncingScrollPhysics(),
+              padding: const EdgeInsets.only(bottom: 70.0),
+              physics: const BouncingScrollPhysics(),
               itemBuilder: (context, index) {
                 return ServiceTile(
                   documentId: services[index].serviceId,
@@ -52,7 +52,7 @@ class Widget1Body extends StatelessWidget {
             );
           }
         } else {
-          return Container(width: 0.0, height: 0.0);
+          return Container();
         }
       },
     );

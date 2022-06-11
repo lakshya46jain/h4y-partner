@@ -10,11 +10,13 @@ import 'package:h4y_partner/constants/signature_button.dart';
 import 'package:h4y_partner/constants/custom_text_field.dart';
 
 class CreateServiceScreen extends StatefulWidget {
+  const CreateServiceScreen({Key key}) : super(key: key);
+
   @override
-  _CreateServiceScreenState createState() => _CreateServiceScreenState();
+  CreateServiceScreenState createState() => CreateServiceScreenState();
 }
 
-class _CreateServiceScreenState extends State<CreateServiceScreen> {
+class CreateServiceScreenState extends State<CreateServiceScreen> {
   // Text Field Variable
   String serviceTitle;
   String serviceDescription;
@@ -39,8 +41,8 @@ class _CreateServiceScreenState extends State<CreateServiceScreen> {
         appBar: AppBar(
           elevation: 0.0,
           backgroundColor: Colors.transparent,
-          leading: SignatureButton(type: "Back Button"),
-          title: Text(
+          leading: const SignatureButton(type: "Back Button"),
+          title: const Text(
             "Create Service",
             style: TextStyle(
               fontSize: 25.0,
@@ -51,14 +53,14 @@ class _CreateServiceScreenState extends State<CreateServiceScreen> {
           ),
         ),
         body: Padding(
-          padding: EdgeInsets.all(20.0),
+          padding: const EdgeInsets.all(20.0),
           child: SingleChildScrollView(
-            physics: BouncingScrollPhysics(),
+            physics: const BouncingScrollPhysics(),
             child: Form(
               key: formKey,
               child: Column(
                 children: [
-                  SizedBox(height: 10.0),
+                  const SizedBox(height: 10.0),
                   CustomFields(
                     type: "Normal",
                     onChanged: (value) {
@@ -76,9 +78,7 @@ class _CreateServiceScreenState extends State<CreateServiceScreen> {
                     },
                     hintText: "Type Service Title...",
                   ),
-                  SizedBox(
-                    height: 25.0,
-                  ),
+                  const SizedBox(height: 25.0),
                   CustomFields(
                     type: "Normal",
                     onChanged: (value) {
@@ -97,9 +97,7 @@ class _CreateServiceScreenState extends State<CreateServiceScreen> {
                     hintText: "Type Description Of Service...",
                     maxLines: null,
                   ),
-                  SizedBox(
-                    height: 25.0,
-                  ),
+                  const SizedBox(height: 25.0),
                   CustomFields(
                     type: "Normal",
                     onChanged: (value) {
@@ -115,28 +113,26 @@ class _CreateServiceScreenState extends State<CreateServiceScreen> {
                       }
                     },
                     keyboardType:
-                        TextInputType.numberWithOptions(decimal: true),
+                        const TextInputType.numberWithOptions(decimal: true),
                     hintText: "Type Service Price...",
                   ),
-                  SizedBox(
-                    height: 25.0,
-                  ),
+                  const SizedBox(height: 25.0),
                   MergeSemantics(
                     child: Container(
-                      padding: EdgeInsets.all(2.5),
+                      padding: const EdgeInsets.all(2.5),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(30.0),
                         border: Border.all(
-                          color: Color(0xFF1C3857),
+                          color: const Color(0xFF1C3857),
                         ),
                       ),
                       child: ListTile(
-                        leading: Icon(
+                        leading: const Icon(
                           CupertinoIcons.eye,
                           size: 30.0,
                           color: Color(0xFF1C3857),
                         ),
-                        title: Text(
+                        title: const Text(
                           'Service Visbility',
                           style: TextStyle(
                             fontSize: 20.0,
@@ -152,14 +148,12 @@ class _CreateServiceScreenState extends State<CreateServiceScreen> {
                               visibility = visbilityStatus;
                             });
                           },
-                          activeColor: Color(0xFF1C3857),
+                          activeColor: const Color(0xFF1C3857),
                         ),
                       ),
                     ),
                   ),
-                  SizedBox(
-                    height: 25.0,
-                  ),
+                  const SizedBox(height: 25.0),
                   SignatureButton(
                     text: "Create Service",
                     onTap: () async {
@@ -167,12 +161,14 @@ class _CreateServiceScreenState extends State<CreateServiceScreen> {
                       if (formKey.currentState.validate()) {
                         await DatabaseService(uid: user.uid)
                             .createProfessionalServices(
-                          serviceTitle,
-                          serviceDescription,
-                          servicePrice,
-                          visibility,
-                        );
-                        Navigator.pop(context);
+                              serviceTitle,
+                              serviceDescription,
+                              servicePrice,
+                              visibility,
+                            )
+                            .then(
+                              (value) => Navigator.pop(context),
+                            );
                       }
                     },
                     withIcon: false,

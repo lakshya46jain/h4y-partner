@@ -21,7 +21,8 @@ class IconButtonStream extends StatelessWidget {
   final String occupation;
   final String phoneIsoCode;
 
-  IconButtonStream({
+  const IconButtonStream({
+    Key key,
     @required this.user,
     @required this.imageFile,
     @required this.formKey,
@@ -30,7 +31,7 @@ class IconButtonStream extends StatelessWidget {
     @required this.fullName,
     @required this.occupation,
     @required this.phoneIsoCode,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +40,7 @@ class IconButtonStream extends StatelessWidget {
       builder: (context, snapshot) {
         UserDataProfessional userData = snapshot.data;
         return IconButton(
-          icon: Icon(
+          icon: const Icon(
             CupertinoIcons.checkmark_alt,
             size: 24.0,
             color: Color(0xFFFEA700),
@@ -50,7 +51,7 @@ class IconButtonStream extends StatelessWidget {
               if (imageFile != null) {
                 Reference firebaseStorageRef = FirebaseStorage.instance
                     .ref()
-                    .child(("H4Y Profile Pictures/" + user.uid));
+                    .child(("H4Y Profile Pictures/${user.uid}"));
                 UploadTask uploadTask = firebaseStorageRef.putFile(imageFile);
                 await uploadTask;
                 String downloadAddress =
@@ -68,37 +69,40 @@ class IconButtonStream extends StatelessWidget {
             try {
               if (formKey.currentState.validate()) {
                 if (userData.phoneNumber !=
-                    '$countryCode$nonInternationalNumber') {
+                    '+$countryCode$nonInternationalNumber') {
                   await AuthService().phoneAuthentication(
                     fullName,
                     occupation,
                     countryCode,
                     phoneIsoCode,
                     nonInternationalNumber,
-                    '$countryCode$nonInternationalNumber',
+                    '+$countryCode$nonInternationalNumber',
                     "Update Phone Number",
                     context,
                   );
                   await DatabaseService(uid: user.uid).updateUserData(
                     fullName ?? userData.fullName,
                     occupation ?? userData.occupation,
-                    '$countryCode$nonInternationalNumber' ??
+                    '+$countryCode$nonInternationalNumber' ??
                         userData.phoneNumber,
                     countryCode ?? userData.countryCode,
                     phoneIsoCode ?? userData.phoneIsoCode,
                     nonInternationalNumber ?? userData.nonInternationalNumber,
                   );
                 } else {
-                  await DatabaseService(uid: user.uid).updateUserData(
-                    fullName ?? userData.fullName,
-                    occupation ?? userData.occupation,
-                    userData.phoneNumber ?? userData.phoneNumber,
-                    userData.countryCode ?? userData.countryCode,
-                    userData.phoneIsoCode ?? userData.phoneIsoCode,
-                    userData.nonInternationalNumber ??
-                        userData.nonInternationalNumber,
-                  );
-                  Navigator.pop(context);
+                  await DatabaseService(uid: user.uid)
+                      .updateUserData(
+                        fullName ?? userData.fullName,
+                        occupation ?? userData.occupation,
+                        userData.phoneNumber ?? userData.phoneNumber,
+                        userData.countryCode ?? userData.countryCode,
+                        userData.phoneIsoCode ?? userData.phoneIsoCode,
+                        userData.nonInternationalNumber ??
+                            userData.nonInternationalNumber,
+                      )
+                      .then(
+                        (value) => Navigator.pop(context),
+                      );
                 }
               }
               setProfilePicture();

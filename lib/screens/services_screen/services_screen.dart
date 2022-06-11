@@ -11,11 +11,13 @@ import 'package:h4y_partner/screens/services_screen/components/widget_1_body.dar
 import 'package:h4y_partner/screens/services_screen/components/widget_2_body.dart';
 
 class ServicesScreen extends StatefulWidget {
+  const ServicesScreen({Key key}) : super(key: key);
+
   @override
-  _ServicesScreenState createState() => _ServicesScreenState();
+  ServicesScreenState createState() => ServicesScreenState();
 }
 
-class _ServicesScreenState extends State<ServicesScreen> {
+class ServicesScreenState extends State<ServicesScreen> {
   var controller = ScrollController();
   var isVisible = true;
 
@@ -54,7 +56,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
       },
       child: Scaffold(
         body: Padding(
-          padding: EdgeInsets.only(top: 50.0),
+          padding: const EdgeInsets.only(top: 50.0),
           child: CustomTabBar(
             text1: "Services",
             text2: "Rate Card",
@@ -62,28 +64,28 @@ class _ServicesScreenState extends State<ServicesScreen> {
               user: user,
               controller: controller,
             ),
-            widget2: Widget2Body(),
+            widget2: const Widget2Body(),
           ),
         ),
         floatingActionButton: Padding(
-          padding: EdgeInsets.only(bottom: 60.0),
+          padding: const EdgeInsets.only(bottom: 60.0),
           child: Visibility(
             visible: isVisible,
             child: FloatingActionButton(
-              child: Icon(
-                CupertinoIcons.add,
-                color: Colors.white,
-                size: 28.0,
-              ),
-              backgroundColor: Color(0xFF1C3857),
+              backgroundColor: const Color(0xFF1C3857),
               onPressed: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => CreateServiceScreen(),
+                    builder: (context) => const CreateServiceScreen(),
                   ),
                 );
               },
+              child: const Icon(
+                CupertinoIcons.add,
+                color: Colors.white,
+                size: 28.0,
+              ),
             ),
           ),
         ),

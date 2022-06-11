@@ -12,9 +12,10 @@ import 'package:h4y_partner/services/database.dart';
 class Header extends StatelessWidget {
   final Function onPressed;
 
-  Header({
+  const Header({
+    Key key,
     this.onPressed,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +42,7 @@ class Header extends StatelessWidget {
     }
 
     return Padding(
-      padding: EdgeInsets.all(20.0),
+      padding: const EdgeInsets.all(20.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -64,16 +65,14 @@ class Header extends StatelessWidget {
                             imageUrl: userData.profilePicture,
                           ),
                         ),
-                        SizedBox(
-                          width: 15.0,
-                        ),
+                        const SizedBox(width: 15.0),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
                               message,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 18.0,
                                 color: Color(0xFF95989A),
                                 fontFamily: "BalooPaaji",
@@ -82,7 +81,7 @@ class Header extends StatelessWidget {
                             ),
                             Text(
                               userData.fullName,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 height: 1.0,
                                 fontSize: 23.0,
                                 color: Color(0xFF1C3857),
@@ -106,23 +105,21 @@ class Header extends StatelessWidget {
                                 "https://drive.google.com/uc?export=view&id=1Fis4yJe7_d_RROY7JdSihM2--GH5aqbe",
                           ),
                         ),
-                        SizedBox(
-                          width: 15.0,
-                        ),
+                        const SizedBox(width: 15.0),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
                               message,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 18.0,
                                 color: Color(0xFF95989A),
                                 fontFamily: "BalooPaaji",
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
-                            Text(
+                            const Text(
                               "Professional Name",
                               style: TextStyle(
                                 height: 1.0,
@@ -145,7 +142,7 @@ class Header extends StatelessWidget {
             height: 40.0,
             width: 40.0,
             decoration: BoxDecoration(
-              color: Color(0xFF1C3857),
+              color: const Color(0xFF1C3857),
               borderRadius: BorderRadius.circular(
                 10.0,
               ),
@@ -153,7 +150,7 @@ class Header extends StatelessWidget {
             child: Center(
               child: IconButton(
                 onPressed: onPressed,
-                icon: Icon(
+                icon: const Icon(
                   CupertinoIcons.line_horizontal_3_decrease,
                   color: Colors.white,
                 ),

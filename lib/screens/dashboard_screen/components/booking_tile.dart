@@ -22,7 +22,8 @@ class BookingTile extends StatelessWidget {
   final List<BookedServices> bookedItemsList;
   final String paymentMethod;
 
-  BookingTile({
+  const BookingTile({
+    Key key,
     @required this.otp,
     @required this.address,
     @required this.bookingId,
@@ -33,7 +34,7 @@ class BookingTile extends StatelessWidget {
     @required this.bookingStatus,
     @required this.bookedItemsList,
     @required this.paymentMethod,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -51,17 +52,17 @@ class BookingTile extends StatelessWidget {
           return GestureDetector(
             onTap: () {},
             child: Padding(
-              padding: EdgeInsets.symmetric(
+              padding: const EdgeInsets.symmetric(
                 horizontal: 20.0,
                 vertical: 15.0,
               ),
               child: Container(
-                padding: EdgeInsets.all(15.0),
+                padding: const EdgeInsets.all(15.0),
                 width: double.infinity,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(15.0),
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
                       blurRadius: 20.0,
                       color: Color(0xFFDADADA),
@@ -76,14 +77,14 @@ class BookingTile extends StatelessWidget {
                       children: [
                         Text(
                           bookingId,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 19.0,
                             color: Color(0xFF1C3857),
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                         Container(
-                          padding: EdgeInsets.all(7.5),
+                          padding: const EdgeInsets.all(7.5),
                           color: (bookingStatus == "Job Completed")
                               ? Colors.green.withOpacity(0.15)
                               : (bookingStatus == "Accepted")
@@ -92,7 +93,8 @@ class BookingTile extends StatelessWidget {
                                       ? Colors.red.withOpacity(0.15)
                                       : (bookingStatus == "Rejected")
                                           ? Colors.red.withOpacity(0.15)
-                                          : Color(0xFFFEA700).withOpacity(0.15),
+                                          : const Color(0xFFFEA700)
+                                              .withOpacity(0.15),
                           child: Text(
                             bookingStatus,
                             style: TextStyle(
@@ -106,26 +108,23 @@ class BookingTile extends StatelessWidget {
                                           ? Colors.red
                                           : (bookingStatus == "Rejected")
                                               ? Colors.red
-                                              : Color(0xFFFEA700),
+                                              : const Color(0xFFFEA700),
                             ),
                           ),
                         ),
                       ],
                     ),
-                    SizedBox(
-                      height: 7.5,
-                    ),
+                    const SizedBox(height: 7.5),
                     Text(
-                      "${DateFormat("EEE, d MMM, ''yy At h:mm a").format(preferredTimings.toDate().toLocal())}",
+                      DateFormat("EEE, d MMM, ''yy At h:mm a")
+                          .format(preferredTimings.toDate().toLocal()),
                       style: TextStyle(
                         fontSize: 14.0,
                         fontWeight: FontWeight.w600,
                         color: Colors.black.withOpacity(0.64),
                       ),
                     ),
-                    SizedBox(
-                      height: 15.0,
-                    ),
+                    const SizedBox(height: 15.0),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -143,23 +142,19 @@ class BookingTile extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            SizedBox(
-                              width: 10.0,
-                            ),
+                            const SizedBox(width: 10.0),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
                                   fullName,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontSize: 20.0,
                                     color: Color(0xFF1C3857),
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                                SizedBox(
-                                  height: 5.0,
-                                ),
+                                const SizedBox(height: 5.0),
                                 Text(
                                   phoneNumber,
                                   style: TextStyle(
@@ -173,14 +168,14 @@ class BookingTile extends StatelessWidget {
                           ],
                         ),
                         Container(
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             shape: BoxShape.circle,
                             color: Color(0xFF1C3857),
                           ),
                           child: Center(
                             child: IconButton(
                               color: Colors.white,
-                              icon: Icon(CupertinoIcons.chat_bubble_fill),
+                              icon: const Icon(CupertinoIcons.chat_bubble_fill),
                               onPressed: () {
                                 Navigator.push(
                                   context,
@@ -200,13 +195,13 @@ class BookingTile extends StatelessWidget {
                       ],
                     ),
                     Padding(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 15.0, horizontal: 7.5),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 15.0, horizontal: 7.5),
                       child: Container(
                         height: 4.0,
                         width: double.infinity,
                         decoration: BoxDecoration(
-                          color: Color(0xFF95989A).withOpacity(0.2),
+                          color: const Color(0xFF95989A).withOpacity(0.2),
                           borderRadius: BorderRadius.circular(25.0),
                         ),
                       ),
@@ -229,7 +224,7 @@ class BookingTile extends StatelessWidget {
                           ),
                         ),
                       ),
-                      child: Center(
+                      child: const Center(
                         child: Text(
                           "View Project Details",
                           style: TextStyle(

@@ -67,7 +67,7 @@ class AuthService {
   ) async {
     auth.verifyPhoneNumber(
       phoneNumber: phoneNumber,
-      timeout: Duration(seconds: 120),
+      timeout: const Duration(seconds: 120),
       verificationCompleted: (PhoneAuthCredential credential) async {},
       verificationFailed: (FirebaseAuthException exception) async {
         verificationFailed(exception, context);
@@ -98,7 +98,7 @@ class AuthService {
                         Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => Wrapper(),
+                            builder: (context) => const Wrapper(),
                           ),
                           (route) => false,
                         );
@@ -113,15 +113,18 @@ class AuthService {
                         );
                         await DatabaseService(uid: user.uid)
                             .updateProfilePicture(
-                          "https://drive.google.com/uc?export=view&id=1Fis4yJe7_d_RROY7JdSihM2--GH5aqbe",
-                        );
-                        Navigator.pushAndRemoveUntil(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => RegistrationScreen(),
-                          ),
-                          (route) => false,
-                        );
+                              "https://drive.google.com/uc?export=view&id=1Fis4yJe7_d_RROY7JdSihM2--GH5aqbe",
+                            )
+                            .then(
+                              (value) => Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      const RegistrationScreen(),
+                                ),
+                                (route) => false,
+                              ),
+                            );
                       }
                     },
                   ).catchError(
@@ -160,7 +163,7 @@ class AuthService {
                   Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => Wrapper(),
+                      builder: (context) => const Wrapper(),
                     ),
                     (route) => false,
                   );
@@ -195,13 +198,14 @@ class AuthService {
                         );
                       }
                     },
-                  );
-                  Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => BottomNavBar(),
+                  ).then(
+                    (value) => Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const BottomNavBar(),
+                      ),
+                      (route) => false,
                     ),
-                    (route) => false,
                   );
                 },
               ),

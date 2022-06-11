@@ -8,29 +8,25 @@ import 'package:h4y_partner/screens/project_details_screen/components/dashed_lin
 class BookedItemsList extends StatelessWidget {
   final List<BookedServices> bookedItemsList;
 
-  BookedItemsList({
+  const BookedItemsList({
+    Key key,
     @required this.bookedItemsList,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
       itemCount: bookedItemsList.length,
       shrinkWrap: true,
-      padding: EdgeInsets.all(0.0),
-      physics: NeverScrollableScrollPhysics(),
+      padding: const EdgeInsets.all(0.0),
+      physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            (index == 0)
-                ? Container(
-                    height: 0.0,
-                    width: 0.0,
-                  )
-                : DashedLine(),
+            (index == 0) ? Container() : const DashedLine(),
             Padding(
-              padding: EdgeInsets.symmetric(vertical: 10.0),
+              padding: const EdgeInsets.symmetric(vertical: 10.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -39,44 +35,44 @@ class BookedItemsList extends StatelessWidget {
                     children: [
                       Text(
                         "#$index",
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 13.0,
                           color: Colors.grey,
                         ),
                       ),
                       Text(
                         "Qty ${bookedItemsList[index].quantity}",
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 13.0,
                           color: Colors.grey,
                         ),
                       )
                     ],
                   ),
-                  SizedBox(height: 5.0),
+                  const SizedBox(height: 5.0),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "${bookedItemsList[index].serviceTitle}",
-                        style: TextStyle(
+                        bookedItemsList[index].serviceTitle,
+                        style: const TextStyle(
                           fontSize: 17.0,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
                       Text(
                         "${bookedItemsList[index].servicePrice}",
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 17.0,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
                     ],
                   ),
-                  SizedBox(height: 5.0),
+                  const SizedBox(height: 5.0),
                   Text(
                     bookedItemsList[index].serviceDescription,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 13.0,
                       color: Colors.grey,
                     ),

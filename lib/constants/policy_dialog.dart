@@ -9,9 +9,10 @@ import 'package:h4y_partner/constants/signature_button.dart';
 class PolicyDialog extends StatelessWidget {
   final String mdFileName;
 
-  PolicyDialog({
+  const PolicyDialog({
+    Key key,
     @required this.mdFileName,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +29,7 @@ class PolicyDialog extends StatelessWidget {
                 if (snapshot.hasData) {
                   return Markdown(data: snapshot.data);
                 } else {
-                  return Container(width: 0.0, height: 0.0);
+                  return Container();
                 }
               },
             ),

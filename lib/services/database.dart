@@ -114,11 +114,11 @@ class DatabaseService {
   // Create Chat Room
   Future createChatRoom() async {
     DocumentSnapshot ds =
-        await chatRoomCollection.doc("$customerUID\_$uid").get();
+        await chatRoomCollection.doc("${uid}_$customerUID").get();
     if (!ds.exists) {
-      await chatRoomCollection.doc("$customerUID\_$uid").set({
+      await chatRoomCollection.doc("${uid}_$customerUID").set({
         "Connection Date": DateTime.now(),
-        "Chat Room ID": "$customerUID\_$uid",
+        "Chat Room ID": "${uid}_$customerUID",
         "Customer UID": customerUID,
         "Professional UID": uid,
       });
@@ -131,7 +131,7 @@ class DatabaseService {
     String message,
   ) async {
     await chatRoomCollection
-        .doc("$customerUID\_$uid")
+        .doc("${uid}_$customerUID")
         .collection("Messages")
         .doc()
         .set({
@@ -230,7 +230,7 @@ class DatabaseService {
       (document) {
         List<BookedServices> bookedItems = [];
         List<dynamic> bookedItemsMap = document["Booked Items"];
-        bookedItemsMap.forEach((element) {
+        for (var element in bookedItemsMap) {
           bookedItems.add(
             BookedServices(
               serviceTitle: element["Title"],
@@ -239,7 +239,7 @@ class DatabaseService {
               quantity: element["Quantity"],
             ),
           );
-        });
+        }
         Booking help4YouBookings = Booking(
           bookingId: document.id,
           customerUID: document["Customer UID"],
@@ -291,7 +291,7 @@ class DatabaseService {
   // Get Messages Documents
   Stream<List<Messages>> get messagesData {
     return chatRoomCollection
-        .doc("$customerUID\_$uid")
+        .doc("${uid}_$customerUID")
         .collection("Messages")
         .orderBy("Time Stamp", descending: true)
         .snapshots()
@@ -301,7 +301,7 @@ class DatabaseService {
   // Get Last Message Document
   Stream<List<Messages>> get lastMessageData {
     return chatRoomCollection
-        .doc("$customerUID\_$uid")
+        .doc("${uid}_$customerUID")
         .collection("Messages")
         .orderBy("Time Stamp", descending: true)
         .limit(1)

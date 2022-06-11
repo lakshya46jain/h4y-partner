@@ -2,8 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 // Dependency Imports
-import 'package:share/share.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:share_plus/share_plus.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 // File Imports
 import 'package:h4y_partner/services/auth.dart';
 import 'package:h4y_partner/models/user_model.dart';
@@ -16,8 +16,9 @@ class ProfileScreenBody extends StatefulWidget {
   final Help4YouUser user;
 
   const ProfileScreenBody({
+    Key key,
     @required this.user,
-  });
+  }) : super(key: key);
 
   @override
   State<ProfileScreenBody> createState() => _ProfileScreenBodyState();
@@ -25,13 +26,8 @@ class ProfileScreenBody extends StatefulWidget {
 
 class _ProfileScreenBodyState extends State<ProfileScreenBody> {
   Future<void> launchInApp(String url) async {
-    if (await canLaunch(url)) {
-      await launch(
-        url,
-        forceSafariVC: true,
-        forceWebView: false,
-        headers: <String, String>{'header_key': 'header_value'},
-      );
+    if (await canLaunchUrlString(url)) {
+      await launchUrlString(url);
     } else {
       throw 'Could not launch $url';
     }
@@ -42,11 +38,9 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> {
     return Column(
       children: [
         if (widget.user != null) ...[
-          SizedBox(
-            height: 70.0,
-          ),
-          ProfileStream(),
-          Padding(
+          const SizedBox(height: 70.0),
+          const ProfileStream(),
+          const Padding(
             padding: EdgeInsets.only(
                 right: 20.0, bottom: 5.0, top: 15.0, left: 20.0),
             child: Divider(
@@ -62,12 +56,12 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => HandbookScreen(),
+                  builder: (context) => const HandbookScreen(),
                 ),
               );
             },
           ),
-          Padding(
+          const Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0),
             child: Divider(
               thickness: 1.0,
@@ -82,7 +76,7 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => PersonalDataScreen(),
+                  builder: (context) => const PersonalDataScreen(),
                 ),
               );
             },
@@ -95,7 +89,7 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> {
               return AuthService().signOut();
             },
           ),
-          Padding(
+          const Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0),
             child: Divider(
               thickness: 1.0,

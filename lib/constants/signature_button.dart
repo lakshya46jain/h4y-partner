@@ -11,13 +11,14 @@ class SignatureButton extends StatelessWidget {
   final bool withIcon;
   final String type;
 
-  SignatureButton({
+  const SignatureButton({
+    Key key,
     this.onTap,
     this.text,
     this.icon,
     this.withIcon,
     this.type,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +26,7 @@ class SignatureButton extends StatelessWidget {
         ? GestureDetector(
             onTap: onTap,
             child: Container(
-              padding: EdgeInsets.symmetric(
+              padding: const EdgeInsets.symmetric(
                 horizontal: 20.0,
                 vertical: 10.0,
               ),
@@ -39,22 +40,22 @@ class SignatureButton extends StatelessWidget {
                     height: 46,
                     width: 46,
                     decoration: BoxDecoration(
-                      color: Color(0xFFF2F3F7),
+                      color: const Color(0xFFF2F3F7),
                       borderRadius: BorderRadius.circular(15.0),
                     ),
                     child: Center(
                       child: Icon(
                         icon,
                         size: 30.0,
-                        color: Color(0xFF1C3857),
+                        color: const Color(0xFF1C3857),
                       ),
                     ),
                   ),
-                  SizedBox(width: 20.0),
+                  const SizedBox(width: 20.0),
                   Expanded(
                     child: Text(
                       text,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 20.0,
                         fontWeight: FontWeight.w600,
                         fontFamily: "BalooPaaji",
@@ -62,7 +63,7 @@ class SignatureButton extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Icon(
+                  const Icon(
                     CupertinoIcons.right_chevron,
                     color: Color(0xFFFEA700),
                     size: 25.0,
@@ -73,7 +74,7 @@ class SignatureButton extends StatelessWidget {
           )
         : (type == "Back Button")
             ? IconButton(
-                icon: Icon(
+                icon: const Icon(
                   CupertinoIcons.left_chevron,
                   size: 25.0,
                   color: Color(0xFFFEA700),
@@ -83,19 +84,19 @@ class SignatureButton extends StatelessWidget {
                 },
               )
             : MaterialButton(
-                padding: EdgeInsets.all(0),
+                padding: const EdgeInsets.all(0),
                 onPressed: onTap,
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5.0),
                     color: (type == "Yellow")
-                        ? Color(0xFFFEA700)
-                        : Color(0xFF1C3857),
+                        ? const Color(0xFFFEA700)
+                        : const Color(0xFF1C3857),
                   ),
                   width: double.infinity,
                   height: 60.0,
                   child: Padding(
-                    padding: EdgeInsets.symmetric(
+                    padding: const EdgeInsets.symmetric(
                       vertical: 10.0,
                       horizontal: 20.0,
                     ),
@@ -116,9 +117,7 @@ class SignatureButton extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              SizedBox(
-                                width: 5.0,
-                              ),
+                              const SizedBox(width: 5.0),
                               Align(
                                 alignment: Alignment.center,
                                 child: Icon(

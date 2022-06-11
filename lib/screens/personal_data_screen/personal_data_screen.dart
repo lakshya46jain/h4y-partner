@@ -19,11 +19,13 @@ import 'package:h4y_partner/screens/delete_account_screens/delete_phone_auth_scr
 import 'package:h4y_partner/screens/personal_data_screen/components/icon_button_stream.dart';
 
 class PersonalDataScreen extends StatefulWidget {
+  const PersonalDataScreen({Key key}) : super(key: key);
+
   @override
-  _PersonalDataScreenState createState() => _PersonalDataScreenState();
+  PersonalDataScreenState createState() => PersonalDataScreenState();
 }
 
-class _PersonalDataScreenState extends State<PersonalDataScreen> {
+class PersonalDataScreenState extends State<PersonalDataScreen> {
   // Text Field Variables
   String fullName;
   String occupation;
@@ -45,20 +47,20 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
 
     // Crop Selected Image
     Future _cropImage(XFile selectedFile) async {
-      File cropped = await ImageCropper.cropImage(
-        sourcePath: selectedFile.path,
-        aspectRatio: CropAspectRatio(
-          ratioX: 1.0,
-          ratioY: 1.0,
-        ),
-        cropStyle: CropStyle.circle,
-      );
+      File cropped = await ImageCropper()
+          .cropImage(
+            sourcePath: selectedFile.path,
+            aspectRatio: const CropAspectRatio(
+              ratioX: 1.0,
+              ratioY: 1.0,
+            ),
+            cropStyle: CropStyle.circle,
+          )
+          .then((value) => null);
       if (cropped != null) {
-        setState(
-          () {
-            imageFile = cropped;
-          },
-        );
+        setState(() {
+          imageFile = cropped;
+        });
       }
     }
 
@@ -74,8 +76,8 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
       appBar: AppBar(
         elevation: 0.0,
         backgroundColor: Colors.transparent,
-        leading: SignatureButton(type: "Back Button"),
-        title: Text(
+        leading: const SignatureButton(type: "Back Button"),
+        title: const Text(
           "Personal Data",
           style: TextStyle(
             fontSize: 25.0,
@@ -98,14 +100,14 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
         ],
       ),
       body: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         child: Form(
           key: formKey,
           child: Column(
             children: [
-              SizedBox(height: 25.0),
+              const SizedBox(height: 25.0),
               Padding(
-                padding: EdgeInsets.only(
+                padding: const EdgeInsets.only(
                   left: 10.0,
                   right: 10.0,
                   bottom: 10.0,
@@ -149,14 +151,15 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
                                         Widget dialogButton(String title,
                                             Color color, Function onTap) {
                                           return Padding(
-                                            padding: EdgeInsets.symmetric(
+                                            padding: const EdgeInsets.symmetric(
                                               horizontal: 15.0,
                                               vertical: 7.5,
                                             ),
                                             child: GestureDetector(
                                               onTap: onTap,
                                               child: Container(
-                                                padding: EdgeInsets.all(15.0),
+                                                padding:
+                                                    const EdgeInsets.all(15.0),
                                                 width: double.infinity,
                                                 decoration: BoxDecoration(
                                                   color: color,
@@ -167,7 +170,7 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
                                                 child: Center(
                                                   child: Text(
                                                     title,
-                                                    style: TextStyle(
+                                                    style: const TextStyle(
                                                       fontSize: 18.0,
                                                       color: Colors.white,
                                                       fontWeight:
@@ -188,19 +191,19 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
                                             children: [
                                               dialogButton(
                                                 "Camera",
-                                                Color(0xFFFEA700),
+                                                const Color(0xFFFEA700),
                                                 () => getImage(
                                                   ImageSource.camera,
                                                 ),
                                               ),
                                               dialogButton(
                                                 "Photo Library",
-                                                Color(0xFF1C3857),
+                                                const Color(0xFF1C3857),
                                                 () => getImage(
                                                   ImageSource.gallery,
                                                 ),
                                               ),
-                                              SizedBox(height: 7.5),
+                                              const SizedBox(height: 7.5),
                                             ],
                                           ),
                                         ).show();
@@ -209,18 +212,18 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
                                         decoration: BoxDecoration(
                                             borderRadius:
                                                 BorderRadius.circular(10.0),
-                                            color: Color(0xFFF2F3F7),
+                                            color: const Color(0xFFF2F3F7),
                                             border: Border.all(
                                               color: Colors.white,
                                             ),
-                                            boxShadow: [
+                                            boxShadow: const [
                                               BoxShadow(
                                                 offset: Offset(0, 15),
                                                 blurRadius: 20.0,
                                                 color: Color(0xFFDADADA),
                                               ),
                                             ]),
-                                        child: Icon(
+                                        child: const Icon(
                                           CupertinoIcons.camera,
                                           color: Color(0xFF1C3857),
                                         ),
@@ -231,9 +234,9 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
                               ],
                             ),
                           ),
-                          SizedBox(height: 35.0),
+                          const SizedBox(height: 35.0),
                           Padding(
-                            padding: EdgeInsets.symmetric(
+                            padding: const EdgeInsets.symmetric(
                               horizontal: 15.0,
                               vertical: 10.0,
                             ),
@@ -258,9 +261,9 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
                               },
                             ),
                           ),
-                          SizedBox(height: 13.0),
+                          const SizedBox(height: 13.0),
                           Padding(
-                            padding: EdgeInsets.symmetric(
+                            padding: const EdgeInsets.symmetric(
                               horizontal: 15.0,
                               vertical: 10.0,
                             ),
@@ -278,11 +281,12 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
                                         snapshot.data.docs[i];
                                     occupationItems.add(
                                       DropdownMenuItem(
+                                        value: snap['Occupation'],
                                         child: Text(
                                           snap['Occupation'],
-                                          style: TextStyle(color: Colors.black),
+                                          style: const TextStyle(
+                                              color: Colors.black),
                                         ),
-                                        value: snap['Occupation'],
                                       ),
                                     );
                                   }
@@ -342,9 +346,10 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
                               },
                             ),
                           ),
-                          SizedBox(height: 13.0),
+                          const SizedBox(height: 13.0),
                           Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 15.0),
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 15.0),
                             child: CustomFields(
                               type: "Phone",
                               phoneIsoCode: userData.phoneIsoCode,
@@ -357,17 +362,17 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
                               },
                               onCountryChanged: (phone) {
                                 setState(() {
-                                  countryCode = phone.countryCode;
-                                  phoneIsoCode = phone.countryISOCode;
+                                  countryCode = phone.dialCode;
+                                  phoneIsoCode = phone.code;
                                 });
                               },
                             ),
                           ),
-                          SizedBox(height: 13.0),
+                          const SizedBox(height: 13.0),
                         ],
                       );
                     } else {
-                      return Container(width: 0.0, height: 0.0);
+                      return Container();
                     }
                   },
                 ),
@@ -380,7 +385,7 @@ class _PersonalDataScreenState extends State<PersonalDataScreen> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => DeleteAccPhoneAuthScreen(),
+                      builder: (context) => const DeleteAccPhoneAuthScreen(),
                     ),
                   );
                 },

@@ -8,11 +8,13 @@ import 'package:h4y_partner/screens/dashboard_screen/components/body.dart';
 import 'package:h4y_partner/screens/dashboard_screen/components/header.dart';
 
 class DashboardScreen extends StatefulWidget {
+  const DashboardScreen({Key key}) : super(key: key);
+
   @override
-  _DashboardScreenState createState() => _DashboardScreenState();
+  DashboardScreenState createState() => DashboardScreenState();
 }
 
-class _DashboardScreenState extends State<DashboardScreen> {
+class DashboardScreenState extends State<DashboardScreen> {
   int index = 0;
   String bookingStatus;
   FixedExtentScrollController scrollController;
@@ -49,16 +51,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            SizedBox(
-              height: 50.0,
-            ),
+            const SizedBox(height: 50.0),
             Header(
               onPressed: () {
                 scrollController.dispose();
                 scrollController = FixedExtentScrollController(
                   initialItem: index,
                 );
-                final pickerOptions = Container(
+                final pickerOptions = SizedBox(
                   height: 225.0,
                   child: CupertinoPicker(
                     scrollController: scrollController,
@@ -101,7 +101,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           (item) => Center(
                             child: Text(
                               item,
-                              style: TextStyle(fontSize: 22.0),
+                              style: const TextStyle(fontSize: 22.0),
                             ),
                           ),
                         )

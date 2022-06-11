@@ -11,9 +11,10 @@ import 'package:h4y_partner/screens/dashboard_screen/components/booking_tile.dar
 class DashboardScreenBody extends StatelessWidget {
   final String bookingStatus;
 
-  DashboardScreenBody({
+  const DashboardScreenBody({
+    Key key,
     @required this.bookingStatus,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +29,8 @@ class DashboardScreenBody extends StatelessWidget {
         if (snapshot.hasData) {
           return ListView.builder(
             shrinkWrap: true,
-            physics: BouncingScrollPhysics(),
-            padding: EdgeInsets.only(
+            physics: const BouncingScrollPhysics(),
+            padding: const EdgeInsets.only(
               top: 0.0,
               bottom: 100.0,
               right: 0.0,

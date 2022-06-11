@@ -1,12 +1,10 @@
 // Flutter Imports
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/foundation.dart';
 // Dependency Imports
 import 'package:provider/provider.dart';
 import 'package:rate_my_app/rate_my_app.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 // File Imports
 import 'package:h4y_partner/services/auth.dart';
 import 'package:h4y_partner/screens/wrapper.dart';
@@ -15,22 +13,17 @@ import 'package:h4y_partner/models/user_model.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  if (kDebugMode || kProfileMode || kIsWeb) {
-    await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(false);
-  } else {
-    await FirebaseCrashlytics.instance.sendUnsentReports();
-    FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
-    await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
-  }
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
+  const MyApp({Key key}) : super(key: key);
+
   @override
-  _MyAppState createState() => _MyAppState();
+  MyAppState createState() => MyAppState();
 }
 
-class _MyAppState extends State<MyApp> {
+class MyAppState extends State<MyApp> {
   RateMyApp rateMyApp = RateMyApp(
     minDays: 7,
     minLaunches: 10,
@@ -58,25 +51,27 @@ class _MyAppState extends State<MyApp> {
             actionsBuilder: (context, stars) {
               return [
                 TextButton(
-                  child: Text('Ok'),
+                  child: const Text('Ok'),
                   onPressed: () async {
                     HapticFeedback.lightImpact();
                     await rateMyApp
-                        .callEvent(RateMyAppEventType.rateButtonPressed);
-                    Navigator.pop<RateMyAppDialogButton>(
-                      context,
-                      RateMyAppDialogButton.rate,
-                    );
+                        .callEvent(RateMyAppEventType.rateButtonPressed)
+                        .then(
+                          (value) => Navigator.pop<RateMyAppDialogButton>(
+                            context,
+                            RateMyAppDialogButton.rate,
+                          ),
+                        );
                   },
                 ),
               ];
             },
-            dialogStyle: DialogStyle(
+            dialogStyle: const DialogStyle(
               titleAlign: TextAlign.center,
               messageAlign: TextAlign.center,
               messagePadding: EdgeInsets.only(bottom: 20),
             ),
-            starRatingOptions: StarRatingOptions(),
+            starRatingOptions: const StarRatingOptions(),
             onDismissed: () => rateMyApp.callEvent(
               RateMyAppEventType.laterButtonPressed,
             ),
@@ -94,7 +89,7 @@ class _MyAppState extends State<MyApp> {
       child: MaterialApp(
         navigatorKey: navigatorKey,
         debugShowCheckedModeBanner: false,
-        home: Wrapper(),
+        home: const Wrapper(),
       ),
     );
   }

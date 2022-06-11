@@ -15,11 +15,12 @@ class MessageTile extends StatelessWidget {
   final String chatRoomId;
   final String customerUID;
 
-  MessageTile({
+  const MessageTile({
+    Key key,
     @required this.user,
     @required this.chatRoomId,
     @required this.customerUID,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +53,7 @@ class MessageTile extends StatelessWidget {
               );
             },
             child: Padding(
-              padding: EdgeInsets.symmetric(
+              padding: const EdgeInsets.symmetric(
                 horizontal: 15.0,
                 vertical: 10.0,
               ),
@@ -63,7 +64,7 @@ class MessageTile extends StatelessWidget {
                     children: [
                       CircleAvatar(
                         radius: 30,
-                        backgroundColor: Color(0xFFF5F6F9),
+                        backgroundColor: const Color(0xFFF5F6F9),
                         backgroundImage: CachedNetworkImageProvider(
                           profilePicture,
                         ),
@@ -76,7 +77,7 @@ class MessageTile extends StatelessWidget {
                                 height: 18,
                                 width: 18,
                                 decoration: BoxDecoration(
-                                  color: Color(0xFF00BF6D),
+                                  color: const Color(0xFF00BF6D),
                                   shape: BoxShape.circle,
                                   border: Border.all(
                                     width: 3,
@@ -85,10 +86,7 @@ class MessageTile extends StatelessWidget {
                                 ),
                               ),
                             )
-                          : Container(
-                              height: 0.0,
-                              width: 0.0,
-                            ),
+                          : Container(),
                     ],
                   ),
                   StreamBuilder(
@@ -100,7 +98,7 @@ class MessageTile extends StatelessWidget {
                       List<Messages> messages = snapshot.data;
                       return Expanded(
                         child: Padding(
-                          padding: EdgeInsets.only(left: 15.0),
+                          padding: const EdgeInsets.only(left: 15.0),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -113,7 +111,7 @@ class MessageTile extends StatelessWidget {
                                       fullName,
                                       maxLines: 1,
                                       overflow: TextOverflow.ellipsis,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontSize: 16.0,
                                         color: Color(0xFF1C3857),
                                         fontWeight: FontWeight.bold,
@@ -123,21 +121,22 @@ class MessageTile extends StatelessWidget {
                                   Opacity(
                                     opacity: 0.5,
                                     child: Text(
-                                      (snapshot.hasData && messages.length != 0)
-                                          ? "${DateFormat('dd/MM/yy').format(messages[0].timeStamp.toDate().toLocal())}"
+                                      (snapshot.hasData && messages.isNotEmpty)
+                                          ? DateFormat('dd/MM/yy').format(
+                                              messages[0]
+                                                  .timeStamp
+                                                  .toDate()
+                                                  .toLocal())
                                           : "",
-                                      style: TextStyle(
-                                        fontSize: 15.0,
-                                      ),
+                                      style: const TextStyle(fontSize: 15.0),
                                     ),
                                   ),
                                 ],
                               ),
-                              SizedBox(height: 5.0),
+                              const SizedBox(height: 5.0),
                               Opacity(
                                 opacity: 0.5,
-                                child: (snapshot.hasData &&
-                                        messages.length != 0)
+                                child: (snapshot.hasData && messages.isNotEmpty)
                                     ? Text(
                                         (messages[0].type == "Media" &&
                                                 messages[0].sender == user.uid)
@@ -152,23 +151,21 @@ class MessageTile extends StatelessWidget {
                                                     : "${messages[0].message}\n",
                                         maxLines: 2,
                                         overflow: TextOverflow.ellipsis,
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           fontSize: 15.0,
                                         ),
                                       )
-                                    : Text(
+                                    : const Text(
                                         "\n\n",
                                         maxLines: 2,
                                         overflow: TextOverflow.ellipsis,
-                                        style: TextStyle(
-                                          fontSize: 15,
-                                        ),
+                                        style: TextStyle(fontSize: 15),
                                       ),
                               ),
-                              SizedBox(height: 5.0),
+                              const SizedBox(height: 5.0),
                               Divider(
                                 thickness: 1.5,
-                                color: Color(0xFF95989A).withOpacity(0.2),
+                                color: const Color(0xFF95989A).withOpacity(0.2),
                               ),
                             ],
                           ),

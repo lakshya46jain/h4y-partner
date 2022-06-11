@@ -20,19 +20,20 @@ class RegistrationContinueButton extends StatelessWidget {
   final String fullName;
   final String occupation;
 
-  RegistrationContinueButton({
+  const RegistrationContinueButton({
+    Key key,
     @required this.imageFile,
     @required this.user,
     @required this.userData,
     @required this.formKey,
     @required this.fullName,
     @required this.occupation,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(
+      padding: const EdgeInsets.symmetric(
         horizontal: 20.0,
         vertical: 15.0,
       ),
@@ -46,7 +47,7 @@ class RegistrationContinueButton extends StatelessWidget {
             if (imageFile != null) {
               Reference firebaseStorageRef = FirebaseStorage.instance
                   .ref()
-                  .child(("H4Y Profile Pictures/" + user.uid));
+                  .child(("H4Y Profile Pictures/${user.uid}"));
               UploadTask uploadTask = firebaseStorageRef.putFile(imageFile);
               await uploadTask;
               String downloadAddress =
@@ -76,7 +77,7 @@ class RegistrationContinueButton extends StatelessWidget {
                 (value) => Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => Wrapper(),
+                    builder: (context) => const Wrapper(),
                   ),
                 ),
               );

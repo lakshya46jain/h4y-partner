@@ -9,18 +9,19 @@ class CustomTabBar extends StatefulWidget {
   final Widget widget1;
   final Widget widget2;
 
-  CustomTabBar({
+  const CustomTabBar({
+    Key key,
     this.text1,
     this.text2,
     this.widget1,
     this.widget2,
-  });
+  }) : super(key: key);
 
   @override
-  _CustomTabBarState createState() => _CustomTabBarState();
+  CustomTabBarState createState() => CustomTabBarState();
 }
 
-class _CustomTabBarState extends State<CustomTabBar> {
+class CustomTabBarState extends State<CustomTabBar> {
   int _selectedPage = 0;
   PageController _pageController;
 
@@ -29,7 +30,7 @@ class _CustomTabBarState extends State<CustomTabBar> {
       _selectedPage = pageNum;
       _pageController.animateToPage(
         pageNum,
-        duration: Duration(milliseconds: 1000),
+        duration: const Duration(milliseconds: 1000),
         curve: Curves.fastLinearToSlowEaseIn,
       );
     });
@@ -49,53 +50,51 @@ class _CustomTabBarState extends State<CustomTabBar> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Container(
-            padding: EdgeInsets.symmetric(
-              vertical: 12.0,
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                CustomTabBarButton(
-                  text: widget.text1,
-                  pageNumber: 0,
-                  selectedPage: _selectedPage,
-                  onPressed: () {
-                    _changePage(0);
-                  },
-                ),
-                CustomTabBarButton(
-                  text: widget.text2,
-                  pageNumber: 1,
-                  selectedPage: _selectedPage,
-                  onPressed: () {
-                    _changePage(1);
-                  },
-                ),
-              ],
-            ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Container(
+          padding: const EdgeInsets.symmetric(
+            vertical: 12.0,
           ),
-          Expanded(
-            child: PageView(
-              physics: NeverScrollableScrollPhysics(),
-              onPageChanged: (int page) {
-                setState(() {
-                  _selectedPage = page;
-                });
-              },
-              controller: _pageController,
-              children: [
-                widget.widget1,
-                widget.widget2,
-              ],
-            ),
-          )
-        ],
-      ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CustomTabBarButton(
+                text: widget.text1,
+                pageNumber: 0,
+                selectedPage: _selectedPage,
+                onPressed: () {
+                  _changePage(0);
+                },
+              ),
+              CustomTabBarButton(
+                text: widget.text2,
+                pageNumber: 1,
+                selectedPage: _selectedPage,
+                onPressed: () {
+                  _changePage(1);
+                },
+              ),
+            ],
+          ),
+        ),
+        Expanded(
+          child: PageView(
+            physics: const NeverScrollableScrollPhysics(),
+            onPageChanged: (int page) {
+              setState(() {
+                _selectedPage = page;
+              });
+            },
+            controller: _pageController,
+            children: [
+              widget.widget1,
+              widget.widget2,
+            ],
+          ),
+        )
+      ],
     );
   }
 }
@@ -106,12 +105,13 @@ class CustomTabBarButton extends StatelessWidget {
   final int pageNumber;
   final Function onPressed;
 
-  CustomTabBarButton({
+  const CustomTabBarButton({
+    Key key,
     this.text,
     this.selectedPage,
     this.pageNumber,
     this.onPressed,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -119,11 +119,11 @@ class CustomTabBarButton extends StatelessWidget {
       onTap: onPressed,
       child: AnimatedContainer(
         width: 125.0,
-        duration: Duration(milliseconds: 1000),
+        duration: const Duration(milliseconds: 1000),
         curve: Curves.fastLinearToSlowEaseIn,
         decoration: BoxDecoration(
           color: selectedPage == pageNumber
-              ? Color(0xFFFEA700)
+              ? const Color(0xFFFEA700)
               : Colors.transparent,
           borderRadius: BorderRadius.circular(5.0),
         ),
@@ -142,8 +142,9 @@ class CustomTabBarButton extends StatelessWidget {
             fontSize: 23.0,
             fontFamily: "BalooPaaji",
             fontWeight: FontWeight.w600,
-            color:
-                selectedPage == pageNumber ? Colors.white : Color(0xFF1C3857),
+            color: selectedPage == pageNumber
+                ? Colors.white
+                : const Color(0xFF1C3857),
           ),
         ),
       ),

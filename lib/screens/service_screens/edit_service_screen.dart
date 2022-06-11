@@ -13,15 +13,16 @@ import 'package:h4y_partner/constants/custom_text_field.dart';
 class EditServiceScreen extends StatefulWidget {
   final String documentId;
 
-  EditServiceScreen({
+  const EditServiceScreen({
+    Key key,
     @required this.documentId,
-  });
+  }) : super(key: key);
 
   @override
-  _EditServiceScreenState createState() => _EditServiceScreenState();
+  EditServiceScreenState createState() => EditServiceScreenState();
 }
 
-class _EditServiceScreenState extends State<EditServiceScreen> {
+class EditServiceScreenState extends State<EditServiceScreen> {
   // Text Field Variable
   String serviceTitle;
   String serviceDescription;
@@ -46,8 +47,8 @@ class _EditServiceScreenState extends State<EditServiceScreen> {
         appBar: AppBar(
           elevation: 0.0,
           backgroundColor: Colors.transparent,
-          leading: SignatureButton(type: "Back Button"),
-          title: Text(
+          leading: const SignatureButton(type: "Back Button"),
+          title: const Text(
             "Edit Service",
             style: TextStyle(
               fontSize: 25.0,
@@ -63,14 +64,14 @@ class _EditServiceScreenState extends State<EditServiceScreen> {
             Help4YouServices services = snapshot.data;
             if (snapshot.hasData) {
               return Padding(
-                padding: EdgeInsets.all(20.0),
+                padding: const EdgeInsets.all(20.0),
                 child: SingleChildScrollView(
-                  physics: BouncingScrollPhysics(),
+                  physics: const BouncingScrollPhysics(),
                   child: Form(
                     key: formKey,
                     child: Column(
                       children: [
-                        SizedBox(height: 10.0),
+                        const SizedBox(height: 10.0),
                         CustomFields(
                           type: "Normal",
                           initialValue: services.serviceTitle,
@@ -89,7 +90,7 @@ class _EditServiceScreenState extends State<EditServiceScreen> {
                           },
                           hintText: "Type Service Title...",
                         ),
-                        SizedBox(height: 25.0),
+                        const SizedBox(height: 25.0),
                         CustomFields(
                           type: "Normal",
                           initialValue: services.serviceDescription,
@@ -109,7 +110,7 @@ class _EditServiceScreenState extends State<EditServiceScreen> {
                           hintText: "Type Description Of Service...",
                           maxLines: null,
                         ),
-                        SizedBox(height: 25.0),
+                        const SizedBox(height: 25.0),
                         CustomFields(
                           type: "Normal",
                           initialValue: "${services.servicePrice}",
@@ -125,27 +126,27 @@ class _EditServiceScreenState extends State<EditServiceScreen> {
                               return null;
                             }
                           },
-                          keyboardType:
-                              TextInputType.numberWithOptions(decimal: true),
+                          keyboardType: const TextInputType.numberWithOptions(
+                              decimal: true),
                           hintText: "Type Service Price...",
                         ),
-                        SizedBox(height: 25.0),
+                        const SizedBox(height: 25.0),
                         MergeSemantics(
                           child: Container(
-                            padding: EdgeInsets.all(2.5),
+                            padding: const EdgeInsets.all(2.5),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(30.0),
                               border: Border.all(
-                                color: Color(0xFF1C3857),
+                                color: const Color(0xFF1C3857),
                               ),
                             ),
                             child: ListTile(
-                              leading: Icon(
+                              leading: const Icon(
                                 CupertinoIcons.eye,
                                 size: 30.0,
                                 color: Color(0xFF1C3857),
                               ),
-                              title: Text(
+                              title: const Text(
                                 'Service Visbility',
                                 style: TextStyle(
                                   fontSize: 20.0,
@@ -161,12 +162,12 @@ class _EditServiceScreenState extends State<EditServiceScreen> {
                                     visibility = visbilityStatus;
                                   });
                                 },
-                                activeColor: Color(0xFF1C3857),
+                                activeColor: const Color(0xFF1C3857),
                               ),
                             ),
                           ),
                         ),
-                        SizedBox(height: 25.0),
+                        const SizedBox(height: 25.0),
                         SignatureButton(
                           text: "Update Service",
                           onTap: () async {
@@ -175,14 +176,17 @@ class _EditServiceScreenState extends State<EditServiceScreen> {
                               await DatabaseService(
                                 documentId: widget.documentId,
                                 uid: user.uid,
-                              ).updateProfessionalServices(
-                                serviceTitle ?? services.serviceTitle,
-                                serviceDescription ??
-                                    services.serviceDescription,
-                                servicePrice ?? services.servicePrice,
-                                visibility ?? services.visibility,
-                              );
-                              Navigator.pop(context);
+                              )
+                                  .updateProfessionalServices(
+                                    serviceTitle ?? services.serviceTitle,
+                                    serviceDescription ??
+                                        services.serviceDescription,
+                                    servicePrice ?? services.servicePrice,
+                                    visibility ?? services.visibility,
+                                  )
+                                  .then(
+                                    (value) => Navigator.pop(context),
+                                  );
                             }
                           },
                           withIcon: false,
@@ -193,7 +197,7 @@ class _EditServiceScreenState extends State<EditServiceScreen> {
                 ),
               );
             } else {
-              return Container(width: 0.0, height: 0.0);
+              return Container();
             }
           },
         ),

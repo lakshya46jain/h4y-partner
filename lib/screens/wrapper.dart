@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 // Dependency Imports
 import 'package:provider/provider.dart';
 import 'package:animations/animations.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 // File Imports
 import 'package:h4y_partner/models/user_model.dart';
@@ -12,6 +11,8 @@ import 'package:h4y_partner/screens/server_error_screen.dart';
 import 'package:h4y_partner/screens/onboarding_screen/onboarding_screen.dart';
 
 class Wrapper extends StatefulWidget {
+  const Wrapper({Key key}) : super(key: key);
+
   @override
   State<Wrapper> createState() => _WrapperState();
 }
@@ -35,13 +36,6 @@ class _WrapperState extends State<Wrapper> {
     // Get User
     final user = Provider.of<Help4YouUser>(context);
 
-    // Firebase Crashlytics User Identifier
-    if (user != null) {
-      FirebaseCrashlytics.instance.setUserIdentifier(user.uid);
-    } else {
-      FirebaseCrashlytics.instance.setUserIdentifier("Anonyomous User");
-    }
-
     return PageTransitionSwitcher(
       transitionBuilder: (child, primaryAnimation, secondaryAnimation) {
         return FadeThroughTransition(
@@ -54,9 +48,9 @@ class _WrapperState extends State<Wrapper> {
           ? ServerErrorScreen(
               onPressed: () => checkInternetConnectivity(),
             )
-          : (user != null)
-              ? BottomNavBar()
-              : OnboardingScreen(),
+          : (user == null)
+              ? const OnboardingScreen()
+              : const BottomNavBar(),
     );
   }
 }

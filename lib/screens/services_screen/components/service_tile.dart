@@ -14,72 +14,23 @@ class ServiceTile extends StatelessWidget {
   final double servicePrice;
   final bool visibility;
 
-  ServiceTile({
+  const ServiceTile({
+    Key key,
     this.documentId,
     this.serviceTitle,
     this.serviceDescription,
     this.servicePrice,
     this.visibility,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Slidable(
-      child: Padding(
-        padding: EdgeInsets.symmetric(
-          vertical: 15.0,
-          horizontal: 20.0,
-        ),
-        child: Container(
-          width: double.infinity,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                serviceTitle,
-                style: TextStyle(
-                  fontSize: 21.0,
-                  color: Color(0xFF1C3857),
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Text(
-                "$servicePrice",
-                style: TextStyle(
-                  color: Color(0xFF1C3857),
-                  fontSize: 14.0,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Text(
-                serviceDescription,
-                style: TextStyle(
-                  fontSize: 14.0,
-                  color: Color(0xFF95989A),
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Divider(
-                thickness: 3.0,
-                color: Color(0xFF95989A).withOpacity(0.2),
-              ),
-            ],
-          ),
-        ),
-      ),
       endActionPane: ActionPane(
         motion: const DrawerMotion(),
         children: [
           SlidableAction(
-            backgroundColor: Color(0xFF1C3857),
+            backgroundColor: const Color(0xFF1C3857),
             icon: CupertinoIcons.pencil,
             label: "Update",
             onPressed: (context) {
@@ -105,6 +56,50 @@ class ServiceTile extends StatelessWidget {
             },
           ),
         ],
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          vertical: 15.0,
+          horizontal: 20.0,
+        ),
+        child: SizedBox(
+          width: double.infinity,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                serviceTitle,
+                style: const TextStyle(
+                  fontSize: 21.0,
+                  color: Color(0xFF1C3857),
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 10),
+              Text(
+                "$servicePrice",
+                style: const TextStyle(
+                  color: Color(0xFF1C3857),
+                  fontSize: 14.0,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              const SizedBox(height: 10),
+              Text(
+                serviceDescription,
+                style: const TextStyle(
+                  fontSize: 14.0,
+                  color: Color(0xFF95989A),
+                ),
+              ),
+              const SizedBox(height: 10),
+              Divider(
+                thickness: 3.0,
+                color: const Color(0xFF95989A).withOpacity(0.2),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

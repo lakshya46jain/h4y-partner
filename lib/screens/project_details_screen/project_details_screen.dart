@@ -22,7 +22,8 @@ class ProjectDetailsScreen extends StatelessWidget {
   final List<BookedServices> bookedItemsList;
   final String paymentMethod;
 
-  ProjectDetailsScreen({
+  const ProjectDetailsScreen({
+    Key key,
     @required this.otp,
     @required this.address,
     @required this.bookingId,
@@ -33,7 +34,7 @@ class ProjectDetailsScreen extends StatelessWidget {
     @required this.preferredTimings,
     @required this.bookedItemsList,
     @required this.paymentMethod,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -41,8 +42,8 @@ class ProjectDetailsScreen extends StatelessWidget {
       appBar: AppBar(
         elevation: 0.0,
         backgroundColor: Colors.transparent,
-        leading: SignatureButton(type: "Back Button"),
-        title: Text(
+        leading: const SignatureButton(type: "Back Button"),
+        title: const Text(
           "Project Details",
           style: TextStyle(
             fontSize: 25.0,
@@ -53,19 +54,19 @@ class ProjectDetailsScreen extends StatelessWidget {
         ),
       ),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
+        padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               BookedItemsList(bookedItemsList: bookedItemsList),
-              SizedBox(height: 5.0),
-              Divider(thickness: 1.0, color: Color(0xFFFEA700)),
-              SizedBox(height: 10.0),
+              const SizedBox(height: 5.0),
+              const Divider(thickness: 1.0, color: Color(0xFFFEA700)),
+              const SizedBox(height: 10.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
+                  const Text(
                     "Total:",
                     style: TextStyle(
                       fontSize: 19.0,
@@ -74,26 +75,27 @@ class ProjectDetailsScreen extends StatelessWidget {
                   ),
                   Text(
                     "$totalPrice",
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 19.0,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                 ],
               ),
-              SizedBox(height: 15.0),
-              Text("Order: #$bookingId", style: TextStyle(fontSize: 15.0)),
-              SizedBox(height: 10.0),
+              const SizedBox(height: 15.0),
+              Text("Order: #$bookingId",
+                  style: const TextStyle(fontSize: 15.0)),
+              const SizedBox(height: 10.0),
               Text(
                 "Location: $address (${DateFormat("d MMMM yyyy").format(preferredTimings.toDate().toLocal())} ${DateFormat.jm().format(preferredTimings.toDate().toLocal())})",
-                style: TextStyle(fontSize: 15.0),
+                style: const TextStyle(fontSize: 15.0),
               ),
-              SizedBox(height: 10.0),
+              const SizedBox(height: 10.0),
               Text(
                 "Payment Method: $paymentMethod",
-                style: TextStyle(fontSize: 15.0),
+                style: const TextStyle(fontSize: 15.0),
               ),
-              SizedBox(height: 50.0),
+              const SizedBox(height: 50.0),
             ],
           ),
         ),

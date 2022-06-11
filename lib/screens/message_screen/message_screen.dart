@@ -26,18 +26,19 @@ class MessageScreen extends StatefulWidget {
   final String fullName;
   final String phoneNumber;
 
-  MessageScreen({
+  const MessageScreen({
+    Key key,
     @required this.uid,
     @required this.profilePicture,
     @required this.fullName,
     @required this.phoneNumber,
-  });
+  }) : super(key: key);
 
   @override
-  _MessageScreenState createState() => _MessageScreenState();
+  MessageScreenState createState() => MessageScreenState();
 }
 
-class _MessageScreenState extends State<MessageScreen> {
+class MessageScreenState extends State<MessageScreen> {
   // Message Variables
   bool isMessageEmpty = true;
 
@@ -68,7 +69,7 @@ class _MessageScreenState extends State<MessageScreen> {
     String fileName = fileNameGenerator.toString();
     Reference firebaseStorageRef = FirebaseStorage.instance
         .ref()
-        .child(("H4Y Chat Rooms Media/" + fileName));
+        .child(("H4Y Chat Rooms Media/$fileName"));
     UploadTask uploadTask = firebaseStorageRef.putFile(imageFile);
     await uploadTask;
     String downloadAddress = await firebaseStorageRef.getDownloadURL();
@@ -107,27 +108,25 @@ class _MessageScreenState extends State<MessageScreen> {
         appBar: AppBar(
           elevation: 0.0,
           backgroundColor: Colors.white.withOpacity(0.5),
-          leading: SignatureButton(type: "Back Button"),
+          leading: const SignatureButton(type: "Back Button"),
           title: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               CircleAvatar(
-                backgroundColor: Color(0xFFF5F6F9),
+                backgroundColor: const Color(0xFFF5F6F9),
+                radius: 21.0,
                 child: ClipOval(
                   child: CachedNetworkImage(
                     imageUrl: widget.profilePicture,
                     fit: BoxFit.fill,
                   ),
                 ),
-                radius: 21.0,
               ),
-              SizedBox(
-                width: 10.0,
-              ),
+              const SizedBox(width: 10.0),
               Text(
                 widget.fullName,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 22.0,
                   fontFamily: "BalooPaaji",
                   color: Color(0xFF1C3857),
@@ -138,7 +137,7 @@ class _MessageScreenState extends State<MessageScreen> {
           ),
           actions: [
             IconButton(
-              icon: Icon(
+              icon: const Icon(
                 CupertinoIcons.phone,
                 size: 27.0,
                 color: Color(0xFFFEA700),
@@ -162,15 +161,15 @@ class _MessageScreenState extends State<MessageScreen> {
                   Expanded(
                     child: ListView.builder(
                       reverse: true,
-                      padding: EdgeInsets.symmetric(
+                      padding: const EdgeInsets.symmetric(
                         vertical: 0.0,
                         horizontal: 20.0,
                       ),
-                      physics: BouncingScrollPhysics(),
+                      physics: const BouncingScrollPhysics(),
                       itemCount: messages.length,
                       itemBuilder: (context, index) {
                         return MessageBubble(
-                          chatRoomId: "${widget.uid}\_${user.uid}",
+                          chatRoomId: "${widget.uid}_${user.uid}",
                           messageId: messages[index].messageId,
                           type: messages[index].type,
                           profilePicture: widget.profilePicture,
@@ -183,7 +182,7 @@ class _MessageScreenState extends State<MessageScreen> {
                             setState(() {
                               message = messages[index].message;
                               messageId = messages[index].messageId;
-                              chatRoomId = "${widget.uid}\_${user.uid}";
+                              chatRoomId = "${widget.uid}_${user.uid}";
                               messageType = messages[index].type;
                               isSentByMe = (messages[index].sender == user.uid)
                                   ? true
@@ -270,86 +269,10 @@ class _MessageScreenState extends State<MessageScreen> {
                 ],
               );
             } else {
-              return Container(height: 0.0, width: 0.0);
+              return Container();
             }
           },
         ),
-        /*
-        body: Column(
-          children: [
-            Expanded(
-              child: StreamBuilder(
-                stream: DatabaseService(uid: user.uid, customerUID: widget.uid)
-                    .messagesData,
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    List<Messages> messages = snapshot.data;
-                    return ListView.builder(
-                      reverse: true,
-                      padding: EdgeInsets.symmetric(
-                        vertical: 0.0,
-                        horizontal: 20.0,
-                      ),
-                      physics: BouncingScrollPhysics(),
-                      itemCount: messages.length,
-                      itemBuilder: (context, index) {
-                        return MessageBubble(
-                          chatRoomId: "${widget.uid}\_${user.uid}",
-                          messageId: messages[index].messageId,
-                          type: messages[index].type,
-                          profilePicture: widget.profilePicture,
-                          message: messages[index].message,
-                          isSentByMe: (messages[index].sender == user.uid)
-                              ? true
-                              : false,
-                        );
-                      },
-                    );
-                  } else {
-                    return Container(width: 0.0, height: 0.0);
-                  }
-                },
-              ),
-            ),
-            MessageNavBar(
-              isMessageEmpty: isMessageEmpty,
-              onChanged: (value) {
-                if (messageController.text.trim().isEmpty) {
-                  setState(() {
-                    isMessageEmpty = true;
-                  });
-                } else if (messageController.text.trim().isNotEmpty) {
-                  setState(() {
-                    isMessageEmpty = false;
-                  });
-                }
-              },
-              onPressed: () async {
-                // Create Chat Room In Database
-                await DatabaseService(uid: user.uid, customerUID: widget.uid)
-                    .createChatRoom();
-                // Add Message
-                await DatabaseService(uid: user.uid, customerUID: widget.uid)
-                    .addMessageToChatRoom(
-                  "Text",
-                  messageController.text.trim(),
-                )
-                    .then(
-                  (value) {
-                    messageController.clear();
-                    setState(() {
-                      isMessageEmpty = true;
-                    });
-                  },
-                );
-              },
-              cameraOnPressed: () => getMedia(ImageSource.camera, user),
-              galleryOnPressed: () => getMedia(ImageSource.gallery, user),
-              messageController: messageController,
-            ),
-          ],
-        ),
-        */
       ),
     );
   }

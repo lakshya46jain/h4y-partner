@@ -8,30 +8,30 @@ class Pages extends StatelessWidget {
   final String graphicImage;
   final String title;
   final String description;
-  Pages({
+
+  const Pages({
+    Key key,
     @required this.graphicImage,
     @required this.title,
     @required this.description,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 30.0),
+      padding: const EdgeInsets.symmetric(horizontal: 30.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(
-            height: MediaQuery.of(context).size.height * 0.39,
+            height: MediaQuery.of(context).size.height * 0.35,
             child: SvgPicture.asset(graphicImage),
           ),
-          SizedBox(
-            height: 20.0,
-          ),
+          const SizedBox(height: 20.0),
           Text(
             title,
-            style: TextStyle(
+            style: const TextStyle(
               height: 1.5,
               fontSize: 26.0,
               color: Colors.white,
@@ -40,12 +40,10 @@ class Pages extends StatelessWidget {
             ),
             textAlign: TextAlign.start,
           ),
-          SizedBox(
-            height: 10.0,
-          ),
+          const SizedBox(height: 10.0),
           Text(
             description,
-            style: TextStyle(
+            style: const TextStyle(
               height: 1.3,
               fontSize: 20.0,
               color: Colors.white,

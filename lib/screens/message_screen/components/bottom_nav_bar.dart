@@ -19,12 +19,13 @@ class MessageNavBar extends StatelessWidget {
   final Function copySaveOnTap;
   final bool isSentByMe;
 
-  final TextStyle textStyle = TextStyle(
+  final TextStyle textStyle = const TextStyle(
     fontSize: 18.0,
     fontWeight: FontWeight.bold,
   );
 
-  MessageNavBar({
+  const MessageNavBar({
+    Key key,
     @required this.isMessageEmpty,
     @required this.onChanged,
     @required this.cameraOnPressed,
@@ -36,7 +37,7 @@ class MessageNavBar extends StatelessWidget {
     @required this.unsendOnTap,
     @required this.copySaveOnTap,
     @required this.isSentByMe,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +46,7 @@ class MessageNavBar extends StatelessWidget {
         color: Colors.white,
         border: Border(
           top: (isLongPress == true)
-              ? BorderSide(width: 0.5, color: Colors.grey)
+              ? const BorderSide(width: 0.5, color: Colors.grey)
               : BorderSide.none,
         ),
       ),
@@ -58,7 +59,7 @@ class MessageNavBar extends StatelessWidget {
       child: SafeArea(
         child: (isLongPress == true)
             ? Padding(
-                padding: EdgeInsets.symmetric(vertical: 10.0),
+                padding: const EdgeInsets.symmetric(vertical: 10.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -82,10 +83,10 @@ class MessageNavBar extends StatelessWidget {
               )
             : Container(
                 decoration: BoxDecoration(
-                  color: Color(0xFF95989A).withOpacity(0.1),
+                  color: const Color(0xFF95989A).withOpacity(0.1),
                   borderRadius: BorderRadius.circular(30.0),
                   border: Border.all(
-                    color: Color(0xFF95989A).withOpacity(0),
+                    color: const Color(0xFF95989A).withOpacity(0),
                   ),
                 ),
                 child: Row(
@@ -96,25 +97,25 @@ class MessageNavBar extends StatelessWidget {
                         minLines: 1,
                         decoration: InputDecoration(
                           hintText: "Message...",
-                          hintStyle: TextStyle(
+                          hintStyle: const TextStyle(
                             fontSize: 18.0,
                             color: Color(0xFF95989A),
                             fontWeight: FontWeight.w300,
                           ),
-                          contentPadding: EdgeInsets.symmetric(
+                          contentPadding: const EdgeInsets.symmetric(
                             horizontal: 20.0,
                             vertical: 10.0,
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(30.0),
                             borderSide: BorderSide(
-                              color: Color(0xFF95989A).withOpacity(0.01),
+                              color: const Color(0xFF95989A).withOpacity(0.01),
                             ),
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(30.0),
                             borderSide: BorderSide(
-                              color: Color(0xFF95989A).withOpacity(0.01),
+                              color: const Color(0xFF95989A).withOpacity(0.01),
                             ),
                           ),
                         ),
@@ -124,20 +125,20 @@ class MessageNavBar extends StatelessWidget {
                     ),
                     (isMessageEmpty == true)
                         ? Padding(
-                            padding: EdgeInsets.only(right: 5.0),
+                            padding: const EdgeInsets.only(right: 5.0),
                             child: GestureDetector(
                               onTap: () {
                                 Widget dialogButton(
                                     String title, Color color, Function onTap) {
                                   return Padding(
-                                    padding: EdgeInsets.symmetric(
+                                    padding: const EdgeInsets.symmetric(
                                       horizontal: 15.0,
                                       vertical: 7.5,
                                     ),
                                     child: GestureDetector(
                                       onTap: onTap,
                                       child: Container(
-                                        padding: EdgeInsets.all(15.0),
+                                        padding: const EdgeInsets.all(15.0),
                                         width: double.infinity,
                                         decoration: BoxDecoration(
                                           color: color,
@@ -147,7 +148,7 @@ class MessageNavBar extends StatelessWidget {
                                         child: Center(
                                           child: Text(
                                             title,
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                               fontSize: 18.0,
                                               color: Colors.white,
                                               fontWeight: FontWeight.bold,
@@ -167,27 +168,27 @@ class MessageNavBar extends StatelessWidget {
                                     children: [
                                       dialogButton(
                                         "Camera",
-                                        Color(0xFFFEA700),
+                                        const Color(0xFFFEA700),
                                         cameraOnPressed,
                                       ),
                                       dialogButton(
                                         "Photo & Video Library",
-                                        Color(0xFF1C3857),
+                                        const Color(0xFF1C3857),
                                         galleryOnPressed,
                                       ),
-                                      SizedBox(height: 7.5),
+                                      const SizedBox(height: 7.5),
                                     ],
                                   ),
                                 ).show();
                               },
                               child: Container(
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                   color: Color(0xFF1C3857),
                                   shape: BoxShape.circle,
                                 ),
                                 height: 40.0,
                                 width: 40.0,
-                                child: Center(
+                                child: const Center(
                                   child: Icon(
                                     CupertinoIcons.add,
                                     color: Colors.white,
@@ -197,10 +198,10 @@ class MessageNavBar extends StatelessWidget {
                             ),
                           )
                         : Padding(
-                            padding: EdgeInsets.only(right: 20.0),
+                            padding: const EdgeInsets.only(right: 20.0),
                             child: GestureDetector(
                               onTap: onPressed,
-                              child: Text(
+                              child: const Text(
                                 "Send",
                                 style: TextStyle(
                                   fontSize: 18.0,

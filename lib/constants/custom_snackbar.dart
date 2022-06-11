@@ -19,9 +19,7 @@ showCustomSnackBar(
           size: 27,
           color: color,
         ),
-        SizedBox(
-          width: 10.0,
-        ),
+        const SizedBox(width: 10.0),
         Expanded(
           child: Text.rich(
             TextSpan(
@@ -34,7 +32,7 @@ showCustomSnackBar(
               children: [
                 TextSpan(
                   text: message,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 17.0,
                     color: Colors.black,
                     fontWeight: FontWeight.normal,
@@ -50,7 +48,7 @@ showCustomSnackBar(
       borderRadius: BorderRadius.circular(13.0),
     ),
     backgroundColor: Colors.white,
-    duration: Duration(seconds: 3),
+    duration: const Duration(seconds: 3),
     behavior: SnackBarBehavior.floating,
   );
   ScaffoldMessenger.of(context)

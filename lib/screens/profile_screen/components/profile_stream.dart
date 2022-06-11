@@ -8,6 +8,8 @@ import 'package:h4y_partner/models/user_model.dart';
 import 'package:h4y_partner/services/database.dart';
 
 class ProfileStream extends StatelessWidget {
+  const ProfileStream({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     // Get User
@@ -19,7 +21,8 @@ class ProfileStream extends StatelessWidget {
         UserDataProfessional userData = snapshot.data;
         if (snapshot.hasData) {
           return Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0),
+            padding:
+                const EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0),
             child: Row(
               children: [
                 Container(
@@ -28,7 +31,7 @@ class ProfileStream extends StatelessWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10.0),
                     color: Colors.transparent,
-                    boxShadow: [
+                    boxShadow: const [
                       BoxShadow(
                         offset: Offset(0, 15),
                         blurRadius: 20.0,
@@ -45,16 +48,14 @@ class ProfileStream extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(
-                  width: 15.0,
-                ),
+                const SizedBox(width: 15.0),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       userData.fullName,
-                      style: TextStyle(
+                      style: const TextStyle(
                         height: 1.5,
                         fontSize: 25.0,
                         color: Color(0xFF1C3857),
@@ -64,7 +65,7 @@ class ProfileStream extends StatelessWidget {
                     ),
                     Text(
                       userData.phoneNumber,
-                      style: TextStyle(
+                      style: const TextStyle(
                         height: 1.0,
                         fontSize: 18.0,
                         color: Color(0xFF95989A),
@@ -79,7 +80,8 @@ class ProfileStream extends StatelessWidget {
           );
         } else {
           return Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0),
+            padding:
+                const EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0),
             child: Row(
               children: [
                 Container(
@@ -88,7 +90,7 @@ class ProfileStream extends StatelessWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10.0),
                     color: Colors.transparent,
-                    boxShadow: [
+                    boxShadow: const [
                       BoxShadow(
                         offset: Offset(0, 15),
                         blurRadius: 20.0,
@@ -106,13 +108,11 @@ class ProfileStream extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(
-                  width: 15.0,
-                ),
+                const SizedBox(width: 15.0),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
+                  children: const [
                     Text(
                       "Professional Name",
                       style: TextStyle(

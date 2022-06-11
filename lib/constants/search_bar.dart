@@ -9,23 +9,24 @@ class SearchBar extends StatelessWidget {
   final TextEditingController controller;
   final String hintText;
 
-  SearchBar({
+  const SearchBar({
+    Key key,
     @required this.width,
     this.controller,
     @required this.hintText,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20.0),
+      padding: const EdgeInsets.symmetric(horizontal: 20.0),
       child: Container(
         width: width,
         height: 50.0,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(15.0),
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
               blurRadius: 20.0,
               color: Color(0xFFDADADA),
@@ -39,12 +40,12 @@ class SearchBar extends StatelessWidget {
               enabledBorder: InputBorder.none,
               focusedBorder: InputBorder.none,
               hintText: hintText,
-              prefixIcon: Icon(
+              prefixIcon: const Icon(
                 CupertinoIcons.search,
                 color: Color(0xFFFEA700),
                 size: 25.0,
               ),
-              contentPadding: EdgeInsets.symmetric(
+              contentPadding: const EdgeInsets.symmetric(
                 horizontal: 20.0,
                 vertical: 14.0,
               ),

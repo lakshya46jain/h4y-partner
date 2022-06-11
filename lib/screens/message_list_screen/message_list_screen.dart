@@ -7,11 +7,13 @@ import 'package:h4y_partner/models/user_model.dart';
 import 'package:h4y_partner/screens/message_list_screen/components/body.dart';
 
 class MessageListScreen extends StatefulWidget {
+  const MessageListScreen({Key key}) : super(key: key);
+
   @override
-  _MessageListScreenState createState() => _MessageListScreenState();
+  MessageListScreenState createState() => MessageListScreenState();
 }
 
-class _MessageListScreenState extends State<MessageListScreen> {
+class MessageListScreenState extends State<MessageListScreen> {
   @override
   Widget build(BuildContext context) {
     // Get User
@@ -25,7 +27,7 @@ class _MessageListScreenState extends State<MessageListScreen> {
         appBar: AppBar(
           elevation: 0.0,
           backgroundColor: Colors.transparent,
-          title: Text(
+          title: const Text(
             "Messages",
             style: TextStyle(
               fontSize: 25.0,
