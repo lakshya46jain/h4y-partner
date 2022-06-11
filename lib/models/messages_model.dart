@@ -6,6 +6,7 @@ class Messages {
   final String sender;
   final String type;
   final String message;
+  final bool isRead;
   final Timestamp timeStamp;
 
   Messages({
@@ -13,6 +14,7 @@ class Messages {
     this.sender,
     this.type,
     this.message,
+    this.isRead,
     this.timeStamp,
   });
 }

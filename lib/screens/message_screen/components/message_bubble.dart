@@ -2,9 +2,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 // Dependency Imports
+import 'package:visibility_detector/visibility_detector.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:full_screen_image_null_safe/full_screen_image_null_safe.dart';
 // File Imports
+import 'package:h4y_partner/services/database.dart';
 
 class MessageBubble extends StatelessWidget {
   final String chatRoomId;
@@ -39,47 +41,27 @@ class MessageBubble extends StatelessWidget {
           children: [
             Row(
               children: [
-                GestureDetector(
-                  onLongPress: onLongPress,
-                  child: ConstrainedBox(
-                    constraints: BoxConstraints(
-                      maxWidth: MediaQuery.of(context).size.width * 0.7,
-                    ),
-                    child: Container(
-                      padding: EdgeInsets.all((type == "Media") ? 5.0 : 15.0),
-                      decoration: BoxDecoration(
-                        color: (isSentByMe == true)
-                            ? const Color(0xFF5DD3B0).withOpacity(0.12)
-                            : const Color(0xFFA6A6A6).withOpacity(0.2),
-                        borderRadius: BorderRadius.circular(22.0),
+                (isRead == false && isSentByMe == false)
+                    ? VisibilityDetector(
+                        key: Key(messageId),
+                        onVisibilityChanged:
+                            (VisibilityInfo visibilityInfo) async {
+                          await DatabaseService()
+                              .updateMessageReadStatus(chatRoomId, messageId);
+                        },
+                        child: MessageBubbleCore(
+                          onLongPress: onLongPress,
+                          type: type,
+                          isSentByMe: isSentByMe,
+                          message: message,
+                        ),
+                      )
+                    : MessageBubbleCore(
+                        onLongPress: onLongPress,
+                        type: type,
+                        isSentByMe: isSentByMe,
+                        message: message,
                       ),
-                      child: (type == "Media")
-                          ? FullScreenWidget(
-                              disposeLevel: DisposeLevel.High,
-                              child: Center(
-                                child: Hero(
-                                  tag: "Message Media",
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(15.0),
-                                    child: CachedNetworkImage(
-                                      fit: BoxFit.fill,
-                                      imageUrl: message,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            )
-                          : Text(
-                              message,
-                              style: const TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.black,
-                              ),
-                            ),
-                    ),
-                  ),
-                ),
                 (isSentByMe == true)
                     ? Padding(
                         padding: const EdgeInsets.only(left: 10.0),
@@ -98,6 +80,66 @@ class MessageBubble extends StatelessWidget {
           ],
         ),
       ],
+    );
+  }
+}
+
+class MessageBubbleCore extends StatelessWidget {
+  const MessageBubbleCore({
+    Key key,
+    @required this.onLongPress,
+    @required this.type,
+    @required this.isSentByMe,
+    @required this.message,
+  }) : super(key: key);
+
+  final Function onLongPress;
+  final String type;
+  final bool isSentByMe;
+  final String message;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onLongPress: onLongPress,
+      child: ConstrainedBox(
+        constraints: BoxConstraints(
+          maxWidth: MediaQuery.of(context).size.width * 0.7,
+        ),
+        child: Container(
+          padding: EdgeInsets.all((type == "Media") ? 5.0 : 15.0),
+          decoration: BoxDecoration(
+            color: (isSentByMe == true)
+                ? const Color(0xFF5DD3B0).withOpacity(0.12)
+                : const Color(0xFFA6A6A6).withOpacity(0.2),
+            borderRadius: BorderRadius.circular(22.0),
+          ),
+          child: (type == "Media")
+              ? FullScreenWidget(
+                  disposeLevel: DisposeLevel.High,
+                  child: Center(
+                    child: Hero(
+                      tag: "Message Media",
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(15.0),
+                        child: CachedNetworkImage(
+                          fit: BoxFit.fill,
+                          imageUrl: message,
+                        ),
+                      ),
+                    ),
+                  ),
+                )
+              : Text(
+                  message,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.black,
+                  ),
+                ),
+        ),
+      ),
     );
   }
 }

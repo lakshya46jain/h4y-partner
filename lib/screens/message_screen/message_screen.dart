@@ -127,7 +127,8 @@ class MessageScreenState extends State<MessageScreen> {
               Text(
                 widget.fullName,
                 style: const TextStyle(
-                  fontSize: 22.0,
+                  height: 1.0,
+                  fontSize: 20.0,
                   fontFamily: "BalooPaaji",
                   color: Color(0xFF1C3857),
                   fontWeight: FontWeight.bold,
@@ -177,7 +178,7 @@ class MessageScreenState extends State<MessageScreen> {
                           isSentByMe: (messages[index].sender == user.uid)
                               ? true
                               : false,
-                          isRead: false,
+                          isRead: messages[index].isRead,
                           onLongPress: () {
                             setState(() {
                               message = messages[index].message;
@@ -244,23 +245,21 @@ class MessageScreenState extends State<MessageScreen> {
                     onPressed: () async {
                       // Create Chat Room In Database
                       await DatabaseService(
-                              uid: user.uid, customerUID: widget.uid)
-                          .createChatRoom();
+                        uid: user.uid,
+                        customerUID: widget.uid,
+                      ).createChatRoom();
                       // Add Message
                       await DatabaseService(
-                              uid: user.uid, customerUID: widget.uid)
-                          .addMessageToChatRoom(
+                        uid: user.uid,
+                        customerUID: widget.uid,
+                      ).addMessageToChatRoom(
                         "Text",
                         messageController.text.trim(),
-                      )
-                          .then(
-                        (value) {
-                          messageController.clear();
-                          setState(() {
-                            isMessageEmpty = true;
-                          });
-                        },
                       );
+                      messageController.clear();
+                      setState(() {
+                        isMessageEmpty = true;
+                      });
                     },
                     cameraOnPressed: () => getMedia(ImageSource.camera, user),
                     galleryOnPressed: () => getMedia(ImageSource.gallery, user),

@@ -6,14 +6,9 @@ import 'package:provider/provider.dart';
 import 'package:h4y_partner/models/user_model.dart';
 import 'package:h4y_partner/screens/message_list_screen/components/body.dart';
 
-class MessageListScreen extends StatefulWidget {
+class MessageListScreen extends StatelessWidget {
   const MessageListScreen({Key key}) : super(key: key);
 
-  @override
-  MessageListScreenState createState() => MessageListScreenState();
-}
-
-class MessageListScreenState extends State<MessageListScreen> {
   @override
   Widget build(BuildContext context) {
     // Get User

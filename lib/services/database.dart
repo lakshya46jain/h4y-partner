@@ -114,11 +114,11 @@ class DatabaseService {
   // Create Chat Room
   Future createChatRoom() async {
     DocumentSnapshot ds =
-        await chatRoomCollection.doc("${uid}_$customerUID").get();
+        await chatRoomCollection.doc("${customerUID}_$uid").get();
     if (!ds.exists) {
-      await chatRoomCollection.doc("${uid}_$customerUID").set({
+      await chatRoomCollection.doc("${customerUID}_$uid").set({
         "Connection Date": DateTime.now(),
-        "Chat Room ID": "${uid}_$customerUID",
+        "Chat Room ID": "${customerUID}_$uid",
         "Customer UID": customerUID,
         "Professional UID": uid,
       });
@@ -131,14 +131,29 @@ class DatabaseService {
     String message,
   ) async {
     await chatRoomCollection
-        .doc("${uid}_$customerUID")
+        .doc("${customerUID}_$uid")
         .collection("Messages")
         .doc()
         .set({
       "Sender": uid,
       "Type": type,
       "Message": message,
+      "Is Read": false,
       "Time Stamp": DateTime.now(),
+    });
+  }
+
+  // Update Message Read Status
+  Future updateMessageReadStatus(
+    String chatRoomId,
+    String messageId,
+  ) async {
+    await chatRoomCollection
+        .doc(chatRoomId)
+        .collection("Messages")
+        .doc(messageId)
+        .update({
+      "Is Read": true,
     });
   }
 
@@ -218,6 +233,7 @@ class DatabaseService {
           type: document["Type"],
           message: document["Message"],
           timeStamp: document["Time Stamp"],
+          isRead: document["Is Read"],
         );
         return help4YouMessages;
       },
@@ -291,7 +307,7 @@ class DatabaseService {
   // Get Messages Documents
   Stream<List<Messages>> get messagesData {
     return chatRoomCollection
-        .doc("${uid}_$customerUID")
+        .doc("${customerUID}_$uid")
         .collection("Messages")
         .orderBy("Time Stamp", descending: true)
         .snapshots()
@@ -301,7 +317,7 @@ class DatabaseService {
   // Get Last Message Document
   Stream<List<Messages>> get lastMessageData {
     return chatRoomCollection
-        .doc("${uid}_$customerUID")
+        .doc("${customerUID}_$uid")
         .collection("Messages")
         .orderBy("Time Stamp", descending: true)
         .limit(1)

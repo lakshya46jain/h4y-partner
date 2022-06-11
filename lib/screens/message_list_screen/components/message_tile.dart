@@ -128,39 +128,111 @@ class MessageTile extends StatelessWidget {
                                                   .toDate()
                                                   .toLocal())
                                           : "",
-                                      style: const TextStyle(fontSize: 15.0),
+                                      style: const TextStyle(
+                                        fontSize: 15.0,
+                                      ),
                                     ),
                                   ),
                                 ],
                               ),
                               const SizedBox(height: 5.0),
-                              Opacity(
-                                opacity: 0.5,
-                                child: (snapshot.hasData && messages.isNotEmpty)
-                                    ? Text(
-                                        (messages[0].type == "Media" &&
-                                                messages[0].sender == user.uid)
-                                            ? "You: Sent a photo\n"
-                                            : (messages[0].type == "Media" &&
-                                                    messages[0].sender !=
-                                                        user.uid)
-                                                ? "Sent a photo\n"
-                                                : (messages[0].sender ==
-                                                        user.uid)
-                                                    ? "You: ${messages[0].message}\n"
-                                                    : "${messages[0].message}\n",
-                                        maxLines: 2,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: const TextStyle(
-                                          fontSize: 15.0,
+                              StreamBuilder(
+                                stream: FirebaseFirestore.instance
+                                    .collection("H4Y Chat Rooms Database")
+                                    .doc(chatRoomId)
+                                    .collection("Messages")
+                                    .where("Is Read", isEqualTo: false)
+                                    .where(
+                                      "Sender",
+                                      isEqualTo: customerUID,
+                                    )
+                                    .snapshots(),
+                                builder: (context, snapshot) {
+                                  int unreadLength = (snapshot.hasData)
+                                      ? snapshot.data.docs.length
+                                      : 0;
+                                  return Row(
+                                    children: [
+                                      Expanded(
+                                        child: Opacity(
+                                          opacity: 0.5,
+                                          child: (snapshot.hasData &&
+                                                  messages.isNotEmpty)
+                                              ? Text(
+                                                  (messages[0].type ==
+                                                              "Media" &&
+                                                          messages[0].sender ==
+                                                              user.uid)
+                                                      ? "You: Sent a photo\n"
+                                                      : (messages[0].type ==
+                                                                  "Media" &&
+                                                              messages[0]
+                                                                      .sender !=
+                                                                  user.uid)
+                                                          ? "Sent a photo\n"
+                                                          : (messages[0]
+                                                                      .sender ==
+                                                                  user.uid)
+                                                              ? "You: ${messages[0].message}\n"
+                                                              : "${messages[0].message}\n",
+                                                  maxLines: 2,
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                  style: const TextStyle(
+                                                    fontSize: 15.0,
+                                                  ),
+                                                )
+                                              : const Text(
+                                                  "\n\n",
+                                                  maxLines: 2,
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                  style: TextStyle(
+                                                    fontSize: 15,
+                                                  ),
+                                                ),
                                         ),
-                                      )
-                                    : const Text(
-                                        "\n\n",
-                                        maxLines: 2,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: TextStyle(fontSize: 15),
                                       ),
+                                      SizedBox(
+                                        width: (unreadLength != 0) ? 10.0 : 0.0,
+                                      ),
+                                      (unreadLength != 0)
+                                          ? ConstrainedBox(
+                                              constraints: const BoxConstraints(
+                                                minWidth: 20.0,
+                                                maxWidth: 50.0,
+                                              ),
+                                              child: Container(
+                                                padding:
+                                                    const EdgeInsets.all(3.5),
+                                                decoration: BoxDecoration(
+                                                  color:
+                                                      const Color(0xFF1C3857),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          25.0),
+                                                ),
+                                                child: Center(
+                                                  widthFactor: 2.0,
+                                                  child: Text(
+                                                    (unreadLength > 99)
+                                                        ? "99+"
+                                                        : unreadLength
+                                                            .toString(),
+                                                    style: const TextStyle(
+                                                      fontSize: 14.0,
+                                                      color: Colors.white,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            )
+                                          : Container(),
+                                    ],
+                                  );
+                                },
                               ),
                               const SizedBox(height: 5.0),
                               Divider(
