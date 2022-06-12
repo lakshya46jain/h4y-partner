@@ -139,7 +139,6 @@ class MessageScreenState extends State<MessageScreen> {
               Text(
                 widget.fullName,
                 style: const TextStyle(
-                  height: 1.0,
                   fontSize: 20.0,
                   fontFamily: "BalooPaaji",
                   color: Color(0xFF1C3857),
