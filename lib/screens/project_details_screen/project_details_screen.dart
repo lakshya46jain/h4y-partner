@@ -107,7 +107,11 @@ class ProjectDetailsScreen extends StatelessWidget {
               professionalUID: professionalUID,
             )
           : (bookingStatus == "Accepted")
-              ? FinishJobButton(otp: otp, bookingId: bookingId)
+              ? FinishJobButton(
+                  otp: otp,
+                  bookingId: bookingId,
+                  customerUID: customerUID,
+                )
               : Container(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );

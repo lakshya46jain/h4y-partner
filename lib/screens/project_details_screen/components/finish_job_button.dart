@@ -7,15 +7,18 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 // File Imports
 import 'package:h4y_partner/services/database.dart';
 import 'package:h4y_partner/constants/custom_snackbar.dart';
+import 'package:h4y_partner/services/onesignal_configuration.dart';
 
 class FinishJobButton extends StatelessWidget {
   final String otp;
   final String bookingId;
+  final String customerUID;
 
   const FinishJobButton({
     Key key,
     @required this.otp,
     @required this.bookingId,
+    @required this.customerUID,
   }) : super(key: key);
 
   @override
@@ -77,6 +80,11 @@ class FinishJobButton extends StatelessWidget {
                     Navigator.pop(context);
                     await DatabaseService(bookingId: bookingId)
                         .updateBookingStatus("Job Completed");
+                    sendNotification(
+                      customerUID,
+                      "Congratulations!",
+                      "The project booked by you has been completed by the professional you have booked!",
+                    );
                   } else {
                     Navigator.pop(context);
                     showCustomSnackBar(
