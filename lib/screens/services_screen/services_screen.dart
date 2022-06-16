@@ -5,10 +5,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 // File Imports
 import 'package:h4y_partner/models/user_model.dart';
-import 'package:h4y_partner/constants/custom_tab_bar.dart';
 import 'package:h4y_partner/screens/service_screens/create_service_screen.dart';
 import 'package:h4y_partner/screens/services_screen/components/widget_1_body.dart';
-import 'package:h4y_partner/screens/services_screen/components/widget_2_body.dart';
 
 class ServicesScreen extends StatefulWidget {
   const ServicesScreen({Key key}) : super(key: key);
@@ -55,16 +53,24 @@ class ServicesScreenState extends State<ServicesScreen> {
         FocusScope.of(context).unfocus();
       },
       child: Scaffold(
-        body: Padding(
-          padding: const EdgeInsets.only(top: 50.0),
-          child: CustomTabBar(
-            text1: "Services",
-            text2: "Rate Card",
-            widget1: Widget1Body(
-              user: user,
-              controller: controller,
+        appBar: AppBar(
+          elevation: 0.0,
+          backgroundColor: Colors.transparent,
+          title: const Text(
+            "Services",
+            style: TextStyle(
+              fontSize: 25.0,
+              color: Color(0xFF1C3857),
+              fontFamily: "BalooPaaji",
+              fontWeight: FontWeight.w600,
             ),
-            widget2: const Widget2Body(),
+          ),
+        ),
+        body: Padding(
+          padding: const EdgeInsets.only(top: 0.0),
+          child: Widget1Body(
+            user: user,
+            controller: controller,
           ),
         ),
         floatingActionButton: Padding(
