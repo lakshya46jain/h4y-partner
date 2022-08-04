@@ -2,12 +2,33 @@
 import 'package:flutter/material.dart';
 // Dependency Imports
 import 'package:provider/provider.dart';
+import 'package:permission_handler/permission_handler.dart';
 // File Imports
 import 'package:h4y_partner/models/user_model.dart';
 import 'package:h4y_partner/screens/message_list_screen/components/body.dart';
 
-class MessageListScreen extends StatelessWidget {
+class MessageListScreen extends StatefulWidget {
   const MessageListScreen({Key key}) : super(key: key);
+
+  @override
+  State<MessageListScreen> createState() => _MessageListScreenState();
+}
+
+class _MessageListScreenState extends State<MessageListScreen> {
+  void getPermission() async {
+    var notificationStatus = await Permission.notification.status;
+    if (notificationStatus.isDenied) {
+      Permission.notification.request();
+    } else if (notificationStatus.isPermanentlyDenied) {
+      openAppSettings();
+    }
+  }
+
+  @override
+  void initState() {
+    getPermission();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -10,6 +10,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:image_downloader/image_downloader.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:random_string_generator/random_string_generator.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
@@ -41,6 +42,21 @@ class MessageScreen extends StatefulWidget {
 }
 
 class MessageScreenState extends State<MessageScreen> {
+  void getPermission() async {
+    var notificationStatus = await Permission.notification.status;
+    if (notificationStatus.isDenied) {
+      Permission.notification.request();
+    } else if (notificationStatus.isPermanentlyDenied) {
+      openAppSettings();
+    }
+  }
+
+  @override
+  void initState() {
+    getPermission();
+    super.initState();
+  }
+
   // Message Variables
   bool isMessageEmpty = true;
 

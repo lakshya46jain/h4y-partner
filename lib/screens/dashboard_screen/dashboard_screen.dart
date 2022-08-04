@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/cupertino.dart';
 // Dependency Imports
+import 'package:permission_handler/permission_handler.dart';
 // File Imports
 import 'package:h4y_partner/screens/dashboard_screen/components/body.dart';
 import 'package:h4y_partner/screens/dashboard_screen/components/header.dart';
@@ -29,8 +30,18 @@ class DashboardScreenState extends State<DashboardScreen> {
     "Customer Cancelled",
   ];
 
+  void getPermission() async {
+    var notificationStatus = await Permission.notification.status;
+    if (notificationStatus.isDenied) {
+      Permission.notification.request();
+    } else if (notificationStatus.isPermanentlyDenied) {
+      openAppSettings();
+    }
+  }
+
   @override
   void initState() {
+    getPermission();
     super.initState();
     scrollController = FixedExtentScrollController(initialItem: index);
   }

@@ -124,7 +124,7 @@ class DeleteAccPhoneAuthScreenState extends State<DeleteAccPhoneAuthScreen> {
                     countryCode,
                     phoneIsoCode,
                     nonInternationalNumber,
-                    "+$countryCode$nonInternationalNumber",
+                    "$countryCode$nonInternationalNumber",
                     "Delete Account",
                     context,
                   );

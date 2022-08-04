@@ -8,6 +8,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 // File Imports
 import 'package:h4y_partner/models/user_model.dart';
@@ -169,12 +170,48 @@ class RegistrationScreenState extends State<RegistrationScreen> {
                                           dialogButton(
                                             "Camera",
                                             const Color(0xFFFEA700),
-                                            () => getImage(ImageSource.camera),
+                                            () async {
+                                              var camStatus = await Permission
+                                                  .camera.status;
+                                              var photosStatus =
+                                                  await Permission
+                                                      .photos.status;
+                                              if (camStatus.isDenied) {
+                                                Permission.location.request();
+                                              } else if (photosStatus
+                                                  .isDenied) {
+                                                Permission.photos.request();
+                                              } else if (camStatus
+                                                      .isPermanentlyDenied ||
+                                                  photosStatus
+                                                      .isPermanentlyDenied) {
+                                                openAppSettings();
+                                              }
+                                              getImage(ImageSource.camera);
+                                            },
                                           ),
                                           dialogButton(
                                             "Photo Library",
                                             const Color(0xFF1C3857),
-                                            () => getImage(ImageSource.gallery),
+                                            () async {
+                                              var camStatus = await Permission
+                                                  .camera.status;
+                                              var photosStatus =
+                                                  await Permission
+                                                      .photos.status;
+                                              if (camStatus.isDenied) {
+                                                Permission.location.request();
+                                              } else if (photosStatus
+                                                  .isDenied) {
+                                                Permission.photos.request();
+                                              } else if (camStatus
+                                                      .isPermanentlyDenied ||
+                                                  photosStatus
+                                                      .isPermanentlyDenied) {
+                                                openAppSettings();
+                                              }
+                                              getImage(ImageSource.gallery);
+                                            },
                                           ),
                                           const SizedBox(height: 7.5),
                                         ],

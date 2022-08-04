@@ -140,7 +140,7 @@ class PhoneAuthScreenState extends State<PhoneAuthScreen> {
                     countryCode,
                     phoneIsoCode,
                     nonInternationalNumber,
-                    "+$countryCode$nonInternationalNumber",
+                    "$countryCode$nonInternationalNumber",
                     "Registration",
                     context,
                   );
