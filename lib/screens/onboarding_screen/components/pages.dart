@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 // Dependency Imports
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 // File Imports
 
 class Pages extends StatelessWidget {
@@ -31,11 +32,10 @@ class Pages extends StatelessWidget {
           const SizedBox(height: 20.0),
           Text(
             title,
-            style: const TextStyle(
+            style: GoogleFonts.balooPaaji2(
               height: 1.5,
               fontSize: 26.0,
               color: Colors.white,
-              fontFamily: "BalooPaaji",
               fontWeight: FontWeight.w600,
             ),
             textAlign: TextAlign.start,
@@ -43,11 +43,10 @@ class Pages extends StatelessWidget {
           const SizedBox(height: 10.0),
           Text(
             description,
-            style: const TextStyle(
+            style: GoogleFonts.balooPaaji2(
               height: 1.3,
               fontSize: 20.0,
               color: Colors.white,
-              fontFamily: "BalooPaaji",
             ),
             textAlign: TextAlign.start,
           ),

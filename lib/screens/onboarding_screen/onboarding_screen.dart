@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 // Dependency Imports
+import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
 // File Imports
 import 'package:h4y_partner/constants/custom_text_field.dart';
@@ -129,12 +130,11 @@ class OnboardingScreenState extends State<OnboardingScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
+                Text(
                   "Let's get started! Enter your mobile number.",
-                  style: TextStyle(
+                  style: GoogleFonts.balooPaaji2(
                     fontSize: 18,
                     color: Colors.black,
-                    fontFamily: "BalooPaaji",
                     fontWeight: FontWeight.w600,
                   ),
                 ),

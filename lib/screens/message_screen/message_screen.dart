@@ -7,6 +7,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:clipboard/clipboard.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:image_downloader/image_downloader.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -156,10 +157,9 @@ class MessageScreenState extends State<MessageScreen> {
               const SizedBox(width: 10.0),
               Text(
                 widget.fullName,
-                style: const TextStyle(
+                style: GoogleFonts.balooPaaji2(
                   fontSize: 20.0,
-                  fontFamily: "BalooPaaji",
-                  color: Color(0xFF1C3857),
+                  color: const Color(0xFF1C3857),
                   fontWeight: FontWeight.bold,
                 ),
               ),

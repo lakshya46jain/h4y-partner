@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 // Dependency Imports
+import 'package:google_fonts/google_fonts.dart';
 // File Imports
 
 class SignatureButton extends StatelessWidget {
@@ -55,11 +56,10 @@ class SignatureButton extends StatelessWidget {
                   Expanded(
                     child: Text(
                       text,
-                      style: const TextStyle(
+                      style: GoogleFonts.balooPaaji2(
                         fontSize: 20.0,
                         fontWeight: FontWeight.w600,
-                        fontFamily: "BalooPaaji",
-                        color: Color(0xFF1C3857),
+                        color: const Color(0xFF1C3857),
                       ),
                     ),
                   ),

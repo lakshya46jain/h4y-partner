@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 // Dependency Imports
 import 'package:provider/provider.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 // File Imports
 import 'package:h4y_partner/models/user_model.dart';
@@ -55,21 +56,19 @@ class ProfileStream extends StatelessWidget {
                   children: [
                     Text(
                       userData.fullName,
-                      style: const TextStyle(
+                      style: GoogleFonts.balooPaaji2(
                         height: 1.5,
                         fontSize: 25.0,
-                        color: Color(0xFF1C3857),
-                        fontFamily: "BalooPaaji",
+                        color: const Color(0xFF1C3857),
                         fontWeight: FontWeight.w900,
                       ),
                     ),
                     Text(
                       userData.phoneNumber,
-                      style: const TextStyle(
+                      style: GoogleFonts.balooPaaji2(
                         height: 1.0,
                         fontSize: 18.0,
-                        color: Color(0xFF95989A),
-                        fontFamily: "BalooPaaji",
+                        color: const Color(0xFF95989A),
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -112,24 +111,22 @@ class ProfileStream extends StatelessWidget {
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
+                  children: [
                     Text(
                       "Professional Name",
-                      style: TextStyle(
+                      style: GoogleFonts.balooPaaji2(
                         height: 1.5,
                         fontSize: 25.0,
-                        color: Color(0xFF1C3857),
-                        fontFamily: "BalooPaaji",
+                        color: const Color(0xFF1C3857),
                         fontWeight: FontWeight.w900,
                       ),
                     ),
                     Text(
                       "Professional Phone Number",
-                      style: TextStyle(
+                      style: GoogleFonts.balooPaaji2(
                         height: 1.0,
                         fontSize: 18.0,
-                        color: Color(0xFF95989A),
-                        fontFamily: "BalooPaaji",
+                        color: const Color(0xFF95989A),
                         fontWeight: FontWeight.w600,
                       ),
                     ),

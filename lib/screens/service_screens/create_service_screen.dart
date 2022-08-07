@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 // Dependency Imports
 import 'package:provider/provider.dart';
+import 'package:google_fonts/google_fonts.dart';
 // File Imports
 import 'package:h4y_partner/models/user_model.dart';
 import 'package:h4y_partner/services/database.dart';
@@ -42,12 +43,11 @@ class CreateServiceScreenState extends State<CreateServiceScreen> {
           elevation: 0.0,
           backgroundColor: Colors.transparent,
           leading: const SignatureButton(type: "Back Button"),
-          title: const Text(
+          title: Text(
             "Create Service",
-            style: TextStyle(
+            style: GoogleFonts.balooPaaji2(
               fontSize: 25.0,
-              color: Color(0xFF1C3857),
-              fontFamily: "BalooPaaji",
+              color: const Color(0xFF1C3857),
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -132,13 +132,12 @@ class CreateServiceScreenState extends State<CreateServiceScreen> {
                           size: 30.0,
                           color: Color(0xFF1C3857),
                         ),
-                        title: const Text(
+                        title: Text(
                           'Service Visbility',
-                          style: TextStyle(
+                          style: GoogleFonts.balooPaaji2(
                             fontSize: 20.0,
                             fontWeight: FontWeight.w600,
-                            fontFamily: "BalooPaaji",
-                            color: Color(0xFF1C3857),
+                            color: const Color(0xFF1C3857),
                           ),
                         ),
                         trailing: CupertinoSwitch(

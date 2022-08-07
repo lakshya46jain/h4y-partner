@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 // Dependency Imports
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 // File Imports
 import 'package:h4y_partner/models/user_model.dart';
@@ -72,20 +73,18 @@ class Header extends StatelessWidget {
                           children: [
                             Text(
                               message,
-                              style: const TextStyle(
+                              style: GoogleFonts.balooPaaji2(
                                 fontSize: 18.0,
-                                color: Color(0xFF95989A),
-                                fontFamily: "BalooPaaji",
+                                color: const Color(0xFF95989A),
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
                             Text(
                               userData.fullName,
-                              style: const TextStyle(
+                              style: GoogleFonts.balooPaaji2(
                                 height: 1.0,
                                 fontSize: 23.0,
-                                color: Color(0xFF1C3857),
-                                fontFamily: "BalooPaaji",
+                                color: const Color(0xFF1C3857),
                                 fontWeight: FontWeight.w900,
                               ),
                             ),
@@ -112,20 +111,18 @@ class Header extends StatelessWidget {
                           children: [
                             Text(
                               message,
-                              style: const TextStyle(
+                              style: GoogleFonts.balooPaaji2(
                                 fontSize: 18.0,
-                                color: Color(0xFF95989A),
-                                fontFamily: "BalooPaaji",
+                                color: const Color(0xFF95989A),
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
-                            const Text(
+                            Text(
                               "Professional Name",
-                              style: TextStyle(
+                              style: GoogleFonts.balooPaaji2(
                                 height: 1.0,
                                 fontSize: 23.0,
-                                color: Color(0xFF1C3857),
-                                fontFamily: "BalooPaaji",
+                                color: const Color(0xFF1C3857),
                                 fontWeight: FontWeight.w900,
                               ),
                             ),

@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 // Dependency Imports
 import 'package:pinput/pinput.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 // File Imports
 import 'package:h4y_partner/services/auth.dart';
@@ -70,21 +71,19 @@ class UpdateNumVerificationScreenState
                 Text.rich(
                   TextSpan(
                     text: "Enter the 6-digit OTP sent to",
-                    style: const TextStyle(
+                    style: GoogleFonts.balooPaaji2(
                       height: 1.0,
                       fontSize: 24.0,
                       color: Colors.black,
-                      fontFamily: "BalooPaaji",
                       fontWeight: FontWeight.normal,
                     ),
                     children: [
                       TextSpan(
                         text: "\n${widget.phoneNumber}",
-                        style: const TextStyle(
+                        style: GoogleFonts.balooPaaji2(
                           height: 1.3,
                           fontSize: 24.0,
                           color: Colors.black,
-                          fontFamily: "BalooPaaji",
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -127,24 +126,22 @@ class UpdateNumVerificationScreenState
                       },
                     );
                   },
-                  child: const Text.rich(
+                  child: Text.rich(
                     TextSpan(
                       text: "Didn't recieve the OTP?",
-                      style: TextStyle(
+                      style: GoogleFonts.balooPaaji2(
                         height: 1.0,
                         fontSize: 16.0,
                         color: Colors.black45,
-                        fontFamily: "BalooPaaji",
                         fontWeight: FontWeight.normal,
                       ),
                       children: [
                         TextSpan(
                           text: " Resend",
-                          style: TextStyle(
+                          style: GoogleFonts.balooPaaji2(
                             height: 1.3,
                             fontSize: 16.0,
-                            color: Color(0xFF1C3857),
-                            fontFamily: "BalooPaaji",
+                            color: const Color(0xFF1C3857),
                             fontWeight: FontWeight.normal,
                           ),
                         ),

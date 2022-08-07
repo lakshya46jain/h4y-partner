@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/cupertino.dart';
 // Dependency Imports
+import 'package:google_fonts/google_fonts.dart';
 // File Imports
 import 'package:h4y_partner/services/auth.dart';
 import 'package:h4y_partner/constants/policy_dialog.dart';
@@ -67,13 +68,12 @@ class PhoneAuthScreenState extends State<PhoneAuthScreen> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
+                Text(
                   "Enter your mobile number",
-                  style: TextStyle(
+                  style: GoogleFonts.balooPaaji2(
                     height: 1.3,
                     fontSize: 24.0,
                     color: Colors.black,
-                    fontFamily: "BalooPaaji",
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -96,13 +96,12 @@ class PhoneAuthScreenState extends State<PhoneAuthScreen> {
                   },
                 ),
                 const SizedBox(height: 30.0),
-                const Text(
+                Text(
                   "By continuing, you agree to our",
-                  style: TextStyle(
+                  style: GoogleFonts.balooPaaji2(
                     height: 1.0,
                     fontSize: 16.0,
                     color: Colors.black45,
-                    fontFamily: "BalooPaaji",
                     fontWeight: FontWeight.normal,
                   ),
                 ),
@@ -117,13 +116,12 @@ class PhoneAuthScreenState extends State<PhoneAuthScreen> {
                       },
                     );
                   },
-                  child: const Text(
+                  child: Text(
                     "Terms & Conditions",
-                    style: TextStyle(
+                    style: GoogleFonts.balooPaaji2(
                       height: 1.3,
                       fontSize: 16.0,
-                      color: Color(0xFF1C3857),
-                      fontFamily: "BalooPaaji",
+                      color: const Color(0xFF1C3857),
                       fontWeight: FontWeight.w600,
                     ),
                   ),

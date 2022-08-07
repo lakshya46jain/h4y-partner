@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 // Dependency Imports
+import 'package:google_fonts/google_fonts.dart';
 // File Imports
 import 'package:h4y_partner/constants/policy_dialog.dart';
 import 'package:h4y_partner/constants/signature_button.dart';
@@ -26,12 +27,11 @@ class HandbookScreenState extends State<HandbookScreen> {
           elevation: 0.0,
           backgroundColor: Colors.transparent,
           leading: const SignatureButton(type: "Back Button"),
-          title: const Text(
+          title: Text(
             "Our Handbook",
-            style: TextStyle(
+            style: GoogleFonts.balooPaaji2(
               fontSize: 25.0,
-              color: Color(0xFF1C3857),
-              fontFamily: "BalooPaaji",
+              color: const Color(0xFF1C3857),
               fontWeight: FontWeight.w600,
             ),
           ),

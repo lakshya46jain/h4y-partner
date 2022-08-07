@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 // Dependency Imports
 import 'package:intl/intl.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 // File Imports
 import 'package:h4y_partner/constants/signature_button.dart';
@@ -43,12 +44,11 @@ class ProjectDetailsScreen extends StatelessWidget {
         elevation: 0.0,
         backgroundColor: Colors.transparent,
         leading: const SignatureButton(type: "Back Button"),
-        title: const Text(
+        title: Text(
           "Project Details",
-          style: TextStyle(
+          style: GoogleFonts.balooPaaji2(
             fontSize: 25.0,
-            color: Color(0xFF1C3857),
-            fontFamily: "BalooPaaji",
+            color: const Color(0xFF1C3857),
             fontWeight: FontWeight.w600,
           ),
         ),

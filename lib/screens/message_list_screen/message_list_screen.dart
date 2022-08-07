@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 // Dependency Imports
 import 'package:provider/provider.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:permission_handler/permission_handler.dart';
 // File Imports
 import 'package:h4y_partner/models/user_model.dart';
@@ -43,12 +44,11 @@ class _MessageListScreenState extends State<MessageListScreen> {
         appBar: AppBar(
           elevation: 0.0,
           backgroundColor: Colors.transparent,
-          title: const Text(
+          title: Text(
             "Messages",
-            style: TextStyle(
+            style: GoogleFonts.balooPaaji2(
               fontSize: 25.0,
-              color: Color(0xFF1C3857),
-              fontFamily: "BalooPaaji",
+              color: const Color(0xFF1C3857),
               fontWeight: FontWeight.w600,
             ),
           ),

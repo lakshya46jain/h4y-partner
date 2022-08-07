@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 // Dependency Imports
 import 'package:provider/provider.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -78,12 +79,11 @@ class PersonalDataScreenState extends State<PersonalDataScreen> {
         elevation: 0.0,
         backgroundColor: Colors.transparent,
         leading: const SignatureButton(type: "Back Button"),
-        title: const Text(
+        title: Text(
           "Personal Data",
-          style: TextStyle(
+          style: GoogleFonts.balooPaaji2(
             fontSize: 25.0,
-            color: Color(0xFF1C3857),
-            fontFamily: "BalooPaaji",
+            color: const Color(0xFF1C3857),
             fontWeight: FontWeight.w600,
           ),
         ),

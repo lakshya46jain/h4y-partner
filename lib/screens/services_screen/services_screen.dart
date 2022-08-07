@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 // Dependency Imports
 import 'package:provider/provider.dart';
+import 'package:google_fonts/google_fonts.dart';
 // File Imports
 import 'package:h4y_partner/models/user_model.dart';
 import 'package:h4y_partner/screens/service_screens/create_service_screen.dart';
@@ -56,12 +57,11 @@ class ServicesScreenState extends State<ServicesScreen> {
         appBar: AppBar(
           elevation: 0.0,
           backgroundColor: Colors.transparent,
-          title: const Text(
+          title: Text(
             "Services",
-            style: TextStyle(
+            style: GoogleFonts.balooPaaji2(
               fontSize: 25.0,
-              color: Color(0xFF1C3857),
-              fontFamily: "BalooPaaji",
+              color: const Color(0xFF1C3857),
               fontWeight: FontWeight.w600,
             ),
           ),
