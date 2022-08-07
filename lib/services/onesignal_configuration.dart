@@ -15,6 +15,8 @@ Future sendNotification(
   String uid,
   String heading,
   String content,
+  String notifType,
+  String documentID,
 ) async {
   final userData = await FirebaseFirestore.instance
       .collection("H4Y Users Database")
@@ -29,6 +31,10 @@ Future sendNotification(
     content: content,
     androidSmallIcon: notificatioIcon,
     androidLargeIcon: notificatioIcon,
+    additionalData: {
+      "Notification Type": notifType,
+      "Document ID": documentID,
+    },
   );
   await OneSignal.shared.postNotification(notification);
 }

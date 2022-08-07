@@ -43,6 +43,8 @@ class AcceptRejectButton extends StatelessWidget {
               customerUID,
               "Booking Status Update",
               "There's an update in the booking status by the customer. Have a look at it!",
+              "Booking",
+              bookingId,
             );
           },
           color: Colors.green,
@@ -88,12 +90,16 @@ class AcceptRejectButton extends StatelessWidget {
                     customerUID,
                     fullName,
                     "Dear Customer, I apologize for rejecting the request. Due to my tight schedule, I will be unable to undertake your project.",
+                    "Message",
+                    "${customerUID}_$professionalUID",
                   ),
                 );
             sendNotification(
               customerUID,
               "Booking Status Update",
               "There's an update in the booking status by the customer. Have a look at it!",
+              "Booking",
+              bookingId,
             );
           },
           color: Colors.red,

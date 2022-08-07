@@ -84,6 +84,8 @@ class FinishJobButton extends StatelessWidget {
                       customerUID,
                       "Congratulations!",
                       "The project booked by you has been completed by the professional you have booked!",
+                      "Booking",
+                      bookingId,
                     );
                   } else {
                     Navigator.pop(context);
