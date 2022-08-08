@@ -132,6 +132,9 @@ class PhoneAuthScreenState extends State<PhoneAuthScreen> {
               child: SignatureButton(
                 onTap: () async {
                   HapticFeedback.heavyImpact();
+                  if (countryCode.contains("+")) {
+                    countryCode = countryCode.replaceAll("+", "");
+                  }
                   await AuthService().phoneAuthentication(
                     "",
                     "",

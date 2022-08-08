@@ -12,7 +12,7 @@ import 'package:h4y_partner/services/database.dart';
 import 'package:h4y_partner/constants/custom_snackbar.dart';
 import 'package:h4y_partner/constants/signature_button.dart';
 
-class RegistrationContinueButton extends StatelessWidget {
+class RegistrationContinueButton extends StatefulWidget {
   final File imageFile;
   final Help4YouUser user;
   final UserDataProfessional userData;
@@ -31,6 +31,13 @@ class RegistrationContinueButton extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<RegistrationContinueButton> createState() =>
+      _RegistrationContinueButtonState();
+}
+
+class _RegistrationContinueButtonState
+    extends State<RegistrationContinueButton> {
+  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(
@@ -44,43 +51,44 @@ class RegistrationContinueButton extends StatelessWidget {
         onTap: () async {
           // Upload Picture to Firebase
           Future setProfilePicture() async {
-            if (imageFile != null) {
+            if (widget.imageFile != null) {
               Reference firebaseStorageRef = FirebaseStorage.instance
                   .ref()
-                  .child(("H4Y Profile Pictures/${user.uid}"));
-              UploadTask uploadTask = firebaseStorageRef.putFile(imageFile);
+                  .child(("H4Y Profile Pictures/${widget.user.uid}"));
+              UploadTask uploadTask =
+                  firebaseStorageRef.putFile(widget.imageFile);
               await uploadTask;
               String downloadAddress =
                   await firebaseStorageRef.getDownloadURL();
-              await DatabaseService(uid: user.uid)
+              await DatabaseService(uid: widget.user.uid)
                   .updateProfilePicture(downloadAddress);
             } else {
-              await DatabaseService(uid: user.uid)
-                  .updateProfilePicture(userData.profilePicture);
+              await DatabaseService(uid: widget.user.uid)
+                  .updateProfilePicture(widget.userData.profilePicture);
             }
           }
 
           HapticFeedback.heavyImpact();
           FocusScope.of(context).unfocus();
           try {
-            if (formKey.currentState.validate()) {
-              await DatabaseService(uid: user.uid).updateUserData(
-                fullName ?? userData.fullName,
-                occupation ?? userData.occupation,
-                userData.phoneNumber ?? userData.phoneNumber,
-                userData.countryCode ?? userData.countryCode,
-                userData.phoneIsoCode ?? userData.phoneIsoCode,
-                userData.nonInternationalNumber ??
-                    userData.nonInternationalNumber,
-              );
-              setProfilePicture().then(
-                (value) => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const Wrapper(),
-                  ),
+            if (widget.formKey.currentState.validate()) {
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const Wrapper(),
                 ),
+                (route) => false,
               );
+              await DatabaseService(uid: widget.user.uid).updateUserData(
+                widget.fullName ?? widget.userData.fullName,
+                widget.occupation ?? widget.userData.occupation,
+                widget.userData.phoneNumber ?? widget.userData.phoneNumber,
+                widget.userData.countryCode ?? widget.userData.countryCode,
+                widget.userData.phoneIsoCode ?? widget.userData.phoneIsoCode,
+                widget.userData.nonInternationalNumber ??
+                    widget.userData.nonInternationalNumber,
+              );
+              setProfilePicture();
             }
           } catch (error) {
             showCustomSnackBar(

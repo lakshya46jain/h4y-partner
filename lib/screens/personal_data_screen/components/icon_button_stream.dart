@@ -64,27 +64,29 @@ class IconButtonStream extends StatelessWidget {
               }
             }
 
+            if (countryCode.contains("+")) {
+              countryCode.replaceAll("+", "");
+            }
             HapticFeedback.heavyImpact();
             FocusScope.of(context).unfocus();
             try {
               if (formKey.currentState.validate()) {
-                if (userData.phoneNumber !=
-                    '+$countryCode$nonInternationalNumber') {
+                String phoneNumber = "+$countryCode$nonInternationalNumber";
+                if (userData.phoneNumber != phoneNumber) {
                   await AuthService().phoneAuthentication(
                     fullName,
                     occupation,
                     countryCode,
                     phoneIsoCode,
                     nonInternationalNumber,
-                    '+$countryCode$nonInternationalNumber',
+                    phoneNumber,
                     "Update Phone Number",
                     context,
                   );
                   await DatabaseService(uid: user.uid).updateUserData(
                     fullName ?? userData.fullName,
                     occupation ?? userData.occupation,
-                    '+$countryCode$nonInternationalNumber' ??
-                        userData.phoneNumber,
+                    phoneNumber ?? userData.phoneNumber,
                     countryCode ?? userData.countryCode,
                     phoneIsoCode ?? userData.phoneIsoCode,
                     nonInternationalNumber ?? userData.nonInternationalNumber,

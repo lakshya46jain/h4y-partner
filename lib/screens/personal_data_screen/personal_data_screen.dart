@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -42,36 +43,54 @@ class PersonalDataScreenState extends State<PersonalDataScreen> {
   // Active Image File
   File imageFile;
 
+  // Select Image Via Image Picker
+  Future getImage(ImageSource source) async {
+    final selected = await ImagePicker().pickImage(source: source);
+    if (selected == null) return;
+    File image = File(selected.path);
+    image = await cropImage(selected);
+    setState(() {
+      imageFile = image;
+    });
+  }
+
+  // Crop Selected Image
+  Future<File> cropImage(XFile selectedFile) async {
+    CroppedFile cropped = await ImageCropper().cropImage(
+      sourcePath: selectedFile.path,
+      aspectRatio: const CropAspectRatio(
+        ratioX: 1.0,
+        ratioY: 1.0,
+      ),
+      cropStyle: CropStyle.rectangle,
+    );
+    if (cropped == null) return null;
+    return File(cropped.path);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    FirebaseFirestore.instance
+        .collection("H4Y Users Database")
+        .doc(FirebaseAuth.instance.currentUser.uid)
+        .get()
+        .then((value) {
+      setState(() {
+        countryCode = value.data()["Country Code"];
+        phoneIsoCode = value.data()["Phone ISO Code"];
+        nonInternationalNumber = value.data()["Non International Number"];
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     // Get User
     final user = Provider.of<Help4YouUser>(context);
 
-    // Crop Selected Image
-    Future _cropImage(XFile selectedFile) async {
-      File cropped = await ImageCropper()
-          .cropImage(
-            sourcePath: selectedFile.path,
-            aspectRatio: const CropAspectRatio(
-              ratioX: 1.0,
-              ratioY: 1.0,
-            ),
-            cropStyle: CropStyle.circle,
-          )
-          .then((value) => null);
-      if (cropped != null) {
-        setState(() {
-          imageFile = cropped;
-        });
-      }
-    }
-
-    // Select Image Via Image Picker
-    Future getImage(ImageSource source) async {
-      final selected = await ImagePicker().pickImage(source: source);
-      if (selected != null) {
-        _cropImage(selected);
-      }
+    if (countryCode.contains("+")) {
+      countryCode = countryCode.replaceAll("+", "");
     }
 
     return Scaffold(
@@ -131,9 +150,12 @@ class PersonalDataScreenState extends State<PersonalDataScreen> {
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(10.0),
                                     child: (imageFile != null)
-                                        ? Image.file(
-                                            imageFile,
-                                            fit: BoxFit.fill,
+                                        ? Container(
+                                            decoration: BoxDecoration(
+                                              image: DecorationImage(
+                                                image: FileImage(imageFile),
+                                              ),
+                                            ),
                                           )
                                         : CachedNetworkImage(
                                             imageUrl: userData.profilePicture,
@@ -212,7 +234,11 @@ class PersonalDataScreenState extends State<PersonalDataScreen> {
                                                           .isPermanentlyDenied) {
                                                     openAppSettings();
                                                   }
-                                                  getImage(ImageSource.camera);
+                                                  getImage(ImageSource.camera)
+                                                      .then(
+                                                    (value) =>
+                                                        Navigator.pop(context),
+                                                  );
                                                 },
                                               ),
                                               dialogButton(
@@ -237,7 +263,11 @@ class PersonalDataScreenState extends State<PersonalDataScreen> {
                                                           .isPermanentlyDenied) {
                                                     openAppSettings();
                                                   }
-                                                  getImage(ImageSource.gallery);
+                                                  getImage(ImageSource.gallery)
+                                                      .then(
+                                                    (value) =>
+                                                        Navigator.pop(context),
+                                                  );
                                                 },
                                               ),
                                               const SizedBox(height: 7.5),

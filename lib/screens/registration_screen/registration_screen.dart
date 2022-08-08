@@ -36,31 +36,29 @@ class RegistrationScreenState extends State<RegistrationScreen> {
   // Active Image File
   File imageFile;
 
-  // Crop Selected Image
-  Future cropImage(XFile selectedFile) async {
-    File cropped = await ImageCropper()
-        .cropImage(
-          sourcePath: selectedFile.path,
-          aspectRatio: const CropAspectRatio(
-            ratioX: 1.0,
-            ratioY: 1.0,
-          ),
-          cropStyle: CropStyle.circle,
-        )
-        .then((value) => null);
-    if (cropped != null) {
-      setState(() {
-        imageFile = cropped;
-      });
-    }
-  }
-
   // Select Image Via Image Picker
   Future getImage(ImageSource source) async {
     final selected = await ImagePicker().pickImage(source: source);
-    if (selected != null) {
-      cropImage(selected);
-    }
+    if (selected == null) return;
+    File image = File(selected.path);
+    image = await cropImage(selected);
+    setState(() {
+      imageFile = image;
+    });
+  }
+
+  // Crop Selected Image
+  Future<File> cropImage(XFile selectedFile) async {
+    CroppedFile cropped = await ImageCropper().cropImage(
+      sourcePath: selectedFile.path,
+      aspectRatio: const CropAspectRatio(
+        ratioX: 1.0,
+        ratioY: 1.0,
+      ),
+      cropStyle: CropStyle.rectangle,
+    );
+    if (cropped == null) return null;
+    return File(cropped.path);
   }
 
   @override
@@ -111,9 +109,12 @@ class RegistrationScreenState extends State<RegistrationScreen> {
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(10.0),
                                 child: (imageFile != null)
-                                    ? Image.file(
-                                        imageFile,
-                                        fit: BoxFit.fill,
+                                    ? Container(
+                                        decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                            image: FileImage(imageFile),
+                                          ),
+                                        ),
                                       )
                                     : CachedNetworkImage(
                                         imageUrl: userData.profilePicture,
@@ -187,7 +188,10 @@ class RegistrationScreenState extends State<RegistrationScreen> {
                                                       .isPermanentlyDenied) {
                                                 openAppSettings();
                                               }
-                                              getImage(ImageSource.camera);
+                                              getImage(ImageSource.camera).then(
+                                                (value) =>
+                                                    Navigator.pop(context),
+                                              );
                                             },
                                           ),
                                           dialogButton(
@@ -210,7 +214,11 @@ class RegistrationScreenState extends State<RegistrationScreen> {
                                                       .isPermanentlyDenied) {
                                                 openAppSettings();
                                               }
-                                              getImage(ImageSource.gallery);
+                                              getImage(ImageSource.gallery)
+                                                  .then(
+                                                (value) =>
+                                                    Navigator.pop(context),
+                                              );
                                             },
                                           ),
                                           const SizedBox(height: 7.5),
