@@ -50,7 +50,7 @@ class DatabaseService {
     String phoneIsoCode,
     String nonInternationalNumber,
   ) async {
-    return await userCollection.doc(uid).set({
+    await userCollection.doc(uid).set({
       'Full Name': fullName,
       'Occupation': occupation,
       'Phone Number': phoneNumber,
@@ -60,6 +60,7 @@ class DatabaseService {
       'Non International Number': nonInternationalNumber,
       'Status': "Online",
     });
+    addOneSignalTokenID();
   }
 
   // Add OneSignal Token ID
