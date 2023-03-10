@@ -52,6 +52,15 @@ class AuthService {
         "We have recieved too many requests from this number. Please try again later.",
       );
     }
+    if (exception.code == 'invalid-verification-code') {
+      showCustomSnackBar(
+        context,
+        CupertinoIcons.exclamationmark_circle,
+        Colors.red,
+        "Error!",
+        "Invalid verification code entered. Please try again later.",
+      );
+    }
   }
 
   // Phone Authentication
@@ -131,19 +140,9 @@ class AuthService {
                             );
                       }
                     },
-                  ).catchError(
-                    (error) {
-                      if (error.code == 'invalid-verification-code') {
-                        showCustomSnackBar(
-                          context,
-                          CupertinoIcons.exclamationmark_circle,
-                          Colors.red,
-                          "Error!",
-                          "Invalid verification code entered. Please try again later.",
-                        );
-                      }
-                    },
-                  );
+                  ).catchError((error) {
+                    verificationFailed(error, context);
+                  });
                 },
               ),
             ),
@@ -190,19 +189,9 @@ class AuthService {
                   );
                   await auth.currentUser
                       .updatePhoneNumber(phoneCredential)
-                      .catchError(
-                    (error) {
-                      if (error.code == 'invalid-verification-code') {
-                        showCustomSnackBar(
-                          context,
-                          CupertinoIcons.exclamationmark_circle,
-                          Colors.red,
-                          "Error!",
-                          "Invalid verification code entered. Please try again later.",
-                        );
-                      }
-                    },
-                  ).then(
+                      .catchError((error) {
+                    verificationFailed(error, context);
+                  }).then(
                     (value) => Navigator.pushAndRemoveUntil(
                       context,
                       MaterialPageRoute(
