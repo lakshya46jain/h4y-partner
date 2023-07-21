@@ -11,29 +11,29 @@ import 'package:h4y_partner/models/booked_services_model.dart';
 import 'package:h4y_partner/screens/project_details_screen/project_details_screen.dart';
 
 class BookingTile extends StatelessWidget {
-  final String otp;
-  final String address;
-  final String bookingId;
-  final double totalPrice;
-  final String customerUID;
-  final String professionalUID;
-  final Timestamp preferredTimings;
-  final String bookingStatus;
-  final List<BookedServices> bookedItemsList;
-  final String paymentMethod;
+  final String? otp;
+  final String? address;
+  final String? bookingId;
+  final double? totalPrice;
+  final String? customerUID;
+  final String? professionalUID;
+  final Timestamp? preferredTimings;
+  final String? bookingStatus;
+  final List<BookedServices>? bookedItemsList;
+  final String? paymentMethod;
 
   const BookingTile({
-    Key key,
-    @required this.otp,
-    @required this.address,
-    @required this.bookingId,
-    @required this.totalPrice,
-    @required this.customerUID,
-    @required this.professionalUID,
-    @required this.preferredTimings,
-    @required this.bookingStatus,
-    @required this.bookedItemsList,
-    @required this.paymentMethod,
+    Key? key,
+    required this.otp,
+    required this.address,
+    required this.bookingId,
+    required this.totalPrice,
+    required this.customerUID,
+    required this.professionalUID,
+    required this.preferredTimings,
+    required this.bookingStatus,
+    required this.bookedItemsList,
+    required this.paymentMethod,
   }) : super(key: key);
 
   @override
@@ -43,7 +43,7 @@ class BookingTile extends StatelessWidget {
           .collection("H4Y Users Database")
           .doc(customerUID)
           .snapshots(),
-      builder: (context, snapshot) {
+      builder: (context, AsyncSnapshot snapshot) {
         if (snapshot.hasData) {
           String profilePicture = snapshot.data["Profile Picture"];
           String fullName = snapshot.data["Full Name"];
@@ -76,7 +76,7 @@ class BookingTile extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          bookingId,
+                          bookingId!,
                           style: const TextStyle(
                             fontSize: 19.0,
                             color: Color(0xFF1C3857),
@@ -96,7 +96,7 @@ class BookingTile extends StatelessWidget {
                                           : const Color(0xFFFEA700)
                                               .withOpacity(0.15),
                           child: Text(
-                            bookingStatus,
+                            bookingStatus!,
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 13.0,
@@ -117,7 +117,7 @@ class BookingTile extends StatelessWidget {
                     const SizedBox(height: 7.5),
                     Text(
                       DateFormat("EEE, d MMM, ''yy At h:mm a")
-                          .format(preferredTimings.toDate().toLocal()),
+                          .format(preferredTimings!.toDate().toLocal()),
                       style: TextStyle(
                         fontSize: 14.0,
                         fontWeight: FontWeight.w600,

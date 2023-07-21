@@ -19,7 +19,7 @@ void main() async {
 }
 
 class MyApp extends StatefulWidget {
-  const MyApp({Key key}) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   MyAppState createState() => MyAppState();
@@ -91,7 +91,7 @@ class MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return StreamProvider<Help4YouUser>.value(
+    return StreamProvider<Help4YouUser?>.value(
       initialData: Help4YouUser(),
       value: AuthService().user,
       child: MaterialApp(

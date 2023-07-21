@@ -12,29 +12,29 @@ import 'package:h4y_partner/screens/project_details_screen/components/finish_job
 import 'package:h4y_partner/screens/project_details_screen/components/accept_reject_button.dart';
 
 class ProjectDetailsScreen extends StatelessWidget {
-  final String otp;
-  final String address;
-  final String bookingId;
-  final double totalPrice;
-  final String customerUID;
-  final String professionalUID;
-  final String bookingStatus;
-  final Timestamp preferredTimings;
-  final List<BookedServices> bookedItemsList;
-  final String paymentMethod;
+  final String? otp;
+  final String? address;
+  final String? bookingId;
+  final double? totalPrice;
+  final String? customerUID;
+  final String? professionalUID;
+  final String? bookingStatus;
+  final Timestamp? preferredTimings;
+  final List<BookedServices>? bookedItemsList;
+  final String? paymentMethod;
 
   const ProjectDetailsScreen({
-    Key key,
-    @required this.otp,
-    @required this.address,
-    @required this.bookingId,
-    @required this.totalPrice,
-    @required this.customerUID,
-    @required this.professionalUID,
-    @required this.bookingStatus,
-    @required this.preferredTimings,
-    @required this.bookedItemsList,
-    @required this.paymentMethod,
+    Key? key,
+    required this.otp,
+    required this.address,
+    required this.bookingId,
+    required this.totalPrice,
+    required this.customerUID,
+    required this.professionalUID,
+    required this.bookingStatus,
+    required this.preferredTimings,
+    required this.bookedItemsList,
+    required this.paymentMethod,
   }) : super(key: key);
 
   @override
@@ -87,7 +87,7 @@ class ProjectDetailsScreen extends StatelessWidget {
                   style: const TextStyle(fontSize: 15.0)),
               const SizedBox(height: 10.0),
               Text(
-                "Location: $address (${DateFormat("d MMMM yyyy").format(preferredTimings.toDate().toLocal())} ${DateFormat.jm().format(preferredTimings.toDate().toLocal())})",
+                "Location: $address (${DateFormat("d MMMM yyyy").format(preferredTimings!.toDate().toLocal())} ${DateFormat.jm().format(preferredTimings!.toDate().toLocal())})",
                 style: const TextStyle(fontSize: 15.0),
               ),
               const SizedBox(height: 10.0),

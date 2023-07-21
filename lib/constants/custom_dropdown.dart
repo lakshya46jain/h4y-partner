@@ -4,15 +4,15 @@ import 'package:flutter/material.dart';
 // File Imports
 
 class CustomDropdown extends StatelessWidget {
-  final List<DropdownMenuItem<dynamic>> items;
-  final Function onChanged;
-  final Function validator;
-  final IconData icon;
+  final List<DropdownMenuItem<dynamic>>? items;
+  final Function(dynamic)? onChanged;
+  final FormFieldValidator<dynamic>? validator;
+  final IconData? icon;
   final dynamic value;
-  final String hintText;
+  final String? hintText;
 
   const CustomDropdown({
-    Key key,
+    Key? key,
     this.items,
     this.onChanged,
     this.validator,

@@ -23,7 +23,8 @@ Future sendNotification(
       .doc(uid)
       .get();
 
-  final tokenIdList = List<String>.from(userData.data()["OneSignal Token IDs"]);
+  final tokenIdList =
+      List<String>.from(userData.data()?["OneSignal Token IDs"]);
 
   OSCreateNotification notification = OSCreateNotification(
     playerIds: tokenIdList,

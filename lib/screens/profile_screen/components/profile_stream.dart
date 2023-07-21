@@ -9,17 +9,17 @@ import 'package:h4y_partner/models/user_model.dart';
 import 'package:h4y_partner/services/database.dart';
 
 class ProfileStream extends StatelessWidget {
-  const ProfileStream({Key key}) : super(key: key);
+  const ProfileStream({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     // Get User
-    final user = Provider.of<Help4YouUser>(context);
+    final user = Provider.of<Help4YouUser?>(context);
 
     return StreamBuilder(
-      stream: DatabaseService(uid: user.uid).userData,
+      stream: DatabaseService(uid: user!.uid).userData,
       builder: (context, snapshot) {
-        UserDataProfessional userData = snapshot.data;
+        UserDataProfessional? userData = snapshot.data as UserDataProfessional?;
         if (snapshot.hasData) {
           return Padding(
             padding:
@@ -45,7 +45,7 @@ class ProfileStream extends StatelessWidget {
                     child: CachedNetworkImage(
                       height: 75.0,
                       width: 75.0,
-                      imageUrl: userData.profilePicture,
+                      imageUrl: userData!.profilePicture!,
                     ),
                   ),
                 ),
@@ -55,7 +55,7 @@ class ProfileStream extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      userData.fullName,
+                      userData.fullName!,
                       style: GoogleFonts.balooPaaji2(
                         height: 1.5,
                         fontSize: 25.0,
@@ -64,7 +64,7 @@ class ProfileStream extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      userData.phoneNumber,
+                      userData.phoneNumber!,
                       style: GoogleFonts.balooPaaji2(
                         height: 1.0,
                         fontSize: 18.0,

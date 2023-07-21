@@ -9,17 +9,17 @@ import 'package:h4y_partner/services/auth.dart';
 import 'package:h4y_partner/constants/signature_button.dart';
 
 class VerificationScreen extends StatefulWidget {
-  final String phoneIsoCode;
-  final String nonInternationalNumber;
-  final String phoneNumber;
-  final Function submitOTP;
+  final String? phoneIsoCode;
+  final String? nonInternationalNumber;
+  final String? phoneNumber;
+  final Function(String)? submitOTP;
 
   const VerificationScreen({
-    Key key,
-    @required this.phoneIsoCode,
-    @required this.nonInternationalNumber,
-    @required this.phoneNumber,
-    @required this.submitOTP,
+    Key? key,
+    required this.phoneIsoCode,
+    required this.nonInternationalNumber,
+    required this.phoneNumber,
+    required this.submitOTP,
   }) : super(key: key);
 
   @override
@@ -28,10 +28,10 @@ class VerificationScreen extends StatefulWidget {
 
 class VerificationScreenState extends State<VerificationScreen> {
   // Text Field Variable
-  String fullName;
-  String occupation;
-  String phoneIsoCode;
-  String nonInternationalNumber;
+  String? fullName;
+  String? occupation;
+  String? phoneIsoCode;
+  String? nonInternationalNumber;
 
   // Pin Put Declarations
   Color borderColor = const Color.fromRGBO(114, 178, 238, 1);
@@ -97,7 +97,7 @@ class VerificationScreenState extends State<VerificationScreen> {
                   focusedPinTheme: defaultPinTheme.copyWith(
                     width: 63,
                     height: 68,
-                    decoration: defaultPinTheme.decoration.copyWith(
+                    decoration: defaultPinTheme.decoration!.copyWith(
                       border: Border.all(color: borderColor),
                     ),
                   ),
@@ -107,7 +107,7 @@ class VerificationScreenState extends State<VerificationScreen> {
                 GestureDetector(
                   onTap: () async {
                     FirebaseAuth.instance.verifyPhoneNumber(
-                      phoneNumber: widget.phoneNumber,
+                      phoneNumber: widget.phoneNumber!,
                       timeout: const Duration(seconds: 120),
                       verificationCompleted:
                           (PhoneAuthCredential credential) async {},
@@ -119,7 +119,7 @@ class VerificationScreenState extends State<VerificationScreen> {
                         );
                       },
                       codeSent:
-                          (String verificationId, int resendToken) async {},
+                          (String? verificationId, int? resendToken) async {},
                       codeAutoRetrievalTimeout: (String verificationId) async {
                         verificationId = verificationId;
                       },

@@ -11,15 +11,15 @@ import 'package:h4y_partner/constants/signature_button.dart';
 import 'package:h4y_partner/constants/custom_text_field.dart';
 
 class PhoneAuthScreen extends StatefulWidget {
-  final String countryCode;
-  final String phoneIsoCode;
-  final String nonInternationalNumber;
+  final String? countryCode;
+  final String? phoneIsoCode;
+  final String? nonInternationalNumber;
 
   const PhoneAuthScreen({
-    Key key,
-    @required this.countryCode,
-    @required this.phoneIsoCode,
-    @required this.nonInternationalNumber,
+    Key? key,
+    required this.countryCode,
+    required this.phoneIsoCode,
+    required this.nonInternationalNumber,
   }) : super(key: key);
 
   @override
@@ -28,9 +28,9 @@ class PhoneAuthScreen extends StatefulWidget {
 
 class PhoneAuthScreenState extends State<PhoneAuthScreen> {
   // Text Field Variables
-  String countryCode;
-  String phoneIsoCode;
-  String nonInternationalNumber;
+  String? countryCode;
+  String? phoneIsoCode;
+  String? nonInternationalNumber;
 
   @override
   void initState() {
@@ -83,7 +83,7 @@ class PhoneAuthScreenState extends State<PhoneAuthScreen> {
                   autoFocus: true,
                   phoneIsoCode: widget.phoneIsoCode,
                   nonInternationalNumber: widget.nonInternationalNumber,
-                  onChanged: (phone) {
+                  onChangedPhone: (phone) {
                     setState(() {
                       nonInternationalNumber = phone.number;
                     });
@@ -132,8 +132,8 @@ class PhoneAuthScreenState extends State<PhoneAuthScreen> {
               child: SignatureButton(
                 onTap: () async {
                   HapticFeedback.heavyImpact();
-                  if (countryCode.contains("+")) {
-                    countryCode = countryCode.replaceAll("+", "");
+                  if (countryCode!.contains("+")) {
+                    countryCode = countryCode!.replaceAll("+", "");
                   }
                   await AuthService().phoneAuthentication(
                     "",

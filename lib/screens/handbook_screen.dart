@@ -8,7 +8,7 @@ import 'package:h4y_partner/constants/policy_dialog.dart';
 import 'package:h4y_partner/constants/signature_button.dart';
 
 class HandbookScreen extends StatefulWidget {
-  const HandbookScreen({Key key}) : super(key: key);
+  const HandbookScreen({Key? key}) : super(key: key);
 
   @override
   HandbookScreenState createState() => HandbookScreenState();

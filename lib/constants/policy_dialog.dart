@@ -10,8 +10,8 @@ class PolicyDialog extends StatelessWidget {
   final String mdFileName;
 
   const PolicyDialog({
-    Key key,
-    @required this.mdFileName,
+    Key? key,
+    required this.mdFileName,
   }) : super(key: key);
 
   @override
@@ -27,7 +27,7 @@ class PolicyDialog extends StatelessWidget {
               future: rootBundle.loadString('assets/files/$mdFileName'),
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
-                  return Markdown(data: snapshot.data);
+                  return Markdown(data: snapshot.data.toString());
                 } else {
                   return Container();
                 }

@@ -9,22 +9,23 @@ import 'package:h4y_partner/screens/services_screen/components/service_tile.dart
 
 class Widget1Body extends StatelessWidget {
   const Widget1Body({
-    Key key,
-    @required this.user,
-    @required this.controller,
+    Key? key,
+    required this.user,
+    required this.controller,
   }) : super(key: key);
 
-  final Help4YouUser user;
-  final ScrollController controller;
+  final Help4YouUser? user;
+  final ScrollController? controller;
 
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-      stream: DatabaseService(uid: user.uid).serviceListData,
+      stream: DatabaseService(uid: user!.uid).serviceListData,
       builder: (context, snapshot) {
-        List<Help4YouServices> services = snapshot.data;
+        List<Help4YouServices>? services =
+            snapshot.data as List<Help4YouServices>?;
         if (snapshot.hasData) {
-          if (services.isEmpty) {
+          if (services!.isEmpty) {
             return Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: SizedBox(

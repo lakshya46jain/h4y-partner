@@ -10,15 +10,15 @@ import 'package:h4y_partner/constants/custom_snackbar.dart';
 import 'package:h4y_partner/services/onesignal_configuration.dart';
 
 class FinishJobButton extends StatelessWidget {
-  final String otp;
-  final String bookingId;
-  final String customerUID;
+  final String? otp;
+  final String? bookingId;
+  final String? customerUID;
 
   const FinishJobButton({
-    Key key,
-    @required this.otp,
-    @required this.bookingId,
-    @required this.customerUID,
+    Key? key,
+    required this.otp,
+    required this.bookingId,
+    required this.customerUID,
   }) : super(key: key);
 
   @override
@@ -51,7 +51,7 @@ class FinishJobButton extends StatelessWidget {
       onPressed: () {
         AwesomeDialog(
           context: context,
-          dialogType: DialogType.SUCCES,
+          dialogType: DialogType.success,
           body: Column(
             children: [
               const SizedBox(height: 5.0),
@@ -70,7 +70,7 @@ class FinishJobButton extends StatelessWidget {
                 focusedPinTheme: defaultPinTheme.copyWith(
                   width: 48,
                   height: 58,
-                  decoration: defaultPinTheme.decoration.copyWith(
+                  decoration: defaultPinTheme.decoration!.copyWith(
                     border: Border.all(color: borderColor),
                   ),
                 ),
@@ -81,11 +81,11 @@ class FinishJobButton extends StatelessWidget {
                     await DatabaseService(bookingId: bookingId)
                         .updateBookingStatus("Job Completed");
                     sendNotification(
-                      customerUID,
+                      customerUID!,
                       "Congratulations!",
                       "The project booked by you has been completed by the professional you have booked!",
                       "Booking",
-                      bookingId,
+                      bookingId!,
                     );
                   } else {
                     Navigator.pop(context);

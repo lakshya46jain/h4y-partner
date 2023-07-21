@@ -25,17 +25,17 @@ import 'package:h4y_partner/screens/message_screen/components/message_bubble.dar
 import 'package:h4y_partner/screens/message_screen/components/bottom_nav_bar.dart';
 
 class MessageScreen extends StatefulWidget {
-  final String uid;
-  final String profilePicture;
-  final String fullName;
-  final String phoneNumber;
+  final String? uid;
+  final String? profilePicture;
+  final String? fullName;
+  final String? phoneNumber;
 
   const MessageScreen({
-    Key key,
-    @required this.uid,
-    @required this.profilePicture,
-    @required this.fullName,
-    @required this.phoneNumber,
+    Key? key,
+    required this.uid,
+    required this.profilePicture,
+    required this.fullName,
+    required this.phoneNumber,
   }) : super(key: key);
 
   @override
@@ -65,7 +65,7 @@ class MessageScreenState extends State<MessageScreen> {
   final TextEditingController messageController = TextEditingController();
 
   // Active Image File
-  File imageFile;
+  File? imageFile;
 
   // Select Image Via Image Picker
   Future getMedia(ImageSource source, user) async {
@@ -89,12 +89,12 @@ class MessageScreenState extends State<MessageScreen> {
         .collection("H4Y Users Database")
         .doc(user.uid)
         .get();
-    final String fullName = userData.data()["Full Name"];
+    final String fullName = userData.data()!["Full Name"];
     String fileName = fileNameGenerator.toString();
     Reference firebaseStorageRef = FirebaseStorage.instance
         .ref()
         .child(("H4Y Chat Rooms Media/$fileName"));
-    UploadTask uploadTask = firebaseStorageRef.putFile(imageFile);
+    UploadTask uploadTask = firebaseStorageRef.putFile(imageFile!);
     await uploadTask;
     String downloadAddress = await firebaseStorageRef.getDownloadURL();
     // Create Chat Room In Database
@@ -107,7 +107,7 @@ class MessageScreenState extends State<MessageScreen> {
       downloadAddress,
     );
     sendNotification(
-      widget.uid,
+      widget.uid!,
       fullName,
       "Sent a photo",
       "Message",
@@ -115,17 +115,17 @@ class MessageScreenState extends State<MessageScreen> {
     );
   }
 
-  String message;
-  bool isSentByMe;
-  String messageId;
-  String chatRoomId;
-  String messageType;
+  String? message;
+  bool? isSentByMe;
+  String? messageId;
+  String? chatRoomId;
+  String? messageType;
   bool isLongPress = false;
 
   @override
   Widget build(BuildContext context) {
     // Get User
-    final user = Provider.of<Help4YouUser>(context);
+    final user = Provider.of<Help4YouUser?>(context);
 
     return GestureDetector(
       onTap: () {
@@ -149,14 +149,14 @@ class MessageScreenState extends State<MessageScreen> {
                 radius: 21.0,
                 child: ClipOval(
                   child: CachedNetworkImage(
-                    imageUrl: widget.profilePicture,
+                    imageUrl: widget.profilePicture!,
                     fit: BoxFit.fill,
                   ),
                 ),
               ),
               const SizedBox(width: 10.0),
               Text(
-                widget.fullName,
+                widget.fullName!,
                 style: GoogleFonts.balooPaaji2(
                   fontSize: 20.0,
                   color: const Color(0xFF1C3857),
@@ -173,18 +173,18 @@ class MessageScreenState extends State<MessageScreen> {
                 color: Color(0xFFFEA700),
               ),
               onPressed: () {
-                FlutterPhoneDirectCaller.callNumber(widget.phoneNumber);
+                FlutterPhoneDirectCaller.callNumber(widget.phoneNumber!);
               },
             ),
           ],
         ),
         body: StreamBuilder(
           stream: DatabaseService(
-            uid: user.uid,
+            uid: user!.uid,
             customerUID: widget.uid,
           ).messagesData,
           builder: (context, snapshot) {
-            List<Messages> messages = snapshot.data;
+            List<Messages>? messages = snapshot.data as List<Messages>?;
             if (snapshot.hasData) {
               return Column(
                 children: [
@@ -196,18 +196,18 @@ class MessageScreenState extends State<MessageScreen> {
                         horizontal: 20.0,
                       ),
                       physics: const BouncingScrollPhysics(),
-                      itemCount: messages.length,
+                      itemCount: messages!.length,
                       itemBuilder: (context, index) {
                         return MessageBubble(
                           groupByDate: (index == messages.length - 1)
                               ? true
                               : (DateFormat.yMd().format(messages[index]
-                                          .timeStamp
+                                          .timeStamp!
                                           .toDate()
                                           .toLocal()) !=
                                       DateFormat.yMd().format(
                                           messages[index + 1]
-                                              .timeStamp
+                                              .timeStamp!
                                               .toDate()
                                               .toLocal()))
                                   ? true
@@ -259,7 +259,7 @@ class MessageScreenState extends State<MessageScreen> {
                     unsendOnTap: () async {
                       if (messageType == "Media") {
                         await FirebaseStorage.instance
-                            .refFromURL(message)
+                            .refFromURL(message!)
                             .delete();
                       }
                       await FirebaseFirestore.instance
@@ -272,7 +272,7 @@ class MessageScreenState extends State<MessageScreen> {
                         isLongPress = false;
                       });
                       sendNotification(
-                        widget.uid,
+                        widget.uid!,
                         "",
                         "This message is no longer available because it was unsent by the sender.",
                         "Message",
@@ -281,12 +281,12 @@ class MessageScreenState extends State<MessageScreen> {
                     },
                     copySaveOnTap: () async {
                       if (messageType != "Media") {
-                        await FlutterClipboard.copy(message);
+                        await FlutterClipboard.copy(message!);
                         setState(() {
                           isLongPress = false;
                         });
                       } else {
-                        await ImageDownloader.downloadImage(message);
+                        await ImageDownloader.downloadImage(message!);
                         setState(() {
                           isLongPress = false;
                         });
@@ -297,7 +297,7 @@ class MessageScreenState extends State<MessageScreen> {
                           .collection("H4Y Users Database")
                           .doc(user.uid)
                           .get();
-                      final String fullName = userData.data()["Full Name"];
+                      final String fullName = userData.data()!["Full Name"];
                       // Create Chat Room In Database
                       await DatabaseService(
                         uid: user.uid,
@@ -312,7 +312,7 @@ class MessageScreenState extends State<MessageScreen> {
                         messageController.text.trim(),
                       );
                       sendNotification(
-                        widget.uid,
+                        widget.uid!,
                         fullName,
                         messageController.text.trim(),
                         "Message",

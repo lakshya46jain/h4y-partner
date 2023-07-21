@@ -11,17 +11,17 @@ import 'package:h4y_partner/models/user_model.dart';
 import 'package:h4y_partner/services/database.dart';
 
 class Header extends StatelessWidget {
-  final Function onPressed;
+  final VoidCallback? onPressed;
 
   const Header({
-    Key key,
+    Key? key,
     this.onPressed,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     // Get User
-    final user = Provider.of<Help4YouUser>(context);
+    final user = Provider.of<Help4YouUser?>(context);
 
     // Key Variables
     var message = '';
@@ -52,9 +52,10 @@ class Header extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               StreamBuilder(
-                stream: DatabaseService(uid: user.uid).userData,
+                stream: DatabaseService(uid: user!.uid).userData,
                 builder: (context, snapshot) {
-                  UserDataProfessional userData = snapshot.data;
+                  UserDataProfessional? userData =
+                      snapshot.data as UserDataProfessional?;
                   if (snapshot.hasData) {
                     return Row(
                       children: [
@@ -63,7 +64,7 @@ class Header extends StatelessWidget {
                           child: CachedNetworkImage(
                             height: 60,
                             width: 60,
-                            imageUrl: userData.profilePicture,
+                            imageUrl: userData!.profilePicture!,
                           ),
                         ),
                         const SizedBox(width: 15.0),
@@ -80,7 +81,7 @@ class Header extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              userData.fullName,
+                              userData.fullName!,
                               style: GoogleFonts.balooPaaji2(
                                 height: 1.0,
                                 fontSize: 23.0,

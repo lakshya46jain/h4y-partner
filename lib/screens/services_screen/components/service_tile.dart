@@ -8,14 +8,14 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:h4y_partner/screens/service_screens/edit_service_screen.dart';
 
 class ServiceTile extends StatelessWidget {
-  final String documentId;
-  final String serviceTitle;
-  final String serviceDescription;
-  final double servicePrice;
-  final bool visibility;
+  final String? documentId;
+  final String? serviceTitle;
+  final String? serviceDescription;
+  final double? servicePrice;
+  final bool? visibility;
 
   const ServiceTile({
-    Key key,
+    Key? key,
     this.documentId,
     this.serviceTitle,
     this.serviceDescription,
@@ -68,7 +68,7 @@ class ServiceTile extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                serviceTitle,
+                serviceTitle!,
                 style: const TextStyle(
                   fontSize: 21.0,
                   color: Color(0xFF1C3857),
@@ -86,7 +86,7 @@ class ServiceTile extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               Text(
-                serviceDescription,
+                serviceDescription!,
                 style: const TextStyle(
                   fontSize: 14.0,
                   color: Color(0xFF95989A),

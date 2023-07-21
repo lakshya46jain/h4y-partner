@@ -10,7 +10,7 @@ import 'package:h4y_partner/screens/service_screens/create_service_screen.dart';
 import 'package:h4y_partner/screens/services_screen/components/widget_1_body.dart';
 
 class ServicesScreen extends StatefulWidget {
-  const ServicesScreen({Key key}) : super(key: key);
+  const ServicesScreen({Key? key}) : super(key: key);
 
   @override
   ServicesScreenState createState() => ServicesScreenState();
@@ -47,7 +47,7 @@ class ServicesScreenState extends State<ServicesScreen> {
   @override
   Widget build(BuildContext context) {
     // Get User
-    final user = Provider.of<Help4YouUser>(context);
+    final user = Provider.of<Help4YouUser?>(context);
 
     return GestureDetector(
       onTap: () {

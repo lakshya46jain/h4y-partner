@@ -11,15 +11,15 @@ import 'package:h4y_partner/models/messages_model.dart';
 import 'package:h4y_partner/screens/message_screen/message_screen.dart';
 
 class MessageTile extends StatelessWidget {
-  final Help4YouUser user;
-  final String chatRoomId;
-  final String customerUID;
+  final Help4YouUser? user;
+  final String? chatRoomId;
+  final String? customerUID;
 
   const MessageTile({
-    Key key,
-    @required this.user,
-    @required this.chatRoomId,
-    @required this.customerUID,
+    Key? key,
+    required this.user,
+    required this.chatRoomId,
+    required this.customerUID,
   }) : super(key: key);
 
   @override
@@ -29,7 +29,7 @@ class MessageTile extends StatelessWidget {
           .collection("H4Y Users Database")
           .doc(customerUID)
           .snapshots(),
-      builder: (context, snapshot) {
+      builder: (context, AsyncSnapshot snapshot) {
         if (snapshot.hasData) {
           // Professional Data Strings
           String profilePicture = snapshot.data["Profile Picture"];
@@ -91,11 +91,12 @@ class MessageTile extends StatelessWidget {
                   ),
                   StreamBuilder(
                     stream: DatabaseService(
-                      uid: user.uid,
+                      uid: user!.uid,
                       customerUID: customerUID,
                     ).lastMessageData,
                     builder: (context, snapshot) {
-                      List<Messages> messages = snapshot.data;
+                      List<Messages>? messages =
+                          snapshot.data as List<Messages>?;
                       return Expanded(
                         child: Padding(
                           padding: const EdgeInsets.only(left: 15.0),
@@ -121,10 +122,10 @@ class MessageTile extends StatelessWidget {
                                   Opacity(
                                     opacity: 0.5,
                                     child: Text(
-                                      (snapshot.hasData && messages.isNotEmpty)
+                                      (snapshot.hasData && messages!.isNotEmpty)
                                           ? DateFormat('dd/MM/yy').format(
                                               messages[0]
-                                                  .timeStamp
+                                                  .timeStamp!
                                                   .toDate()
                                                   .toLocal())
                                           : "",
@@ -147,7 +148,7 @@ class MessageTile extends StatelessWidget {
                                       isEqualTo: customerUID,
                                     )
                                     .snapshots(),
-                                builder: (context, snapshot) {
+                                builder: (context, AsyncSnapshot snapshot) {
                                   int unreadLength = (snapshot.hasData)
                                       ? snapshot.data.docs.length
                                       : 0;
@@ -157,22 +158,22 @@ class MessageTile extends StatelessWidget {
                                         child: Opacity(
                                           opacity: 0.5,
                                           child: (snapshot.hasData &&
-                                                  messages.isNotEmpty)
+                                                  messages!.isNotEmpty)
                                               ? Text(
                                                   (messages[0].type ==
                                                               "Media" &&
                                                           messages[0].sender ==
-                                                              user.uid)
+                                                              user!.uid)
                                                       ? "You: Sent a photo\n"
                                                       : (messages[0].type ==
                                                                   "Media" &&
                                                               messages[0]
                                                                       .sender !=
-                                                                  user.uid)
+                                                                  user!.uid)
                                                           ? "Sent a photo\n"
                                                           : (messages[0]
                                                                       .sender ==
-                                                                  user.uid)
+                                                                  user!.uid)
                                                               ? "You: ${messages[0].message}\n"
                                                               : "${messages[0].message}\n",
                                                   maxLines: 2,

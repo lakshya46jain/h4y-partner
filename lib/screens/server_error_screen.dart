@@ -5,10 +5,10 @@ import 'package:flutter_svg/svg.dart';
 // File Imports
 
 class ServerErrorScreen extends StatelessWidget {
-  final Function onPressed;
+  final VoidCallback? onPressed;
 
   const ServerErrorScreen({
-    Key key,
+    Key? key,
     this.onPressed,
   }) : super(key: key);
 

@@ -3,18 +3,18 @@ import 'package:h4y_partner/models/booked_services_model.dart';
 
 // Booking Model
 class Booking {
-  final String bookingId;
-  final String customerUID;
-  final String professionalUID;
-  final Timestamp bookingTime;
-  final String address;
-  final GeoPoint addressGeoPoint;
-  final Timestamp preferredTimings;
-  final String bookingStatus;
-  final List<BookedServices> bookedItems;
-  final int paymentMethod;
-  final String otp;
-  final double totalPrice;
+  final String? bookingId;
+  final String? customerUID;
+  final String? professionalUID;
+  final Timestamp? bookingTime;
+  final String? address;
+  final GeoPoint? addressGeoPoint;
+  final Timestamp? preferredTimings;
+  final String? bookingStatus;
+  final List<BookedServices>? bookedItems;
+  final int? paymentMethod;
+  final String? otp;
+  final double? totalPrice;
 
   Booking({
     this.bookingId,

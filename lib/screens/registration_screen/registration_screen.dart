@@ -19,7 +19,7 @@ import 'package:h4y_partner/constants/custom_text_field.dart';
 import 'package:h4y_partner/screens/registration_screen/components/registration_continue_button.dart';
 
 class RegistrationScreen extends StatefulWidget {
-  const RegistrationScreen({Key key}) : super(key: key);
+  const RegistrationScreen({Key? key}) : super(key: key);
 
   @override
   RegistrationScreenState createState() => RegistrationScreenState();
@@ -27,29 +27,29 @@ class RegistrationScreen extends StatefulWidget {
 
 class RegistrationScreenState extends State<RegistrationScreen> {
   // Text Field Variables
-  String fullName;
-  String occupation;
+  String? fullName;
+  String? occupation;
 
   // Global Key
   final formKey = GlobalKey<FormState>();
 
   // Active Image File
-  File imageFile;
+  File? imageFile;
 
   // Select Image Via Image Picker
   Future getImage(ImageSource source) async {
     final selected = await ImagePicker().pickImage(source: source);
     if (selected == null) return;
-    File image = File(selected.path);
+    File? image = File(selected.path);
     image = await cropImage(selected);
     setState(() {
-      imageFile = image;
+      imageFile = image!;
     });
   }
 
   // Crop Selected Image
-  Future<File> cropImage(XFile selectedFile) async {
-    CroppedFile cropped = await ImageCropper().cropImage(
+  Future<File?> cropImage(XFile selectedFile) async {
+    CroppedFile? cropped = await ImageCropper().cropImage(
       sourcePath: selectedFile.path,
       aspectRatio: const CropAspectRatio(
         ratioX: 1.0,
@@ -64,7 +64,7 @@ class RegistrationScreenState extends State<RegistrationScreen> {
   @override
   Widget build(BuildContext context) {
     // Get User
-    final user = Provider.of<Help4YouUser>(context);
+    final user = Provider.of<Help4YouUser?>(context);
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -89,9 +89,10 @@ class RegistrationScreenState extends State<RegistrationScreen> {
             bottom: 10.0,
           ),
           child: StreamBuilder(
-            stream: DatabaseService(uid: user.uid).userData,
+            stream: DatabaseService(uid: user!.uid).userData,
             builder: (context, snapshot) {
-              UserDataProfessional userData = snapshot.data;
+              UserDataProfessional? userData =
+                  snapshot.data as UserDataProfessional?;
               if (snapshot.hasData) {
                 return SingleChildScrollView(
                   physics: const BouncingScrollPhysics(),
@@ -112,12 +113,12 @@ class RegistrationScreenState extends State<RegistrationScreen> {
                                     ? Container(
                                         decoration: BoxDecoration(
                                           image: DecorationImage(
-                                            image: FileImage(imageFile),
+                                            image: FileImage(imageFile!),
                                           ),
                                         ),
                                       )
                                     : CachedNetworkImage(
-                                        imageUrl: userData.profilePicture,
+                                        imageUrl: userData!.profilePicture!,
                                         fit: BoxFit.fill,
                                       ),
                               ),
@@ -131,7 +132,7 @@ class RegistrationScreenState extends State<RegistrationScreen> {
                                 child: GestureDetector(
                                   onTap: () {
                                     Widget dialogButton(String title,
-                                        Color color, Function onTap) {
+                                        Color color, VoidCallback onTap) {
                                       return Padding(
                                         padding: const EdgeInsets.symmetric(
                                           horizontal: 15.0,
@@ -165,7 +166,7 @@ class RegistrationScreenState extends State<RegistrationScreen> {
                                     AwesomeDialog(
                                       context: context,
                                       headerAnimationLoop: false,
-                                      dialogType: DialogType.INFO,
+                                      dialogType: DialogType.info,
                                       body: Column(
                                         children: [
                                           dialogButton(
@@ -262,9 +263,9 @@ class RegistrationScreenState extends State<RegistrationScreen> {
                           type: "Normal",
                           keyboardType: TextInputType.name,
                           hintText: "Enter Full Name...",
-                          initialValue: userData.fullName,
-                          validator: (String value) {
-                            if (value.isEmpty) {
+                          initialValue: userData!.fullName,
+                          validator: (String? value) {
+                            if (value!.isEmpty) {
                               return "Name field cannot be empty";
                             } else if (value.length < 2) {
                               return "Name must be atleast 2 characters long";
@@ -288,7 +289,7 @@ class RegistrationScreenState extends State<RegistrationScreen> {
                           stream: FirebaseFirestore.instance
                               .collection("H4Y Occupation Database")
                               .snapshots(),
-                          builder: (context, snapshot) {
+                          builder: (context, AsyncSnapshot snapshot) {
                             List<DropdownMenuItem> occupationItems = [];
                             for (int i = 0;
                                 i < snapshot.data.docs.length;

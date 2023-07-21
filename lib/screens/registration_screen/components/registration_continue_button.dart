@@ -13,21 +13,21 @@ import 'package:h4y_partner/constants/custom_snackbar.dart';
 import 'package:h4y_partner/constants/signature_button.dart';
 
 class RegistrationContinueButton extends StatefulWidget {
-  final File imageFile;
-  final Help4YouUser user;
-  final UserDataProfessional userData;
-  final GlobalKey<FormState> formKey;
-  final String fullName;
-  final String occupation;
+  final File? imageFile;
+  final Help4YouUser? user;
+  final UserDataProfessional? userData;
+  final GlobalKey<FormState>? formKey;
+  final String? fullName;
+  final String? occupation;
 
   const RegistrationContinueButton({
-    Key key,
-    @required this.imageFile,
-    @required this.user,
-    @required this.userData,
-    @required this.formKey,
-    @required this.fullName,
-    @required this.occupation,
+    Key? key,
+    required this.imageFile,
+    required this.user,
+    required this.userData,
+    required this.formKey,
+    required this.fullName,
+    required this.occupation,
   }) : super(key: key);
 
   @override
@@ -54,24 +54,24 @@ class _RegistrationContinueButtonState
             if (widget.imageFile != null) {
               Reference firebaseStorageRef = FirebaseStorage.instance
                   .ref()
-                  .child(("H4Y Profile Pictures/${widget.user.uid}"));
+                  .child(("H4Y Profile Pictures/${widget.user!.uid}"));
               UploadTask uploadTask =
-                  firebaseStorageRef.putFile(widget.imageFile);
+                  firebaseStorageRef.putFile(widget.imageFile!);
               await uploadTask;
               String downloadAddress =
                   await firebaseStorageRef.getDownloadURL();
-              await DatabaseService(uid: widget.user.uid)
+              await DatabaseService(uid: widget.user!.uid)
                   .updateProfilePicture(downloadAddress);
             } else {
-              await DatabaseService(uid: widget.user.uid)
-                  .updateProfilePicture(widget.userData.profilePicture);
+              await DatabaseService(uid: widget.user!.uid)
+                  .updateProfilePicture(widget.userData!.profilePicture);
             }
           }
 
           HapticFeedback.heavyImpact();
           FocusScope.of(context).unfocus();
           try {
-            if (widget.formKey.currentState.validate()) {
+            if (widget.formKey!.currentState!.validate()) {
               Navigator.pushAndRemoveUntil(
                 context,
                 MaterialPageRoute(
@@ -79,14 +79,13 @@ class _RegistrationContinueButtonState
                 ),
                 (route) => false,
               );
-              await DatabaseService(uid: widget.user.uid).updateUserData(
-                widget.fullName ?? widget.userData.fullName,
-                widget.occupation ?? widget.userData.occupation,
-                widget.userData.phoneNumber ?? widget.userData.phoneNumber,
-                widget.userData.countryCode ?? widget.userData.countryCode,
-                widget.userData.phoneIsoCode ?? widget.userData.phoneIsoCode,
-                widget.userData.nonInternationalNumber ??
-                    widget.userData.nonInternationalNumber,
+              await DatabaseService(uid: widget.user!.uid).updateUserData(
+                widget.fullName,
+                widget.occupation,
+                widget.userData!.phoneNumber,
+                widget.userData!.countryCode,
+                widget.userData!.phoneIsoCode,
+                widget.userData!.nonInternationalNumber,
               );
               setProfilePicture();
             }

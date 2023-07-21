@@ -5,13 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:h4y_partner/screens/onboarding_screen/components/pages.dart';
 
 class OnboardingPageView extends StatelessWidget {
-  final PageController pageController;
-  final Function onPageChanged;
+  final PageController? pageController;
+  final Function(int)? onPageChanged;
 
   const OnboardingPageView({
-    Key key,
-    @required this.pageController,
-    @required this.onPageChanged,
+    Key? key,
+    required this.pageController,
+    required this.onPageChanged,
   }) : super(key: key);
 
   @override

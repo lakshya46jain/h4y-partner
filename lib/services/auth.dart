@@ -21,12 +21,12 @@ class AuthService {
   final FirebaseAuth auth = FirebaseAuth.instance;
 
   // Create User Object Based on Firebase User
-  Help4YouUser _userFromFirebase(User user) {
-    return user != null ? Help4YouUser(uid: user.uid) : null;
+  Help4YouUser? _userFromFirebase(User? user) {
+    return (user != null) ? Help4YouUser(uid: user.uid) : null;
   }
 
   // Authenticate User
-  Stream<Help4YouUser> get user {
+  Stream<Help4YouUser?> get user {
     return auth.authStateChanges().map(_userFromFirebase);
   }
 
@@ -65,26 +65,26 @@ class AuthService {
 
   // Phone Authentication
   Future phoneAuthentication(
-    String fullName,
-    String occupation,
-    String countryCode,
-    String phoneIsoCode,
-    String nonInternationalNumber,
-    String phoneNumber,
-    String motive,
-    BuildContext context,
+    String? fullName,
+    String? occupation,
+    String? countryCode,
+    String? phoneIsoCode,
+    String? nonInternationalNumber,
+    String? phoneNumber,
+    String? motive,
+    BuildContext? context,
   ) async {
     auth.verifyPhoneNumber(
-      phoneNumber: phoneNumber,
+      phoneNumber: phoneNumber!,
       timeout: const Duration(seconds: 120),
       verificationCompleted: (PhoneAuthCredential credential) async {},
       verificationFailed: (FirebaseAuthException exception) async {
-        verificationFailed(exception, context);
+        verificationFailed(exception, context!);
       },
-      codeSent: (String verificationId, int resendToken) async {
+      codeSent: (String? verificationId, int? resendToken) async {
         if (motive == "Registration") {
           Navigator.push(
-            context,
+            context!,
             MaterialPageRoute(
               builder: (context) => VerificationScreen(
                 phoneIsoCode: phoneIsoCode,
@@ -93,12 +93,12 @@ class AuthService {
                 submitOTP: (pin) {
                   HapticFeedback.heavyImpact();
                   var credential = PhoneAuthProvider.credential(
-                    verificationId: verificationId,
+                    verificationId: verificationId!,
                     smsCode: pin,
                   );
                   auth.signInWithCredential(credential).then(
                     (UserCredential result) async {
-                      User user = result.user;
+                      User user = result.user!;
                       DocumentSnapshot ds = await FirebaseFirestore.instance
                           .collection("H4Y Users Database")
                           .doc(user.uid)
@@ -149,7 +149,7 @@ class AuthService {
           );
         } else if (motive == "Delete Account") {
           Navigator.push(
-            context,
+            context!,
             MaterialPageRoute(
               builder: (context) => DeleteAccVerificationScreen(
                 phoneNumber: phoneNumber,
@@ -158,10 +158,10 @@ class AuthService {
                 submitOTP: (pin) {
                   HapticFeedback.heavyImpact();
                   PhoneAuthProvider.credential(
-                    verificationId: verificationId,
+                    verificationId: verificationId!,
                     smsCode: pin,
                   );
-                  auth.currentUser.delete();
+                  auth.currentUser!.delete();
                   signOut();
                   Navigator.pushAndRemoveUntil(
                     context,
@@ -176,7 +176,7 @@ class AuthService {
           );
         } else if (motive == "Update Phone Number") {
           Navigator.push(
-            context,
+            context!,
             MaterialPageRoute(
               builder: (context) => UpdateNumVerificationScreen(
                 phoneNumber: phoneNumber,
@@ -184,10 +184,10 @@ class AuthService {
                 nonInternationalNumber: nonInternationalNumber,
                 submitOTP: (pin) async {
                   var phoneCredential = PhoneAuthProvider.credential(
-                    verificationId: verificationId,
+                    verificationId: verificationId!,
                     smsCode: pin,
                   );
-                  await auth.currentUser
+                  await auth.currentUser!
                       .updatePhoneNumber(phoneCredential)
                       .catchError((error) {
                     verificationFailed(error, context);
@@ -214,7 +214,7 @@ class AuthService {
 
   // Sign Out
   Future signOut() async {
-    String uid = auth.currentUser.uid.toString();
+    String uid = auth.currentUser!.uid.toString();
     await DatabaseService(uid: uid).removeOneSignalTokenID().then(
           (value) async => await auth.signOut(),
         );

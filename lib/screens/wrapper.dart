@@ -11,7 +11,7 @@ import 'package:h4y_partner/screens/server_error_screen.dart';
 import 'package:h4y_partner/screens/onboarding_screen/onboarding_screen.dart';
 
 class Wrapper extends StatefulWidget {
-  const Wrapper({Key key}) : super(key: key);
+  const Wrapper({Key? key}) : super(key: key);
 
   @override
   State<Wrapper> createState() => _WrapperState();
@@ -19,7 +19,7 @@ class Wrapper extends StatefulWidget {
 
 class _WrapperState extends State<Wrapper> {
   // Check Internet Connectivity
-  bool hasConnection;
+  bool? hasConnection;
   checkInternetConnectivity() async {
     hasConnection = await InternetConnectionChecker().hasConnection;
     setState(() {});
@@ -34,7 +34,7 @@ class _WrapperState extends State<Wrapper> {
   @override
   Widget build(BuildContext context) {
     // Get User
-    final user = Provider.of<Help4YouUser>(context);
+    final user = Provider.of<Help4YouUser?>(context);
 
     return PageTransitionSwitcher(
       transitionBuilder: (child, primaryAnimation, secondaryAnimation) {
@@ -48,9 +48,10 @@ class _WrapperState extends State<Wrapper> {
           ? ServerErrorScreen(
               onPressed: () => checkInternetConnectivity(),
             )
-          : (user == null)
-              ? const OnboardingScreen()
-              : const BottomNavBar(),
+          // ignore: unnecessary_null_comparison
+          : (user != null)
+              ? const BottomNavBar()
+              : const OnboardingScreen(),
     );
   }
 }

@@ -6,18 +6,17 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 // File Imports
 
 class MessageNavBar extends StatelessWidget {
-  final bool isMessageEmpty;
-  final Function onChanged;
-  final Function cameraOnPressed;
-  final Function galleryOnPressed;
-  final Function onPressed;
-  final TextEditingController messageController;
-
-  final String messageType;
-  final bool isLongPress;
-  final Function unsendOnTap;
-  final Function copySaveOnTap;
-  final bool isSentByMe;
+  final bool? isMessageEmpty;
+  final Function(String)? onChanged;
+  final VoidCallback? cameraOnPressed;
+  final VoidCallback? galleryOnPressed;
+  final VoidCallback? onPressed;
+  final TextEditingController? messageController;
+  final String? messageType;
+  final bool? isLongPress;
+  final VoidCallback? unsendOnTap;
+  final VoidCallback? copySaveOnTap;
+  final bool? isSentByMe;
 
   final TextStyle textStyle = const TextStyle(
     fontSize: 18.0,
@@ -25,18 +24,18 @@ class MessageNavBar extends StatelessWidget {
   );
 
   const MessageNavBar({
-    Key key,
-    @required this.isMessageEmpty,
-    @required this.onChanged,
-    @required this.cameraOnPressed,
-    @required this.galleryOnPressed,
-    @required this.onPressed,
-    @required this.messageController,
-    @required this.messageType,
-    @required this.isLongPress,
-    @required this.unsendOnTap,
-    @required this.copySaveOnTap,
-    @required this.isSentByMe,
+    Key? key,
+    required this.isMessageEmpty,
+    required this.onChanged,
+    required this.cameraOnPressed,
+    required this.galleryOnPressed,
+    required this.onPressed,
+    required this.messageController,
+    required this.messageType,
+    required this.isLongPress,
+    required this.unsendOnTap,
+    required this.copySaveOnTap,
+    required this.isSentByMe,
   }) : super(key: key);
 
   @override
@@ -128,8 +127,8 @@ class MessageNavBar extends StatelessWidget {
                             padding: const EdgeInsets.only(right: 5.0),
                             child: GestureDetector(
                               onTap: () {
-                                Widget dialogButton(
-                                    String title, Color color, Function onTap) {
+                                Widget dialogButton(String title, Color color,
+                                    VoidCallback onTap) {
                                   return Padding(
                                     padding: const EdgeInsets.symmetric(
                                       horizontal: 15.0,
@@ -163,18 +162,18 @@ class MessageNavBar extends StatelessWidget {
                                 AwesomeDialog(
                                   context: context,
                                   headerAnimationLoop: false,
-                                  dialogType: DialogType.INFO,
+                                  dialogType: DialogType.info,
                                   body: Column(
                                     children: [
                                       dialogButton(
                                         "Camera",
                                         const Color(0xFFFEA700),
-                                        cameraOnPressed,
+                                        cameraOnPressed!,
                                       ),
                                       dialogButton(
                                         "Photo & Video Library",
                                         const Color(0xFF1C3857),
-                                        galleryOnPressed,
+                                        galleryOnPressed!,
                                       ),
                                       const SizedBox(height: 7.5),
                                     ],

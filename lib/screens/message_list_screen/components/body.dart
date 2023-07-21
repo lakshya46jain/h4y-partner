@@ -8,22 +8,22 @@ import 'package:h4y_partner/models/chat_room_model.dart';
 import 'package:h4y_partner/screens/message_list_screen/components/message_tile.dart';
 
 class MessageListBody extends StatelessWidget {
-  final Help4YouUser user;
+  final Help4YouUser? user;
 
   const MessageListBody({
-    Key key,
-    @required this.user,
+    Key? key,
+    required this.user,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-      stream: DatabaseService(uid: user.uid).chatRoomsData,
+      stream: DatabaseService(uid: user!.uid).chatRoomsData,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          List<ChatRoom> chatRooms = snapshot.data;
+          List<ChatRoom>? chatRooms = snapshot.data as List<ChatRoom>?;
           return ListView.builder(
-            itemCount: chatRooms.length,
+            itemCount: chatRooms!.length,
             physics: const BouncingScrollPhysics(),
             itemBuilder: (context, index) {
               return MessageTile(

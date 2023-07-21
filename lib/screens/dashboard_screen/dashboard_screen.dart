@@ -9,7 +9,7 @@ import 'package:h4y_partner/screens/dashboard_screen/components/body.dart';
 import 'package:h4y_partner/screens/dashboard_screen/components/header.dart';
 
 class DashboardScreen extends StatefulWidget {
-  const DashboardScreen({Key key}) : super(key: key);
+  const DashboardScreen({Key? key}) : super(key: key);
 
   @override
   DashboardScreenState createState() => DashboardScreenState();
@@ -17,8 +17,8 @@ class DashboardScreen extends StatefulWidget {
 
 class DashboardScreenState extends State<DashboardScreen> {
   int index = 0;
-  String bookingStatus;
-  FixedExtentScrollController scrollController;
+  String? bookingStatus;
+  FixedExtentScrollController? scrollController;
 
   final items = [
     "Show All Bookings",
@@ -48,7 +48,7 @@ class DashboardScreenState extends State<DashboardScreen> {
 
   @override
   void dispose() {
-    scrollController.dispose();
+    scrollController!.dispose();
     super.dispose();
   }
 
@@ -65,7 +65,7 @@ class DashboardScreenState extends State<DashboardScreen> {
             const SizedBox(height: 50.0),
             Header(
               onPressed: () {
-                scrollController.dispose();
+                scrollController!.dispose();
                 scrollController = FixedExtentScrollController(
                   initialItem: index,
                 );

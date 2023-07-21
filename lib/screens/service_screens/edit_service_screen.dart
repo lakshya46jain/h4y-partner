@@ -12,11 +12,11 @@ import 'package:h4y_partner/constants/signature_button.dart';
 import 'package:h4y_partner/constants/custom_text_field.dart';
 
 class EditServiceScreen extends StatefulWidget {
-  final String documentId;
+  final String? documentId;
 
   const EditServiceScreen({
-    Key key,
-    @required this.documentId,
+    Key? key,
+    required this.documentId,
   }) : super(key: key);
 
   @override
@@ -25,12 +25,12 @@ class EditServiceScreen extends StatefulWidget {
 
 class EditServiceScreenState extends State<EditServiceScreen> {
   // Text Field Variable
-  String serviceTitle;
-  String serviceDescription;
-  double servicePrice;
+  String? serviceTitle;
+  String? serviceDescription;
+  double? servicePrice;
 
   // Visibility Bool
-  bool visibility = true;
+  bool? visibility;
 
   // Form Key
   final formKey = GlobalKey<FormState>();
@@ -38,7 +38,7 @@ class EditServiceScreenState extends State<EditServiceScreen> {
   @override
   Widget build(BuildContext context) {
     // Get User
-    final user = Provider.of<Help4YouUser>(context);
+    final user = Provider.of<Help4YouUser?>(context);
 
     return GestureDetector(
       onTap: () {
@@ -61,7 +61,7 @@ class EditServiceScreenState extends State<EditServiceScreen> {
         body: StreamBuilder(
           stream: DatabaseService(documentId: widget.documentId).serviceData,
           builder: (context, snapshot) {
-            Help4YouServices services = snapshot.data;
+            Help4YouServices? services = snapshot.data as Help4YouServices?;
             if (snapshot.hasData) {
               return Padding(
                 padding: const EdgeInsets.all(20.0),
@@ -74,7 +74,7 @@ class EditServiceScreenState extends State<EditServiceScreen> {
                         const SizedBox(height: 10.0),
                         CustomFields(
                           type: "Normal",
-                          initialValue: services.serviceTitle,
+                          initialValue: services!.serviceTitle,
                           onChanged: (value) {
                             setState(() {
                               serviceTitle = value;
@@ -82,7 +82,7 @@ class EditServiceScreenState extends State<EditServiceScreen> {
                           },
                           keyboardType: TextInputType.text,
                           validator: (value) {
-                            if (value.isEmpty) {
+                            if (value!.isEmpty) {
                               return "Title field cannot be empty";
                             } else {
                               return null;
@@ -101,7 +101,7 @@ class EditServiceScreenState extends State<EditServiceScreen> {
                           },
                           keyboardType: TextInputType.multiline,
                           validator: (value) {
-                            if (value.isEmpty) {
+                            if (value!.isEmpty) {
                               return "Description field cannot be empty";
                             } else {
                               return null;
@@ -120,7 +120,7 @@ class EditServiceScreenState extends State<EditServiceScreen> {
                             });
                           },
                           validator: (value) {
-                            if (value.isEmpty) {
+                            if (value!.isEmpty) {
                               return "Price field cannot be empty";
                             } else {
                               return null;
@@ -155,7 +155,7 @@ class EditServiceScreenState extends State<EditServiceScreen> {
                                 ),
                               ),
                               trailing: CupertinoSwitch(
-                                value: services.visibility,
+                                value: services.visibility!,
                                 onChanged: (bool visbilityStatus) {
                                   setState(() {
                                     visibility = visbilityStatus;
@@ -171,10 +171,10 @@ class EditServiceScreenState extends State<EditServiceScreen> {
                           text: "Update Service",
                           onTap: () async {
                             FocusScope.of(context).unfocus();
-                            if (formKey.currentState.validate()) {
+                            if (formKey.currentState!.validate()) {
                               await DatabaseService(
                                 documentId: widget.documentId,
-                                uid: user.uid,
+                                uid: user!.uid,
                               )
                                   .updateProfessionalServices(
                                     serviceTitle ?? services.serviceTitle,

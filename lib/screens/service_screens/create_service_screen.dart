@@ -11,7 +11,7 @@ import 'package:h4y_partner/constants/signature_button.dart';
 import 'package:h4y_partner/constants/custom_text_field.dart';
 
 class CreateServiceScreen extends StatefulWidget {
-  const CreateServiceScreen({Key key}) : super(key: key);
+  const CreateServiceScreen({Key? key}) : super(key: key);
 
   @override
   CreateServiceScreenState createState() => CreateServiceScreenState();
@@ -19,9 +19,9 @@ class CreateServiceScreen extends StatefulWidget {
 
 class CreateServiceScreenState extends State<CreateServiceScreen> {
   // Text Field Variable
-  String serviceTitle;
-  String serviceDescription;
-  double servicePrice;
+  String? serviceTitle;
+  String? serviceDescription;
+  double? servicePrice;
 
   // Visibility Bool
   bool visibility = true;
@@ -32,7 +32,7 @@ class CreateServiceScreenState extends State<CreateServiceScreen> {
   @override
   Widget build(BuildContext context) {
     // Get User
-    final user = Provider.of<Help4YouUser>(context);
+    final user = Provider.of<Help4YouUser?>(context);
 
     return GestureDetector(
       onTap: () {
@@ -69,8 +69,8 @@ class CreateServiceScreenState extends State<CreateServiceScreen> {
                       });
                     },
                     keyboardType: TextInputType.text,
-                    validator: (value) {
-                      if (value.isEmpty) {
+                    validator: (String? value) {
+                      if (value!.isEmpty) {
                         return "Title field cannot be empty";
                       } else {
                         return null;
@@ -88,7 +88,7 @@ class CreateServiceScreenState extends State<CreateServiceScreen> {
                     },
                     keyboardType: TextInputType.multiline,
                     validator: (value) {
-                      if (value.isEmpty) {
+                      if (value!.isEmpty) {
                         return "Description field cannot be empty";
                       } else {
                         return null;
@@ -100,13 +100,13 @@ class CreateServiceScreenState extends State<CreateServiceScreen> {
                   const SizedBox(height: 25.0),
                   CustomFields(
                     type: "Normal",
-                    onChanged: (value) {
+                    onChanged: (String? value) {
                       setState(() {
-                        servicePrice = double.parse(value);
+                        servicePrice = double.parse(value!);
                       });
                     },
-                    validator: (value) {
-                      if (value.isEmpty) {
+                    validator: (String? value) {
+                      if (value!.isEmpty) {
                         return "Price field cannot be empty";
                       } else {
                         return null;
@@ -157,8 +157,8 @@ class CreateServiceScreenState extends State<CreateServiceScreen> {
                     text: "Create Service",
                     onTap: () async {
                       FocusScope.of(context).unfocus();
-                      if (formKey.currentState.validate()) {
-                        await DatabaseService(uid: user.uid)
+                      if (formKey.currentState!.validate()) {
+                        await DatabaseService(uid: user!.uid)
                             .createProfessionalServices(
                               serviceTitle,
                               serviceDescription,

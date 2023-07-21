@@ -13,11 +13,11 @@ import 'package:h4y_partner/screens/profile_screen/components/profile_stream.dar
 import 'package:h4y_partner/screens/personal_data_screen/personal_data_screen.dart';
 
 class ProfileScreenBody extends StatefulWidget {
-  final Help4YouUser user;
+  final Help4YouUser? user;
 
   const ProfileScreenBody({
-    Key key,
-    @required this.user,
+    Key? key,
+    required this.user,
   }) : super(key: key);
 
   @override
@@ -85,7 +85,7 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> {
             type: "Expanded",
             icon: CupertinoIcons.square_arrow_right,
             text: "Sign Out",
-            onTap: () {
+            onTap: () async {
               return AuthService().signOut();
             },
           ),

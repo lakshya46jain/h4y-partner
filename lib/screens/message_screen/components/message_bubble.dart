@@ -11,29 +11,29 @@ import 'package:full_screen_image_null_safe/full_screen_image_null_safe.dart';
 import 'package:h4y_partner/services/database.dart';
 
 class MessageBubble extends StatelessWidget {
-  final bool groupByDate;
-  final Timestamp timeStamp;
-  final String chatRoomId;
-  final String messageId;
-  final String message;
-  final String type;
-  final bool isSentByMe;
-  final String profilePicture;
-  final bool isRead;
-  final Function onLongPress;
+  final bool? groupByDate;
+  final Timestamp? timeStamp;
+  final String? chatRoomId;
+  final String? messageId;
+  final String? message;
+  final String? type;
+  final bool? isSentByMe;
+  final String? profilePicture;
+  final bool? isRead;
+  final VoidCallback? onLongPress;
 
   const MessageBubble({
-    Key key,
-    @required this.groupByDate,
-    @required this.timeStamp,
-    @required this.chatRoomId,
-    @required this.messageId,
-    @required this.message,
-    @required this.type,
-    @required this.isSentByMe,
-    @required this.profilePicture,
-    @required this.isRead,
-    @required this.onLongPress,
+    Key? key,
+    required this.groupByDate,
+    required this.timeStamp,
+    required this.chatRoomId,
+    required this.messageId,
+    required this.message,
+    required this.type,
+    required this.isSentByMe,
+    required this.profilePicture,
+    required this.isRead,
+    required this.onLongPress,
   }) : super(key: key);
 
   @override
@@ -49,7 +49,7 @@ class MessageBubble extends StatelessWidget {
                 ),
                 child: Text(
                   DateFormat('d MMMM yyyy')
-                      .format(timeStamp.toDate().toLocal()),
+                      .format(timeStamp!.toDate().toLocal()),
                   style: TextStyle(
                     fontSize: 13.0,
                     color: Colors.grey.withOpacity(0.8),
@@ -69,24 +69,24 @@ class MessageBubble extends StatelessWidget {
                   children: [
                     (isRead == false && isSentByMe == false)
                         ? VisibilityDetector(
-                            key: Key(messageId),
+                            key: Key(messageId!),
                             onVisibilityChanged:
                                 (VisibilityInfo visibilityInfo) async {
                               await DatabaseService().updateMessageReadStatus(
                                   chatRoomId, messageId);
                             },
                             child: MessageBubbleCore(
-                              onLongPress: onLongPress,
-                              type: type,
-                              isSentByMe: isSentByMe,
-                              message: message,
+                              onLongPress: onLongPress!,
+                              type: type!,
+                              isSentByMe: isSentByMe!,
+                              message: message!,
                             ),
                           )
                         : MessageBubbleCore(
-                            onLongPress: onLongPress,
-                            type: type,
-                            isSentByMe: isSentByMe,
-                            message: message,
+                            onLongPress: onLongPress!,
+                            type: type!,
+                            isSentByMe: isSentByMe!,
+                            message: message!,
                           ),
                     (isSentByMe == true)
                         ? Padding(
@@ -114,14 +114,14 @@ class MessageBubble extends StatelessWidget {
 
 class MessageBubbleCore extends StatelessWidget {
   const MessageBubbleCore({
-    Key key,
-    @required this.onLongPress,
-    @required this.type,
-    @required this.isSentByMe,
-    @required this.message,
+    Key? key,
+    required this.onLongPress,
+    required this.type,
+    required this.isSentByMe,
+    required this.message,
   }) : super(key: key);
 
-  final Function onLongPress;
+  final VoidCallback onLongPress;
   final String type;
   final bool isSentByMe;
   final String message;

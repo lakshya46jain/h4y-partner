@@ -7,15 +7,15 @@ import 'package:h4y_partner/services/database.dart';
 import 'package:h4y_partner/services/onesignal_configuration.dart';
 
 class AcceptRejectButton extends StatelessWidget {
-  final String bookingId;
-  final String customerUID;
-  final String professionalUID;
+  final String? bookingId;
+  final String? customerUID;
+  final String? professionalUID;
 
   const AcceptRejectButton({
-    Key key,
-    @required this.bookingId,
-    @required this.customerUID,
-    @required this.professionalUID,
+    Key? key,
+    required this.bookingId,
+    required this.customerUID,
+    required this.professionalUID,
   }) : super(key: key);
 
   @override
@@ -40,11 +40,11 @@ class AcceptRejectButton extends StatelessWidget {
             await DatabaseService(bookingId: bookingId)
                 .updateBookingStatus("Accepted");
             sendNotification(
-              customerUID,
+              customerUID!,
               "Booking Status Update",
               "There's an update in the booking status by the customer. Have a look at it!",
               "Booking",
-              bookingId,
+              bookingId!,
             );
           },
           color: Colors.green,
@@ -76,7 +76,7 @@ class AcceptRejectButton extends StatelessWidget {
                 .collection("H4Y Users Database")
                 .doc(customerUID)
                 .get();
-            final String fullName = userData.data()["Full Name"];
+            final String fullName = userData.data()!["Full Name"];
             await DatabaseService(
               customerUID: customerUID,
               uid: professionalUID,
@@ -87,7 +87,7 @@ class AcceptRejectButton extends StatelessWidget {
                 )
                 .then(
                   (value) => sendNotification(
-                    customerUID,
+                    customerUID!,
                     fullName,
                     "Dear Customer, I apologize for rejecting the request. Due to my tight schedule, I will be unable to undertake your project.",
                     "Message",
@@ -95,11 +95,11 @@ class AcceptRejectButton extends StatelessWidget {
                   ),
                 );
             sendNotification(
-              customerUID,
+              customerUID!,
               "Booking Status Update",
               "There's an update in the booking status by the customer. Have a look at it!",
               "Booking",
-              bookingId,
+              bookingId!,
             );
           },
           color: Colors.red,

@@ -5,15 +5,15 @@ import 'package:flutter/cupertino.dart';
 // File Imports
 
 class SearchBar extends StatelessWidget {
-  final double width;
-  final TextEditingController controller;
-  final String hintText;
+  final double? width;
+  final TextEditingController? controller;
+  final String? hintText;
 
   const SearchBar({
-    Key key,
-    @required this.width,
+    Key? key,
+    required this.width,
     this.controller,
-    @required this.hintText,
+    required this.hintText,
   }) : super(key: key);
 
   @override

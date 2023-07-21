@@ -10,7 +10,7 @@ import 'package:h4y_partner/screens/onboarding_screen/components/phone_auth_scre
 import 'package:h4y_partner/screens/onboarding_screen/components/onboarding_page_view.dart';
 
 class OnboardingScreen extends StatefulWidget {
-  const OnboardingScreen({Key key}) : super(key: key);
+  const OnboardingScreen({Key? key}) : super(key: key);
 
   @override
   OnboardingScreenState createState() => OnboardingScreenState();
@@ -23,7 +23,7 @@ class OnboardingScreenState extends State<OnboardingScreen> {
   // Phone Number Field Variables
   String countryCode = "+1";
   String phoneIsoCode = "US";
-  String nonInternationalNumber;
+  String? nonInternationalNumber;
   FocusNode focusNode = FocusNode();
 
   // Page Controller
@@ -69,7 +69,7 @@ class OnboardingScreenState extends State<OnboardingScreen> {
   }
 
   // Build Page Indicator
-  List _buildPageIndicator() {
+  List<Widget> _buildPageIndicator() {
     List<Widget> list = [];
     for (int i = 0; i < 3; i++) {
       list.add(
@@ -146,7 +146,7 @@ class OnboardingScreenState extends State<OnboardingScreen> {
                       focusNode: focusNode,
                       phoneIsoCode: phoneIsoCode,
                       nonInternationalNumber: nonInternationalNumber,
-                      onChanged: (phone) {},
+                      onChangedPhone: (phone) {},
                       onCountryChanged: (phone) {
                         setState(() {
                           countryCode = phone.dialCode;

@@ -1,8 +1,8 @@
 class BookedServices {
-  final String serviceTitle;
-  final String serviceDescription;
-  final double servicePrice;
-  final int quantity;
+  final String? serviceTitle;
+  final String? serviceDescription;
+  final double? servicePrice;
+  final int? quantity;
 
   BookedServices({
     this.serviceTitle,
