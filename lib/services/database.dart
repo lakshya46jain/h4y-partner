@@ -1,7 +1,6 @@
 // Flutter Imports
 // Dependency Imports
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:onesignal_flutter/onesignal_flutter.dart';
 // File Imports
 import 'package:h4y_partner/models/user_model.dart';
 import 'package:h4y_partner/models/booking_model.dart';
@@ -59,25 +58,6 @@ class DatabaseService {
       'Phone ISO Code': phoneIsoCode,
       'Non International Number': nonInternationalNumber,
       'Status': "Online",
-    });
-    addOneSignalTokenID();
-  }
-
-  // Add OneSignal Token ID
-  Future addOneSignalTokenID() async {
-    var status = await OneSignal.shared.getDeviceState();
-    String? tokenId = status?.userId;
-    await userCollection.doc(uid).update({
-      'OneSignal Token IDs': FieldValue.arrayUnion([tokenId]),
-    });
-  }
-
-  // Remove OneSignal Token ID
-  Future removeOneSignalTokenID() async {
-    var status = await OneSignal.shared.getDeviceState();
-    String? tokenId = status?.userId;
-    await userCollection.doc(uid).update({
-      'OneSignal Token IDs': FieldValue.arrayRemove([tokenId]),
     });
   }
 

@@ -104,17 +104,14 @@ class AuthService {
                           .doc(user.uid)
                           .get();
                       if (ds.exists) {
-                        await DatabaseService(uid: user.uid)
-                            .addOneSignalTokenID()
-                            .then(
-                              (value) => Navigator.pushAndRemoveUntil(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const Wrapper(),
-                                ),
-                                (route) => false,
-                              ),
-                            );
+                        // ignore: use_build_context_synchronously
+                        Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const Wrapper(),
+                          ),
+                          (route) => false,
+                        );
                       } else {
                         await DatabaseService(uid: user.uid).updateUserData(
                           fullName,
@@ -214,9 +211,6 @@ class AuthService {
 
   // Sign Out
   Future signOut() async {
-    String uid = auth.currentUser!.uid.toString();
-    await DatabaseService(uid: uid).removeOneSignalTokenID().then(
-          (value) async => await auth.signOut(),
-        );
+    await auth.signOut();
   }
 }

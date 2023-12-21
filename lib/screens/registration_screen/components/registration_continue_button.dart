@@ -90,6 +90,7 @@ class _RegistrationContinueButtonState
               setProfilePicture();
             }
           } catch (error) {
+            // ignore: use_build_context_synchronously
             showCustomSnackBar(
               context,
               CupertinoIcons.exclamationmark_circle,

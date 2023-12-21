@@ -20,7 +20,6 @@ import 'package:h4y_partner/models/user_model.dart';
 import 'package:h4y_partner/services/database.dart';
 import 'package:h4y_partner/models/messages_model.dart';
 import 'package:h4y_partner/constants/signature_button.dart';
-import 'package:h4y_partner/services/onesignal_configuration.dart';
 import 'package:h4y_partner/screens/message_screen/components/message_bubble.dart';
 import 'package:h4y_partner/screens/message_screen/components/bottom_nav_bar.dart';
 
@@ -85,11 +84,6 @@ class MessageScreenState extends State<MessageScreen> {
       hasDigits: true,
       hasSymbols: false,
     ).generate();
-    final userData = await FirebaseFirestore.instance
-        .collection("H4Y Users Database")
-        .doc(user.uid)
-        .get();
-    final String fullName = userData.data()!["Full Name"];
     String fileName = fileNameGenerator.toString();
     Reference firebaseStorageRef = FirebaseStorage.instance
         .ref()
@@ -106,13 +100,7 @@ class MessageScreenState extends State<MessageScreen> {
       "Media",
       downloadAddress,
     );
-    sendNotification(
-      widget.uid!,
-      fullName,
-      "Sent a photo",
-      "Message",
-      "${widget.uid}_${user.uid}",
-    );
+    // Send Notification: Sent a photo
   }
 
   String? message;
@@ -271,13 +259,7 @@ class MessageScreenState extends State<MessageScreen> {
                       setState(() {
                         isLongPress = false;
                       });
-                      sendNotification(
-                        widget.uid!,
-                        "",
-                        "This message is no longer available because it was unsent by the sender.",
-                        "Message",
-                        "",
-                      );
+                      // Send Notification: This message is no longer available because it was unsent by the sender.
                     },
                     copySaveOnTap: () async {
                       if (messageType != "Media") {
@@ -293,11 +275,6 @@ class MessageScreenState extends State<MessageScreen> {
                       }
                     },
                     onPressed: () async {
-                      final userData = await FirebaseFirestore.instance
-                          .collection("H4Y Users Database")
-                          .doc(user.uid)
-                          .get();
-                      final String fullName = userData.data()!["Full Name"];
                       // Create Chat Room In Database
                       await DatabaseService(
                         uid: user.uid,
@@ -311,13 +288,7 @@ class MessageScreenState extends State<MessageScreen> {
                         "Text",
                         messageController.text.trim(),
                       );
-                      sendNotification(
-                        widget.uid!,
-                        fullName,
-                        messageController.text.trim(),
-                        "Message",
-                        "${widget.uid}_${user.uid}",
-                      );
+                      // Send Notification: messageController.text.trim()
                       messageController.clear();
                       setState(() {
                         isMessageEmpty = true;

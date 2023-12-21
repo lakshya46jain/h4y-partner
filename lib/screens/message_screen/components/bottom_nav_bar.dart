@@ -65,6 +65,7 @@ class MessageNavBar extends StatelessWidget {
                     if (isSentByMe == true)
                       GestureDetector(
                         onTap: unsendOnTap,
+                        // ignore: prefer_const_constructors
                         child: Text(
                           "Unsend",
                           style: textStyle,
