@@ -20,8 +20,8 @@ class DeleteAccPhoneAuthScreen extends StatefulWidget {
 
 class DeleteAccPhoneAuthScreenState extends State<DeleteAccPhoneAuthScreen> {
   // Text Field Variables
-  String countryCode = "+1";
-  String phoneIsoCode = "US";
+  String countryCode = "+91";
+  String phoneIsoCode = "IN";
   String? nonInternationalNumber;
 
   @override

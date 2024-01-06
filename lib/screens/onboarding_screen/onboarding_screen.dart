@@ -21,8 +21,8 @@ class OnboardingScreenState extends State<OnboardingScreen> {
   int _currentPage = 0;
 
   // Phone Number Field Variables
-  String countryCode = "+1";
-  String phoneIsoCode = "US";
+  String countryCode = "+91";
+  String phoneIsoCode = "IN";
   String? nonInternationalNumber;
   FocusNode focusNode = FocusNode();
 
