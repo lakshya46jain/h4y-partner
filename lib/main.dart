@@ -32,8 +32,7 @@ class MyAppState extends State<MyApp> {
     minLaunches: 10,
     remindDays: 7,
     remindLaunches: 10,
-    googlePlayIdentifier: '',
-    appStoreIdentifier: '',
+    googlePlayIdentifier: 'com.help4youcompany.partner',
   );
 
   // Navigator Key

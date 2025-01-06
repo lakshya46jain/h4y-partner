@@ -1,8 +1,10 @@
 // Flutter Imports
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/cupertino.dart';
 // Dependency Imports
 import 'package:share_plus/share_plus.dart';
+import 'package:rate_my_app/rate_my_app.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 // File Imports
 import 'package:h4y_partner/services/auth.dart';
@@ -32,6 +34,10 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> {
       throw 'Could not launch $url';
     }
   }
+
+  RateMyApp rateMyApp = RateMyApp(
+    googlePlayIdentifier: 'com.help4youcompany.partner',
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -100,7 +106,41 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> {
             type: "Expanded",
             icon: CupertinoIcons.star,
             text: "Rate Us",
-            onTap: () {},
+            onTap: () async {
+              await rateMyApp.showStarRateDialog(
+                context,
+                title: 'Rate H4Y Partner',
+                message:
+                    'Did you like your experience with H4Y Partner? Then take a little bit of your time to leave a rating:',
+                actionsBuilder: (context, stars) {
+                  return [
+                    TextButton(
+                      child: const Text('Ok'),
+                      onPressed: () async {
+                        HapticFeedback.lightImpact();
+                        await rateMyApp
+                            .callEvent(RateMyAppEventType.rateButtonPressed)
+                            .then(
+                              (value) => Navigator.pop<RateMyAppDialogButton>(
+                                context,
+                                RateMyAppDialogButton.rate,
+                              ),
+                            );
+                      },
+                    ),
+                  ];
+                },
+                dialogStyle: const DialogStyle(
+                  titleAlign: TextAlign.center,
+                  messageAlign: TextAlign.center,
+                  messagePadding: EdgeInsets.only(bottom: 20),
+                ),
+                starRatingOptions: const StarRatingOptions(),
+                onDismissed: () => rateMyApp.callEvent(
+                  RateMyAppEventType.laterButtonPressed,
+                ),
+              );
+            },
           ),
           SignatureButton(
             type: "Expanded",
@@ -109,6 +149,7 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> {
             onTap: () {
               launchInApp(
                 "https://forms.monday.com/forms/ba695d95450030253d57b12f027b44dc?r=use1",
+                // TODO: Change to feedback form link
               );
             },
           ),
@@ -119,6 +160,7 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> {
             onTap: () {
               Share.share(
                 "Have you tried the Help4You app? It's simple to book services like appliance repair, electricians, gardeners & more...\nTo download our app please visit https://www.help4you.webflow.io/download",
+                // TODO: Change to landing page link
                 subject: "Try Help4You",
               );
             },

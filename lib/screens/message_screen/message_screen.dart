@@ -100,7 +100,7 @@ class MessageScreenState extends State<MessageScreen> {
       "Media",
       downloadAddress,
     );
-    // Send Notification: Sent a photo
+    // TODO Send Notification: Sent a photo
   }
 
   String? message;
@@ -259,7 +259,7 @@ class MessageScreenState extends State<MessageScreen> {
                       setState(() {
                         isLongPress = false;
                       });
-                      // Send Notification: This message is no longer available because it was unsent by the sender.
+                      // TODO Send Notification: This message is no longer available because it was unsent by the sender.
                     },
                     copySaveOnTap: () async {
                       if (messageType != "Media") {
@@ -288,7 +288,7 @@ class MessageScreenState extends State<MessageScreen> {
                         "Text",
                         messageController.text.trim(),
                       );
-                      // Send Notification: messageController.text.trim()
+                      // TODO Send Notification: messageController.text.trim()
                       messageController.clear();
                       setState(() {
                         isMessageEmpty = true;

@@ -121,7 +121,7 @@ class CreateServiceScreenState extends State<CreateServiceScreen> {
                     child: Container(
                       padding: const EdgeInsets.all(2.5),
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30.0),
+                        borderRadius: BorderRadius.circular(15.0),
                         border: Border.all(
                           color: const Color(0xFF1C3857),
                         ),

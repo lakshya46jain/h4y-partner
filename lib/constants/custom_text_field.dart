@@ -75,11 +75,11 @@ class CustomFields extends StatelessWidget {
                 ),
               ),
               focusedErrorBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(30.0),
+                borderRadius: BorderRadius.circular(15.0),
                 borderSide: const BorderSide(color: Colors.red),
               ),
               errorBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(30.0),
+                borderRadius: BorderRadius.circular(15.0),
                 borderSide: const BorderSide(color: Colors.red),
               ),
             ),

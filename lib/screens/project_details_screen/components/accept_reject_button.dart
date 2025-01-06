@@ -37,7 +37,7 @@ class AcceptRejectButton extends StatelessWidget {
             Navigator.pop(context);
             await DatabaseService(bookingId: bookingId)
                 .updateBookingStatus("Accepted");
-            // Send Notification: There's an update in the booking status by the customer. Have a look at it!
+            // TODO Send Notification: There's an update in the booking status by the customer. Have a look at it!
           },
           color: Colors.green,
           child: const Text(
@@ -71,8 +71,8 @@ class AcceptRejectButton extends StatelessWidget {
               "Text",
               "Dear Customer, I apologize for rejecting the request. Due to my tight schedule, I will be unable to undertake your project.",
             );
-            // Send Notification: Dear Customer, I apologize for rejecting the request. Due to my tight schedule, I will be unable to undertake your project.
-            // Send Notification: There's an update in the booking status by the customer. Have a look at it!
+            // TODO Send Notification: Dear Customer, I apologize for rejecting the request. Due to my tight schedule, I will be unable to undertake your project.
+            // TODO Send Notification: There's an update in the booking status by the customer. Have a look at it!
           },
           color: Colors.red,
           child: const Text(

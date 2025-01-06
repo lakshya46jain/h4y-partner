@@ -79,7 +79,7 @@ class FinishJobButton extends StatelessWidget {
                     Navigator.pop(context);
                     await DatabaseService(bookingId: bookingId)
                         .updateBookingStatus("Job Completed");
-                    // Send Notification: The project booked by you has been completed by the professional you have booked!
+                    // TODO Send Notification: The project booked by you has been completed by the professional you have booked!
                   } else {
                     Navigator.pop(context);
                     showCustomSnackBar(
