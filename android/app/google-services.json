@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:541516325231:android:4c2c99dd45236cd192089a",
+        "mobilesdk_app_id": "1:541516325231:android:30e96fcce993ec7a92089a",
         "android_client_info": {
-          "package_name": "com.lakshya.h4y_partner"
+          "package_name": "com.help4youcompany.help4you"
         }
       },
       "oauth_client": [
@@ -34,7 +34,7 @@
               "client_id": "541516325231-3o34fnb0sb2pdd8niprk3g9o3ni496fs.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.lakshya.help4you"
+                "bundle_id": "com.help4youcompany.help4you"
               }
             }
           ]
@@ -43,9 +43,9 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:541516325231:android:8c0a4ccc0c58001792089a",
+        "mobilesdk_app_id": "1:541516325231:android:e022f91a32cad08992089a",
         "android_client_info": {
-          "package_name": "com.lakshya.help4you"
+          "package_name": "com.help4youcompany.partner"
         }
       },
       "oauth_client": [
@@ -70,7 +70,7 @@
               "client_id": "541516325231-3o34fnb0sb2pdd8niprk3g9o3ni496fs.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.lakshya.help4you"
+                "bundle_id": "com.help4youcompany.help4you"
               }
             }
           ]

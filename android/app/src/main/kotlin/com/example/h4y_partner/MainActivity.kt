@@ -1,4 +1,4 @@
-package com.lakshya.h4y_partner
+package com.help4youcompany.partner
 
 import io.flutter.embedding.android.FlutterActivity
 
